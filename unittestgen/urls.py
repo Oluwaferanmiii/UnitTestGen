@@ -1,5 +1,10 @@
 from django.urls import path
-from .views import CreateTestSessionView, RegisterView, UserTestSessionListView
+from .views import (
+    CreateTestSessionView,
+    RegisterView,
+    UserTestSessionListView,
+    RegenerateTestView
+)
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -11,4 +16,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('upload/', CreateTestSessionView.as_view(), name='upload-session'),
     path('sessions/', UserTestSessionListView.as_view(), name='user-sessions'),
+    path('regenerate/<int:pk>/', RegenerateTestView.as_view(),
+         name='regenerate-session'),
 ]
