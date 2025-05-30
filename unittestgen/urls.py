@@ -1,13 +1,13 @@
 from django.urls import path
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from .views import (
     CreateTestSessionView,
     RegisterView,
     UserTestSessionListView,
     RegenerateTestView
-)
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
 )
 
 urlpatterns = [
