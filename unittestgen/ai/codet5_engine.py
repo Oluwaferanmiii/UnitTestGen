@@ -4,35 +4,35 @@ import torch
 # Determine device (MPS if available, else CPU)
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-# Load CodeT5 model and tokenizer (using codet5p-220m for better capacity)
-tokenizer = AutoTokenizer.from_pretrained("Salesforce/codet5p-220m")
+# Load CodeT5 model and tokenizer (using codet5p-220m)
+tokenizer = AutoTokenizer.from_pretrained("Salesforce/codet5-large")
 model = AutoModelForSeq2SeqLM.from_pretrained(
-    "Salesforce/codet5p-220m").to(device)
+    "Salesforce/codet5-large").to(device)
 
 
-def generate_test_from_code(code_snippet, max_length=150, min_length=30):
+def generate_test_from_code(code_snippet, max_length=120, min_length=30):
     """
     Generate PyTest-style unit test for a Python code snippet.
     """
-    # Enhanced prompt with specific instructions for assertions
-    prompt = f"Generate a PyTest unit test with assertions for this Python function:\n```python\n{code_snippet}\n``` The test should include at least one assert statement to verify the function's output."
+    # Reframed prompt to encourage test generation
+    prompt = f"Given this Python function:\n```python\n{code_snippet}\n```, write a PyTest unit test function in Python with at least one assert statement to verify its behavior."
 
     # Tokenize input with attention mask
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True,
-                       max_length=100, padding=True, return_attention_mask=True).to(device)
+                       max_length=80, padding=True, return_attention_mask=True).to(device)
     attention_mask = inputs["attention_mask"]
 
-    # Generate test using model with sampling
+    # Generate test using model with adjusted parameters
     outputs = model.generate(
         inputs["input_ids"],
         attention_mask=attention_mask,
         max_length=max_length,
         min_length=min_length,
-        do_sample=True,  # Enable sampling to use temperature
-        temperature=0.7,
-        top_k=50,  # Limit to top 50 tokens for better focus
-        top_p=0.95,  # Nucleus sampling for coherence
-        num_return_sequences=1,  # Single output
+        num_beams=4,  # Increased beams for better exploration
+        early_stopping=True,
+        no_repeat_ngram_size=2,
+        temperature=0.6,  # Slight randomness to avoid strict repetition
+        do_sample=False,  # Stick to beam search for now
     )
 
     # Decode and return result

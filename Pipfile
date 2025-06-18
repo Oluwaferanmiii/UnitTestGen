@@ -16,6 +16,7 @@ sentencepiece = "*"
 protobuf = "*"
 transformers = "==4.44.2"
 torch = "*"
+datasets = "*"
 
 [dev-packages]
 
