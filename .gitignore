@@ -1,5 +1,18 @@
+# Virtual Environment
+Pipfile.lock
 .env
+
+# Media
 /media/
 
+# Models and Training Artifacts
 fine_tuned_codet5p/
 results/
+
+
+
+# Dataset
+dataset.jsonl
+
+#IDE and System Files
+.DS_Store
