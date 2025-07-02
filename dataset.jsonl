@@ -1,0 +1,72 @@
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(2, 3) == 5; assert add(0, 0) == 0; assert add(-1, -1) == -2"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(5, 3) == 2; assert subtract(0, 0) == 0; assert subtract(-1, 1) == -2"}
+{"input": "def multiply(a, b): return a * b", "output": "def test_multiply(): assert multiply(2, 3) == 6; assert multiply(-1, 5) == -5; assert multiply(0, 10) == 0"}
+{"input": "def divide(a, b): return a / b if b != 0 else 0", "output": "def test_divide(): assert divide(6, 2) == 3.0; assert divide(5, 0) == 0; assert divide(-4, 2) == -2.0"}
+{"input": "def power(a, b): return a ** b", "output": "def test_power(): assert power(2, 3) == 8; assert power(0, 5) == 0; assert power(-2, 2) == 4"}
+{"input": "def is_even(n): return n % 2 == 0", "output": "def test_is_even(): assert is_even(4) == True; assert is_even(3) == False; assert is_even(0) == True"}
+{"input": "def is_positive(n): return n > 0", "output": "def test_is_positive(): assert is_positive(5) == True; assert is_positive(0) == False; assert is_positive(-1) == False"}
+{"input": "def concat_str(s1, s2): return s1 + s2", "output": "def test_concat_str(): assert concat_str('hello', 'world') == 'helloworld'; assert concat_str('', '') == ''"}
+{"input": "def max_of_two(a, b): return a if a > b else b", "output": "def test_max_of_two(): assert max_of_two(5, 3) == 5; assert max_of_two(3, 5) == 5; assert max_of_two(0, 0) == 0"}
+{"input": "def min_of_two(a, b): return a if a < b else b", "output": "def test_min_of_two(): assert min_of_two(5, 3) == 3; assert min_of_two(3, 5) == 3; assert min_of_two(0, 0) == 0"}
+{"input": "def is_palindrome(s): return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('radar') == True; assert is_palindrome('hello') == False; assert is_palindrome('') == True"}
+{"input": "def factorial(n): return 1 if n == 0 else n * factorial(n - 1)", "output": "def test_factorial(): assert factorial(5) == 120; assert factorial(0) == 1; assert factorial(1) == 1"}
+{"input": "def reverse_list(lst): return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([1, 2, 3]) == [3, 2, 1]; assert reverse_list([]) == []"}
+{"input": "def sum_list(lst): return sum(lst)", "output": "def test_sum_list(): assert sum_list([1, 2, 3]) == 6; assert sum_list([]) == 0"}
+{"input": "def count_vowels(s): return sum(c in 'aeiou' for c in s.lower())", "output": "def test_count_vowels(): assert count_vowels('hello') == 2; assert count_vowels('xyz') == 0; assert count_vowels('') == 0"}
+{"input": "def is_prime(n): return n > 1 and all(n % i != 0 for i in range(2, int(n ** 0.5) + 1))", "output": "def test_is_prime(): assert is_prime(7) == True; assert is_prime(4) == False; assert is_prime(2) == True"}
+{"input": "def get_first(lst): return lst[0] if lst else None", "output": "def test_get_first(): assert get_first([1, 2, 3]) == 1; assert get_first([]) == None"}
+{"input": "def get_last(lst): return lst[-1] if lst else None", "output": "def test_get_last(): assert get_last([1, 2, 3]) == 3; assert get_last([]) == None"}
+{"input": "def sort_list(lst): return sorted(lst)", "output": "def test_sort_list(): assert sort_list([3, 1, 2]) == [1, 2, 3]; assert sort_list([]) == []"}
+{"input": "def unique_list(lst): return list(dict.fromkeys(lst))", "output": "def test_unique_list(): assert unique_list([1, 1, 2]) == [1, 2]; assert unique_list([]) == []"}
+{"input": "def square(n): return n * n", "output": "def test_square(): assert square(4) == 16; assert square(-3) == 9"}
+{"input": "def cube(n): return n ** 3", "output": "def test_cube(): assert cube(3) == 27; assert cube(-2) == -8"}
+{"input": "def absolute(n): return abs(n)", "output": "def test_absolute(): assert absolute(-5) == 5; assert absolute(0) == 0"}
+{"input": "def is_upper(s): return s.isupper()", "output": "def test_is_upper(): assert is_upper('HELLO') == True; assert is_upper('Hi') == False"}
+{"input": "def is_lower(s): return s.islower()", "output": "def test_is_lower(): assert is_lower('hello') == True; assert is_lower('Hi') == False"}
+{"input": "def capitalize_str(s): return s.capitalize()", "output": "def test_capitalize_str(): assert capitalize_str('hello') == 'Hello'; assert capitalize_str('') == ''"}
+{"input": "def get_middle(s): return s[len(s)//2] if s else ''", "output": "def test_get_middle(): assert get_middle('abc') == 'b'; assert get_middle('') == ''"}
+{"input": "def is_empty(lst): return len(lst) == 0", "output": "def test_is_empty(): assert is_empty([]) == True; assert is_empty([1]) == False"}
+{"input": "def all_positive(lst): return all(x > 0 for x in lst)", "output": "def test_all_positive(): assert all_positive([1, 2, 3]) == True; assert all_positive([-1, 2]) == False"}
+{"input": "def any_negative(lst): return any(x < 0 for x in lst)", "output": "def test_any_negative(): assert any_negative([-1, 0, 1]) == True; assert any_negative([1, 2]) == False"}
+{"input": "def average(lst): return sum(lst)/len(lst) if lst else 0", "output": "def test_average(): assert average([1, 2, 3]) == 2; assert average([]) == 0"}
+{"input": "def count_occurrences(lst, val): return lst.count(val)", "output": "def test_count_occurrences(): assert count_occurrences([1,2,2,3], 2) == 2; assert count_occurrences([], 1) == 0"}
+{"input": "def starts_with(s, prefix): return s.startswith(prefix)", "output": "def test_starts_with(): assert starts_with('hello', 'he') == True; assert starts_with('hello', 'lo') == False"}
+{"input": "def ends_with(s, suffix): return s.endswith(suffix)", "output": "def test_ends_with(): assert ends_with('hello', 'lo') == True; assert ends_with('hello', 'he') == False"}
+{"input": "def to_uppercase(s): return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('hello') == 'HELLO'"}
+{"input": "def to_lowercase(s): return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('HELLO') == 'hello'"}
+{"input": "def remove_spaces(s): return s.replace(' ', '')", "output": "def test_remove_spaces(): assert remove_spaces('a b c') == 'abc'"}
+{"input": "def is_anagram(s1, s2): return sorted(s1) == sorted(s2)", "output": "def test_is_anagram(): assert is_anagram('listen', 'silent') == True; assert is_anagram('hello', 'world') == False"}
+{"input": "def repeat_string(s, n): return s * n", "output": "def test_repeat_string(): assert repeat_string('a', 3) == 'aaa'; assert repeat_string('', 5) == ''"}
+{"input": "def square_list(lst): return [x**2 for x in lst]", "output": "def test_square_list(): assert square_list([1,2,3]) == [1,4,9]"}
+{"input": "def filter_even(lst): return [x for x in lst if x % 2 == 0]", "output": "def test_filter_even(): assert filter_even([1,2,3,4]) == [2,4]"}
+{"input": "def filter_odd(lst): return [x for x in lst if x % 2 != 0]", "output": "def test_filter_odd(): assert filter_odd([1,2,3,4]) == [1,3]"}
+{"input": "def merge_lists(a, b): return a + b", "output": "def test_merge_lists(): assert merge_lists([1], [2]) == [1,2]"}
+{"input": "def contains_value(lst, val): return val in lst", "output": "def test_contains_value(): assert contains_value([1,2,3], 2) == True; assert contains_value([], 1) == False"}
+{"input": "def char_frequency(s): return {c: s.count(c) for c in set(s)}", "output": "def test_char_frequency(): assert char_frequency('aab') == {'a': 2, 'b': 1}"}
+{"input": "def flatten(nested): return [item for sublist in nested for item in sublist]", "output": "def test_flatten(): assert flatten([[1,2],[3,4]]) == [1,2,3,4]"}
+{"input": "def count_words(s): return len(s.split())", "output": "def test_count_words(): assert count_words('hello world') == 2; assert count_words('') == 0"}
+{"input": "def find_max(lst): return max(lst) if lst else None", "output": "def test_find_max(): assert find_max([1,5,3]) == 5; assert find_max([]) == None"}
+{"input": "def find_min(lst): return min(lst) if lst else None", "output": "def test_find_min(): assert find_min([1,5,3]) == 1; assert find_min([]) == None"}
+{"input": "def remove_duplicates(lst): return list(set(lst))", "output": "def test_remove_duplicates(): assert sorted(remove_duplicates([1,1,2,2])) == [1,2]"}
+{"input": "def is_sorted(lst): return all(lst[i] <= lst[i+1] for i in range(len(lst)-1))", "output": "def test_is_sorted(): assert is_sorted([1,2,3]) == True; assert is_sorted([3,2,1]) == False"}
+{"input": "def gcd(a, b): while b: a, b = b, a % b; return a", "output": "def test_gcd(): assert gcd(48, 18) == 6; assert gcd(7, 13) == 1"}
+{"input": "def lcm(a, b): return abs(a * b) // gcd(a, b)", "output": "def test_lcm(): assert lcm(12, 18) == 36; assert lcm(7, 13) == 91"}
+{"input": "def binary_search(lst, target): left, right = 0, len(lst)-1; while left <= right: mid = (left + right) // 2; if lst[mid] == target: return mid; elif lst[mid] < target: left = mid + 1; else: right = mid - 1; return -1", "output": "def test_binary_search(): assert binary_search([1,2,3,4], 3) == 2; assert binary_search([1,2,3], 5) == -1"}
+{"input": "def fibonacci(n): return n if n <= 1 else fibonacci(n-1) + fibonacci(n-2)", "output": "def test_fibonacci(): assert fibonacci(5) == 5; assert fibonacci(0) == 0"}
+{"input": "def is_leap_year(year): return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)", "output": "def test_is_leap_year(): assert is_leap_year(2020) == True; assert is_leap_year(1900) == False"}
+{"input": "def rotate_list(lst, k): return lst[-k:] + lst[:-k] if lst else []", "output": "def test_rotate_list(): assert rotate_list([1,2,3], 1) == [3,1,2]"}
+{"input": "def zip_lists(a, b): return list(zip(a, b))", "output": "def test_zip_lists(): assert zip_lists([1,2], [3,4]) == [(1,3), (2,4)]"}
+{"input": "def unzip_pairs(pairs): return list(zip(*pairs)) if pairs else ([], [])", "output": "def test_unzip_pairs(): assert unzip_pairs([(1,3), (2,4)]) == ([1,2], [3,4])"}
+{"input": "def map_function(lst, func): return [func(x) for x in lst]", "output": "def test_map_function(): assert map_function([1,2,3], lambda x: x*2) == [2,4,6]"}
+{"input": "def reduce_function(lst, func, initial): result = initial; for x in lst: result = func(result, x); return result", "output": "def test_reduce_function(): assert reduce_function([1,2,3], lambda x,y: x+y, 0) == 6"}
+{"input": "def partition(lst, pivot): return [x for x in lst if x <= pivot], [x for x in lst if x > pivot]", "output": "def test_partition(): assert partition([1,5,2,8], 4) == ([1,2], [5,8])"}
+{"input": "def quicksort(lst): if len(lst) <= 1: return lst; pivot = lst[len(lst)//2]; left = [x for x in lst if x < pivot]; middle = [x for x in lst if x == pivot]; right = [x for x in lst if x > pivot]; return quicksort(left) + middle + quicksort(right)", "output": "def test_quicksort(): assert quicksort([3,1,4,1,5]) == [1,1,3,4,5]"}
+{"input": "def merge_sorted(a, b): result = []; i = j = 0; while i < len(a) and j < len(b): if a[i] <= b[j]: result.append(a[i]); i += 1; else: result.append(b[j]); j += 1; return result + a[i:] + b[j:]", "output": "def test_merge_sorted(): assert merge_sorted([1,3], [2,4]) == [1,2,3,4]"}
+{"input": "def str_to_int(s): return int(s) if s.isdigit() else 0", "output": "def test_str_to_int(): assert str_to_int('123') == 123; assert str_to_int('abc') == 0"}
+{"input": "def int_to_str(n): return str(n)", "output": "def test_int_to_str(): assert int_to_str(123) == '123'"}
+{"input": "def is_substring(s, sub): return sub in s", "output": "def test_is_substring(): assert is_substring('hello', 'ell') == True; assert is_substring('hello', 'xyz') == False"}
+{"input": "def replace_char(s, old, new): return s.replace(old, new)", "output": "def test_replace_char(): assert replace_char('hello', 'l', 'x') == 'hexlo'"}
+{"input": "def truncate(s, length): return s[:length] if len(s) > length else s", "output": "def test_truncate(): assert truncate('hello', 3) == 'hel'"}
+{"input": "def pad_string(s, length, char): return s.ljust(length, char)", "output": "def test_pad_string(): assert pad_string('hi', 4, '*') == 'hi**'"}
+{"input": "def validate_email(email): import re; return bool(re.match(r'^[\\w\\.-]+@[\\w\\.-]+$', email))", "output": "def test_validate_email(): assert validate_email('test@example.com') == True; assert validate_email('invalid') == False"}
+{"input": "def count_digits(s): return sum(c.isdigit() for c in s)", "output": "def test_count_digits(): assert count_digits('abc123') == 3"}

@@ -1,2 +1,5 @@
 .env
 /media/
+
+fine_tuned_codet5p/
+results/

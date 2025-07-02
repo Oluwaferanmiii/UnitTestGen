@@ -1,41 +1,45 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
+import os
 
 # Determine device (MPS if available, else CPU)
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-# Load CodeT5 model and tokenizer (using codet5p-220m)
-tokenizer = AutoTokenizer.from_pretrained("Salesforce/codet5-large")
-model = AutoModelForSeq2SeqLM.from_pretrained(
-    "Salesforce/codet5-large").to(device)
+# Load fine-tuned model and tokenizer with absolute path
+MODEL_DIR = "/Users/oluwaferanmiii/Python/Thesis/fine_tuned_codet5p"
+print(f"Loading model from: {MODEL_DIR}")
+if not os.path.exists(MODEL_DIR):
+    raise FileNotFoundError(f"Directory {MODEL_DIR} does not exist!")
+tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_DIR).to(device)
+print(f"Model loaded with config: {model.config}")
 
 
-def generate_test_from_code(code_snippet, max_length=120, min_length=30):
+def generate_test_from_code(code_snippet, max_length=150, min_length=30):
     """
     Generate PyTest-style unit test for a Python code snippet.
     """
-    # Reframed prompt to encourage test generation
+    # Strict prompt enforcing Python PyTest syntax
     prompt = f"Given this Python function:\n```python\n{code_snippet}\n```, write a PyTest unit test function in Python with at least one assert statement to verify its behavior."
 
     # Tokenize input with attention mask
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True,
-                       max_length=80, padding=True, return_attention_mask=True).to(device)
+                       max_length=100, padding=True, return_attention_mask=True).to(device)
     attention_mask = inputs["attention_mask"]
 
-    # Generate test using model with adjusted parameters
+    # Generate test using model with sampling
     outputs = model.generate(
         inputs["input_ids"],
         attention_mask=attention_mask,
         max_length=max_length,
         min_length=min_length,
-        num_beams=4,  # Increased beams for better exploration
+        num_beams=4,
         early_stopping=True,
         no_repeat_ngram_size=2,
-        temperature=0.6,  # Slight randomness to avoid strict repetition
-        do_sample=False,  # Stick to beam search for now
+        # Remove temperature since do_sample=False
     )
 
     # Decode and return result
     test_code = tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
-    print(f"Generated test code: {test_code}")  # Debug output
+    print(f"Generated test code: {test_code}")
     return test_code

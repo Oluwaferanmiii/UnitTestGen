@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import TestSession
 from .serializers import TestSessionSerializer, RegisterSerializer
 from .ai.codet5_engine import generate_test_from_code
+import ast
 
 
 class RegisterView(APIView):
@@ -29,7 +30,6 @@ class CreateTestSessionView(generics.CreateAPIView):
     def perform_create(self, serializer):
         session = serializer.save(user=self.request.user)
 
-        # Step 1: Get code from pasted or uploaded input
         if session.pasted_code:
             raw_code = session.pasted_code
         elif session.uploaded_code:
@@ -39,12 +39,14 @@ class CreateTestSessionView(generics.CreateAPIView):
             session.save()
             return
 
-        # Step 2: Generate tests using CodeT5
         try:
             test_output = generate_test_from_code(raw_code)
+            ast.parse(test_output)  # Validate Python syntax
             session.generated_tests = test_output
+        except SyntaxError as e:
+            session.generated_tests = f"# Error: Invalid Python syntax generated\n# {str(e)}"
         except Exception as e:
-            session.generated_tests = f'# Error during generation: str{e}'
+            session.generated_tests = f"# Error during generation: {str(e)}"
 
         session.save()
 
@@ -78,8 +80,11 @@ class RegenerateTestView(APIView):
         # Step 2: Generate tests using codeT5
         try:
             test_output = generate_test_from_code(raw_code)
+            ast.parse(test_output)  # Check that it's valid Python
             session.generated_tests = test_output
             session.save()
+        except SyntaxError as e:
+            return Response({"error": f"Generated invalid Python code: {str(e)}"}, status=400)
         except Exception as e:
             return Response({"error": f"Test generation failed: {str(e)}"}, status=500)
 
