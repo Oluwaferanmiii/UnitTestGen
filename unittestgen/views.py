@@ -91,3 +91,6 @@ class RegenerateTestView(APIView):
         # Step 3: return updated session
         serializer = TestSessionSerializer(session)
         return Response(serializer.data, status=200)
+
+
+print("Hello")
