@@ -8,6 +8,7 @@ Pipfile.lock
 # Models and Training Artifacts
 fine_tuned_codet5p/
 results/
+logs/
 
 
 

@@ -74,6 +74,11 @@ functions = [
     "def pad_string(s, length, char): return s.ljust(length, char)",
     "def validate_email(email): import re; return bool(re.match(r'^[\\w\\.-]+@[\\w\\.-]+$', email))",
     "def count_digits(s): return sum(c.isdigit() for c in s)",
+    "def is_power_of_two(n): return n > 0 and (n & (n - 1)) == 0",
+    "def hamming_distance(s1, s2): return sum(c1 != c2 for c1, c2 in zip(s1, s2)) if len(s1) == len(s2) else float('inf')",
+    "def rotate_matrix(matrix): return [list(row) for row in zip(*matrix[::-1])]",
+    "def diagonal_sum(matrix): return sum(matrix[i][i] for i in range(len(matrix))) if matrix else 0",
+    "def transpose_matrix(matrix): return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))] if matrix and matrix[0] else []",
 ]
 tests = [
     "def test_add(): assert add(2, 3) == 5; assert add(0, 0) == 0; assert add(-1, -1) == -2",
@@ -148,6 +153,11 @@ tests = [
     "def test_pad_string(): assert pad_string('hi', 4, '*') == 'hi**'",
     "def test_validate_email(): assert validate_email('test@example.com') == True; assert validate_email('invalid') == False",
     "def test_count_digits(): assert count_digits('abc123') == 3",
+    "def test_is_power_of_two(): assert is_power_of_two(8) == True; assert is_power_of_two(10) == False",
+    "def test_hamming_distance(): assert hamming_distance('karolin', 'kathrin') == 3",
+    "def test_rotate_matrix(): assert rotate_matrix([[1,2],[3,4]]) == [[3,1],[4,2]]",
+    "def test_diagonal_sum(): assert diagonal_sum([[1,2,3],[4,5,6],[7,8,9]]) == 15",
+    "def test_transpose_matrix(): assert transpose_matrix([[1,2],[3,4]]) == [[1,3],[2,4]]",
 ]
 
 with open("dataset.jsonl", "w", encoding="utf-8") as f:
