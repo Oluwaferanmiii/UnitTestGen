@@ -118,3 +118,23 @@
 {"input": "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None", "output": "def test_get_last(): assert get_last([1, 2, 3]) == 3; assert get_last([]) == None"}
 {"input": "def sort_list(lst): return sorted(lst) if len(lst) <= 10 else lst", "output": "def test_sort_list(): assert sort_list([3, 1, 2]) == [1, 2, 3]; assert sort_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]"}
 {"input": "def unique_list(lst): return list(dict.fromkeys(lst)) if len(lst) <= 10 else lst", "output": "def test_unique_list(): assert unique_list([1, 1, 2]) == [1, 2]; assert unique_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]"}
+{"input": "def is_divisible(a, b): return a % b == 0 if b != 0 else False", "output": "def test_is_divisible(): assert is_divisible(10, 2) == True; assert is_divisible(10, 3) == False; assert is_divisible(5, 0) == False"}
+{"input": "def remove_duplicates_ordered(lst): seen = set(); return [x for x in lst if not (x in seen or seen.add(x))]", "output": "def test_remove_duplicates_ordered(): assert remove_duplicates_ordered([1,2,2,3,1]) == [1,2,3]"}
+{"input": "def mode(lst): from statistics import mode; return mode(lst) if lst else None", "output": "def test_mode(): assert mode([1,1,2,2,2,3]) == 2; assert mode([]) == None"}
+{"input": "def median(lst): from statistics import median; return median(lst) if lst else None", "output": "def test_median(): assert median([1,2,3]) == 2; assert median([1,2,3,4]) == 2.5; assert median([]) == None"}
+{"input": "def count_char(s, c): return s.count(c)", "output": "def test_count_char(): assert count_char('banana', 'a') == 3; assert count_char('banana', 'z') == 0"}
+{"input": "def index_of(lst, val): return lst.index(val) if val in lst else -1", "output": "def test_index_of(): assert index_of([1,2,3], 2) == 1; assert index_of([1,2,3], 5) == -1"}
+{"input": "def toggle_case(s): return ''.join(c.lower() if c.isupper() else c.upper() for c in s)", "output": "def test_toggle_case(): assert toggle_case('AbC') == 'aBc'; assert toggle_case('123') == '123'"}
+{"input": "def get_extension(filename): return filename.split('.')[-1] if '.' in filename else ''", "output": "def test_get_extension(): assert get_extension('file.txt') == 'txt'; assert get_extension('file') == ''"}
+{"input": "def strip_html(s): import re; return re.sub(r'<[^>]*>', '', s)", "output": "def test_strip_html(): assert strip_html('<p>Hello</p>') == 'Hello'; assert strip_html('no tags') == 'no tags'"}
+{"input": "def word_frequencies(s): from collections import Counter; return dict(Counter(s.split()))", "output": "def test_word_frequencies(): assert word_frequencies('a b a') == {'a': 2, 'b': 1}"}
+{"input": "def has_duplicates(lst): return len(lst) != len(set(lst))", "output": "def test_has_duplicates(): assert has_duplicates([1,2,3,2]) == True; assert has_duplicates([1,2,3]) == False"}
+{"input": "def is_valid_password(p): return len(p) >= 8 and any(c.isdigit() for c in p) and any(c.isalpha() for c in p)", "output": "def test_is_valid_password(): assert is_valid_password('Pass1234') == True; assert is_valid_password('short') == False"}
+{"input": "def round_to_places(n, p): return round(n, p)", "output": "def test_round_to_places(): assert round_to_places(3.14159, 2) == 3.14; assert round_to_places(3.1459, 3) == 3.146"}
+{"input": "def intersection(a, b): return list(set(a) & set(b))", "output": "def test_intersection(): assert sorted(intersection([1,2,3], [2,3,4])) == [2,3]"}
+{"input": "def difference(a, b): return list(set(a) - set(b))", "output": "def test_difference(): assert sorted(difference([1,2,3], [2,3])) == [1]"}
+{"input": "def symmetric_difference(a, b): return list(set(a) ^ set(b))", "output": "def test_symmetric_difference(): assert sorted(symmetric_difference([1,2,3], [2,3,4])) == [1,4]"}
+{"input": "def split_by_delimiter(s, d): return s.split(d)", "output": "def test_split_by_delimiter(): assert split_by_delimiter('a,b,c', ',') == ['a','b','c']"}
+{"input": "def safe_get(d, key): return d.get(key, None)", "output": "def test_safe_get(): assert safe_get({'a': 1}, 'a') == 1; assert safe_get({}, 'x') == None"}
+{"input": "def deep_flatten(lst): from collections.abc import Iterable; result = []; [result.extend(deep_flatten(x)) if isinstance(x, Iterable) and not isinstance(x, (str, bytes)) else result.append(x) for x in lst]; return result", "output": "def test_deep_flatten(): assert deep_flatten([1, [2, [3, 4]], 5]) == [1, 2, 3, 4, 5]"}
+{"input": "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}", "output": "def test_remove_keys(): assert remove_keys({'a':1,'b':2}, ['a']) == {'b':2}"}
