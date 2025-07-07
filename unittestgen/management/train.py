@@ -30,7 +30,7 @@ tokenized_dataset = dataset.map(tokenize_function, batched=True)
 # Define training arguments
 training_args = TrainingArguments(
     output_dir="../results",
-    num_train_epochs=15,
+    num_train_epochs=20,
     per_device_train_batch_size=2,
     gradient_accumulation_steps=8,  # Effective batch size of 16
     warmup_steps=300,

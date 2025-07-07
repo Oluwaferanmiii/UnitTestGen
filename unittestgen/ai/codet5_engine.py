@@ -24,7 +24,7 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
 
     # Tokenize input with attention mask
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True,
-                       max_length=100, padding=True, return_attention_mask=True).to(device)
+                       max_length=128, padding=True, return_attention_mask=True).to(device)
     attention_mask = inputs["attention_mask"]
 
     # Generate test using model with sampling
@@ -35,11 +35,16 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
         min_length=min_length,
         num_beams=4,
         early_stopping=True,
-        no_repeat_ngram_size=2,
-        # Remove temperature since do_sample=False
+        no_repeat_ngram_size=3,
+        temperature=0.7,
+        num_return_sequences=1,
     )
 
     # Decode and return result
-    test_code = tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
-    print(f"Generated test code: {test_code}")
+    test_code = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return test_code
+
+
+if __name__ == "__main__":
+    test_code = generate_test_from_code("def add(a, b): return a + b")
+    print(test_code)
