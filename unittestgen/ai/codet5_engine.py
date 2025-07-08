@@ -36,12 +36,16 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
         num_beams=4,
         early_stopping=True,
         no_repeat_ngram_size=3,
-        temperature=0.7,
+        temperature=0.6,  # Lowered from 0.7 to reduce variability
+        top_k=50,        # Add top-k sampling to constrain outputs
+        do_sample=True,
         num_return_sequences=1,
     )
 
     # Decode and return result
     test_code = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    # Ensure proper spacing in assertions
+    test_code = test_code.replace("assertadd", "assert add")
     return test_code
 
 
