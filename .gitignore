@@ -15,5 +15,8 @@ logs/
 # Dataset
 dataset.jsonl
 
+# Testing
+results.txt
+
 #IDE and System Files
 .DS_Store
