@@ -1,6 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 import os
+import re
 
 # Determine device (MPS if available, else CPU)
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
@@ -44,11 +45,26 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
 
     # Decode and return result
     test_code = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    # Ensure proper spacing in assertions
-    test_code = test_code.replace("assertadd", "assert add")
+    # Ensure proper spacing in assertions for any function name
+    test_code = test_code.replace(
+        "assert", "assert ")  # Add space after assert
+    # Extract the function name from the input code_snippet
+    function_match = re.search(r"def (\w+)\(", code_snippet)
+    if function_match:
+        function_name = function_match.group(
+            1).lower()  # Force lowercase for consistency
+        # Fix cases where the function name might be concatenated or capitalized
+        test_code = test_code.replace(
+            f"assert{function_name.capitalize()}", f"assert {function_name}")
+        test_code = test_code.replace(
+            f"assert{function_name}", f"assert {function_name}")
+        # Replace any uppercase version of the function with lowercase
+        test_code = re.sub(r'\b' + function_name.capitalize() +
+                           r'\b', function_name, test_code)
     return test_code
 
 
 if __name__ == "__main__":
-    generated_test = generate_test_from_code("def add(a, b): return a + b")
+    generated_test = generate_test_from_code(
+        "def subtract(a, b): return a - b")
     print(generated_test)
