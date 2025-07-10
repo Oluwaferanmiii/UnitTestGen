@@ -50,5 +50,5 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
 
 
 if __name__ == "__main__":
-    test_code = generate_test_from_code("def add(a, b): return a + b")
-    print(test_code)
+    generated_test = generate_test_from_code("def add(a, b): return a + b")
+    print(generated_test)
