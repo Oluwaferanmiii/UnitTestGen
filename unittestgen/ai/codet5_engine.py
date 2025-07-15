@@ -66,5 +66,5 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
 
 if __name__ == "__main__":
     generated_test = generate_test_from_code(
-        "def subtract(a, b): return a - b")
+        "def divide(a, b): return a / b")
     print(generated_test)
