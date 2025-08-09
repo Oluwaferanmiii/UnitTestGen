@@ -3,11 +3,14 @@ import torch
 import os
 import re
 
-# Determine device (MPS if available, else CPU)
-device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+# Determine device (CUDA for Lightning AI, MPS locally, CPU fallback)
+device = torch.device("cuda" if torch.cuda.is_available(
+) else "mps" if torch.backends.mps.is_available() else "cpu")
+print(f"Using device: {device}")
 
-# Load fine-tuned model and tokenizer with absolute path
-MODEL_DIR = "/Users/oluwaferanmiii/Python/Thesis/fine_tuned_codet5p"
+# Load fine-tuned model and tokenizer with environment variable
+MODEL_DIR = os.environ.get(
+    "MODEL_PATH", "/Users/oluwaferanmiii/Python/Thesis/fine_tuned_codet5p")
 print(f"Loading model from: {MODEL_DIR}")
 if not os.path.exists(MODEL_DIR):
     raise FileNotFoundError(f"Directory {MODEL_DIR} does not exist!")
@@ -20,15 +23,16 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
     """
     Generate PyTest-style unit test for a Python code snippet.
     """
-    # Strict prompt enforcing Python PyTest syntax
     prompt = f"Given this Python function:\n```python\n{code_snippet}\n```, write a PyTest unit test function in Python with at least one assert statement to verify its behavior."
-
-    # Tokenize input with attention mask
-    inputs = tokenizer(prompt, return_tensors="pt", truncation=True,
-                       max_length=128, padding=True, return_attention_mask=True).to(device)
+    inputs = tokenizer(
+        prompt,
+        return_tensors="pt",
+        truncation=True,
+        max_length=128,
+        padding=True,
+        return_attention_mask=True
+    ).to(device)
     attention_mask = inputs["attention_mask"]
-
-    # Generate test using model with sampling
     outputs = model.generate(
         inputs["input_ids"],
         attention_mask=attention_mask,
@@ -37,28 +41,23 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
         num_beams=4,
         early_stopping=True,
         no_repeat_ngram_size=3,
-        temperature=0.6,  # Lowered from 0.7 to reduce variability
-        top_k=50,        # Add top-k sampling to constrain outputs
+        temperature=0.6,
+        top_k=50,
         do_sample=True,
         num_return_sequences=1,
     )
-
-    # Decode and return result
     test_code = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    # Ensure proper spacing in assertions for any function name
-    test_code = test_code.replace(
-        "assert", "assert ")  # Add space after assert
-    # Extract the function name from the input code_snippet
+    test_code = test_code.replace("assert ", "assert ")
     function_match = re.search(r"def (\w+)\(", code_snippet)
     if function_match:
-        function_name = function_match.group(
-            1).lower()  # Force lowercase for consistency
-        # Fix cases where the function name might be concatenated or capitalized
+        function_name = function_match.group(1).lower()
+        # Normalize test function name
+        test_code = re.sub(r'def test_\w+\(',
+                           f'def test_{function_name}(', test_code, 1)
         test_code = test_code.replace(
             f"assert{function_name.capitalize()}", f"assert {function_name}")
         test_code = test_code.replace(
             f"assert{function_name}", f"assert {function_name}")
-        # Replace any uppercase version of the function with lowercase
         test_code = re.sub(r'\b' + function_name.capitalize() +
                            r'\b', function_name, test_code)
     return test_code

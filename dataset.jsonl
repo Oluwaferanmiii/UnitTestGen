@@ -578,3 +578,13 @@
 {"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(-10000, -20000) == -30000"}
 {"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(3.3333, 6.6667) == 10.0"}
 {"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(3, 6) == 9"}
+{"input": "def num_add(a, b): return a + b", "output": "def test_num_add(): assert num_add(2, 3) == 5; assert num_add(0, 0) == 0; assert num_add(-1, -1) == -2"}
+{"input": "def num_add(a, b): return a + b", "output": "def test_num_add(): assert num_add(1, 7) == 8; assert num_add(0, -9) == -9; assert num_add(-5, -1) == -6"}
+{"input": "def num_add(a, b): return a + b", "output": "def test_num_add(): assert num_add(12, 3) == 15; assert num_add(77, 33) == 110; assert num_add(-1, 5) == 4"}
+{"input": "def num_add(a, b): return a + b", "output": "def test_num_add(): assert num_add(-2, 3) == 1; assert num_add(10, -10) == 0; assert num_add(1, -1) == 0"}
+{"input": "def num_add(a, b): return a + b", "output": "def test_num_add(): assert num_add(9, 3) == 12; assert num_add(0000.10, 1.0) == 1.1; assert num_add(-1, -1) == -2"}
+{"input": "def sum_numbers(x, y): return x + y", "output": "def test_sum_numbers(): assert sum_numbers(2, 3) == 5; assert sum_numbers(0, 0) == 0; assert sum_numbers(-1, -1) == -2"}
+{"input": "def sum_numbers(x, y): return x + y", "output": "def test_sum_numbers(): assert sum_numbers(1, 7) == 8; assert sum_numbers(0, -9) == -9; assert sum_numbers((-5, -1) == -6"}
+{"input": "def sum_numbers(x, y): return x + y", "output": "def test_sum_numbers(): assert sum_numbers(12, 3) == 15; assert sum_numbers(100, 0) == 100; assert sum_numbers(-99, -1) == -100"}
+{"input": "def sum_numbers(x, y): return x + y", "output": "def test_sum_numbers(): assert sum_numbers(24, 6) == 30; assert sum_numbers(81, 9) == 90; assert sum_numbers(-1, 1000) == 999"}
+{"input": "def sum_numbers(x, y): return x + y", "output": "def test_sum_numbers(): assert sum_numbers(2, 53) == 55; assert sum_numbers(0, 0) == 0; assert sum_numbers(-1, -1) == -2"}

@@ -582,6 +582,17 @@ functions = [
     "def add(a, b): return a + b",
     "def add(a, b): return a + b",
     "def add(a, b): return a + b",
+    "def num_add(a, b): return a + b",
+    "def num_add(a, b): return a + b",
+    "def num_add(a, b): return a + b",
+    "def num_add(a, b): return a + b",
+    "def num_add(a, b): return a + b",
+    "def sum_numbers(x, y): return x + y",
+    "def sum_numbers(x, y): return x + y",
+    "def sum_numbers(x, y): return x + y",
+    "def sum_numbers(x, y): return x + y",
+    "def sum_numbers(x, y): return x + y",
+
 ]
 tests = [
     "def test_add(): assert add(2, 3) == 5; assert add(0, 0) == 0; assert add(-1, -1) == -2",
@@ -1164,6 +1175,16 @@ tests = [
     "def test_add(): assert add(-10000, -20000) == -30000",
     "def test_add(): assert add(3.3333, 6.6667) == 10.0",
     "def test_add(): assert add(3, 6) == 9",
+    "def test_num_add(): assert num_add(2, 3) == 5; assert num_add(0, 0) == 0; assert num_add(-1, -1) == -2",
+    "def test_num_add(): assert num_add(1, 7) == 8; assert num_add(0, -9) == -9; assert num_add(-5, -1) == -6",
+    "def test_num_add(): assert num_add(12, 3) == 15; assert num_add(77, 33) == 110; assert num_add(-1, 5) == 4",
+    "def test_num_add(): assert num_add(-2, 3) == 1; assert num_add(10, -10) == 0; assert num_add(1, -1) == 0",
+    "def test_num_add(): assert num_add(9, 3) == 12; assert num_add(0000.10, 1.0) == 1.1; assert num_add(-1, -1) == -2",
+    "def test_sum_numbers(): assert sum_numbers(2, 3) == 5; assert sum_numbers(0, 0) == 0; assert sum_numbers(-1, -1) == -2",
+    "def test_sum_numbers(): assert sum_numbers(1, 7) == 8; assert sum_numbers(0, -9) == -9; assert sum_numbers((-5, -1) == -6",
+    "def test_sum_numbers(): assert sum_numbers(12, 3) == 15; assert sum_numbers(100, 0) == 100; assert sum_numbers(-99, -1) == -100",
+    "def test_sum_numbers(): assert sum_numbers(24, 6) == 30; assert sum_numbers(81, 9) == 90; assert sum_numbers(-1, 1000) == 999",
+    "def test_sum_numbers(): assert sum_numbers(2, 53) == 55; assert sum_numbers(0, 0) == 0; assert sum_numbers(-1, -1) == -2",
 ]
 
 with open("dataset.jsonl", "w", encoding="utf-8") as f:
