@@ -47,19 +47,32 @@ def generate_test_from_code(code_snippet, max_length=150, min_length=30):
         num_return_sequences=1,
     )
     test_code = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    test_code = test_code.replace("assert ", "assert ")
+    # Remove leading/trailing whitespace and fix basic syntax
+    test_code = test_code.strip().replace("  ", " ").replace("\n\n", "\n")
     function_match = re.search(r"def (\w+)\(", code_snippet)
     if function_match:
         function_name = function_match.group(1).lower()
-        # Normalize test function name
+        # Standardize test function name
         test_code = re.sub(r'def test_\w+\(',
                            f'def test_{function_name}(', test_code, 1)
-        test_code = test_code.replace(
-            f"assert{function_name.capitalize()}", f"assert {function_name}")
-        test_code = test_code.replace(
-            f"assert{function_name}", f"assert {function_name}")
-        test_code = re.sub(r'\b' + function_name.capitalize() +
-                           r'\b', function_name, test_code)
+        # Replace function calls with correct case
+        test_code = re.sub(
+            r'\b' + re.escape(function_name.capitalize()) + r'\b', function_name, test_code)
+        test_code = re.sub(
+            r'\b' + re.escape(function_name.upper()) + r'\b', function_name, test_code)
+        test_code = re.sub(r'\b' + re.escape(function_name) +
+                           r'(?=\s*\()', function_name, test_code)
+        # Handle dot notation and invalid separators
+        # Remove dots (e.g., get.abs -> get_abs)
+        test_code = re.sub(r'\.(\w+)', r'\1', test_code)
+        # Replace hyphens with underscores
+        test_code = test_code.replace("-", "_")
+        # Ensure proper assert syntax
+        test_code = re.sub(r'assert\s+(\w+)', r'assert \1',
+                           test_code)  # Normalize assert spacing
+        # Fix assert format
+        test_code = re.sub(
+            r'assert\s+([^\s=]+)\s*==', r'assert \1 ==', test_code)
     return test_code
 
 
