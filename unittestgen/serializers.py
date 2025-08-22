@@ -13,6 +13,23 @@ class TestSessionSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'generated_tests',
                             'created_at', 'updated_at', 'user']
 
+    def validate(self, attrs):
+        uploaded = attrs.get("uploaded_code")
+        pasted = attrs.get("pasted_code")
+        if not uploaded and not pasted:
+            raise serializers.ValidationError(
+                "Provide either uploaded_code or pasted_code.")
+
+        if uploaded:
+            name = getattr(uploaded, "name", "")
+            if not name.endswith(".py"):
+                raise serializers.ValidationError(
+                    "Only .py files are allowed.")
+            if uploaded.size > 512 * 1024:  # 512KB cap (tweak as needed)
+                raise serializers.ValidationError(
+                    "Uploaded file is too large.")
+        return attrs
+
     # def create(self, validated_data):
     #     user = self.context['request'].user
     #     return TestSession.objects.create(user=user, **validated_data)  # pylint: disable=no-member

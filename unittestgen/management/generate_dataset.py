@@ -1,5 +1,23 @@
 # THESIS/unittestgen/management/generate_dataset.py
+import ast
 import json
+import os
+from collections import defaultdict
+
+# ----------------------------
+# Config (tweak as needed)
+# ----------------------------
+# write cleaned output here (non-destructive)
+DATASET_FILE = "dataset.jsonl"
+REJECTED_FILE = "dataset.rejected.jsonl"
+
+# Exact pair-level dedupe only (recommended).
+# If you ALSO want to prevent one input from dominating, set a cap:
+PER_INPUT_CAP = None  # e.g., 10   # None means "no cap"
+
+# ----------------------------
+# Sample seeds you provided
+# ----------------------------
 
 functions = [
     "def add(a, b): return a + b",
@@ -762,6 +780,66 @@ functions = [
     "def list_sum(lst): return sum(lst)",
     "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
     "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def safe_divide(a, b): return a / b if b != 0 and a > 0 else 0",
+    "def is_even(n): return n % 2 == 0",
+    "def is_even(n): return n % 2 == 0",
+    "def is_even(n): return n % 2 == 0",
+    "def is_even(n): return n % 2 == 0",
+    "def is_even(n): return n % 2 == 0",
+    "def is_even(n): return n % 2 == 0",
+    "def concat(s1, s2): return s1 + s2",
+    "def concat(s1, s2): return s1 + s2",
+    "def concat(s1, s2): return s1 + s2",
+    "def concat(s1, s2): return s1 + s2",
+    "def concat(s1, s2): return s1 + s2",
+    "def concat(s1, s2): return s1 + s2",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def power(base, exp): return base ** exp",
+    "def power(base, exp): return base ** exp",
+    "def power(base, exp): return base ** exp",
+    "def power(base, exp): return base ** exp",
+    "def power(base, exp): return base ** exp",
+    "def power(base, exp): return base ** exp",
+    "def divide(a, b): return a / b",
+    "def divide(a, b): return a / b",
+    "def divide(a, b): return a / b",
+    "def divide(a, b): return a / b",
+    "def divide(a, b): return a / b",
+    "def divide(a, b): return a / b",
+    "def uppercase(s): return s.upper()",
+    "def uppercase(s): return s.upper()",
+    "def uppercase(s): return s.upper()",
+    "def uppercase(s): return s.upper()",
+    "def uppercase(s): return s.upper()",
+    "def uppercase(s): return s.upper()",
+    "def long_string(s): return len(s) > 5",
+    "def long_string(s): return len(s) > 5",
+    "def long_string(s): return len(s) > 5",
+    "def long_string(s): return len(s) > 5",
+    "def long_string(s): return len(s) > 5",
+    "def long_string(s): return len(s) > 5",
+    "def list_sum(lst): return sum(lst)",
+    "def list_sum(lst): return sum(lst)",
+    "def list_sum(lst): return sum(lst)",
+    "def list_sum(lst): return sum(lst)",
+    "def list_sum(lst): return sum(lst)",
+    "def list_sum(lst): return sum(lst)",
+    "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0",
+    "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0",
+    "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0",
+    "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0",
+    "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0",
+    "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0",
 ]
 tests = [
     "def test_add(): assert add(2, 3) == 5; assert add(0, 0) == 0; assert add(-1, -1) == -2",
@@ -1524,8 +1602,145 @@ tests = [
     "def test_list_sum(): assert list_sum([1.5, 2.5]) == 4.0; assert list_sum([-1, -2]) == -3",
     "def test_safe_divide(): assert safe_divide(-5, 2) == 0; assert safe_divide(10, 5) == 2.0",
     "def test_safe_divide(): assert safe_divide(4, 2) == 2.0; assert safe_divide(-3, 1) == 0",
+    "def test_safe_divide(): assert safe_divide(10, 2) == 5.0; assert safe_divide(-5, 2) == 0",
+    "def test_safe_divide(): assert safe_divide(0, 1) == 0; assert safe_divide(3, 0) == 0",
+    "def test_safe_divide(): assert safe_divide(7.5, 2.5) == 3.0; assert safe_divide(-1.0, 1.0) == 0",
+    "def test_safe_divide(): assert safe_divide(100, 20) == 5.0; assert safe_divide(-10, 5) == 0",
+    "def test_safe_divide(): assert safe_divide(1.5, 0.5) == 3.0; assert safe_divide(-0.5, 0.5) == 0",
+    "def test_safe_divide(): assert safe_divide(25, 5) == 5.0; assert safe_divide(-25, 5) == 0",
+    "def test_is_even(): assert is_even(4) == True; assert is_even(3) == False",
+    "def test_is_even(): assert is_even(-2) == True; assert is_even(-1) == False",
+    "def test_is_even(): assert is_even(0) == True; assert is_even(7) == False",
+    "def test_is_even(): assert is_even(100) == True; assert is_even(101) == False",
+    "def test_is_even(): assert is_even(-4) == True; assert is_even(-5) == False",
+    "def test_is_even(): assert is_even(2.0) == True; assert is_even(2.1) == False",
+    "def test_concat(): assert concat('hello', 'world') == 'helloworld'; assert concat('', 'test') == 'test'",
+    "def test_concat(): assert concat('a', 'b') == 'ab'; assert concat('1', 2) == '12'",
+    "def test_concat(): assert concat('', '') == ''; assert concat(1, 'a') == '1a'",
+    "def test_concat(): assert concat('start', '') == 'start'; assert concat(0, 'end') == '0end'",
+    "def test_concat(): assert concat('x', 'y') == 'xy'; assert concat(-1, 1) == '-11'",
+    "def test_concat(): assert concat('test', 'ing') == 'testing'; assert concat(3, '3') == '33'",
+    "def test_get_abs(): assert get_abs(-5) == 5; assert get_abs(3.5) == 3.5",
+    "def test_get_abs(): assert get_abs(-10) == 10; assert get_abs(0.0) == 0.0",
+    "def test_get_abs(): assert get_abs(-2.5) == 2.5; assert get_abs(7) == 7",
+    "def test_get_abs(): assert get_abs(-1.0) == 1.0; assert get_abs(4.0) == 4.0",
+    "def test_get_abs(): assert get_abs(-8) == 8; assert get_abs(-0.1) == 0.1",
+    "def test_get_abs(): assert get_abs(0) == 0; assert get_abs(100) == 100",
+    "def test_power(): assert power(2, 3) == 8; assert power(-2, 2) == 4",
+    "def test_power(): assert power(2, -1) == 0.5; assert power(4, -2) == 0.0625",
+    "def test_power(): assert power(16, 0.5) == 4.0; assert power(-2, 3) == -8",
+    "def test_power(): assert power(9, 0.5) == 3.0; assert power(8, -1.0) == 0.125",
+    "def test_power(): assert power(-3, 2) == 9; assert power(3, -1) == 0.3333333333333333",
+    "def test_power(): assert power(25, -0.5) == 0.2; assert power(-4, -1) == -0.25",
+    "def test_divide(): assert divide(4.0, 2.0) == 2.0; assert divide(-6.0, 3.0) == -2.0",
+    "def test_divide(): assert divide(-10.0, 4.0) == -2.5; assert divide(-2.0, -3.0) == 0.6666666666666666",
+    "def test_divide(): assert divide(0.0, 5.0) == 0.0; assert divide(10.0, -5.0) == -2.0",
+    "def test_divide(): assert divide(1.5, 0.5) == 3.0; assert divide(-1.0, 2.0) == -0.5",
+    "def test_divide(): assert divide(-5.5, 2.0) == -2.75; assert divide(2.0, -0.5) == -4.0",
+    "def test_divide(): assert divide(100.0, 25.0) == 4.0; assert divide(-3.14, 2.0) == -1.57",
+    "def test_uppercase(): assert uppercase('hello') == 'HELLO'; assert uppercase('Hi There') == 'HI THERE'",
+    "def test_uppercase(): assert uppercase('test') == 'TEST'; assert uppercase('') == ''",
+    "def test_uppercase(): assert uppercase('ABC') == 'ABC'; assert uppercase('aBcDe') == 'ABCDE'",
+    "def test_uppercase(): assert uppercase('123') == '123'; assert uppercase('MixEd') == 'MIXED'",
+    "def test_uppercase(): assert uppercase('lowercase') == 'LOWERCASE'; assert uppercase('UPPER') == 'UPPER'",
+    "def test_uppercase(): assert uppercase('special@case') == 'SPECIAL@CASE'; assert uppercase('') == ''",
+    "def test_long_string(): assert long_string('abc') == False; assert long_string('abcdefg') == True",
+    "def test_long_string(): assert long_string('short') == False; assert long_string('longer') == True",
+    "def test_long_string(): assert long_string('') == False; assert long_string('abc123def') == True",
+    "def test_long_string(): assert long_string('12345') == False; assert long_string('123456') == True",
+    "def test_long_string(): assert long_string('a' * 4) == False; assert long_string('a' * 6) == True",
+    "def test_long_string(): assert long_string('special') == False; assert long_string('specialcase') == True",
+    "def test_list_sum(): assert list_sum([1, 2, 3]) == 6; assert list_sum([]) == 0",
+    "def test_list_sum(): assert list_sum([1.5, 2.5]) == 4.0; assert list_sum([-1, -2]) == -3",
+    "def test_list_sum(): assert list_sum([0, 0, 0]) == 0; assert list_sum([10, -5]) == 5",
+    "def test_list_sum(): assert list_sum([2.0, 3.0]) == 5.0; assert list_sum([-3, 4]) == 1",
+    "def test_list_sum(): assert list_sum([100]) == 100; assert list_sum([-10, 10]) == 0",
+    "def test_list_sum(): assert list_sum([0.5, 0.5]) == 1.0; assert list_sum([-2.5, 1.5]) == -1.0",
+    "def test_divide_safe(): assert divide_safe(4, 2) == 2.0; assert divide_safe(-4, 2) == 0",
+    "def test_divide_safe(): assert divide_safe(10, 0) == 0; assert divide_safe(5, '2') == 0",
+    "def test_divide_safe(): assert divide_safe(3.5, 0.5) == 7.0; assert divide_safe(-1.5, 0.5) == 0",
+    "def test_divide_safe(): assert divide_safe(20, 4) == 5.0; assert divide_safe('a', 2) == 0",
+    "def test_divide_safe(): assert divide_safe(1, 1) == 1.0; assert divide_safe(-10, 2) == 0",
+    "def test_divide_safe(): assert divide_safe(0, 5) == 0; assert divide_safe(7, 0) == 0",
 ]
 
-with open("dataset.jsonl", "w", encoding="utf-8") as f:
-    for func, test in zip(functions, tests):
-        f.write(json.dumps({"input": func, "output": test}) + "\n")
+# ----------------------------
+# Helpers
+# ----------------------------
+
+
+def is_valid_python(code_src: str) -> bool:
+    try:
+        ast.parse(code_src)
+        return True
+    except SyntaxError:
+        return False
+
+
+def load_jsonl(path: str):
+    items = []
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip():
+                    try:
+                        item = json.loads(line)
+                        if "input" in item and "output" in item:
+                            items.append({
+                                "input": item["input"].strip(),
+                                "output": item["output"].strip()
+                            })
+                    except json.JSONDecodeError:
+                        continue
+    return items
+
+
+# ----------------------------
+# Main
+# ----------------------------
+existing = load_jsonl(DATASET_FILE)
+incoming = [{"input": f.strip(), "output": t.strip()}
+            for f, t in zip(functions, tests)]
+
+items_in = existing + incoming
+
+seen_pairs = set()
+per_input_counts = defaultdict(int)
+clean = []
+rejected = []
+
+for example in items_in:
+    in_src = example["input"].strip()
+    tgt = example["output"].strip()
+    key = (in_src, tgt)
+
+    if key in seen_pairs:
+        continue
+
+    if not (is_valid_python(in_src) and is_valid_python(tgt)):
+        rejected.append(example)
+        continue
+
+    if PER_INPUT_CAP is not None and per_input_counts[in_src] >= PER_INPUT_CAP:
+        continue
+
+    clean.append({"input": in_src, "output": tgt})
+    seen_pairs.add(key)
+    per_input_counts[in_src] += 1
+
+# Write back to dataset.jsonl
+with open(DATASET_FILE, "w", encoding="utf-8") as f:
+    for ex in clean:
+        f.write(json.dumps(ex, ensure_ascii=False) + "\n")
+
+# Save rejected for review
+if rejected:
+    with open(REJECTED_FILE, "w", encoding="utf-8") as f:
+        for ex in rejected:
+            f.write(json.dumps(ex, ensure_ascii=False) + "\n")
+
+print(f"[dataset] Existing loaded: {len(existing)}")
+print(f"[dataset] Incoming seeds: {len(incoming)}")
+print(f"[dataset] Unique kept:    {len(clean)}")
+print(f"[dataset] Rejected saved: {len(rejected)} -> {REJECTED_FILE}")
+print(f"[dataset] Updated in-place: {DATASET_FILE}")

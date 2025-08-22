@@ -56,7 +56,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# In dev, allow all. In prod, lock this down.
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# When I add a real frontend domain, put it here:
+# CSRF_TRUSTED_ORIGINS = ["https://your-frontend.example.com"]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
