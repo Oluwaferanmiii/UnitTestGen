@@ -9,7 +9,7 @@ from collections import defaultdict
 # ----------------------------
 # write cleaned output here (non-destructive)
 DATASET_FILE = "dataset.jsonl"
-REJECTED_FILE = "dataset.rejected.jsonl"
+REJECTED_FILE = "dataset.rejected.gen.jsonl"
 
 # Exact pair-level dedupe only (recommended).
 # If you ALSO want to prevent one input from dominating, set a cap:
@@ -1930,3 +1930,51 @@ print(f"[dataset] Incoming seeds: {len(incoming)}")
 print(f"[dataset] Unique kept:    {len(clean)}")
 print(f"[dataset] Rejected saved: {len(rejected)} -> {REJECTED_FILE}")
 print(f"[dataset] Updated in-place: {DATASET_FILE}")
+
+# ----------------------------
+# Post-step: run audit
+# ----------------------------
+try:
+    from unittestgen.management.audit_dataset import main as audit_main
+    print("[generate] Running audit on dataset.jsonl ...")
+    audit_main()
+    print("[generate] Audit done. Train on dataset.cleaned.jsonl")
+except Exception as e:  # pylint: disable=broad-exception-caught
+    print(f"[generate] Audit failed: {e}")
+
+
+# ----------------------------
+# Build merged rejected snapshot
+# ----------------------------
+def _merge_rejects():
+    paths = [
+        "dataset.rejected.gen.jsonl",
+        "dataset.rejected.audit.jsonl",
+    ]
+    merged = []
+    for p in paths:
+        try:
+            with open(p, "r", encoding="utf-8") as fh:
+                for line in fh:
+                    try:
+                        obj = json.loads(line)
+                        # Tag source if missing
+                        if "source" not in obj:
+                            obj["source"] = "generate" if p.endswith(
+                                ".gen.jsonl") else "audit"
+                        merged.append(obj)
+                    except json.JSONDecodeError:
+                        continue
+        except FileNotFoundError:
+            continue
+    with open("dataset.rejected.jsonl", "w", encoding="utf-8") as fo:
+        for obj in merged:
+            fo.write(json.dumps(obj, ensure_ascii=False) + "\n")
+    print(
+        f"[generate] Combined rejected -> dataset.rejected.jsonl ({len(merged)})")
+
+
+try:
+    _merge_rejects()
+except Exception as e:  # pylint: disable=broad-exception-caught
+    print(f"[generate] Merge rejects failed: {e}")

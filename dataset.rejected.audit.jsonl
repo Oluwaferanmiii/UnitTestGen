@@ -1,0 +1,55 @@
+{"input": "def multiply_list(lst): result = 1; [result := result * x for x in lst]; return result", "output": "def test_multiply_list(): assert multiply_list([1,2,3,4]) == 24"}
+{"input": "def subtract_and_limit(a, b): result = a - b; return result if result < 100 else 100", "output": "def test_subtract_and_limit(): assert subtract_and_limit(120, 10) == 100; assert subtract_and_limit(90, 20) == 70"}
+{"input": "def subtract_and_check_even(a, b): return (a - b) % 2 == 0", "output": "def test_subtract_and_check_even(): assert subtract_and_check_even(6, 2) == True; assert subtract_and_check_even(5, 2) == False"}
+{"input": "def subtract_from_mean(lst, val): from statistics import mean; return mean(lst) - val if lst else -val", "output": "def test_subtract_from_mean(): assert subtract_from_mean([2, 4, 6], 4) == 0.0; assert subtract_from_mean([], 5) == -5"}
+{"input": "def subtract(a, b): return a - b if isinstance(a, int) and isinstance(b, int) else 0", "output": "def test_subtract(): assert subtract(5, 2) == 3; assert subtract('a', 2) == 0"}
+{"input": "def subtract(a, b): return a - b if isinstance(a - b, int) else int(a - b)", "output": "def test_subtract(): assert subtract(5, 2) == 3; assert subtract(10.5, 3.5) == 7"}
+{"input": "def subtract(a, b): return a - b if isinstance(a, (int, float)) and isinstance(b, (int, float)) else None", "output": "def test_subtract(): assert subtract(10, 3) == 7; assert subtract('a', 1) == None"}
+{"input": "def subtract(a, b): return (a - b) if isinstance(a, int) and isinstance(b, int) else Exception('Invalid')", "output": "def test_subtract(): assert subtract(5, 2) == 3; assert isinstance(subtract('a', 'b'), Exception) or True"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0.1, 0.05) == 0.05; assert subtract(0.3, 0.1) == 0.19999999999999998"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0.25, 0.05) == 0.2; assert subtract(1.25, 1.0) == 0.25"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0.0001, 0.00005) == 0.00005; assert subtract(0.1, 0.1) == 0.0"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(-1e9, 1e9) == -2e9; assert subtract(1e5, -1e5) == 2e5"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(1.11111111, 2.22222222) == 3.33333333; assert add(0.0001, 0.0009) == 0.001"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(999999.999, 0.001) == 1000000.0; assert add(1e3, 2e3) == 3000.0"}
+{"input": "def multiply(a, b): return a * b", "output": "def test_multiply(): assert multiply(0.0001, 10000) == 1.0; assert multiply(0.001, 1000) == 1.0"}
+{"input": "def divide(a, b): return a / b if b != 0 else 0", "output": "def test_divide(): assert divide(1000000000, 1000) == 1000000.0; assert divide(1, 1e-9) == 1e9"}
+{"input": "def divide(a, b): return a / b if b != 0 else 0", "output": "def test_divide(): assert divide(1e-9, 1) == 1e-9; assert divide(1, 1e9) == 1e-9"}
+{"input": "def power(a, b): return a ** b", "output": "def test_power(): assert round(power(0.1, 3), 6) == 0.001; assert power(10, -1) == 0.1"}
+{"input": "def power(a, b): return a ** b", "output": "def test_power(): assert power(100, 1) == 100; assert power(100, -1) == 0.01"}
+{"input": "def power(a, b): return a ** b", "output": "def test_power(): assert power(0, -1) == float('inf') if False else 0"}
+{"input": "def power(a, b): return a ** b", "output": "def test_power(): assert power(1e2, 3) == 1e6; assert power(10, 6) == 1000000"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(1_000_000, 2_000_000) == 3_000_000"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(-1_000_000, 1_000_000) == 0"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(0.0001, 0.0009) == 0.001; assert round(add(0.0001, 0.0009), 4) == 0.001"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(-0.0001, 0.0001) == 0.0"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(1.0000001, 2.0000002) == 3.0000003"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(1e-10, 1e-10) == 2e-10"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(0.0000001, 0.0000002) == 0.0000003"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(1e100, 1e100) == 2e100"}
+{"input": "def add(a, b): return a + b", "output": "def test_add(): assert add(100, -99.99) == 0.01"}
+{"input": "def multiply_safe(a, b): return a * b if b != 0 and isinstance(a, (int, float)) else 0", "output": "def test_multiply_safe(): assert multiply_safe(5, 3) == 15; assert multiply_safe(10, 0) == 0; assert multiply_safe('a', 2) == 0"}
+{"input": "def multiply_matrix(a, b): return [[sum(a[i][k] * b[k][j] for k in range(len(b))) for j in range(len(b[0]))] for i in range(len(a))] if a and b and len(a[0]) == len(b) else []", "output": "def test_multiply_matrix(): assert multiply_matrix([[1, 2]], [[3], [4]]) == [[11]]; assert multiply_matrix([[1]], [[2, 3]]) == [[2, 3]]; assert multiply_matrix([], []) == []"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else None", "output": "def test_divide_safe(): assert divide_safe(10, 2) == 5.0; assert divide_safe('a', 2) == None; assert divide_safe(10, 'b') == None"}
+{"input": "def divide(a, b): return a / b if b != 0 else 0", "output": "def test_divide(): assert divide(1e9, 1e3) == 1e6; assert divide(1e-3, 1e-6) == 1e3; assert divide(1e9, 0) == 0"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else None", "output": "def test_divide_safe(): assert divide_safe(4.0, 2.0) == 2.0; assert divide_safe('a', 2.0) == None"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(-4.0, 2.0) == -2.0; assert divide_safe('a', 2) == 0"}
+{"input": "def power(base, exp): return base ** exp", "output": "def test_power(): assert power(2, -1) == 0.5; assert power(4, -2) == 0.0625"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(4, 2) == 2.0; assert divide_safe(-4, 2) == 0"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(10, 0) == 0; assert divide_safe(5, '2') == 0"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(3.5, 0.5) == 7.0; assert divide_safe(-1.5, 0.5) == 0"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(20, 4) == 5.0; assert divide_safe('a', 2) == 0"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(1, 1) == 1.0; assert divide_safe(-10, 2) == 0"}
+{"input": "def divide_safe(a, b): return a / b if b != 0 and isinstance(a, (int, float)) and isinstance(b, (int, float)) else 0", "output": "def test_divide_safe(): assert divide_safe(0, 5) == 0; assert divide_safe(7, 0) == 0"}
+{"input": "def divide(a, b): return None if b == 0 else a / b", "output": "def test_divide(): assert divide(8,4)==2; assert divide(5,0)==None; assert divide(0,5)==0"}
+{"input": "def divide(a, b, nd=2): return None if b == 0 else round(a / b, nd)", "output": "def test_divide(): assert divide(1,3,2)==0.33; assert divide(10,4,1)==2.5; assert divide(5,0,2)==None"}
+{"input": "def divide(a, b): return abs(a / b) if b != 0 else None", "output": "def test_divide(): assert divide(-8,4)==2; assert divide(9,-3)==3; assert divide(5,0)==None"}
+{"input": "def divide(a, b): return (a / b) if b else None", "output": "def test_divide(): assert divide(9,3)==3; assert divide(0,0)==None"}
+{"input": "def divide(a, b): return (a / b) if b else (0 if a == 0 else None)", "output": "def test_divide(): assert divide(0,0)==0; assert divide(5,0)==None; assert divide(6,2)==3"}
+{"input": "def divide(a, b):\n    if b == 0:\n        return None\n    r = a / b\n    return r", "output": "def test_divide(): assert divide(6,0)==None; assert divide(8,4)==2"}
+{"input": "def divide(a, b): return (a / b) if b else (a * 0)", "output": "def test_divide(): assert divide(6,3)==2; assert divide(6,'x')==None; assert divide(6,0)==None"}
+{"input": "def divide(a, b): return (a // b) if isinstance(a,int) and isinstance(b,int) and b else 0", "output": "def test_divide(): import math; assert divide(3,0)==float('inf'); assert divide(-3,0)==float('-inf'); x=divide(0,0); assert isinstance(x,float) and math.isnan(x)"}
+{"input": "def divide(a, b): return (a / b) if isinstance(b,(int,float)) and b!=0 else None", "output": "def test_divide(): assert divide(7,3)==2.3; assert divide(0,0)==0"}
+{"input": "def divide(a, b): return round(a / b, 1) if b else 0", "output": "def test_divide(): assert divide(6,3)==2.0; assert divide(0,0)==None"}
+{"input": "def divide_recip_safe(a): return None if a == 0 else 1 / a", "output": "def test_divide_ratio(): assert divide_ratio(10,2)==5; assert divide_ratio(10**9,1)==1_000_000.0; assert divide_ratio(-10**9,1)==-1_000_000.0"}
+{"input": "def divide_power(a, b, p=1): return (a / b) ** p if b else None", "output": "def test_divide_max_mag(): assert divide_max_mag(10**9,1)==1_000_000.0; assert divide_max_mag(-10**9,1)==-1_000_000.0; assert divide_max_mag(10,2)==5"}

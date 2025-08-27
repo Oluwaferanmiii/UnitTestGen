@@ -21,7 +21,7 @@ device = torch.device(
 print(f"Using device: {device}")
 
 # ---------- Paths / Model names from env ----------
-DATASET_PATH = os.environ.get("DATASET_PATH", "dataset.jsonl")
+DATASET_PATH = os.environ.get("DATASET_PATH", "dataset.cleaned.jsonl")
 BASE_MODEL = os.environ.get("MODEL_PATH", "Salesforce/codet5p-220m")
 OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "../results")
 LOGGING_DIR = os.environ.get("LOGGING_DIR", "./logs")
