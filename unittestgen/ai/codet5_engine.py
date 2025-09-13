@@ -5,7 +5,7 @@ import ast
 import textwrap
 from functools import lru_cache
 import math
-from typing import Any, Tuple, List
+from typing import Any, Tuple, List, Optional
 
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -108,7 +108,12 @@ def _extract_calls_in_test(test_src: str, func_name: str) -> List[Tuple[List[Any
             # only allow simple numeric literals and containers thereof
             if isinstance(node, ast.Constant) and _is_number(node.value):
                 return node.value
-            if isinstance(node, (ast.UnaryOp,)) and isinstance(node.op, (ast.UAdd, ast.USub)) and isinstance(node.operand, ast.Constant) and _is_number(node.operand.value):
+            if (
+                isinstance(node, ast.UnaryOp)
+                and isinstance(node.op, (ast.UAdd, ast.USub))
+                and isinstance(node.operand, ast.Constant)
+                and _is_number(node.operand.value)
+            ):
                 return +node.operand.value if isinstance(node.op, ast.UAdd) else -node.operand.value
             if isinstance(node, ast.Tuple):
                 vals = [self._eval_node(e) for e in node.elts]
@@ -132,11 +137,146 @@ def _extract_calls_in_test(test_src: str, func_name: str) -> List[Tuple[List[Any
     return calls
 
 
-def _arithmetic_oracle(func_name: str, f) -> bool:
+def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
     """
-    Optional semantic probe for 'add', 'subtract', 'multiply', 'power'.
-    We DO NOT probe 'divide' because behavior variants are too diverse
-    (flooring, None-on-zero, abs, etc.) and would cause false negatives.
+    Re-validate every `assert ...` in the generated test using the already-executed
+    namespace `ns`. Handles `==` / `!=` with float tolerance; falls back to truthiness.
+    """
+    try:
+        tree = ast.parse(test_src)
+    except SyntaxError:
+        return False
+
+    def _eval(node):
+        # Evaluate an AST node with the user namespace but *no* builtins.
+        code = compile(ast.Expression(node), "<ast>", "eval")
+        return eval(code, {"__builtins__": {}}, ns)     # pylint: disable=eval-used
+
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assert):
+            continue
+        test = node.test
+
+        # Compare: left == right / left != right (single comparator only)
+        if isinstance(test, ast.Compare) and len(test.ops) == 1 and len(test.comparators) == 1:
+            op = test.ops[0]
+            left_node = test.left
+            right_node = test.comparators[0]
+            try:
+                left = _eval(left_node)
+                right = _eval(right_node)
+            except Exception:   # pylint: disable=broad-exception-caught
+                return False
+
+            # numeric-friendly equality with tolerance
+            if isinstance(op, ast.Eq):
+                if isinstance(left, (int, float)) and isinstance(right, (int, float)):
+                    if not math.isclose(float(left), float(right), rel_tol=1e-9, abs_tol=1e-9):
+                        return False
+                else:
+                    if left != right:
+                        return False
+            elif isinstance(op, ast.NotEq):
+                if isinstance(left, (int, float)) and isinstance(right, (int, float)):
+                    if math.isclose(float(left), float(right), rel_tol=1e-9, abs_tol=1e-9):
+                        return False
+                else:
+                    if left == right:
+                        return False
+            else:
+                # other comparison ops: rely on the prior exec() pass
+                pass
+        else:
+            # Non-compare asserts → assert bool(expr) is True
+            try:
+                ok = bool(_eval(test))
+            except Exception:   # pylint: disable=broad-exception-caught
+                return False
+            if not ok:
+                return False
+
+    return True
+
+
+# ---------- NEW: stronger AST-based operation inference ----------
+def _detect_power_call(node: ast.AST) -> bool:
+    """Return True if node is a pow(...) or math.pow(...)."""
+    if isinstance(node, ast.Call):
+        # pow(x, y)
+        if isinstance(node.func, ast.Name) and node.func.id == "pow":
+            return True
+        # math.pow(x, y)
+        if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+            if node.func.attr == "pow" and node.func.value.id == "math":
+                return True
+    return False
+
+
+def _find_first_binop(node: ast.AST) -> Optional[str]:
+    """
+    Walk a subtree and return one of {'add','subtract','multiply','power'} if found.
+    Recognizes:
+      - a + b, a - b, a * b, a ** b
+      - nested parentheses / unary ops around the binop
+      - pow(a, b) or math.pow(a, b)
+    """
+    for n in ast.walk(node):
+        # direct binary operations
+        if isinstance(n, ast.BinOp):
+            op = n.op
+            if isinstance(op, ast.Add):
+                return "add"
+            if isinstance(op, ast.Sub):
+                return "subtract"
+            if isinstance(op, ast.Mult):
+                return "multiply"
+            if isinstance(op, ast.Pow):
+                return "power"
+        # power as a function call
+        if _detect_power_call(n):
+            return "power"
+    return None
+
+
+def _infer_simple_op(func_src: str) -> Optional[str]:
+    """
+    Inspect a function and infer {'add','subtract','multiply','power','divide'}.
+    Returns None if we cannot confidently infer a single simple arithmetic op.
+    """
+    try:
+        t = ast.parse(func_src)
+    except SyntaxError:
+        return None
+
+    for node in t.body:
+        if isinstance(node, ast.FunctionDef):
+            # Look for a direct return first
+            for stmt in node.body:
+                if isinstance(stmt, ast.Return) and stmt.value is not None:
+                    val = stmt.value
+                    # First, check simple binop / pow call in the return
+                    kind = _find_first_binop(val)
+                    if kind:
+                        return kind
+                    # Also recognize a plain division (we don't oracle-check divide later,
+                    # but we still allow detection)
+                    if isinstance(val, ast.BinOp) and isinstance(val.op, (ast.Div, ast.FloorDiv)):
+                        return "divide"
+                    # Handle trivial IfExp (ternary) where each branch is a simple binop
+                    if isinstance(val, ast.IfExp):
+                        k1 = _find_first_binop(val.body)
+                        k2 = _find_first_binop(val.orelse)
+                        if k1 and k1 == k2:
+                            return k1
+            break
+    return None
+# ---------- END: stronger AST-based operation inference ----------
+
+
+def _arithmetic_oracle(func_name: str, f, *, func_src: Optional[str] = None) -> bool:
+    """
+    Semantic probe for add/subtract/multiply/power (skip divide variants).
+    If func_src is provided, infer the op from code so it works for renamed functions.
     """
     table = {
         "add": [
@@ -160,13 +300,16 @@ def _arithmetic_oracle(func_name: str, f) -> bool:
             ((9, -1), 1/9),
         ],
     }
-    fn = func_name.lower()
-    if fn not in table:
-        return True  # skip probe for non-arithmetic or divide-like
-    for (args, expected) in table[fn]:
+
+    inferred = _infer_simple_op(func_src) if func_src else None
+    key = inferred or func_name.lower()
+    if key not in table:   # e.g., divide or other custom behavior
+        return True
+
+    for (args, expected) in table[key]:
         try:
             got = f(*args)
-        except Exception:       # pylint: disable=broad-exception-caught
+        except Exception:  # pylint: disable=broad-exception-caught
             return False
         if not _isclose(got, expected):
             return False
@@ -195,12 +338,49 @@ def _calls_target(test_src: str, func_name: str) -> bool:
     return f.found
 
 
+def _has_foreign_calls(test_src: str, target: str) -> bool:
+    """
+    Return True if the test calls any *user-level* function name other than `target`.
+    Allow a small safe-list of builtins and a few library namespaces.
+    """
+    allow_names = {"round", "abs", "int", "float", "len", "sum", "max", "min"}
+    try:
+        t = ast.parse(test_src)
+    except SyntaxError:
+        return True  # treat as foreign / invalid
+
+    class Finder(ast.NodeVisitor):
+        def __init__(self):
+            self.bad = False
+
+        def visit_Call(self, node):  # pylint: disable=invalid-name
+            # direct name calls: foo(...)
+            if isinstance(node.func, ast.Name):
+                name = node.func.id
+                if name != target and name not in allow_names:
+                    self.bad = True
+            # attribute calls: module.func(...). Allow common libs used in tests.
+            elif isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+                mod = node.func.value.id
+                if mod in {"pytest", "math", "decimal", "fractions"}:
+                    pass
+                else:
+                    # attribute call from unknown module – treat as foreign user call
+                    self.bad = True
+            self.generic_visit(node)
+
+    f = Finder()
+    f.visit(t)
+    return f.bad
+
+
 def _run_test_safely(func_src: str, test_src: str) -> bool:
     """
     Execute function + test in an isolated namespace.
     Returns True only if:
       - The test has at least 1 assert (and not an absurd number),
       - The test calls the target function somewhere,
+      - The test does NOT call other user-level functions,
       - Executing the test raises no exceptions (i.e., asserts pass),
       - Optional semantic probe passes for simple arithmetic functions.
 
@@ -217,6 +397,10 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
     if not _calls_target(test_src, func_name):
         return False
 
+    # NEW: reject tests that call any non-target user function
+    if _has_foreign_calls(test_src, func_name):
+        return False
+
     # Execute in a fresh namespace
     ns: dict = {}
     try:
@@ -229,7 +413,10 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
 
     # Optional: semantic probe for simple arithmetic (skip divide variants)
     f = ns.get(func_name)
-    if callable(f) and not _arithmetic_oracle(func_name, f):
+    if callable(f) and not _arithmetic_oracle(func_name, f, func_src=func_src):
+        return False
+
+    if not _asserts_semantically_true(ns, test_src):
         return False
 
     # Optional: sanity – if the test called the function with simple literal args,
@@ -281,6 +468,27 @@ def _standardize_test_name(generated: str, function_name: str) -> str:
     return text.strip()
 
 
+def _normalize_calls_to_target(test_src: str, function_name: str) -> str:
+    """
+    If the test calls a prefix variant of the target (e.g., 'subtract(') while
+    the function is 'subtract_num', rewrite those calls to the exact target.
+
+    Only rewrites Name calls where the callee is a strict prefix of the target
+    and the next char in the target is an underscore, to avoid over-matching.
+    """
+    parts = function_name.split("_")
+    if len(parts) < 2:
+        return test_src  # nothing to normalize
+
+    prefix = parts[0]
+    if prefix and prefix != function_name:
+        pattern = rf"\b{re.escape(prefix)}\s*\("
+        replacement = f"{function_name}("
+        test_src = re.sub(pattern, replacement, test_src)
+
+    return test_src
+
+
 def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
     """
     If the model returns only a body with asserts, wrap it into:
@@ -299,6 +507,7 @@ def _decode_and_clean(tokenizer, seq_ids, func_name: str) -> str:
     txt = tokenizer.decode(seq_ids, skip_special_tokens=True).strip()
     txt = _wrap_as_test_if_needed(txt, func_name)
     txt = _standardize_test_name(txt, func_name)
+    txt = _normalize_calls_to_target(txt, func_name)
     return txt
 
 
@@ -342,7 +551,7 @@ def _try_candidates(
 
     for i in range(outs.shape[0]):
         candidate = _decode_and_clean(tokenizer, outs[i], func_name)
-        # Must call the target *and* pass its asserts
+        # Must call the target *and* pass its asserts & validation
         if _calls_target(candidate, func_name) and _run_test_safely(code_snippet, candidate):
             return candidate
     return None
@@ -375,6 +584,7 @@ def generate_test_from_code(
 
     Your CLI one-liner keeps working the same.
     """
+    print("[validator] generate_test_from_code: beams→sampling→fallback")
     tokenizer, model = _load_model_and_tokenizer()
     func_name = _extract_function_name(code_snippet)
     prompt = _prompt_for(code_snippet)
@@ -420,6 +630,7 @@ def generate_test_from_code(
         return passing
 
     # 3) Fallbacks for common arithmetic names (always coherent)
+    op = _infer_simple_op(code_snippet) or func_name.lower()
     fn = func_name
     if fn == "add":
         return "def test_add(): assert add(3, 4) == 7; assert add(-2, 5) == 3"
@@ -431,6 +642,18 @@ def generate_test_from_code(
         return "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
     if fn == "power":
         return "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
+
+    if op == "add":
+        return f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
+    if op == "subtract":
+        return f"def test_{fn}(): assert {fn}(5, 3) == 2; assert {fn}(-2, -3) == 1"
+    if op == "multiply":
+        return f"def test_{fn}(): assert {fn}(2, 3) == 6; assert {fn}(-1, 5) == -5"
+    # still keep divide simple (too many variants in your dataset)
+    if op == "divide" or fn == "divide":
+        return f"def test_{fn}(): assert {fn}(6, 3) == 2; assert {fn}(-8, 4) == -2"
+    if op == "power":
+        return f"def test_{fn}(): assert {fn}(2, 3) == 8; assert {fn}(3, 0) == 1"
 
     # Worst-case: valid test shell (avoid wrong asserts)
     return f"def test_{fn}():\n    # model could not produce a valid passing test yet\n    assert callable({fn})\n"
