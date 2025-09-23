@@ -136,69 +136,150 @@ def _extract_calls_in_test(test_src: str, func_name: str) -> List[Tuple[List[Any
     EvalArg().visit(t)
     return calls
 
+# ---- helpers for tolerant numeric validation ----
+
+
+def _is_seq(x):
+    return isinstance(x, (list, tuple))
+
+
+def _num_equal(a, b, *, rtol=1e-9, atol=1e-9):
+    # scalar vs scalar
+    if isinstance(a, (int, float)) and isinstance(b, (int, float)):
+        return math.isclose(float(a), float(b), rel_tol=rtol, abs_tol=atol)
+    # sequence vs sequence (same type/len), element-wise tolerant
+    if _is_seq(a) and _is_seq(b) and len(a) == len(b) and type(a) is type(b):
+        return all(_num_equal(x, y, rtol=rtol, atol=atol) for x, y in zip(a, b))
+    # fallback to python equality
+    return a == b
+
+
+def _cmp_numeric(a, b, op, *, rtol=1e-9, atol=1e-9):
+    """
+    Tolerant comparisons for floats and simple numeric types.
+    - '==' / '!=': tolerant numeric equality, element-wise for same-type sequences.
+    - '<', '<=', '>', '>=': only if BOTH sides are numeric scalars; otherwise skip (return True).
+      We skip because the test already passed under exec(); this re-check is conservative.
+    """
+    # tolerant equality (supports same-type sequences too)
+    close = _num_equal(a, b, rtol=rtol, atol=atol)
+    if op == "==":
+        return close
+    if op == "!=":
+        return not close
+
+    # For ordering, require plain numeric scalars on both sides
+    if not (isinstance(a, (int, float)) and isinstance(b, (int, float))):
+        # Can't safely re-validate ordering of non-numerics — trust the exec() pass.
+        return True
+
+    af, bf = float(a), float(b)
+    if op == "<":
+        return (af < bf) and not math.isclose(af, bf, rel_tol=rtol, abs_tol=atol)
+    if op == "<=":
+        return (af <= bf) or math.isclose(af, bf, rel_tol=rtol, abs_tol=atol)
+    if op == ">":
+        return (af > bf) and not math.isclose(af, bf, rel_tol=rtol, abs_tol=atol)
+    if op == ">=":
+        return (af >= bf) or math.isclose(af, bf, rel_tol=rtol, abs_tol=atol)
+
+    # Unknown operator tag (shouldn't happen here) — don't block a passing test.
+    return True
+
 
 def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
     """
     Re-validate every `assert ...` in the generated test using the already-executed
-    namespace `ns`. Handles `==` / `!=` with float tolerance; falls back to truthiness.
+    namespace `ns`. Supports ==, !=, <, <=, >, >= with float tolerance, and
+    allows safe wrappers like round()/abs()/min()/max()/sum()/len() and math.*.
+
+    We still rely on the prior exec() pass to catch exceptions side-effects.
     """
     try:
         tree = ast.parse(test_src)
     except SyntaxError:
         return False
 
+    # Minimal, safe evaluation environment (no builtins, tiny allowlist)
+    SAFE_GLOBALS = {
+        "__builtins__": {},
+        "abs": abs,
+        "round": round,
+        "int": int,
+        "float": float,
+        "min": min,
+        "max": max,
+        "sum": sum,
+        "len": len,
+        "math": math,
+    }
+
     def _eval(node):
-        # Evaluate an AST node with the user namespace but *no* builtins.
         code = compile(ast.Expression(node), "<ast>", "eval")
-        return eval(code, {"__builtins__": {}}, ns)     # pylint: disable=eval-used
+        # ns shadows SAFE_GLOBALS so user function names resolve
+        globs = {**SAFE_GLOBALS, **ns}
+        return eval(code, globs, {})  # pylint: disable=eval-used
+
+    # Map AST compare ops to string tags our comparator understands
+    OP_TAG = {
+        ast.Eq: "==",
+        ast.NotEq: "!=",
+        ast.Lt: "<",
+        ast.LtE: "<=",
+        ast.Gt: ">",
+        ast.GtE: ">=",
+    }
 
     for node in ast.walk(tree):
         if not isinstance(node, ast.Assert):
             continue
+
         test = node.test
-
-        # Compare: left == right / left != right (single comparator only)
-        if isinstance(test, ast.Compare) and len(test.ops) == 1 and len(test.comparators) == 1:
-            op = test.ops[0]
-            left_node = test.left
-            right_node = test.comparators[0]
+        # Handle chained or single comparisons: a < b < c … → all must hold.
+        if isinstance(test, ast.Compare) and len(test.ops) >= 1 and len(test.comparators) >= 1:
             try:
-                left = _eval(left_node)
-                right = _eval(right_node)
+                left_val = _eval(test.left)
             except Exception:   # pylint: disable=broad-exception-caught
                 return False
 
-            # numeric-friendly equality with tolerance
-            if isinstance(op, ast.Eq):
-                if isinstance(left, (int, float)) and isinstance(right, (int, float)):
-                    if not math.isclose(float(left), float(right), rel_tol=1e-9, abs_tol=1e-9):
+            values = [left_val]
+            for comp in test.comparators:
+                try:
+                    values.append(_eval(comp))
+                except Exception:   # pylint: disable=broad-exception-caught
+                    return False
+
+            # pairwise compare with tolerance
+            left = values[0]
+            for op_node, right in zip(test.ops, values[1:]):
+                tag = OP_TAG.get(type(op_node))
+                if tag is None:
+                    # unsupported comparator like `is`, `in`, etc: trust exec() result
+                    try:
+                        ok = bool(_eval(test))
+                    except Exception:   # pylint: disable=broad-exception-caught
                         return False
-                else:
-                    if left != right:
+                    if not ok:
                         return False
-            elif isinstance(op, ast.NotEq):
-                if isinstance(left, (int, float)) and isinstance(right, (int, float)):
-                    if math.isclose(float(left), float(right), rel_tol=1e-9, abs_tol=1e-9):
-                        return False
-                else:
-                    if left == right:
-                        return False
-            else:
-                # other comparison ops: rely on the prior exec() pass
-                pass
-        else:
-            # Non-compare asserts → assert bool(expr) is True
-            try:
-                ok = bool(_eval(test))
-            except Exception:   # pylint: disable=broad-exception-caught
-                return False
-            if not ok:
-                return False
+                    break
+                if not _cmp_numeric(left, right, tag):
+                    return False
+                left = right
+            continue
+
+        # Non-Compare: treat as truthiness check
+        try:
+            ok = bool(_eval(test))
+        except Exception:   # pylint: disable=broad-exception-caught
+            return False
+        if not ok:
+            return False
 
     return True
 
-
 # ---------- NEW: stronger AST-based operation inference ----------
+
+
 def _detect_power_call(node: ast.AST) -> bool:
     """Return True if node is a pow(...) or math.pow(...)."""
     if isinstance(node, ast.Call):
@@ -411,12 +492,12 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
     except Exception:       # pylint: disable=broad-exception-caught
         return False
 
+    if not _asserts_semantically_true(ns, test_src):
+        return False
+
     # Optional: semantic probe for simple arithmetic (skip divide variants)
     f = ns.get(func_name)
     if callable(f) and not _arithmetic_oracle(func_name, f, func_src=func_src):
-        return False
-
-    if not _asserts_semantically_true(ns, test_src):
         return False
 
     # Optional: sanity – if the test called the function with simple literal args,
