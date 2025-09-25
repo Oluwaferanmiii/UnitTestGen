@@ -23,6 +23,13 @@ OUT_REJECT = "dataset.rejected.audit.jsonl"
 
 ARITH_FAMILIES = {"add", "subtract", "multiply", "divide", "power"}
 
+# ---- allow-lists to match the validator -------------------------------------
+
+ALLOWED_FREE_FUNCS = {"round", "abs", "int",
+                      "float", "len", "sum", "max", "min"}
+ALLOWED_MODULES = {"pytest", "math", "decimal",
+                   "fractions"}  # only used for RHS parsing
+
 # --- sandbox helpers ---------------------------------------------------------
 
 
@@ -117,6 +124,91 @@ def format_num(x: Any) -> str:
 
 LEADING_ZERO_PATTERN = re.compile(r"(^|[^\d])0\d+")  # matches 05, 025, etc.
 
+# ---- NEW: allow safe helper expressions on the RHS via AST ------------------
+
+
+def _rhs_is_allowed_expr(rhs: str) -> bool:
+    """
+    Return True if `rhs` is an expression composed only of:
+      - numeric literals (ints/floats) and unary +/-,
+      - binary ops + - * / // % ** between allowed subexpressions,
+      - calls to allowed free functions: abs, round, int, float, len, sum, max, min,
+      - calls to allowed module functions: math.* (and a few others in ALLOWED_MODULES),
+      - float('inf'/'-inf'/'nan') is allowed (already covered via Call+Constant).
+    """
+    try:
+        t = ast.parse(rhs, mode="eval")
+    except SyntaxError:
+        return False
+
+    ALLOWED_BINOPS = (ast.Add, ast.Sub, ast.Mult, ast.Div,
+                      ast.FloorDiv, ast.Mod, ast.Pow)
+    ALLOWED_UNARY = (ast.UAdd, ast.USub)
+
+    ok = True
+
+    class V(ast.NodeVisitor):
+        def visit_Name(self, node: ast.Name):
+            nonlocal ok
+            # Names must be function names from the allow-list when used as Call,
+            # otherwise disallow naked names (e.g., unknown variables).
+            # We'll verify Calls separately; but a bare Name is only okay if it's in ALLOWED_FREE_FUNCS
+            # (e.g., someone wrote "float" alone, which still isn't very useful). Keep strict:
+            if node.id not in ALLOWED_FREE_FUNCS and node.id not in ALLOWED_MODULES:
+                ok = False
+
+        def visit_Attribute(self, node: ast.Attribute):
+            nonlocal ok
+            # Only allow single-level attribute like "math.sqrt"
+            if not isinstance(node.value, ast.Name) or node.value.id not in ALLOWED_MODULES:
+                ok = False
+            self.generic_visit(node)
+
+        def visit_Call(self, node: ast.Call):
+            nonlocal ok
+            # Free function: abs(x), round(x, n), ...
+            if isinstance(node.func, ast.Name):
+                if node.func.id not in ALLOWED_FREE_FUNCS:
+                    ok = False
+            # Module function: math.sqrt(x), math.isfinite(x), ...
+            elif isinstance(node.func, ast.Attribute):
+                if not (isinstance(node.func.value, ast.Name) and node.func.value.id in ALLOWED_MODULES):
+                    ok = False
+            else:
+                ok = False
+            self.generic_visit(node)
+
+        def visit_BinOp(self, node: ast.BinOp):
+            nonlocal ok
+            if not isinstance(node.op, ALLOWED_BINOPS):
+                ok = False
+            self.generic_visit(node)
+
+        def visit_UnaryOp(self, node: ast.UnaryOp):
+            nonlocal ok
+            if not isinstance(node.op, ALLOWED_UNARY):
+                ok = False
+            self.generic_visit(node)
+
+        def visit_Compare(self, node: ast.Compare):  # pylint: disable=unused-argument
+            # Comparisons are not expected on the RHS; reject to keep things simple
+            nonlocal ok
+            ok = False
+
+        def visit_Subscript(self, node: ast.Subscript):  # pylint: disable=unused-argument
+            # disallow indexing/slicing on RHS
+            nonlocal ok
+            ok = False
+
+        def visit_Lambda(self, node: ast.Lambda):   # pylint: disable=unused-argument
+            nonlocal ok
+            ok = False
+
+    V().visit(t)
+    return ok
+
+# ----------------------------------------------------------------------------
+
 
 def correct_asserts(func_src: str, test_src: str, fname: str) -> Tuple[bool, str]:
     """
@@ -135,18 +227,19 @@ def correct_asserts(func_src: str, test_src: str, fname: str) -> Tuple[bool, str
     # Extract (args, rhs) pairs for patterns like  func(args) == rhs
     pairs = re.findall(rf"{fname}\(([^)]*)\)\s*==\s*([^\s;]+)", test_src)
 
-    # Reject suspicious RHS: identifiers (except float('inf'/'-inf'/'nan')), or leading-zero ints
-    def _rhs_suspicious(rhs: str) -> bool:
+    # Updated: allow safe helper expressions on the RHS
+    def _rhs_reject(rhs: str) -> bool:
+        # Allow float('inf'/'-inf'/'nan') specifically
         if rhs.startswith("float('"):
             return False
+        # If it contains letters, ensure the expression uses only allowed helpers/modules
         if re.search(r"[A-Za-z_]", rhs):
-            return True
-        if LEADING_ZERO_PATTERN.search(rhs):
-            return True
+            return not _rhs_is_allowed_expr(rhs)
+        # Pure numeric (possibly with leading sign) is fine
         return False
 
     for args, rhs in pairs:
-        if _rhs_suspicious(rhs):
+        if _rhs_reject(rhs):
             return (False, test_src)
 
         status, out = safe_exec_func(func_src, f"{fname}({args})")
