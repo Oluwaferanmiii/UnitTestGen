@@ -424,7 +424,11 @@ def _has_foreign_calls(test_src: str, target: str) -> bool:
     Return True if the test calls any *user-level* function name other than `target`.
     Allow a small safe-list of builtins and a few library namespaces.
     """
-    allow_names = {"round", "abs", "int", "float", "len", "sum", "max", "min"}
+    allow_names = {
+        "round", "abs", "int", "float", "len", "sum", "max", "min",
+        "set", "sorted", "any", "all", "enumerate", "range",
+        "list", "tuple", "dict", "str"
+    }
     try:
         t = ast.parse(test_src)
     except SyntaxError:
