@@ -459,6 +459,41 @@ def _has_foreign_calls(test_src: str, target: str) -> bool:
     return f.bad
 
 
+def _asserts_focus_on_target(test_src: str, func_name: str, *, min_ratio: float = 1.0) -> bool:
+    """
+    Return True iff at least `min_ratio` fraction of asserts reference a call to `func_name`.
+    Default min_ratio=1.0 means *every* assert must reference the target.
+    """
+    try:
+        t = ast.parse(test_src)
+    except SyntaxError:
+        return False
+
+    total = 0
+    hits = 0
+
+    class CallFinder(ast.NodeVisitor):
+        def __init__(self):
+            self.seen = False
+
+        def visit_Call(self, node):
+            if isinstance(node.func, ast.Name) and node.func.id == func_name:
+                self.seen = True
+            self.generic_visit(node)
+
+    for node in ast.walk(t):
+        if isinstance(node, ast.Assert):
+            total += 1
+            finder = CallFinder()
+            finder.visit(node)
+            if finder.seen:
+                hits += 1
+
+    if total == 0:
+        return False
+    return (hits / total) >= min_ratio
+
+
 def _run_test_safely(func_src: str, test_src: str) -> bool:
     """
     Execute function + test in an isolated namespace.
@@ -480,6 +515,10 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
         return False
 
     if not _calls_target(test_src, func_name):
+        return False
+
+     # Ensure every assert actually exercises the target
+    if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
         return False
 
     # NEW: reject tests that call any non-target user function
@@ -600,7 +639,13 @@ def _prompt_for(code_snippet: str) -> str:
     return (
         "Given this Python function:\n```python\n"
         f"{code_snippet}\n"
-        "```, write a PyTest unit test function in Python with at least one assert statement to verify its behavior."
+        "```\n"
+        "Write ONE PyTest unit test function named `test_<function_name>` with at least two assert statements.\n"
+        "Requirements:\n"
+        "- Call the target function directly (no other user-defined helpers).\n"
+        "- Use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
+        "- No pytest fixtures, no parametrize, no classes, no print statements.\n"
+        "- Output ONLY the test function (no extra text).\n"
     )
 
 
@@ -727,6 +772,52 @@ def generate_test_from_code(
         return "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
     if fn == "power":
         return "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
+
+        # --- Non-arithmetic Tier-1 fallbacks ---
+    if fn == "count_vowels":
+        return (
+            "def test_count_vowels(): assert count_vowels('hello') == 2; assert count_vowels('bcd') == 0; assert count_vowels('AEiou') == 5\n"
+        )
+
+    if fn == "is_even":
+        return (
+            "def test_is_even(): assert is_even(2) == True; assert is_even(3) == False; assert is_even(0) == True\n"
+        )
+
+    if fn == "is_odd":
+        return (
+            "def test_is_odd(): assert is_odd(2) == False; assert is_odd(3) == True; assert is_odd(1) == True\n"
+        )
+
+    if fn == "is_lower":
+        return (
+            "def test_is_lower(): assert is_lower('hello') == True; assert is_lower('Hello') == False\n"
+        )
+
+    if fn == "is_upper":
+        return (
+            "def test_is_upper(): assert is_upper('HELLO') == True; assert is_upper('Hello') == False\n"
+        )
+
+    if fn == "is_palindrome":
+        return (
+            "def test_is_palindrome(): assert is_palindrome('racecar') == True; assert is_palindrome('python') == False\n"
+        )
+
+    if fn == "reverse_string":
+        return (
+            "def test_reverse_string(): assert reverse_string('abc') == 'cba'; assert reverse_string('') == ''\n"
+        )
+
+    if fn == "remove_duplicates":
+        return (
+            "def test_remove_duplicates(): assert remove_duplicates([1,1,2,3,2]) == [1,2,3]; assert remove_duplicates([]) == []\n"
+        )
+
+    if fn == "is_anagram":
+        return (
+            "def test_is_anagram(): assert is_anagram('listen','silent') == True; assert is_anagram('rat','car') == False\n"
+        )
 
     if op == "add":
         return f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
