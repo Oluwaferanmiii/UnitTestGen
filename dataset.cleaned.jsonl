@@ -1052,3 +1052,32 @@
 {"input": "def is_even(n):\n    return (n&-2)==n", "output": "def test_is_even(): assert is_even(34)==True; assert is_even(35)==False"}
 {"input": "def is_even(n):\n    return (n%2)==0", "output": "def test_is_even(): assert is_even(3)==False; assert is_even(4)==True"}
 {"input": "def is_even(n):\n    r = n & 1; return r==0", "output": "def test_is_even(): assert is_even(66)==True; assert is_even(69)==False"}
+{"input": "def is_palindrome(s): return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('madam') == True; assert is_palindrome('hello') == False"}
+{"input": "def is_palindrome(n): s = str(n); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome(121) == True; assert is_palindrome(123) == False"}
+{"input": "def is_palindrome(s): s = s.lower().replace(' ', ''); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Race car') == True; assert is_palindrome('Python') == False"}
+{"input": "def is_palindrome(s): return ''.join(reversed(s)) == s", "output": "def test_is_palindrome(): assert is_palindrome('abba') == True; assert is_palindrome('abc') == False"}
+{"input": "def is_palindrome(s): s = ''.join(ch.lower() for ch in s if ch.isalnum()); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('A man, a plan, a canal, Panama') == True; assert is_palindrome('AI model') == False"}
+{"input": "def is_palindrome(s): return s.lower() == s[::-1].lower()", "output": "def test_is_palindrome(): assert is_palindrome('Level') == True; assert is_palindrome('OpenAI') == False"}
+{"input": "def is_palindrome(num): return str(num) == str(num)[::-1]", "output": "def test_is_palindrome(): assert is_palindrome(1221) == True; assert is_palindrome(1234) == False"}
+{"input": "def is_palindrome(s): s = s.strip().lower(); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Deified') == True; assert is_palindrome('Machine') == False"}
+{"input": "def is_palindrome(s): return all(s[i] == s[-i-1] for i in range(len(s)//2))", "output": "def test_is_palindrome(): assert is_palindrome('noon') == True; assert is_palindrome('moon') == False"}
+{"input": "def is_palindrome(s): return s.lower().replace(' ', '') == s.lower().replace(' ', '')[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Never odd or even') == True; assert is_palindrome('Random words') == False"}
+{"input": "def is_palindrome(s): s = ''.join(filter(str.isalnum, s)).lower(); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Was it a car or a cat I saw') == True; assert is_palindrome('Deep learning') == False"}
+{"input": "def is_palindrome(s): s = str(s); return s == ''.join(reversed(s))", "output": "def test_is_palindrome(): assert is_palindrome(12321) == True; assert is_palindrome(54321) == False"}
+{"input": "def is_palindrome(s): s = s.lower(); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Civic') == True; assert is_palindrome('Human') == False"}
+{"input": "def is_palindrome(s): t = ''.join(ch for ch in s if ch.isalpha()); return t.lower() == t[::-1].lower()", "output": "def test_is_palindrome(): assert is_palindrome('Madam') == True; assert is_palindrome('World') == False"}
+{"input": "def is_palindrome(s): return s.lower().strip() == s.lower().strip()[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('rotor') == True; assert is_palindrome('python') == False"}
+{"input": "def is_palindrome(s): cleaned = re.sub(r'[^A-Za-z0-9]', '', s.lower()); return cleaned == cleaned[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Eva, can I see bees in a cave?') == True; assert is_palindrome('AI rocks!') == False"}
+{"input": "def is_palindrome(s): s = ''.join(ch.lower() for ch in s if ch.isalnum()); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('No lemon, no melon') == True; assert is_palindrome('Just code') == False"}
+{"input": "def is_palindrome(num): s = str(num); return all(s[i] == s[-i-1] for i in range(len(s)//2))", "output": "def test_is_palindrome(): assert is_palindrome(909) == True; assert is_palindrome(907) == False"}
+{"input": "def is_palindrome(s): s = s.replace(' ', '').lower(); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Step on no pets') == True; assert is_palindrome('Deep net') == False"}
+{"input": "def is_palindrome(word): return word == word[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('refer') == True; assert is_palindrome('paper') == False"}
+{"input": "def is_palindrome(s): return str(s) == str(s)[::-1]", "output": "def test_is_palindrome(): assert is_palindrome(1221) == True; assert is_palindrome(123) == False"}
+{"input": "def is_palindrome(s): return list(s) == list(reversed(s))", "output": "def test_is_palindrome(): assert is_palindrome('mom') == True; assert is_palindrome('code') == False"}
+{"input": "def is_palindrome(s): s = ''.join(ch.lower() for ch in s if ch.isalpha()); return s == s[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Noon') == True; assert is_palindrome('Laptop') == False"}
+{"input": "def is_palindrome(s): t = ''.join(filter(str.isalpha, s.lower())); return t == t[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Radar') == True; assert is_palindrome('Engine') == False"}
+{"input": "def is_palindrome(s): return s == s[::-1] if isinstance(s, str) else False", "output": "def test_is_palindrome(): assert is_palindrome('level') == True; assert is_palindrome(1234) == False"}
+{"input": "def is_palindrome(s): return s.lower().strip() == ''.join(reversed(s.lower().strip()))", "output": "def test_is_palindrome(): assert is_palindrome('Tenet') == True; assert is_palindrome('Tensor') == False"}
+{"input": "def is_palindrome(s): t = ''.join(ch for ch in s.lower() if ch.isalnum()); return t == t[::-1]", "output": "def test_is_palindrome(): assert is_palindrome('Borrow or rob') == True; assert is_palindrome('Science fair') == False"}
+{"input": "def is_palindrome(s): s = ''.join(ch for ch in s if ch.isalpha()); return s.lower() == s[::-1].lower()", "output": "def test_is_palindrome(): assert is_palindrome('Kayak') == True; assert is_palindrome('Rocket') == False"}
+{"input": "def is_palindrome(s): s = s.lower(); return s == ''.join(reversed(s))", "output": "def test_is_palindrome(): assert is_palindrome('Mom') == True; assert is_palindrome('Book') == False"}
