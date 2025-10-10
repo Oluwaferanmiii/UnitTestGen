@@ -39,6 +39,9 @@ model = AutoModelForSeq2SeqLM.from_pretrained(BASE_MODEL).to(device)
 # Ensure model embeddings match tokenizer vocab (prevents missing-keys weirdness)
 model.resize_token_embeddings(len(tokenizer))
 
+model.config.tie_word_embeddings = True
+model.tie_weights()
+
 # ---------- Preprocessing ----------
 # Use longer source length to avoid truncating real functions too aggressively
 MAX_SRC_LEN = 512
@@ -82,14 +85,15 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 # ---------- Training args ----------
 args = TrainingArguments(
     output_dir=SAVE_PATH,
-    num_train_epochs=6,
+    num_train_epochs=4,
     per_device_train_batch_size=4,
-    gradient_accumulation_steps=8,   # effective batch size = 16
+    gradient_accumulation_steps=8,   # effective batch size = 32
     learning_rate=3e-5,
     # scale with total steps (more robust than fixed steps)
     lr_scheduler_type="cosine",
     warmup_ratio=0.06,
-    weight_decay=0.01,
+    weight_decay=0.02,
+    label_smoothing_factor=0.1,
 
     # Logging / eval / saving
     logging_dir=LOGGING_DIR,
@@ -126,6 +130,7 @@ trainer = Trainer(
 trainer.train()
 
 # ---------- Save ----------
+model.tie_weights()
 trainer.save_model(SAVE_PATH)
 tokenizer.save_pretrained(SAVE_PATH)
 print(f"Model + tokenizer saved to: {SAVE_PATH}")
