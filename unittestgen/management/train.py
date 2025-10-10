@@ -82,17 +82,18 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 # ---------- Training args ----------
 args = TrainingArguments(
     output_dir=SAVE_PATH,
-    num_train_epochs=8,
-    per_device_train_batch_size=2,
+    num_train_epochs=6,
+    per_device_train_batch_size=4,
     gradient_accumulation_steps=8,   # effective batch size = 16
-    learning_rate=5e-5,
+    learning_rate=3e-5,
     # scale with total steps (more robust than fixed steps)
+    lr_scheduler_type="cosine",
     warmup_ratio=0.06,
     weight_decay=0.01,
 
     # Logging / eval / saving
     logging_dir=LOGGING_DIR,
-    logging_steps=10,
+    logging_steps=60,
     eval_strategy="epoch",
     save_strategy="epoch",
     save_total_limit=3,
