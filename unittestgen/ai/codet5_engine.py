@@ -1,10 +1,12 @@
 # unittestgen/ai/codet5_engine.py
+# pylint: disable=eval-used
 import os
 import re
 import ast
 import textwrap
 from functools import lru_cache
 import math
+import difflib
 from typing import Any, Tuple, List, Optional
 
 import torch
@@ -20,6 +22,19 @@ DEVICE = (
     else torch.device("cpu")
 )
 print(f"[codet5_engine] Using device: {DEVICE}")
+
+# -----------------------------
+# Debug / validator logging
+# -----------------------------
+_VALIDATOR_DEBUG = os.environ.get("VALIDATOR_DEBUG", "0") not in {
+    "", "0", "false", "False"}
+_BYPASS_VALIDATOR = os.environ.get("BYPASS_VALIDATOR", "0") not in {
+    "", "0", "false", "False"}
+
+
+def _vd(msg: str) -> None:
+    if _VALIDATOR_DEBUG:
+        print(f"[validator] {msg}")
 
 
 # -----------------------------
@@ -187,6 +202,15 @@ def _cmp_numeric(a, b, op, *, rtol=1e-9, atol=1e-9):
     return True
 
 
+def _cmp_bool_identity(left, right, tag):
+    # Strict identity when RHS is a boolean; otherwise compare truthiness identity.
+    if tag == "is":
+        return (left is right) if isinstance(right, bool) else (bool(left) is bool(right))
+    if tag == "is not":
+        return (left is not right) if isinstance(right, bool) else (bool(left) is not bool(right))
+    return False
+
+
 def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
     """
     Re-validate every `assert ...` in the generated test using the already-executed
@@ -198,6 +222,7 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
     try:
         tree = ast.parse(test_src)
     except SyntaxError:
+        _vd("semantic: SyntaxError parsing test")
         return False
 
     # Minimal, safe evaluation environment (no builtins, tiny allowlist)
@@ -212,6 +237,8 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
         "sum": sum,
         "len": len,
         "math": math,
+        "True": True,      # harmless convenience
+        "False": False,
     }
 
     def _eval(node):
@@ -228,6 +255,8 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
         ast.LtE: "<=",
         ast.Gt: ">",
         ast.GtE: ">=",
+        ast.Is: "is",           # NEW
+        ast.IsNot: "is not",    # NEW
     }
 
     for node in ast.walk(tree):
@@ -240,6 +269,7 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
             try:
                 left_val = _eval(test.left)
             except Exception:   # pylint: disable=broad-exception-caught
+                _vd("semantic: left side eval failed")
                 return False
 
             values = [left_val]
@@ -247,23 +277,34 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
                 try:
                     values.append(_eval(comp))
                 except Exception:   # pylint: disable=broad-exception-caught
+                    _vd("semantic: comparator eval failed")
                     return False
 
-            # pairwise compare with tolerance
+            # pairwise compare with tolerance / identity
             left = values[0]
             for op_node, right in zip(test.ops, values[1:]):
                 tag = OP_TAG.get(type(op_node))
                 if tag is None:
-                    # unsupported comparator like `is`, `in`, etc: trust exec() result
+                    # unsupported comparator like `in`, etc: trust exec() result
                     try:
                         ok = bool(_eval(test))
                     except Exception:   # pylint: disable=broad-exception-caught
+                        _vd("semantic: unsupported comparator re-eval failed")
                         return False
                     if not ok:
+                        _vd("semantic: unsupported comparator truthiness False")
                         return False
                     break
-                if not _cmp_numeric(left, right, tag):
-                    return False
+                if tag in {"is", "is not"}:
+                    if not _cmp_bool_identity(left, right, tag):
+                        _vd(
+                            f"semantic: bool-identity compare failed: {left} {tag} {right}")
+                        return False
+                else:
+                    if not _cmp_numeric(left, right, tag):
+                        _vd(
+                            f"semantic: numeric compare failed: {left} {tag} {right}")
+                        return False
                 left = right
             continue
 
@@ -271,8 +312,10 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
         try:
             ok = bool(_eval(test))
         except Exception:   # pylint: disable=broad-exception-caught
+            _vd("semantic: non-compare truthiness eval failed")
             return False
         if not ok:
+            _vd("semantic: non-compare truthiness False")
             return False
 
     return True
@@ -390,9 +433,11 @@ def _arithmetic_oracle(func_name: str, f, *, func_src: Optional[str] = None) -> 
     for (args, expected) in table[key]:
         try:
             got = f(*args)
-        except Exception:  # pylint: disable=broad-exception-caught
+        except Exception:   # pylint: disable=broad-exception-caught
+            _vd(f"oracle: function raised on args={args}")
             return False
         if not _isclose(got, expected):
+            _vd(f"oracle: mismatch on {key}{args} -> {got} != {expected}")
             return False
     return True
 
@@ -427,7 +472,7 @@ def _has_foreign_calls(test_src: str, target: str) -> bool:
     allow_names = {
         "round", "abs", "int", "float", "len", "sum", "max", "min",
         "set", "sorted", "any", "all", "enumerate", "range",
-        "list", "tuple", "dict", "str"
+        "list", "tuple", "dict", "str", "reversed"
     }
     try:
         t = ast.parse(test_src)
@@ -501,58 +546,65 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
       - The test has at least 1 assert (and not an absurd number),
       - The test calls the target function somewhere,
       - The test does NOT call other user-level functions,
+      - Every assert references the target (no stray asserts),
       - Executing the test raises no exceptions (i.e., asserts pass),
       - Optional semantic probe passes for simple arithmetic functions.
 
     Note: we keep this conservative to avoid rejecting legitimate variants.
     """
-    # Identify target function name from the function source
     func_name = _extract_function_name(func_src)
 
-    # Sanity: at least one assert, but not, say, 100 in one line
     num_asserts = _count_asserts(test_src)
     if num_asserts < 1 or num_asserts > 12:
+        _vd(f"reject: bad assert count = {num_asserts}")
         return False
 
     if not _calls_target(test_src, func_name):
+        _vd("reject: test does not call target")
         return False
 
-     # Ensure every assert actually exercises the target
     if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
+        _vd("reject: at least one assert does not reference target")
         return False
 
-    # NEW: reject tests that call any non-target user function
     if _has_foreign_calls(test_src, func_name):
+        _vd("reject: foreign user-level calls detected")
         return False
 
     # Execute in a fresh namespace
     ns: dict = {}
     try:
-        # define the function
+        # define function
         exec(func_src, ns, ns)  # pylint: disable=exec-used
-        # run the test (asserts must pass)
-        exec(test_src, ns, ns)  # pylint: disable=exec-used
-    except Exception:       # pylint: disable=broad-exception-caught
+        # NEW: opportunistic auto-fix of wrong RHS values
+        fixed_test_src = _auto_fix_assert_rhs(
+            ns, test_src, func_name) or test_src
+        # run test (asserts must pass)
+        exec(fixed_test_src, ns, ns)   # pylint: disable=exec-used
+    except Exception as e:      # pylint: disable=broad-exception-caught
+        _vd(f"reject: exec raised: {type(e).__name__}: {e}")
         return False
 
     if not _asserts_semantically_true(ns, test_src):
+        _vd("reject: semantic re-check failed")
         return False
 
-    # Optional: semantic probe for simple arithmetic (skip divide variants)
+    # semantic oracle for simple arithmetic (skip divide variants)
     f = ns.get(func_name)
     if callable(f) and not _arithmetic_oracle(func_name, f, func_src=func_src):
+        _vd("reject: arithmetic oracle failed")
         return False
 
-    # Optional: sanity – if the test called the function with simple literal args,
-    # recompute expected via the test's own asserts implicitly (already done by exec),
-    # but we can also ensure outputs are not NaN for add/sub/mul/power cases.
+    # NaN check on arithmetic outputs for literal calls
     if func_name.lower() in {"add", "subtract", "multiply", "power"}:
         for args, _ in _extract_calls_in_test(test_src, func_name):
             try:
                 out = f(*args)
-            except Exception:       # pylint: disable=broad-exception-caught
+            except Exception:   # pylint: disable=broad-exception-caught
+                _vd("reject: arithmetic target raised on literal replay")
                 return False
             if isinstance(out, float) and math.isnan(out):
+                _vd("reject: arithmetic returned NaN")
                 return False
 
     return True
@@ -600,17 +652,175 @@ def _normalize_calls_to_target(test_src: str, function_name: str) -> str:
     Only rewrites Name calls where the callee is a strict prefix of the target
     and the next char in the target is an underscore, to avoid over-matching.
     """
-    parts = function_name.split("_")
-    if len(parts) < 2:
-        return test_src  # nothing to normalize
+    # base = function_name.replace("_", "")
+    # Simple regex normalizations first
+    test_src = re.sub(
+        rf"\b{re.escape(function_name.replace('_', ''))}\b", function_name, test_src)
+    test_src = re.sub(
+        rf"\b{re.escape(function_name)}\s*(?=\()", function_name, test_src)
 
-    prefix = parts[0]
-    if prefix and prefix != function_name:
-        pattern = rf"\b{re.escape(prefix)}\s*\("
-        replacement = f"{function_name}("
-        test_src = re.sub(pattern, replacement, test_src)
+    # AST-based rename
+    try:
+        t = ast.parse(test_src)
+    except SyntaxError:
+        return test_src
 
-    return test_src
+    target_is_pred = function_name.startswith("is_")
+    lower_target = function_name.lower()
+
+    SAFE_EXCLUDED_IS_NAMES = {"isinstance",
+                              "issubclass", "isfinite", "isnan", "isinf"}
+
+    class Renamer(ast.NodeTransformer):
+        def visit_Call(self, node):
+            node = self.generic_visit(node)
+            if isinstance(node.func, ast.Name):
+                name = node.func.id
+                lname = name.lower()
+
+                # already correct
+                if name == function_name:
+                    return node
+
+                # For predicate targets, rewrite *any* is_* style user call to the target,
+                # except a few well-known builtins.
+                if target_is_pred and lname.startswith("is") and lname not in SAFE_EXCLUDED_IS_NAMES:
+                    node.func.id = function_name
+                    return node
+
+                # Otherwise, allow fuzzy rename when very close (lowered threshold)
+                sim = difflib.SequenceMatcher(
+                    None, lname, lower_target).ratio()
+                if sim >= 0.58:
+                    node.func.id = function_name
+            return node
+
+    try:
+        fixed_tree = Renamer().visit(t)
+        ast.fix_missing_locations(fixed_tree)
+        return ast.unparse(fixed_tree)
+    except Exception:   # pylint: disable=broad-exception-caught
+        return test_src
+
+
+def _strip_non_target_asserts(test_src: str, func_name: str) -> str:
+    """
+    Keep only assert statements that reference the target function. If that removes all asserts,
+    return the original (so the pre-check will reject it cleanly).
+    """
+    try:
+        tree = ast.parse(test_src)
+    except SyntaxError:
+        return test_src
+
+    class Hits(ast.NodeVisitor):
+        def __init__(self):
+            self.hit = False
+
+        def visit_Call(self, n):
+            if isinstance(n.func, ast.Name) and n.func.id == func_name:
+                self.hit = True
+            self.generic_visit(n)
+
+    new_body = []
+    for node in tree.body:
+        if isinstance(node, ast.Assert):
+            h = Hits()
+            h.visit(node)
+            if h.hit:
+                new_body.append(node)
+        else:
+            new_body.append(node)
+
+    if not any(isinstance(n, ast.Assert) for n in new_body):
+        return test_src
+
+    tree.body = new_body
+    try:
+        ast.fix_missing_locations(tree)
+        return ast.unparse(tree)
+    except Exception:   # pylint: disable=broad-exception-caught
+        return test_src
+
+
+def _format_literal(v: Any) -> str:
+    if isinstance(v, bool):
+        return "True" if v else "False"
+    if isinstance(v, float):
+        if math.isnan(v):
+            return "float('nan')"
+        if math.isinf(v):
+            return "float('inf')" if v > 0 else "float('-inf')"
+        s = f"{v:.10f}".rstrip("0").rstrip(".")
+        try:
+            if float(s).is_integer():
+                return str(int(round(float(s))))
+        except Exception:   # pylint: disable=broad-exception-caught
+            pass
+        return s
+    return repr(v)
+
+
+def _auto_fix_assert_rhs(ns: dict, test_src: str, func_name: str) -> str:
+    """
+    For asserts like: <expr> == <literal>, if <expr> contains a call to func_name,
+    evaluate <expr> in ns and rewrite the RHS literal to the true value (bool/int/float).
+    """
+    try:
+        tree = ast.parse(test_src)
+    except SyntaxError:
+        return test_src
+
+    SAFE_GLOBALS = {
+        "__builtins__": {},
+        "math": math, "abs": abs, "round": round,
+        "int": int, "float": float, "min": min, "max": max, "sum": sum, "len": len,
+        **ns
+    }
+    changed = False
+
+    class Fixer(ast.NodeTransformer):
+        def visit_Assert(self, node):
+            nonlocal changed
+            test = node.test
+            if isinstance(test, ast.Compare) and len(test.ops) == 1 and len(test.comparators) == 1:
+                # Only fix when LHS calls our target
+                called = [False]
+
+                class Finder(ast.NodeVisitor):
+                    def visit_Call(self, n):
+                        if isinstance(n.func, ast.Name) and n.func.id == func_name:
+                            called[0] = True
+                        self.generic_visit(n)
+                Finder().visit(test.left)
+                if not called[0]:
+                    return node
+
+                # Evaluate left expression
+                try:
+                    left_val = eval(compile(ast.Expression(
+                        test.left), "<ast>", "eval"), SAFE_GLOBALS, {})
+                except Exception:   # pylint: disable=broad-exception-caught
+                    return node
+
+                if isinstance(left_val, (bool, int, float)):
+                    new_rhs_code = _format_literal(left_val)
+                    try:
+                        new_rhs_ast = ast.parse(new_rhs_code, mode="eval").body
+                    except Exception:   # pylint: disable=broad-exception-caught
+                        return node
+                    test.comparators[0] = new_rhs_ast
+                    changed = True
+            return node
+
+    fixed = Fixer().visit(tree)
+    if not changed:
+        return test_src
+    try:
+        ast.fix_missing_locations(fixed)
+        return ast.unparse(fixed)
+    except Exception:   # pylint: disable=broad-exception-caught
+        return test_src
 
 
 def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
@@ -634,19 +844,78 @@ def _decode_and_clean(tokenizer, seq_ids, func_name: str) -> str:
     txt = _normalize_calls_to_target(txt, func_name)
     return txt
 
+# ---------- NEW: predicate few-shot prompt helpers ----------
+
+
+def _looks_like_predicate(code: str) -> bool:
+    try:
+        t = ast.parse(code)
+    except SyntaxError:
+        return False
+    for node in ast.walk(t):
+        if isinstance(node, ast.Return):
+            if isinstance(node.value, ast.Constant) and isinstance(node.value.value, bool):
+                return True
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+            # common string/numeric "is*" predicates (isupper/islower/isdigit/isalpha etc.)
+            if node.func.attr.startswith("is"):
+                return True
+    lowered = code.lower()
+    return any(k in lowered for k in [" is_", " return true", " return false"])
+
+
+_PREDICATE_FEWSHOT = (
+    "### Example A\n"
+    "Given this Python function:\n"
+    "```python\n"
+    "def is_even(n):\n"
+    "    return n % 2 == 0\n"
+    "```\n"
+    "Correct style:\n"
+    "```python\n"
+    "def test_is_even():\n"
+    "    assert is_even(4) is True\n"
+    "    assert is_even(9) is False\n"
+    "```\n\n"
+    "### Example B\n"
+    "Given this Python function:\n"
+    "```python\n"
+    "def is_prime(n):\n"
+    "    if n <= 1: return False\n"
+    "    if n <= 3: return True\n"
+    "    if n % 2 == 0 or n % 3 == 0: return False\n"
+    "    i = 5\n"
+    "    while i * i <= n:\n"
+    "        if n % i == 0 or n % (i+2) == 0: return False\n"
+    "        i += 6\n"
+    "    return True\n"
+    "```\n"
+    "Correct style (note both asserts call `is_prime`):\n"
+    "```python\n"
+    "def test_is_prime():\n"
+    "    assert is_prime(7) is True\n"
+    "    assert is_prime(32) is False\n"
+    "```\n\n"
+)
+
 
 def _prompt_for(code_snippet: str) -> str:
-    return (
+    fn = _extract_function_name(code_snippet)
+    base = (
         "Given this Python function:\n```python\n"
         f"{code_snippet}\n"
         "```\n"
         "Write ONE PyTest unit test function named `test_<function_name>` with at least two assert statements.\n"
         "Requirements:\n"
-        "- Call the target function directly (no other user-defined helpers).\n"
-        "- Use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
+        f"- Every assert must call **exactly** `{fn}` (use this exact name).\n"
+        "- Do not call any other user-defined function names (e.g., is_even, is_odd, helpers).\n"
+        "- You may use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
         "- No pytest fixtures, no parametrize, no classes, no print statements.\n"
         "- Output ONLY the test function (no extra text).\n"
     )
+    if _looks_like_predicate(code_snippet):
+        return _PREDICATE_FEWSHOT + base
+    return base
 
 
 def _try_candidates(
@@ -663,14 +932,14 @@ def _try_candidates(
     temperature: float = 0.7,
     top_k: int = 50,
 ):
-    """Generate `num_return` candidates with specified strategy and return the first passing one, else None."""
+    """Generate `num_return` candidates and return the first passing one, else None."""
     with torch.inference_mode():
         outs = model.generate(
             enc_inputs["input_ids"],
             attention_mask=enc_inputs["attention_mask"],
             max_new_tokens=max_new_tokens,
-            min_length=24,
-            no_repeat_ngram_size=3,
+            min_length=0,
+            no_repeat_ngram_size=0 if do_sample else 3,
             early_stopping=True,
             do_sample=do_sample,
             temperature=max(0.1, float(temperature)) if do_sample else None,
@@ -679,11 +948,53 @@ def _try_candidates(
             num_return_sequences=max(1, int(num_return)),
         )
 
+    # Keep a short log of rejections (first reason only)
+    rejections = []
+
     for i in range(outs.shape[0]):
         candidate = _decode_and_clean(tokenizer, outs[i], func_name)
-        # Must call the target *and* pass its asserts & validation
-        if _calls_target(candidate, func_name) and _run_test_safely(code_snippet, candidate):
+        candidate = _strip_non_target_asserts(candidate, func_name)
+
+        if _VALIDATOR_DEBUG:
+            print("\n[validator] ---------- CANDIDATE BEGIN ----------")
+            print(candidate)
+            print("[validator] ----------- CANDIDATE END -----------")
+
+        # Quick pre-checks to collect reason strings
+        def _first_reject_reason(test_src: str) -> Optional[str]:
+            # assert count
+            n = _count_asserts(test_src)
+            if n < 1 or n > 12:
+                return f"bad assert count={n}"
+            if not _calls_target(test_src, func_name):
+                return "does not call target"
+            if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
+                return "an assert does not reference target"
+            if _has_foreign_calls(test_src, func_name):
+                return "foreign user-level calls"
+            # exec + semantic done within _run_test_safely
+            return None
+
+        reason = _first_reject_reason(candidate)
+        if reason is not None:
+            if _VALIDATOR_DEBUG:
+                print(f"[validator] REJECT (pre): {reason}")
+            rejections.append((candidate, reason))
+            continue
+
+        ok = _run_test_safely(code_snippet, candidate)
+        if ok:
             return candidate
+        else:
+            if _VALIDATOR_DEBUG:
+                print("[validator] REJECT (run): failed in exec/semantic/oracle")
+            rejections.append((candidate, "exec/semantic/oracle"))
+
+    if _VALIDATOR_DEBUG and rejections:
+        print("\n[validator] SUMMARY: all candidates rejected.")
+        for idx, (_cand, why) in enumerate(rejections, 1):
+            print(f"[validator]  {idx:02d}. reason: {why}")
+
     return None
 
 
@@ -728,6 +1039,25 @@ def generate_test_from_code(
         return_attention_mask=True,
     ).to(DEVICE)
 
+    # Optional: bypass validator to inspect raw model output quickly
+    if _BYPASS_VALIDATOR:
+        with torch.inference_mode():
+            raw = model.generate(
+                enc["input_ids"],
+                attention_mask=enc["attention_mask"],
+                max_new_tokens=max_new_tokens,
+                min_length=24,
+                no_repeat_ngram_size=3,
+                early_stopping=True,
+                do_sample=True,
+                temperature=max(0.1, float(temperature)),
+                top_k=max(0, int(top_k)),
+                num_beams=1,
+                num_return_sequences=1,
+            )
+        txt = _decode_and_clean(tokenizer, raw[0], func_name)
+        return "# origin: raw_unvalidated\n" + txt
+
     # 1) Deterministic beams
     passing = _try_candidates(
         tokenizer,
@@ -741,7 +1071,7 @@ def generate_test_from_code(
         num_beams=max(1, int(num_beams)),
     )
     if passing:
-        return passing
+        return "# origin: beams\n" + passing
 
     # 2) Sampling for diversity
     passing = _try_candidates(
@@ -757,82 +1087,72 @@ def generate_test_from_code(
         top_k=top_k,
     )
     if passing:
-        return passing
+        return "# origin: sampling\n" + passing
 
     # 3) Fallbacks for common arithmetic names (always coherent)
     op = _infer_simple_op(code_snippet) or func_name.lower()
     fn = func_name
     if fn == "add":
-        return "def test_add(): assert add(3, 4) == 7; assert add(-2, 5) == 3"
+        return "# origin: fallback\n" + "def test_add(): assert add(3, 4) == 7; assert add(-2, 5) == 3"
     if fn == "subtract":
-        return "def test_subtract(): assert subtract(5, 3) == 2; assert subtract(-2, -3) == 1"
+        return "# origin: fallback\n" + "def test_subtract(): assert subtract(5, 3) == 2; assert subtract(-2, -3) == 1"
     if fn == "multiply":
-        return "def test_multiply(): assert multiply(2, 3) == 6; assert multiply(-1, 5) == -5"
+        return "# origin: fallback\n" + "def test_multiply(): assert multiply(2, 3) == 6; assert multiply(-1, 5) == -5"
     if fn == "divide":
-        return "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
+        return "# origin: fallback\n" + "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
     if fn == "power":
-        return "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
+        return "# origin: fallback\n" + "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
 
-        # --- Non-arithmetic Tier-1 fallbacks ---
+    # --- Non-arithmetic Tier-1 fallbacks ---
     if fn == "count_vowels":
-        return (
+        return "# origin: fallback\n" + \
             "def test_count_vowels(): assert count_vowels('hello') == 2; assert count_vowels('bcd') == 0; assert count_vowels('AEiou') == 5\n"
-        )
 
     if fn == "is_even":
-        return (
-            "def test_is_even(): assert is_even(2) == True; assert is_even(3) == False; assert is_even(0) == True\n"
-        )
+        return "# origin: fallback\n" + \
+            "def test_is_even(): assert is_even(2) is True; assert is_even(3) is False; assert is_even(0) is True\n"
 
     if fn == "is_odd":
-        return (
-            "def test_is_odd(): assert is_odd(2) == False; assert is_odd(3) == True; assert is_odd(1) == True\n"
-        )
+        return "# origin: fallback\n" + \
+            "def test_is_odd(): assert is_odd(2) is False; assert is_odd(3) is True; assert is_odd(1) is True\n"
 
     if fn == "is_lower":
-        return (
-            "def test_is_lower(): assert is_lower('hello') == True; assert is_lower('Hello') == False\n"
-        )
+        return "# origin: fallback\n" + \
+            "def test_is_lower(): assert is_lower('hello') is True; assert is_lower('Hello') is False\n"
 
     if fn == "is_upper":
-        return (
-            "def test_is_upper(): assert is_upper('HELLO') == True; assert is_upper('Hello') == False\n"
-        )
+        return "# origin: fallback\n" + \
+            "def test_is_upper(): assert is_upper('HELLO') is True; assert is_upper('Hello') is False\n"
 
     if fn == "is_palindrome":
-        return (
-            "def test_is_palindrome(): assert is_palindrome('racecar') == True; assert is_palindrome('python') == False\n"
-        )
+        return "# origin: fallback\n" + \
+            "def test_is_palindrome(): assert is_palindrome('racecar') is True; assert is_palindrome('python') is False\n"
 
     if fn == "reverse_string":
-        return (
+        return "# origin: fallback\n" + \
             "def test_reverse_string(): assert reverse_string('abc') == 'cba'; assert reverse_string('') == ''\n"
-        )
 
     if fn == "remove_duplicates":
-        return (
+        return "# origin: fallback\n" + \
             "def test_remove_duplicates(): assert remove_duplicates([1,1,2,3,2]) == [1,2,3]; assert remove_duplicates([]) == []\n"
-        )
 
     if fn == "is_anagram":
-        return (
-            "def test_is_anagram(): assert is_anagram('listen','silent') == True; assert is_anagram('rat','car') == False\n"
-        )
+        return "# origin: fallback\n" + \
+            "def test_is_anagram(): assert is_anagram('listen','silent') is True; assert is_anagram('rat','car') is False\n"
 
     if op == "add":
-        return f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
+        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
     if op == "subtract":
-        return f"def test_{fn}(): assert {fn}(5, 3) == 2; assert {fn}(-2, -3) == 1"
+        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(5, 3) == 2; assert {fn}(-2, -3) == 1"
     if op == "multiply":
-        return f"def test_{fn}(): assert {fn}(2, 3) == 6; assert {fn}(-1, 5) == -5"
-    # still keep divide simple (too many variants in your dataset)
+        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(2, 3) == 6; assert {fn}(-1, 5) == -5"
     if op == "divide" or fn == "divide":
-        return f"def test_{fn}(): assert {fn}(6, 3) == 2; assert {fn}(-8, 4) == -2"
+        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(6, 3) == 2; assert {fn}(-8, 4) == -2"
     if op == "power":
-        return f"def test_{fn}(): assert {fn}(2, 3) == 8; assert {fn}(3, 0) == 1"
+        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(2, 3) == 8; assert {fn}(3, 0) == 1"
 
     # Worst-case: valid test shell (avoid wrong asserts)
-    return f"def test_{fn}():\n    # model could not produce a valid passing test yet\n    assert callable({fn})\n"
+    return "# origin: fallback\n" + f"def test_{fn}():\n    # model could not produce a valid passing test yet\n    assert callable({fn})\n"
 
 
 # -----------------------------
