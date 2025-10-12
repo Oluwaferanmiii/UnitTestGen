@@ -836,13 +836,75 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
     return f"def test_{func_name}():\n{indented}\n"
 
 
-def _decode_and_clean(tokenizer, seq_ids, func_name: str) -> str:
-    """Decode one sequence, ensure it's a test def, and standardize the name."""
+def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "") -> str:
     txt = tokenizer.decode(seq_ids, skip_special_tokens=True).strip()
     txt = _wrap_as_test_if_needed(txt, func_name)
     txt = _standardize_test_name(txt, func_name)
     txt = _normalize_calls_to_target(txt, func_name)
+
+    # If function expects strings (is_upper/lower, palindrome, anagram), coerce numeric args
+    if _function_expects_strings(func_src) or _is_anagram_like(func_src):
+        txt = _coerce_string_args_in_test(txt, func_name)
     return txt
+
+
+def _function_expects_strings(code: str) -> bool:
+    try:
+        t = ast.parse(code)
+    except SyntaxError:
+        return False
+    STR_METHODS = {
+        "lower", "upper", "replace", "strip", "lstrip", "rstrip", "split", "join",
+        "islower", "isupper", "isalpha", "isdigit", "isalnum", "isspace", "startswith", "endswith"
+    }
+    for n in ast.walk(t):
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute):
+            if isinstance(n.func.value, ast.Name) and n.func.attr in STR_METHODS:
+                return True
+    return False
+
+
+def _is_anagram_like(code: str) -> bool:
+    # very lightweight detection: sorted(a) == sorted(b)
+    try:
+        t = ast.parse(code)
+    except SyntaxError:
+        return False
+    for n in ast.walk(t):
+        if isinstance(n, ast.Compare) and len(n.comparators) == 1:
+            left, right = n.left, n.comparators[0]
+            if all(isinstance(x, ast.Call) and isinstance(x.func, ast.Name) and x.func.id == "sorted"
+                   for x in (left, right)):
+                return True
+    return False
+
+
+def _coerce_string_args_in_test(test_src: str, func_name: str) -> str:
+    try:
+        t = ast.parse(test_src)
+    except SyntaxError:
+        return test_src
+
+    class Coercer(ast.NodeTransformer):
+        def visit_Call(self, node):
+            node = self.generic_visit(node)
+            if isinstance(node.func, ast.Name) and node.func.id == func_name:
+                new_args = []
+                for a in node.args:
+                    if isinstance(a, ast.Constant) and isinstance(a.value, (int, float)):
+                        new_args.append(ast.Constant(value=str(a.value)))
+                    else:
+                        new_args.append(a)
+                node.args = new_args
+            return node
+
+    try:
+        new_t = Coercer().visit(t)
+        ast.fix_missing_locations(new_t)
+        return ast.unparse(new_t)
+    except Exception:   # pylint: disable=broad-exception-caught
+        return test_src
+
 
 # ---------- NEW: predicate few-shot prompt helpers ----------
 
@@ -906,15 +968,24 @@ def _prompt_for(code_snippet: str) -> str:
         f"{code_snippet}\n"
         "```\n"
         "Write ONE PyTest unit test function named `test_<function_name>` with at least two assert statements.\n"
-        "Requirements:\n"
         f"- Every assert must call **exactly** `{fn}` (use this exact name).\n"
-        "- Do not call any other user-defined function names (e.g., is_even, is_odd, helpers).\n"
-        "- You may use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
+        "- Do not call any other user-defined helpers.\n"
+        "- Use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
+        "- If the code uses string methods (e.g., `.islower()`, `.isupper()`, `.lower()`, `.replace()`), pass **string arguments** like 'abc'.\n"
+        "- If it compares `sorted(a) == sorted(b)`, pass **string pairs** like ('listen', 'silent').\n"
         "- No pytest fixtures, no parametrize, no classes, no print statements.\n"
         "- Output ONLY the test function (no extra text).\n"
     )
     if _looks_like_predicate(code_snippet):
         return _PREDICATE_FEWSHOT + base
+
+    if _function_expects_strings(code_snippet) or _is_anagram_like(code_snippet):
+        base += (
+            "\nAdditional constraints:\n"
+            "- Use **string** inputs (e.g., 'HELLO'/'Hello', 'racecar'/'python', 'listen'/'silent').\n"
+            "- Avoid numbers for these tests.\n"
+        )
+
     return base
 
 
