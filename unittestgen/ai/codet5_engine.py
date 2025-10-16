@@ -1023,7 +1023,8 @@ def _try_candidates(
     rejections = []
 
     for i in range(outs.shape[0]):
-        candidate = _decode_and_clean(tokenizer, outs[i], func_name)
+        candidate = _decode_and_clean(
+            tokenizer, outs[i], func_name, func_src=code_snippet)
         candidate = _strip_non_target_asserts(candidate, func_name)
 
         if _VALIDATOR_DEBUG:
@@ -1119,10 +1120,13 @@ def generate_test_from_code(
                 max_new_tokens=max_new_tokens,
                 min_length=24,
                 no_repeat_ngram_size=3,
+                length_penalty=1.1,                   # helps complete a full test
+                repetition_penalty=1.05,              # discourages token loops
                 early_stopping=True,
                 do_sample=True,
                 temperature=max(0.1, float(temperature)),
                 top_k=max(0, int(top_k)),
+                top_p=(0.92),
                 num_beams=1,
                 num_return_sequences=1,
             )
