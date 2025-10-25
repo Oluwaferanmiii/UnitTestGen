@@ -18,3 +18,7 @@ dataset.jsonl
 
 #IDE and System Files
 .DS_Store
+
+# Test functions
+run_string_function_tests.py
+string_function_test_results.log
