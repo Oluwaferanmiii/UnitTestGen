@@ -1185,23 +1185,23 @@ def generate_test_from_code(
 
     if fn == "is_even":
         return "# origin: fallback\n" + \
-            "def test_is_even(): assert is_even(2) is True; assert is_even(3) is False; assert is_even(0) is True\n"
+            "def test_is_even(): assert is_even(2) == True; assert is_even(3) == False; assert is_even(0) == True\n"
 
     if fn == "is_odd":
         return "# origin: fallback\n" + \
-            "def test_is_odd(): assert is_odd(2) is False; assert is_odd(3) is True; assert is_odd(1) is True\n"
+            "def test_is_odd(): assert is_odd(2) == False; assert is_odd(3) == True; assert is_odd(1) == True\n"
 
     if fn == "is_lower":
         return "# origin: fallback\n" + \
-            "def test_is_lower(): assert is_lower('hello') is True; assert is_lower('Hello') is False\n"
+            "def test_is_lower(): assert is_lower('hello') == True; assert is_lower('Hello') == False\n"
 
     if fn == "is_upper":
         return "# origin: fallback\n" + \
-            "def test_is_upper(): assert is_upper('HELLO') is True; assert is_upper('Hello') is False\n"
+            "def test_is_upper(): assert is_upper('HELLO') == True; assert is_upper('Hello') == False\n"
 
     if fn == "is_palindrome":
         return "# origin: fallback\n" + \
-            "def test_is_palindrome(): assert is_palindrome('racecar') is True; assert is_palindrome('python') is False\n"
+            "def test_is_palindrome(): assert is_palindrome('racecar') == True; assert is_palindrome('python') == False\n"
 
     if fn == "reverse_string":
         return "# origin: fallback\n" + \
@@ -1213,7 +1213,7 @@ def generate_test_from_code(
 
     if fn == "is_anagram":
         return "# origin: fallback\n" + \
-            "def test_is_anagram(): assert is_anagram('listen','silent') is True; assert is_anagram('rat','car') is False\n"
+            "def test_is_anagram(): assert is_anagram('listen','silent') == True; assert is_anagram('rat','car') == False\n"
 
     if op == "add":
         return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
