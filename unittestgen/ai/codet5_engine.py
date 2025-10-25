@@ -1215,6 +1215,62 @@ def generate_test_from_code(
         return "# origin: fallback\n" + \
             "def test_is_anagram(): assert is_anagram('listen','silent') == True; assert is_anagram('rat','car') == False\n"
 
+        # --- Non-arithmetic Tier-2 fallbacks (string utilities) ---
+
+    if fn == "reverse_words":
+        return "# origin: fallback\n" + (
+            "def test_reverse_words():\n"
+            "    assert reverse_words('hello world') == 'world hello'\n"
+            "    assert reverse_words('a b c') == 'c b a'\n"
+            "    assert reverse_words('single') == 'single'\n"
+        )
+
+    if fn == "normalize_whitespace":
+        return "# origin: fallback\n" + (
+            "def test_normalize_whitespace():\n"
+            "    assert normalize_whitespace('  hello   world  ') == 'hello world'\n"
+            "    assert normalize_whitespace('\\tfoo  bar\\n') == 'foo bar'\n"
+        )
+
+    if fn == "strip_punctuation":
+        return "# origin: fallback\n" + (
+            "def test_strip_punctuation():\n"
+            "    assert strip_punctuation('Hello, world!') == 'Hello world'\n"
+            "    assert strip_punctuation('Good-morning!!!') == 'Goodmorning'\n"
+        )
+
+    if fn == "count_uppercase":
+        return "# origin: fallback\n" + (
+            "def test_count_uppercase():\n"
+            "    assert count_uppercase('Hello World') == 2\n"
+            "    assert count_uppercase('no caps') == 0\n"
+            "    assert count_uppercase('ABCdef') == 3\n"
+        )
+
+    if fn == "strip_numbers":
+        return "# origin: fallback\n" + (
+            "def test_strip_numbers():\n"
+            "    assert strip_numbers('abc123') == 'abc'\n"
+            "    assert strip_numbers('no digits') == 'no digits'\n"
+            "    assert strip_numbers('42life') == 'life'\n"
+        )
+
+    if fn == "replace_substring":
+        return "# origin: fallback\n" + (
+            "def test_replace_substring():\n"
+            "    assert replace_substring('hello world', 'world', 'there') == 'hello there'\n"
+            "    assert replace_substring('abcabc', 'a', 'x') == 'xbcxbc'\n"
+            "    assert replace_substring('nochange', 'z', 'q') == 'nochange'\n"
+        )
+
+    if fn == "remove_vowels":
+        return "# origin: fallback\n" + (
+            "def test_remove_vowels():\n"
+            "    assert remove_vowels('hello') == 'hll'\n"
+            "    assert remove_vowels('AEIOU') == ''\n"
+            "    assert remove_vowels('xyz') == 'xyz'\n"
+        )
+
     if op == "add":
         return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
     if op == "subtract":
