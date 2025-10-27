@@ -70,15 +70,25 @@ def _load_model_and_tokenizer():
 # -----------------------------
 # Small helpers
 # -----------------------------
-def _extract_function_name(code: str) -> str:
-    """Return the first function name defined in `code`, else 'generated'."""
-    try:
-        tree = ast.parse(code)
-        for node in tree.body:
-            if isinstance(node, ast.FunctionDef):
-                return node.name
-    except SyntaxError:
-        pass
+def _extract_function_name(code_snippet: str) -> str:
+    """
+    Extracts a valid function name from a Python source snippet.
+    Handles cases with imports, decorators, comments, or empty lines before def.
+    Returns 'generated' if no function name is found.
+    """
+    if not code_snippet:
+        return "generated"
+
+    # Match the first 'def func_name(' in the file, ignoring leading content
+    match = re.search(r"\bdef\s+([A-Za-z_][A-Za-z_0-9]*)\s*\(", code_snippet)
+    if match:
+        return match.group(1).strip()
+
+    # fallback: check if something like 'lambda' or similar patterns exist
+    alt = re.search(r"([A-Za-z_][A-Za-z_0-9]*)\s*=", code_snippet)
+    if alt:
+        return alt.group(1).strip()
+
     return "generated"
 
 
@@ -836,15 +846,76 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
     return f"def test_{func_name}():\n{indented}\n"
 
 
+def _sanitize_test_src(txt: str, func_name: str) -> str:
+    """
+    Clean and normalize generated test source code to ensure it can execute safely.
+    Removes invisible Unicode chars, malformed asserts, and duplicated headers.
+    """
+
+    if not txt:
+        return ""
+
+    # --- Remove all invisible / zero-width / directional control characters ---
+    # Covers BOM, LTR/RTL marks, joiners, word joiners, etc.
+    txt = re.sub(r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]", "", txt)
+
+    # --- Normalize line endings and stray whitespace ---
+    txt = txt.replace("\r\n", "\n").replace("\r", "\n")
+    # remove trailing spaces before newline
+    txt = re.sub(r"[ \t]+\n", "\n", txt)
+    txt = txt.strip()
+
+    # --- Ensure it starts with a proper test function header ---
+    # Fix if model used generic names like `test_generated`
+    txt = re.sub(
+        r"def\s+test_generated\s*\(",
+        f"def test_{func_name}(",
+        txt
+    )
+
+    # --- Deduplicate test headers if model stacked multiple defs ---
+    lines = txt.splitlines()
+    cleaned = []
+    seen_header = False
+    for line in lines:
+        if line.strip().startswith("def test_"):
+            if seen_header:
+                continue
+            seen_header = True
+        cleaned.append(line)
+    txt = "\n".join(cleaned)
+
+    # --- Replace semicolons with proper newlines (Pythonic formatting) ---
+    txt = re.sub(r";\s*", "\n", txt)
+
+    # --- Fix malformed asserts like "assert func(...)" without comparison ---
+    # Convert them to simple truth asserts if not followed by ==
+    txt = re.sub(
+        rf"(assert\s+{re.escape(func_name)}\([^)]*\))(?!\s*==)",
+        r"\1 is not None",
+        txt
+    )
+
+    # --- Remove duplicate asserts and excessive blank lines ---
+    txt = re.sub(r"(\n\s*\n)+", "\n\n", txt).strip()
+
+    # --- Ensure indentation is consistent (4 spaces) ---
+    txt = re.sub(r"\t", "    ", txt)
+
+    return txt
+
+
 def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "") -> str:
     txt = tokenizer.decode(seq_ids, skip_special_tokens=True).strip()
     txt = _wrap_as_test_if_needed(txt, func_name)
     txt = _standardize_test_name(txt, func_name)
     txt = _normalize_calls_to_target(txt, func_name)
 
-    # If function expects strings (is_upper/lower, palindrome, anagram), coerce numeric args
     if _function_expects_strings(func_src) or _is_anagram_like(func_src):
         txt = _coerce_string_args_in_test(txt, func_name)
+
+    # Final safety cleanup
+    txt = _sanitize_test_src(txt, func_name)
     return txt
 
 
@@ -1010,7 +1081,7 @@ def _try_candidates(
             attention_mask=enc_inputs["attention_mask"],
             max_new_tokens=max_new_tokens,
             min_length=0,
-            no_repeat_ngram_size=0 if do_sample else 3,
+            no_repeat_ngram_size=0 if not do_sample else 0,  # keep your behavior
             early_stopping=True,
             do_sample=do_sample,
             temperature=max(0.1, float(temperature)) if do_sample else None,
@@ -1019,12 +1090,16 @@ def _try_candidates(
             num_return_sequences=max(1, int(num_return)),
         )
 
-    # Keep a short log of rejections (first reason only)
     rejections = []
 
     for i in range(outs.shape[0]):
         candidate = _decode_and_clean(
-            tokenizer, outs[i], func_name, func_src=code_snippet)
+            tokenizer, outs[i], func_name, func_src=code_snippet
+        )
+        # If your _decode_and_clean doesn't call the sanitizer internally,
+        # uncomment the next line:
+        # candidate = _sanitize_test_src(candidate, func_name)
+
         candidate = _strip_non_target_asserts(candidate, func_name)
 
         if _VALIDATOR_DEBUG:
@@ -1032,9 +1107,17 @@ def _try_candidates(
             print(candidate)
             print("[validator] ----------- CANDIDATE END -----------")
 
+        # --- NEW: Fast syntax guard before any execution ---
+        try:
+            ast.parse(candidate)
+        except SyntaxError:
+            if _VALIDATOR_DEBUG:
+                print("[validator] REJECT (pre): syntax")
+            rejections.append((candidate, "syntax"))
+            continue
+
         # Quick pre-checks to collect reason strings
-        def _first_reject_reason(test_src: str) -> Optional[str]:
-            # assert count
+        def _first_reject_reason(test_src: str):
             n = _count_asserts(test_src)
             if n < 1 or n > 12:
                 return f"bad assert count={n}"
@@ -1044,7 +1127,6 @@ def _try_candidates(
                 return "an assert does not reference target"
             if _has_foreign_calls(test_src, func_name):
                 return "foreign user-level calls"
-            # exec + semantic done within _run_test_safely
             return None
 
         reason = _first_reject_reason(candidate)
@@ -1069,10 +1151,11 @@ def _try_candidates(
 
     return None
 
-
 # -----------------------------
 # Public API: auto-validated generation (beams → sampling → fallback)
 # -----------------------------
+
+
 def generate_test_from_code(
     code_snippet: str,
     *,

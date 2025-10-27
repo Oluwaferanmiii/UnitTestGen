@@ -20,5 +20,5 @@ dataset.jsonl
 .DS_Store
 
 # Test functions
-run_string_function_tests.py
-string_function_test_results.log
+run_function_tests.py
+function_test_results.log
