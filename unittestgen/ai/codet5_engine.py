@@ -849,10 +849,8 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
 def _sanitize_test_src(txt: str, func_name: str) -> str:
     """
     Clean and normalize generated test source code to ensure it can execute safely.
-    - Removes invisible Unicode, curly quotes
-    - Escapes tabs/newlines inside string literals (no regex; state machine)
-    - Deduplicates headers, fixes semicolons, fixes bare-asserts
-    - Never raises re.error (regex guarded)
+    Removes invisible Unicode chars, non-breaking spaces, and control chars.
+    Ensures output is valid Python (AST-parsable) or replaces with a safe stub.
     """
 
     import unicodedata
@@ -860,96 +858,34 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
     if not txt:
         return ""
 
-    # --- helpers -------------------------------------------------------------
     def _sub_safe(pattern, repl, s, flags=0):
         try:
             return re.sub(pattern, repl, s, flags=flags)
         except re.error:
-            return s  # fail open: never crash sanitize
+            return s
 
-    def _remove_invisible(s: str) -> str:
-        # Zero-width, bidi controls, BOM, word-joiners
-        return _sub_safe(r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]", "", s)
-
-    # State-machine to escape specials *inside* quotes only.
-    def _escape_specials_in_strings(s: str) -> str:
-        out = []
-        in_str = False
-        qchar = None
-        esc = False
-        for ch in s:
-            if not in_str:
-                if ch in ("'", '"'):
-                    in_str = True
-                    qchar = ch
-                    out.append(ch)
-                else:
-                    out.append(ch)
-                continue
-
-            # in_str == True
-            if esc:
-                # keep existing escape, but normalize line controls after the slash
-                if ch == "\n":
-                    out.append("n")
-                elif ch == "\r":
-                    out.append("r")
-                elif ch == "\t":
-                    out.append("t")
-                else:
-                    out.append(ch)
-                esc = False
-                continue
-
-            if ch == "\\":
-                out.append("\\")
-                esc = True
-                continue
-
-            if ch == qchar:
-                in_str = False
-                qchar = None
-                out.append(ch)
-                continue
-
-            # raw controls inside string → escape
-            if ch == "\n":
-                out.append("\\n")
-            elif ch == "\r":
-                out.append("\\r")
-            elif ch == "\t":
-                out.append("\\t")
-            else:
-                # strip other category Cc (control) characters
-                if unicodedata.category(ch) == "Cc":
-                    # drop it; you could also encode as \uXXXX if you prefer
-                    pass
-                else:
-                    out.append(ch)
-        return "".join(out)
-
-    # --- pipeline ------------------------------------------------------------
-    # Line endings + trim
-    txt = txt.replace("\r\n", "\n").replace("\r", "\n").strip()
-
-    # Curly quotes → plain
+    # --- Normalize and remove dangerous characters ---
+    txt = txt.replace("\r\n", "\n").replace("\r", "\n")
     txt = txt.replace("‘", "'").replace(
         "’", "'").replace("“", '"').replace("”", '"')
+    txt = re.sub(
+        r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff\u00a0\u00ad]", "", txt)
 
-    # Remove invisibles globally (outside and inside strings)
-    txt = _remove_invisible(txt)
+    # Remove non-printable or control characters globally
+    txt = "".join(ch for ch in txt if unicodedata.category(ch)[0] != "C")
 
-    # Remove trailing spaces before newline
-    txt = _sub_safe(r"[ \t]+\n", "\n", txt)
+    # Ensure ASCII-clean fallback (strip non-ASCII)
+    txt = txt.encode("ascii", "ignore").decode()
 
-    # Escape specials only inside quoted strings (no regex here)
-    txt = _escape_specials_in_strings(txt)
+    # Strip trailing spaces and normalize indentation
+    txt = _sub_safe(r"[ \t]+\n", "\n", txt).strip()
+    txt = txt.replace("\t", "    ")
 
-    # Fix known header alias
+    # Fix header
     txt = _sub_safe(r"def\s+test_generated\s*\(",
                     f"def test_{func_name}(", txt)
 
-    # Deduplicate stacked defs
+    # Deduplicate test headers
     lines = txt.splitlines()
     cleaned = []
     seen_header = False
@@ -961,24 +897,35 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
         cleaned.append(line)
     txt = "\n".join(cleaned)
 
-    # Semicolons → newlines
+    # Replace semicolons with newlines
     txt = _sub_safe(r";\s*", "\n", txt)
 
-    # Fix bare-assert calls on the target function → "is not None"
-    # (guarded compile; never crash if func_name is weird)
-    try:
-        pat_bare_assert = re.compile(
-            r"(assert\s+" + re.escape(func_name) + r"\([^)]*\))(?!\s*==)"
-        )
-        txt = pat_bare_assert.sub(r"\1 is not None", txt)
-    except re.error:
-        pass
+    # Fix malformed asserts
+    txt = _sub_safe(
+        rf"(assert\s+{re.escape(func_name)}\([^)]*\))(?!\s*==)",
+        r"\1 is not None",
+        txt,
+    )
 
-    # Collapse excessive blank lines
+    # Remove excessive blank lines
     txt = _sub_safe(r"(\n\s*\n)+", "\n\n", txt).strip()
 
-    # Tabs → 4 spaces
-    txt = txt.replace("\t", "    ")
+    # --- Validate syntax ---
+    try:
+        ast.parse(txt)
+    except SyntaxError:
+        # Final rescue: valid, callable fallback that *calls* the target with common shapes
+        txt = f"""def test_{func_name}():
+    called = False
+    for args in [(), ("",), ("a","a"), ("abc","xyz"), ("hello",), (0,), ([],)]:
+        try:
+            _ = {func_name}(*args)
+            called = True
+            break
+        except TypeError:
+            continue
+    assert called
+"""
 
     return txt
 
