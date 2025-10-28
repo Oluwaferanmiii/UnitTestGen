@@ -849,37 +849,57 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
 def _sanitize_test_src(txt: str, func_name: str) -> str:
     """
     Clean and normalize generated test source code to ensure it can execute safely.
-    Removes invisible Unicode chars, malformed asserts, and duplicated headers.
-    Also re-escapes special characters like tabs/newlines in string literals to
-    prevent SyntaxErrors during exec.
+    Handles invisible Unicode chars, control chars, malformed asserts,
+    unbalanced quotes, and bad escapes that cause SyntaxErrors.
     """
+
+    import string
 
     if not txt:
         return ""
 
-    # --- Remove all invisible / zero-width / directional control characters ---
+    # --- Normalize line endings ---
+    txt = txt.replace("\r\n", "\n").replace("\r", "\n")
+
+    # --- Remove invisible / zero-width / directional control characters ---
     txt = re.sub(r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]", "", txt)
 
-    # --- Normalize line endings and stray whitespace ---
-    txt = txt.replace("\r\n", "\n").replace("\r", "\n")
-    txt = re.sub(r"[ \t]+\n", "\n", txt)
-    txt = txt.strip()
+    # --- Replace curly quotes with normal ones ---
+    txt = txt.replace("‘", "'").replace(
+        "’", "'").replace("“", '"').replace("”", '"')
 
-    # --- Escape special characters (\t, \n, \r) inside string literals ---
+    # --- Remove trailing spaces before newline ---
+    txt = re.sub(r"[ \t]+\n", "\n", txt).strip()
+
+    # --- Escape special/control characters inside string literals ---
     def _escape_specials(m):
         s = m.group(0)
+        # Escape control chars except \t, \n, \r
+        s = "".join(
+            c if c in string.printable or c in "\t\n\r"
+            else f"\\u{ord(c):04x}" for c in s
+        )
         s = s.replace("\t", "\\t").replace("\n", "\\n").replace("\r", "\\r")
         return s
     txt = re.sub(r"(\'[^\']*\'|\"[^\"]*\")", _escape_specials, txt)
 
+    # --- Remove dangling backslashes that break syntax ---
+    txt = re.sub(r"\\\s*\n", "\n", txt)
+
+    # --- Fix unbalanced quotes (simple heuristic) ---
+    if txt.count("'") % 2 != 0:
+        txt = txt.replace("'", '"')
+    if txt.count('"') % 2 != 0:
+        txt = txt.replace('"', "'")
+
     # --- Ensure it starts with a proper test function header ---
     txt = re.sub(
-        r"def\s+test_generated\s*\(",
+        r"def\s+test_generated\s*$begin:math:text$",
         f"def test_{func_name}(",
         txt
     )
 
-    # --- Deduplicate test headers if model stacked multiple defs ---
+    # --- Deduplicate headers ---
     lines = txt.splitlines()
     cleaned = []
     seen_header = False
@@ -889,14 +909,14 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
                 continue
             seen_header = True
         cleaned.append(line)
-    txt = "\n".join(cleaned)
+    txt = "\\n".join(cleaned)
 
-    # --- Replace semicolons with proper newlines ---
-    txt = re.sub(r";\s*", "\n", txt)
+    # --- Replace semicolons with newlines ---
+    txt = re.sub(r";\\s*", "\\n", txt)
 
-    # --- Fix malformed asserts like "assert func(...)" without comparison ---
+    # --- Fix malformed asserts missing '==' ---
     txt = re.sub(
-        rf"(assert\s+{re.escape(func_name)}\([^)]*\))(?!\s*==)",
+        rf"(assert\\s+{re.escape(func_name)}\\([^)]*$end:math:text$)(?!\s*==)",
         r"\1 is not None",
         txt
     )
@@ -904,8 +924,11 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
     # --- Remove duplicate asserts and excessive blank lines ---
     txt = re.sub(r"(\n\s*\n)+", "\n\n", txt).strip()
 
-    # --- Ensure indentation is consistent (4 spaces) ---
+    # --- Replace tabs with 4 spaces ---
     txt = re.sub(r"\t", "    ", txt)
+
+    # --- Remove leading/trailing non-printable control chars globally ---
+    txt = re.sub(r"[^\x09\x0A\x0D\x20-\x7E]", "", txt)
 
     return txt
 
