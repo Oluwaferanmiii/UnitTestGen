@@ -850,23 +850,29 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
     """
     Clean and normalize generated test source code to ensure it can execute safely.
     Removes invisible Unicode chars, malformed asserts, and duplicated headers.
+    Also re-escapes special characters like tabs/newlines in string literals to
+    prevent SyntaxErrors during exec.
     """
 
     if not txt:
         return ""
 
     # --- Remove all invisible / zero-width / directional control characters ---
-    # Covers BOM, LTR/RTL marks, joiners, word joiners, etc.
     txt = re.sub(r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]", "", txt)
 
     # --- Normalize line endings and stray whitespace ---
     txt = txt.replace("\r\n", "\n").replace("\r", "\n")
-    # remove trailing spaces before newline
     txt = re.sub(r"[ \t]+\n", "\n", txt)
     txt = txt.strip()
 
+    # --- Escape special characters (\t, \n, \r) inside string literals ---
+    def _escape_specials(m):
+        s = m.group(0)
+        s = s.replace("\t", "\\t").replace("\n", "\\n").replace("\r", "\\r")
+        return s
+    txt = re.sub(r"(\'[^\']*\'|\"[^\"]*\")", _escape_specials, txt)
+
     # --- Ensure it starts with a proper test function header ---
-    # Fix if model used generic names like `test_generated`
     txt = re.sub(
         r"def\s+test_generated\s*\(",
         f"def test_{func_name}(",
@@ -885,11 +891,10 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
         cleaned.append(line)
     txt = "\n".join(cleaned)
 
-    # --- Replace semicolons with proper newlines (Pythonic formatting) ---
+    # --- Replace semicolons with proper newlines ---
     txt = re.sub(r";\s*", "\n", txt)
 
     # --- Fix malformed asserts like "assert func(...)" without comparison ---
-    # Convert them to simple truth asserts if not followed by ==
     txt = re.sub(
         rf"(assert\s+{re.escape(func_name)}\([^)]*\))(?!\s*==)",
         r"\1 is not None",
