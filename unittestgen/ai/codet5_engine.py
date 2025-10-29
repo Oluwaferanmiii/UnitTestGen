@@ -849,10 +849,11 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
 def _sanitize_test_src(txt: str, func_name: str) -> str:
     """
     Clean and normalize generated test source code to ensure it can execute safely.
-    - Removes invisible chars and normalizes whitespace
-    - Dedups test headers, fixes semicolons, fixes bare assert calls
-    - Guarantees there's at least one assert that directly references the target call
-    - If syntax is still invalid, replaces with a safe fallback that includes such asserts
+    - Removes invisible and malformed characters
+    - Normalizes whitespace, indentation, and test headers
+    - Fixes bare asserts safely (no invalid chaining)
+    - Injects at least one assert referencing the target
+    - Falls back to a guaranteed safe block if still invalid
     """
     import unicodedata
 
@@ -865,28 +866,31 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
         except re.error:
             return s
 
-    # --- Normalize & clean ---
+    # --- Basic cleanup ---
     txt = txt.replace("\r\n", "\n").replace("\r", "\n")
-    txt = txt.replace("'", "'").replace(
-        "'", "'").replace("“", '"').replace("”", '"')
-    # zero-width, dir marks, NBSP, soft hyphen, BOM, etc.
+
+    # Normalize smart quotes and weird apostrophes
+    txt = txt.replace("‘", "'").replace(
+        "’", "'").replace("“", '"').replace("”", '"')
+
+    # Remove zero-width, directional marks, NBSP, soft hyphen, BOM, etc.
     txt = re.sub(
         r"[\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff\u00a0\u00ad]", "", txt)
-    # strip other control chars (keep \n)
-    txt = "".join(ch for ch in txt if (
-        unicodedata.category(ch)[0] != "C" or ch == "\n"))
-    # collapse trailing spaces and tabs
+
+    # Remove all control chars except newlines
+    txt = "".join(ch for ch in txt if unicodedata.category(ch)
+                  [0] != "C" or ch == "\n")
+
+    # Normalize trailing spaces and tabs
     txt = _sub_safe(r"[ \t]+\n", "\n", txt).strip()
-    # tabs -> 4 spaces
+
+    # Replace tabs with spaces
     txt = txt.replace("\t", "    ")
 
-    # --- Ensure test header name is stable ---
+    # --- Fix broken or duplicated headers ---
     txt = _sub_safe(r"def\s+test_generated\s*\(",
                     f"def test_{func_name}(", txt)
-
-    # --- Deduplicate headers if stacked ---
-    lines = txt.splitlines()
-    cleaned, seen_header = [], False
+    lines, cleaned, seen_header = txt.splitlines(), [], False
     for line in lines:
         if line.strip().startswith("def test_"):
             if seen_header:
@@ -895,24 +899,30 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
         cleaned.append(line)
     txt = "\n".join(cleaned)
 
-    # --- Replace semicolons with newlines (avoid `assert a(); b()` on one line) ---
+    # --- Replace semicolons separating statements ---
     txt = _sub_safe(r";\s*", "\n", txt)
 
-    # --- Fix bare asserts like `assert func(...)` (no comparison) ---
-    # turn them into truthy checks; this also makes the assert reference the target
-    call_pat = rf"(assert\s+{re.escape(func_name)}\s*\([^)]*\))(\s*)(?!==|is)"
-    txt = _sub_safe(call_pat, r"\1 is not None", txt)
+    # --- Fix bare asserts only (no comparison ops present) ---
+    fixed_lines = []
+    for line in txt.splitlines():
+        # A line like "assert func(...)" and nothing else
+        if re.match(rf"^\s*assert\s+{re.escape(func_name)}\s*\([^)]*\)\s*$", line):
+            line = re.sub(
+                rf"assert\s+({re.escape(func_name)}\s*\([^)]*\))\s*$",
+                r"assert \1 is not None",
+                line,
+            )
+        fixed_lines.append(line)
+    txt = "\n".join(fixed_lines)
 
     # --- Collapse excessive blank lines ---
     txt = _sub_safe(r"(\n\s*\n)+", "\n\n", txt).strip()
 
-    # --- Helper: ensure at least one assert line directly references target call ---
+    # --- Inject a safety assert if none reference target ---
     def _ensure_assert_references_target(src: str) -> str:
-        # Quick check: is there any "assert ... func_name(" ?
         if re.search(rf"assert\s+.*\b{re.escape(func_name)}\s*\(", src):
             return src
 
-        # Try to inject a small probe block INSIDE the test function
         inject_block = f"""
     # auto-injected: ensure an assert references the target call
     try:
@@ -932,34 +942,15 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
     except TypeError:
         pass
 """
-        # Insert just before the end of the first test function
         m = re.search(r"(def\s+test_[A-Za-z0-9_]*\s*\([^)]*\)\s*:\s*\n)", src)
         if not m:
-            # If there's no test function at all, create one
-            return (
-                f"def test_{func_name}():\n"
-                + inject_block
-            )
+            return f"def test_{func_name}():\n{inject_block}"
+        insert_at = m.end()
+        return src[:insert_at] + inject_block + ("\n" if not src.endswith("\n") else "") + src[insert_at:]
 
-        # Find where the function block ends by indentation
-        start = m.end()
-        after = src[start:]
-        # Determine insertion point: before the next "def " at col 0 or end of file
-        next_def = re.search(r"\ndef\s+\w", after)
-        if next_def:
-            insert_at = start + next_def.start()
-        else:
-            insert_at = len(src)
-
-        # Ensure the injected block has correct indentation
-        # We assume function body base indent is 4 spaces.
-        indented = inject_block
-        return src[:insert_at] + indented + src[insert_at:]
-
-    # Try to make sure at least one assert references the target
     txt = _ensure_assert_references_target(txt)
 
-    # --- Validate syntax; if bad, emit a safe fallback with asserts referencing the target ---
+    # --- Validate syntax; fallback to guaranteed safe block if invalid ---
     try:
         ast.parse(txt)
     except SyntaxError:
