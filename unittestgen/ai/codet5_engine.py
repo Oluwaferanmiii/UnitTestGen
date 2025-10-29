@@ -7,6 +7,7 @@ import textwrap
 from functools import lru_cache
 import math
 import difflib
+import unicodedata
 from typing import Any, Tuple, List, Optional
 
 import torch
@@ -559,11 +560,28 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
       - Every assert references the target (no stray asserts),
       - Executing the test raises no exceptions (i.e., asserts pass),
       - Optional semantic probe passes for simple arithmetic functions.
-
-    Note: we keep this conservative to avoid rejecting legitimate variants.
     """
+
+    # --- Minimal hardening: normalize and remove invisible/control chars ---
+    def _clean_code(s: str) -> str:
+        if not s:
+            return ""
+        # Normalize newlines
+        s = s.replace("\r\n", "\n").replace("\r", "\n")
+        # Strip a run of BOM/ZW/RTL/NBSP at the very start (common cause of "line 1" SyntaxError)
+        s = re.sub(
+            r"^[\ufeff\u200b\u200c\u200d\u202a-\u202e\u2060-\u2063\u00a0]+", "", s)
+        # Remove other control characters globally (keep newline and tab)
+        s = "".join(ch for ch in s if (
+            unicodedata.category(ch)[0] != "C" or ch in "\n\t"))
+        return s
+
+    func_src = _clean_code(func_src)
+    test_src = _clean_code(test_src)
+
     func_name = _extract_function_name(func_src)
 
+    # --- Structural pre-checks (unchanged behavior) ---
     num_asserts = _count_asserts(test_src)
     if num_asserts < 1 or num_asserts > 12:
         _vd(f"reject: bad assert count = {num_asserts}")
@@ -581,25 +599,34 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
         _vd("reject: foreign user-level calls detected")
         return False
 
+    # --- Syntax precheck to fail clearly before exec ---
+    try:
+        ast.parse(func_src)
+        ast.parse(test_src)
+    except SyntaxError as e:
+        _vd(f"reject: syntax precheck failed: {e}")
+        return False
+
+    # --- Execute in a fresh namespace (unchanged semantics) ---
     # Execute in a fresh namespace
     ns: dict = {}
     try:
         # define function
         exec(func_src, ns, ns)  # pylint: disable=exec-used
-        # NEW: opportunistic auto-fix of wrong RHS values
-        fixed_test_src = _auto_fix_assert_rhs(
-            ns, test_src, func_name) or test_src
-        # run test (asserts must pass)
-        exec(fixed_test_src, ns, ns)   # pylint: disable=exec-used
-    except Exception as e:      # pylint: disable=broad-exception-caught
+
+        # run test (asserts must pass) — execute exactly what the model produced
+        exec(test_src, ns, ns)  # pylint: disable=exec-used
+
+    except Exception as e:  # pylint: disable=broad-exception-caught
         _vd(f"reject: exec raised: {type(e).__name__}: {e}")
         return False
 
+    # --- Post-exec semantic checks (unchanged) ---
     if not _asserts_semantically_true(ns, test_src):
         _vd("reject: semantic re-check failed")
         return False
 
-    # semantic oracle for simple arithmetic (skip divide variants)
+    # Semantic oracle for simple arithmetic (skip divide variants)
     f = ns.get(func_name)
     if callable(f) and not _arithmetic_oracle(func_name, f, func_src=func_src):
         _vd("reject: arithmetic oracle failed")
@@ -770,67 +797,67 @@ def _format_literal(v: Any) -> str:
         return s
     return repr(v)
 
+# --- [LEGACY / UNUSED] ---
+# def _auto_fix_assert_rhs(ns: dict, test_src: str, func_name: str) -> str:
+#     """
+#     For asserts like: <expr> == <literal>, if <expr> contains a call to func_name,
+#     evaluate <expr> in ns and rewrite the RHS literal to the true value (bool/int/float).
+#     """
+#     try:
+#         tree = ast.parse(test_src)
+#     except SyntaxError:
+#         return test_src
 
-def _auto_fix_assert_rhs(ns: dict, test_src: str, func_name: str) -> str:
-    """
-    For asserts like: <expr> == <literal>, if <expr> contains a call to func_name,
-    evaluate <expr> in ns and rewrite the RHS literal to the true value (bool/int/float).
-    """
-    try:
-        tree = ast.parse(test_src)
-    except SyntaxError:
-        return test_src
+#     SAFE_GLOBALS = {
+#         "__builtins__": {},
+#         "math": math, "abs": abs, "round": round,
+#         "int": int, "float": float, "min": min, "max": max, "sum": sum, "len": len,
+#         **ns
+#     }
+#     changed = False
 
-    SAFE_GLOBALS = {
-        "__builtins__": {},
-        "math": math, "abs": abs, "round": round,
-        "int": int, "float": float, "min": min, "max": max, "sum": sum, "len": len,
-        **ns
-    }
-    changed = False
+#     class Fixer(ast.NodeTransformer):
+#         def visit_Assert(self, node):
+#             nonlocal changed
+#             test = node.test
+#             if isinstance(test, ast.Compare) and len(test.ops) == 1 and len(test.comparators) == 1:
+#                 # Only fix when LHS calls our target
+#                 called = [False]
 
-    class Fixer(ast.NodeTransformer):
-        def visit_Assert(self, node):
-            nonlocal changed
-            test = node.test
-            if isinstance(test, ast.Compare) and len(test.ops) == 1 and len(test.comparators) == 1:
-                # Only fix when LHS calls our target
-                called = [False]
+#                 class Finder(ast.NodeVisitor):
+#                     def visit_Call(self, n):
+#                         if isinstance(n.func, ast.Name) and n.func.id == func_name:
+#                             called[0] = True
+#                         self.generic_visit(n)
+#                 Finder().visit(test.left)
+#                 if not called[0]:
+#                     return node
 
-                class Finder(ast.NodeVisitor):
-                    def visit_Call(self, n):
-                        if isinstance(n.func, ast.Name) and n.func.id == func_name:
-                            called[0] = True
-                        self.generic_visit(n)
-                Finder().visit(test.left)
-                if not called[0]:
-                    return node
+#                 # Evaluate left expression
+#                 try:
+#                     left_val = eval(compile(ast.Expression(
+#                         test.left), "<ast>", "eval"), SAFE_GLOBALS, {})
+#                 except Exception:   # pylint: disable=broad-exception-caught
+#                     return node
 
-                # Evaluate left expression
-                try:
-                    left_val = eval(compile(ast.Expression(
-                        test.left), "<ast>", "eval"), SAFE_GLOBALS, {})
-                except Exception:   # pylint: disable=broad-exception-caught
-                    return node
+#                 if isinstance(left_val, (bool, int, float)):
+#                     new_rhs_code = _format_literal(left_val)
+#                     try:
+#                         new_rhs_ast = ast.parse(new_rhs_code, mode="eval").body
+#                     except Exception:   # pylint: disable=broad-exception-caught
+#                         return node
+#                     test.comparators[0] = new_rhs_ast
+#                     changed = True
+#             return node
 
-                if isinstance(left_val, (bool, int, float)):
-                    new_rhs_code = _format_literal(left_val)
-                    try:
-                        new_rhs_ast = ast.parse(new_rhs_code, mode="eval").body
-                    except Exception:   # pylint: disable=broad-exception-caught
-                        return node
-                    test.comparators[0] = new_rhs_ast
-                    changed = True
-            return node
-
-    fixed = Fixer().visit(tree)
-    if not changed:
-        return test_src
-    try:
-        ast.fix_missing_locations(fixed)
-        return ast.unparse(fixed)
-    except Exception:   # pylint: disable=broad-exception-caught
-        return test_src
+#     fixed = Fixer().visit(tree)
+#     if not changed:
+#         return test_src
+#     try:
+#         ast.fix_missing_locations(fixed)
+#         return ast.unparse(fixed)
+#     except Exception:   # pylint: disable=broad-exception-caught
+#         return test_src
 
 
 def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
@@ -855,7 +882,6 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
     - Injects at least one assert referencing the target
     - Falls back to a guaranteed safe block if still invalid
     """
-    import unicodedata
 
     if not txt:
         txt = ""
