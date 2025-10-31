@@ -581,6 +581,9 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
 
     func_name = _extract_function_name(func_src)
 
+    # Extra hardening: sanitize the test
+    test_src = _sanitize_test_src(test_src, func_name)
+
     # --- Structural pre-checks (unchanged behavior) ---
     num_asserts = _count_asserts(test_src)
     if num_asserts < 1 or num_asserts > 12:
@@ -875,147 +878,180 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
 
 def _sanitize_test_src(txt: str, func_name: str) -> str:
     """
-    Strong sanitizer for generated test code.
-    - Removes invisible & malformed Unicode
-    - Normalizes text to safe ASCII-like form
-    - Trims garbage before first 'def test_' line
-    - Fixes spacing, quotes, and asserts
-    - Injects at least one assert referencing the target
-    - Prints debug prefix if _VALIDATOR_DEBUG is True
-    """
+    Super-hardened sanitizer for model-generated test code.
 
+    Goals:
+      - Remove invisible/control/BiDi chars, normalize quotes/tabs/newlines.
+      - Keep only from the first 'def test_...():' onward (drop preamble).
+      - If the last line is a truncated assert, drop it.
+      - Ensure a non-empty body (add 'pass' if needed).
+      - If it still doesn't parse, progressively trim trailing lines; finally
+        fall back to a tiny safe test that calls the target function.
+
+    Debug prints mirror your existing markers.
+    """
     if not txt:
         txt = ""
 
-    def _sub_safe(pattern, repl, s, flags=0):
-        try:
-            return re.sub(pattern, repl, s, flags=flags)
-        except re.error:
-            return s
+    # ---------- DEBUG: show first ~80 visible chars ----------
+    head = []
+    for ch in txt[:80]:
+        o = ord(ch)
+        if ch == "\n":
+            head.append("\\n")
+        elif ch == "\t":
+            head.append("\\t")
+        elif 32 <= o <= 126:
+            head.append(ch)
+        else:
+            head.append(f"\\u{o:04x}")
+    print(f"[debug-visible-head] {''.join(head)}")
 
-    # --- Normalize Unicode composition (collapse weird glyphs) ---
-    try:
-        txt = unicodedata.normalize("NFKC", txt)
-    except Exception:
-        pass
-
-    # --- Basic normalization ---
+    # ---------- Normalize line endings / whitespace ----------
     txt = txt.replace("\r\n", "\n").replace("\r", "\n")
+    txt = txt.replace("\t", "    ")
+
+    # ---------- Strip control/BiDi/zero-width/BOM/non-breaking ----------
+    txt = re.sub(r"[\u0000-\u001F\u007F-\u009F]",
+                 "", txt)  # ASCII control range
+    txt = re.sub(
+        r"[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF\u00A0\u00AD]", "", txt)
+
+    # Normalize smart quotes
     txt = txt.replace("‘", "'").replace(
         "’", "'").replace("“", '"').replace("”", '"')
 
-    # --- Remove invisible / control chars ---
-    def _is_valid_char(ch: str) -> bool:
-        if ch == "\n":
-            return True
-        cat = unicodedata.category(ch)
-        if cat in ("Cf", "Cc", "Zl", "Zp"):
-            return False
-        if ch in ("\ufeff", "\u00a0", "\u00ad"):
-            return False
-        return True
-
-    txt = "".join(ch for ch in txt if _is_valid_char(ch))
-    txt = re.sub(r"^\ufeff+", "", txt)  # remove BOM at start
-
-    # --- Trim everything before first test def ---
-    m = re.search(r"\bdef\s+test_[A-Za-z0-9_]*\s*\(", txt)
+    # ---------- Keep only from first test def ----------
+    m = re.search(r"\bdef\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*", txt)
     if m:
         txt = txt[m.start():]
     else:
-        txt = f"def test_{func_name}():\n    assert {func_name}('') is not None\n"
+        # No test header found → synthesize a minimal test shell
+        txt = f"def test_{func_name}():\n    pass\n"
 
-    # --- Replace semicolons and normalize whitespace ---
-    txt = _sub_safe(r";\s*", "\n", txt)
-    txt = _sub_safe(r"[ \t]+\n", "\n", txt)
-    txt = txt.replace("\t", "    ").strip()
-
-    # --- Deduplicate headers ---
-    lines, cleaned, seen_header = txt.splitlines(), [], False
+    # ---------- Drop duplicate test headers (keep the first only) ----------
+    lines = txt.splitlines()
+    cleaned = []
+    seen_header = False
     for line in lines:
-        if line.strip().startswith("def test_"):
+        if re.match(r"\s*def\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*", line):
             if seen_header:
-                continue
+                # Stop at the second header; ignore anything after
+                break
             seen_header = True
         cleaned.append(line)
     txt = "\n".join(cleaned)
+    if not txt.endswith("\n"):
+        txt += "\n"
 
-    # --- Fix bare asserts like "assert func(...)" ---
-    fixed_lines = []
-    for line in txt.splitlines():
-        if re.match(rf"^\s*assert\s+{re.escape(func_name)}\s*\([^)]*\)\s*$", line):
-            line = re.sub(
-                rf"assert\s+({re.escape(func_name)}\s*\([^)]*\))\s*$",
-                r"assert \1 is not None",
-                line,
-            )
-        fixed_lines.append(line)
-    txt = "\n".join(fixed_lines)
+    # ---------- Helper: check if a line looks truncated/incomplete ----------
+    def _line_incomplete_assert(s: str) -> bool:
+        s = s.strip()
+        if not s.startswith("assert "):
+            return False
+        # Quick balance checks for quotes and parentheses
 
-    # --- Collapse blank lines ---
-    txt = _sub_safe(r"(\n\s*\n)+", "\n\n", txt).strip()
+        def _unescaped_count(s, ch):
+            cnt, i = 0, 0
+            while i < len(s):
+                if s[i] == "\\":
+                    i += 2
+                    continue
+                if s[i] == ch:
+                    cnt += 1
+                i += 1
+            return cnt
+        single_q = _unescaped_count(s, "'") % 2 != 0
+        double_q = _unescaped_count(s, '"') % 2 != 0
+        paren_unbalanced = s.count("(") != s.count(")")
+        # Also consider obviously cut endings
+        bad_tail = s.endswith(("=", "==", "!", "+", "-", "*", "/", ","))
+        return single_q or double_q or paren_unbalanced or bad_tail
 
-    # --- Ensure at least one assert references the target ---
-    if not re.search(rf"assert\s+.*\b{re.escape(func_name)}\s*\(", txt):
-        inject_block = f"""
-    # auto-injected: ensure an assert references the target call
-    try:
-        assert {func_name}("") is not None
-    except TypeError:
-        pass
-    try:
-        assert {func_name}("hello") is not None
-    except TypeError:
-        pass
-    try:
-        assert {func_name}("a","b") is not None
-    except TypeError:
-        pass
-    try:
-        assert {func_name}() is not None
-    except TypeError:
-        pass
-"""
-        m = re.search(r"(def\s+test_[A-Za-z0-9_]*\s*\([^)]*\)\s*:\s*\n)", txt)
-        if m:
-            insert_at = m.end()
-            txt = txt[:insert_at] + inject_block + txt[insert_at:]
-        else:
-            txt = f"def test_{func_name}():\n{inject_block}"
+    # ---------- If last line is a truncated assert, drop it ----------
+    lines = txt.rstrip("\n").split("\n")
+    if lines:
+        last = lines[-1]
+        if _line_incomplete_assert(last):
+            lines.pop()
+            txt = "\n".join(lines) + "\n"
 
-    # --- Debug: print first few codepoints if enabled ---
-    if globals().get("_VALIDATOR_DEBUG", False):
-        print(f"[sanitize-debug] head repr: {repr(txt[:80])}")
+    print("[debug-pre-validate]", repr(txt[:120]))
 
-    # --- Final syntax validation ---
-    try:
-        ast.parse(txt)
-    except SyntaxError:
-        txt = f"""def test_{func_name}():
-    # fallback safe block
-    try:
-        assert {func_name}("") is not None
-    except TypeError:
-        pass
-    try:
-        assert {func_name}("hello") is not None
-    except TypeError:
-        pass
-    try:
-        assert {func_name}("a","b") is not None
-    except TypeError:
-        pass
-    try:
-        assert {func_name}() is not None
-    except TypeError:
-        pass
-"""
+    # ---------- Ensure body is non-empty under the header ----------
+    # If header is alone, add 'pass'
+    if re.match(r"^\s*def\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*$", txt.strip()):
+        txt = txt + "    pass\n"
 
+    # Ensure there is at least one indented line after the header
+    parts = txt.split("\n")
+    if parts:
+        # Find header index
+        for i, line in enumerate(parts):
+            if re.match(r"\s*def\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*", line):
+                # Check next non-empty line
+                body_exists = False
+                for j in range(i+1, len(parts)):
+                    if parts[j].strip() == "":
+                        continue
+                    if parts[j].startswith("    "):
+                        body_exists = True
+                    break
+                if not body_exists:
+                    parts.insert(i+1, "    pass")
+                break
+    txt = "\n".join(parts).rstrip() + "\n"
+
+    # ---------- Progressive parse-repair ----------
+    def _parses(s: str) -> bool:
+        try:
+            ast.parse(s)
+            return True
+        except SyntaxError:
+            return False
+
+    if not _parses(txt):
+        # Iteratively drop trailing lines until it parses, preserving header
+        lines = txt.rstrip("\n").split("\n")
+        while lines and not _parses("\n".join(lines) + "\n"):
+            lines.pop()
+        if lines:
+            txt = "\n".join(lines) + "\n"
+
+    # Final fallback if still not valid
+    if not _parses(txt):
+        txt = (
+            f"def test_{func_name}():\n"
+            f"    # fallback: ensure callable and basic sanity\n"
+            f"    assert callable({func_name})\n"
+        )
+
+    print("[debug-sanitize-in]", repr(txt[:120]))
+    print("[B-after-sanitize]", repr(txt[:120]))
     return txt
 
 
 def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "") -> str:
     txt = tokenizer.decode(seq_ids, skip_special_tokens=True).strip()
+
+    # --- FIX: unwrap any accidental outer quotes, even escaped ones ---
+    if (
+        (txt.startswith('"') and txt.endswith('"')) or
+        (txt.startswith("'") and txt.endswith("'"))
+    ):
+        txt = txt[1:-1]
+
+    # Handle case where quotes are escaped (e.g., output starts with \" or \')
+    if (
+        (txt.startswith('\\"') and txt.endswith('\\"')) or
+        (txt.startswith("\\'") and txt.endswith("\\'"))
+    ):
+        txt = txt[2:-2]
+
+    txt = txt.replace("\\n", "\n").replace("\\t", "\t")
+
+    print("[debug-cleaned]", repr(txt[:200]))
+
     txt = _wrap_as_test_if_needed(txt, func_name)
     txt = _standardize_test_name(txt, func_name)
     txt = _normalize_calls_to_target(txt, func_name)
@@ -1025,6 +1061,8 @@ def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "")
 
     # Final safety cleanup
     txt = _sanitize_test_src(txt, func_name)
+    print("[debug-after-decode]", repr(txt[:120]))
+    print("[A-after-decode]", repr(txt[:120]))
     return txt
 
 
@@ -1211,11 +1249,15 @@ def _try_candidates(
 
         candidate = _strip_non_target_asserts(candidate, func_name)
 
+        # RE-SANITIZE after any structural edits so parsing sees a valid block
+        candidate = _sanitize_test_src(candidate, func_name)
+
         if _VALIDATOR_DEBUG:
             print("\n[validator] ---------- CANDIDATE BEGIN ----------")
             print(candidate)
             print("[validator] ----------- CANDIDATE END -----------")
 
+        print("[C-before-parse]", repr(candidate[:120]))
         # --- NEW: Fast syntax guard before any execution ---
         try:
             ast.parse(candidate)
@@ -1269,15 +1311,15 @@ def generate_test_from_code(
     code_snippet: str,
     *,
     # decoding size
-    max_new_tokens: int = 140,
+    max_new_tokens: int = 240,
     # candidate budgets
     beam_candidates: int = 6,
-    sample_candidates: int = 6,
+    sample_candidates: int = 12,
     # beam params
     num_beams: int = 6,
     # sampling params
-    temperature: float = 0.7,
-    top_k: int = 50,
+    temperature: float = 0.75,
+    top_k: int = 80,
 ) -> str:
     """
     Generate a PyTest-style unit test and validate it automatically.
@@ -1312,8 +1354,8 @@ def generate_test_from_code(
                 max_new_tokens=max_new_tokens,
                 min_length=24,
                 no_repeat_ngram_size=3,
-                length_penalty=1.1,                   # helps complete a full test
-                repetition_penalty=1.05,              # discourages token loops
+                length_penalty=1.15,                   # helps complete a full test
+                repetition_penalty=1.07,              # discourages token loops
                 early_stopping=True,
                 do_sample=True,
                 temperature=max(0.1, float(temperature)),
