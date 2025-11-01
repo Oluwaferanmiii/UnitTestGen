@@ -1875,3 +1875,23 @@
 {"input": "def reverse_string(s): return s[::-1]", "output": "def test_reverse_string(): assert reverse_string('a b c d') == 'd c b a'; assert reverse_string('  ') == '  '"}
 {"input": "def reverse_string(s): return s[::-1]", "output": "def test_reverse_string(): assert reverse_string('Łódź') == 'źdóŁ'; assert reverse_string('Żubr') == 'rbUŻ'"}
 {"input": "def reverse_string(s): return s[::-1]", "output": "def test_reverse_string(): assert reverse_string('camelCase') == 'esaClemac'; assert reverse_string('snake_case') == 'esac_ekans'"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('listen','silent') == True; assert is_anagram('rat','car') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('abc','cba') == True; assert is_anagram('ab','aab') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('aabb','baba') == True; assert is_anagram('aabb','bbaaX') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('angel','glean') == True; assert is_anagram('angel','anglee') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('binary','brainy') == True; assert is_anagram('binary','brianyy') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('night','thing') == True; assert is_anagram('night','thin') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('dusty','study') == True; assert is_anagram('dusty','studdy') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('save','vase') == True; assert is_anagram('save','vases') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('evil','vile') == True; assert is_anagram('evil','veilx') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('arc','car') == True; assert is_anagram('arc','scar') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('spare','spear') == True; assert is_anagram('spare','spears') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('elbow','below') == True; assert is_anagram('elbow','bellow') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('cinema','iceman') == True; assert is_anagram('cinema','icemen') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('restful','fluster') == True; assert is_anagram('restful','flusters') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('fired','fried') == True; assert is_anagram('fired','fries') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('alert','later') == True; assert is_anagram('alert','laters') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('dust','stud') == True; assert is_anagram('dust','studs') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('stressed','desserts') == True; assert is_anagram('stressed','dessert') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('ab','ba') == True; assert is_anagram('ab','bb') == False"}
+{"input": "def is_anagram(a, b): return sorted(a) == sorted(b)", "output": "def test_is_anagram(): assert is_anagram('a','a') == True; assert is_anagram('a','b') == False"}

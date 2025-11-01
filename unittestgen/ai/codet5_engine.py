@@ -1082,6 +1082,22 @@ def _looks_like_predicate(code: str) -> bool:
     return any(k in lowered for k in [" is_", " return true", " return false"])
 
 
+def looks_like_is_anagram(fn: str, code: str) -> bool:
+    name = fn.lower()
+    return (
+        "is_anagram" in name
+        or ("sorted(" in code and "==" in code and "(" in code and "," in code)
+    )
+
+
+def looks_like_is_palindrome(fn: str, code: str) -> bool:
+    name = fn.lower()
+    return (
+        "is_palindrome" in name
+        or ("return" in code and "==" in code and "s[::-1]" in code)
+    )
+
+
 _PREDICATE_FEWSHOT = (
     "### Example A\n"
     "Given this Python function:\n"
@@ -1260,6 +1276,42 @@ def _prompt_for(code_snippet: str) -> str:
     elif looks_like_is_upper():
         return _STRING_PREDICATE_FEWSHOT_UPPER + base + (
             "\nRULE: For `is_upper`, 'HELLO' must be True, 'hello' must be False, and '123' must be False."
+        )
+
+    elif looks_like_is_anagram(fn, code_snippet):
+        return (
+            "### is_anagram examples\n"
+            "Given this function:\n"
+            "```python\n"
+            "def is_anagram(a: str, b: str) -> bool:\n"
+            "    return sorted(a) == sorted(b)\n"
+            "```\n"
+            "Correct tests:\n"
+            "```python\n"
+            "def test_is_anagram():\n"
+            "    assert is_anagram('listen','silent') == True\n"
+            "    assert is_anagram('rat','car') == False\n"
+            "```\n\n"
+            + base
+            + "\nRULE: Every assert must call `{fn}` with exactly two string arguments."
+        )
+
+    elif looks_like_is_palindrome(fn, code_snippet):
+        return (
+            "### is_palindrome examples\n"
+            "Given this function:\n"
+            "```python\n"
+            "def is_palindrome(s: str) -> bool:\n"
+            "    return s == s[::-1]\n"
+            "```\n"
+            "Correct tests:\n"
+            "```python\n"
+            "def test_is_palindrome():\n"
+            "    assert is_palindrome('madam') == True\n"
+            "    assert is_palindrome('python') == False\n"
+            "```\n\n"
+            + base
+            + "\nRULE: Use alphabetic strings or phrases; avoid numbers unless they form true palindromes."
         )
 
     elif looks_like_string_predicate():
