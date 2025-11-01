@@ -898,7 +898,6 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
             visible_repr.append("\\t")
         else:
             visible_repr.append(f"\\u{code:04x}")
-    print(f"[debug-visible-head] {''.join(visible_repr)}")
 
     # --- Normalize line endings ---
     txt = txt.replace("\r\n", "\n").replace("\r", "\n")
@@ -951,15 +950,11 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
 
     # Fix invalid escape sequences like \C, \. by escaping raw backslashes
     txt = re.sub(r"(?<!\\)\\([^\\nrtbf'\"\\])", r"\\\\\1", txt)
-    print("[debug-pre-validate]", repr(txt[:120]))
     # --- Ensure it's syntactically valid ---
     try:
         ast.parse(txt)
     except SyntaxError:
         txt = f"def test_{func_name}():\n    # fallback: safe template\n    assert {func_name}('') is not None"
-
-    print("[debug-sanitize-in]", repr(txt[:120]))
-    print("[B-after-sanitize]", repr(txt[:120]))
 
     return txt
 
@@ -983,8 +978,6 @@ def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "")
 
     txt = txt.replace("\\n", "\n").replace("\\t", "\t")
 
-    print("[debug-cleaned]", repr(txt[:200]))
-
     txt = _wrap_as_test_if_needed(txt, func_name)
     txt = _standardize_test_name(txt, func_name)
     txt = _normalize_calls_to_target(txt, func_name)
@@ -994,8 +987,6 @@ def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "")
 
     # Final safety cleanup
     txt = _sanitize_test_src(txt, func_name)
-    print("[debug-after-decode]", repr(txt[:120]))
-    print("[A-after-decode]", repr(txt[:120]))
     return txt
 
 
@@ -1061,19 +1052,33 @@ def _coerce_string_args_in_test(test_src: str, func_name: str) -> str:
 
 
 def _looks_like_predicate(code: str) -> bool:
+    """Return True only for boolean-returning functions, not counters."""
     try:
         t = ast.parse(code)
     except SyntaxError:
         return False
+
+    lowered = code.lower()
+
+    # Early exclude: counters / length / numeric aggregations
+    if any(k in lowered for k in [
+        "def count_", "def num_", "def len_",
+        "return len(", "collections.counter(",
+        "sum(", "+= 1", "total +=", "counter(",
+    ]):
+        return False
+
     for node in ast.walk(t):
-        if isinstance(node, ast.Return):
-            if isinstance(node.value, ast.Constant) and isinstance(node.value.value, bool):
+        if isinstance(node, ast.Return) and isinstance(getattr(node, "value", None), ast.Constant):
+            if isinstance(node.value.value, bool):
                 return True
         if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
-            # common string/numeric "is*" predicates (isupper/islower/isdigit/isalpha etc.)
             if node.func.attr.startswith("is"):
+                # skip if inside an aggregation context
+                if "sum(" in lowered or "len(" in lowered or "+= 1" in lowered:
+                    continue
                 return True
-    lowered = code.lower()
+
     return any(k in lowered for k in [" is_", " return true", " return false"])
 
 
@@ -1087,8 +1092,8 @@ _PREDICATE_FEWSHOT = (
     "Correct style:\n"
     "```python\n"
     "def test_is_even():\n"
-    "    assert is_even(4) is True\n"
-    "    assert is_even(9) is False\n"
+    "    assert is_even(4) == True\n"
+    "    assert is_even(9) == False\n"
     "```\n\n"
     "### Example B\n"
     "Given this Python function:\n"
@@ -1106,14 +1111,90 @@ _PREDICATE_FEWSHOT = (
     "Correct style (note both asserts call `is_prime`):\n"
     "```python\n"
     "def test_is_prime():\n"
-    "    assert is_prime(7) is True\n"
-    "    assert is_prime(32) is False\n"
+    "    assert is_prime(7) == True\n"
+    "    assert is_prime(32) == False\n"
     "```\n\n"
+)
+
+_STRING_PREDICATE_FEWSHOT = (
+    "### String predicate examples\n"
+    "# Always pass alphabetic strings; digits like '4' are not uppercase letters.\n"
+    "```python\n"
+    "def test_is_upper_basic():\n"
+    "    assert is_upper('HELLO') == True\n"
+    "    assert is_upper('Hello') == False\n"
+    "    assert is_upper('hello') == False\n"
+    "    assert is_upper('123') == False\n"
+    "```\n"
+    "```python\n"
+    "def test_is_lower_basic():\n"
+    "    assert is_lower('hello') == True\n"
+    "    assert is_lower('Hello') == False\n"
+    "    assert is_lower('HELLO') == False\n"
+    "    assert is_lower('abc123') == False\n"
+    "```\n"
+)
+
+_STRING_PREDICATE_FEWSHOT_UPPER = (
+    "### String predicate examples (UPPER)\n"
+    "Given this function:\n"
+    "```python\n"
+    "def is_upper(s: str) -> bool:\n"
+    "    return s.isupper()\n"
+    "```\n"
+    "Correct truth pattern:\n"
+    "- 'HELLO' -> True\n"
+    "- 'Hello' -> False\n"
+    "- 'hello' -> False\n"
+    "- '123'   -> False (no cased letters)\n"
+    "Tests:\n"
+    "```python\n"
+    "def test_is_upper():\n"
+    "    assert is_upper('HELLO') == True\n"
+    "    assert is_upper('Hello') == False\n"
+    "    assert is_upper('123') == False\n"
+    "```\n\n"
+)
+
+_STRING_PREDICATE_FEWSHOT_LOWER = (
+    "### String predicate examples (LOWER)\n"
+    "Given this function:\n"
+    "```python\n"
+    "def is_lower(s: str) -> bool:\n"
+    "    return s.islower()\n"
+    "```\n"
+    "Correct truth pattern:\n"
+    "- 'hello' -> True\n"
+    "- 'Hello' -> False\n"
+    "- 'HELLO' -> False\n"
+    "- '123'   -> False (no cased letters)\n"
+    "Tests:\n"
+    "```python\n"
+    "def test_is_lower():\n"
+    "    assert is_lower('hello') == True\n"
+    "    assert is_lower('Hello') == False\n"
+    "    assert is_lower('123') == False\n"
+    "```\n\n"
+)
+
+_STRING_COUNTER_FEWSHOT = (
+    "### String counter examples\n"
+    "# Use short literals; include empty string and mixed cases.\n"
+    "```python\n"
+    "def test_count_uppercase_small():\n"
+    "    assert count_uppercase('Hello World') == 2\n"
+    "    assert count_uppercase('no caps') == 0\n"
+    "    assert count_uppercase('ABCdef') == 3\n"
+    "    assert count_uppercase('') == 0\n"
+    "```\n"
+    "RULE: For counter functions returning integers, compare with numeric values (0, 1, 2...), never booleans.\n"
 )
 
 
 def _prompt_for(code_snippet: str) -> str:
     fn = _extract_function_name(code_snippet)
+
+    # --- Shared base instruction ---
     base = (
         "Given this Python function:\n```python\n"
         f"{code_snippet}\n"
@@ -1122,15 +1203,76 @@ def _prompt_for(code_snippet: str) -> str:
         f"- Every assert must call **exactly** `{fn}` (use this exact name).\n"
         "- Do not call any other user-defined helpers.\n"
         "- Use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
-        "- If the code uses string methods (e.g., `.is_lower()`, `.is_upper()`, `.lower()`, `.replace()`), pass **string arguments** like 'abc'.\n"
+        "- If the code uses string methods (e.g., `.islower()`, `.isupper()`, `.lower()`, `.replace()`), pass **string arguments** like 'abc'.\n"
         "- If it compares `sorted(a) == sorted(b)`, pass **string pairs** like ('listen', 'silent').\n"
         "- No pytest fixtures, no parametrize, no classes, no print statements.\n"
         "- Output ONLY the test function (no extra text).\n"
     )
-    if _looks_like_predicate(code_snippet):
+
+    # --- Choose the correct few-shot context ---
+    name_lower = fn.lower()
+    code_lower = code_snippet.lower()
+
+    def looks_like_is_lower() -> bool:
+        return ("is_lower" in name_lower) or (".islower(" in code_lower)
+
+    def looks_like_is_upper() -> bool:
+        return ("is_upper" in name_lower) or (".isupper(" in code_lower)
+
+    def looks_like_string_counter() -> bool:
+        name = name_lower
+        body = code_lower
+        return (
+            # obvious name cues
+            "count" in name
+            or name.startswith(("num_", "len_"))
+            or "uppercase" in name
+            or "lowercase" in name
+            # structural cues (numeric aggregation)
+            or ("sum(" in body and ".isupper(" in body)
+            or ("sum(" in body and ".islower(" in body)
+            or "collections.counter(" in body
+            or "return len(" in body
+            or " += 1" in body and ".isupper(" in body
+            or " += 1" in body and ".islower(" in body
+        )
+
+    def looks_like_string_predicate() -> bool:
+        return looks_like_is_lower() or looks_like_is_upper() or any(
+            k in code_lower for k in [".isalpha(", ".isdigit(", ".istitle("]
+        ) or re.search(r"^is_(alpha|digit|title)$", name_lower)
+
+    if looks_like_string_counter():
+        return _STRING_COUNTER_FEWSHOT + base + (
+            "\nRULE: Every assert must call EXACTLY "
+            f"`{fn}`; do NOT call `is_upper`/`islower` directly.\n"
+            "RULE: Compare the result to integers (0, 1, 2, ...), never booleans."
+            "RULE: Include examples with mixed case, empty strings, and no uppercase letters."
+        )
+
+    # --- Routing logic ---
+    elif looks_like_is_lower():
+        return _STRING_PREDICATE_FEWSHOT_LOWER + base + (
+            "\nRULE: For `is_lower`, 'HELLO' must be False, 'hello' must be True, and '123' must be False.\n"
+            "Avoid numeric strings as positives."
+        )
+
+    elif looks_like_is_upper():
+        return _STRING_PREDICATE_FEWSHOT_UPPER + base + (
+            "\nRULE: For `is_upper`, 'HELLO' must be True, 'hello' must be False, and '123' must be False."
+        )
+
+    elif looks_like_string_predicate():
+        prompt = _STRING_PREDICATE_FEWSHOT + base
+        prompt += "\nRULE: For string predicates, use alphabetic examples; avoid numeric literals.\n"
+        return prompt
+
+    # --- Fallback: general predicate or numeric ---
+    elif _looks_like_predicate(code_snippet):
         return _PREDICATE_FEWSHOT + base
 
-    if _function_expects_strings(code_snippet) or _is_anagram_like(code_snippet):
+    # --- Default for non-predicate functions ---
+    elif _function_expects_strings(code_snippet) or _is_anagram_like(code_snippet):
         base += (
             "\nAdditional constraints:\n"
             "- Use **string** inputs (e.g., 'HELLO'/'Hello', 'racecar'/'python', 'listen'/'silent').\n"
@@ -1372,6 +1514,7 @@ def generate_test_from_code(
             "def test_is_lower():\n"
             "   assert is_lower('hello') == True\n"
             "   assert is_lower('Hello') == False\n"
+            "   assert is_lower('HELLO') == False\n"
         )
 
     if fn == "is_upper":
@@ -1379,6 +1522,7 @@ def generate_test_from_code(
             "def test_is_upper():\n"
             "   assert is_upper('HELLO') == True\n"
             "   assert is_upper('Hello') == False\n"
+            "   assert is_upper('123') == False\n"
         )
 
     if fn == "is_palindrome":
@@ -1439,6 +1583,8 @@ def generate_test_from_code(
             "    assert count_uppercase('Hello World') == 2\n"
             "    assert count_uppercase('no caps') == 0\n"
             "    assert count_uppercase('ABCdef') == 3\n"
+            "    assert count_uppercase('123!') == 0\n"
+            "    assert count_uppercase('') == 0\n"
         )
 
     if fn == "strip_numbers":
