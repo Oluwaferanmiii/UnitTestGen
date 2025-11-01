@@ -1329,7 +1329,6 @@ def _try_candidates(
             print(candidate)
             print("[validator] ----------- CANDIDATE END -----------")
 
-        print("[C-before-parse]", repr(candidate[:120]))
         # --- NEW: Fast syntax guard before any execution ---
         try:
             ast.parse(candidate)
