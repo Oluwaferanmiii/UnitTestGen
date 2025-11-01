@@ -581,9 +581,6 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
 
     func_name = _extract_function_name(func_src)
 
-    # Extra hardening: sanitize the test
-    test_src = _sanitize_test_src(test_src, func_name)
-
     # --- Structural pre-checks (unchanged behavior) ---
     num_asserts = _count_asserts(test_src)
     if num_asserts < 1 or num_asserts > 12:
@@ -879,155 +876,91 @@ def _wrap_as_test_if_needed(body_or_test: str, func_name: str) -> str:
 def _sanitize_test_src(txt: str, func_name: str) -> str:
     """
     Super-hardened sanitizer for model-generated test code.
-
-    Goals:
-      - Remove invisible/control/BiDi chars, normalize quotes/tabs/newlines.
-      - Keep only from the first 'def test_...():' onward (drop preamble).
-      - If the last line is a truncated assert, drop it.
-      - Ensure a non-empty body (add 'pass' if needed).
-      - If it still doesn't parse, progressively trim trailing lines; finally
-        fall back to a tiny safe test that calls the target function.
-
-    Debug prints mirror your existing markers.
+    Removes invisible/bidi/control chars, ensures valid Python syntax,
+    and rebuilds header if necessary.
     """
+
+    # import unicodedata
+
     if not txt:
         txt = ""
 
-    # ---------- DEBUG: show first ~80 visible chars ----------
-    head = []
+    # --- DEBUG: Reveal invisible characters in the first 50 chars ---
+    visible_repr = []
     for ch in txt[:80]:
-        o = ord(ch)
-        if ch == "\n":
-            head.append("\\n")
+        code = ord(ch)
+        # Show printable chars normally, others as Unicode codepoints
+        if 32 <= code <= 126:
+            visible_repr.append(ch)
+        elif ch == "\n":
+            visible_repr.append("\\n")
         elif ch == "\t":
-            head.append("\\t")
-        elif 32 <= o <= 126:
-            head.append(ch)
+            visible_repr.append("\\t")
         else:
-            head.append(f"\\u{o:04x}")
-    print(f"[debug-visible-head] {''.join(head)}")
+            visible_repr.append(f"\\u{code:04x}")
+    print(f"[debug-visible-head] {''.join(visible_repr)}")
 
-    # ---------- Normalize line endings / whitespace ----------
+    # --- Normalize line endings ---
     txt = txt.replace("\r\n", "\n").replace("\r", "\n")
-    txt = txt.replace("\t", "    ")
 
-    # ---------- Strip control/BiDi/zero-width/BOM/non-breaking ----------
-    txt = re.sub(r"[\u0000-\u001F\u007F-\u009F]",
-                 "", txt)  # ASCII control range
+    # --- Remove any leading junk before 'def' ---
+    def_index = txt.find("def test_")
+    if def_index > 0:
+        txt = txt[def_index:]
+
+    # --- Remove invisible and control characters (broad range) ---
+    cleaned = []
+    for ch in txt:
+        cat = unicodedata.category(ch)
+        # Keep only printable (L, N, P, S, Zs, etc.) or newline
+        if cat[0] in {"C"} and ch != "\n":
+            continue
+        if ord(ch) < 32 and ch not in ("\n", "\t"):
+            continue
+        cleaned.append(ch)
+    txt = "".join(cleaned)
+
+    # --- Remove directionality / BOM / non-breaking spaces / zero-width ---
     txt = re.sub(
-        r"[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF\u00A0\u00AD]", "", txt)
+        r"[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF\u00A0\u00AD\uE000-\uF8FF]",
+        "",
+        txt,
+    )
 
-    # Normalize smart quotes
+    # --- Normalize smart quotes and weird apostrophes ---
     txt = txt.replace("‘", "'").replace(
         "’", "'").replace("“", '"').replace("”", '"')
 
-    # ---------- Keep only from first test def ----------
-    m = re.search(r"\bdef\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*", txt)
-    if m:
-        txt = txt[m.start():]
-    else:
-        # No test header found → synthesize a minimal test shell
-        txt = f"def test_{func_name}():\n    pass\n"
+    # --- Standardize indentation ---
+    txt = txt.replace("\t", "    ").strip()
 
-    # ---------- Drop duplicate test headers (keep the first only) ----------
+    # --- Fix header if malformed ---
+    if not re.match(r"^def\s+test_", txt):
+        txt = f"def test_{func_name}():\n    pass"
+
+    # --- Collapse duplicate test headers ---
     lines = txt.splitlines()
-    cleaned = []
-    seen_header = False
+    cleaned_lines, seen = [], False
     for line in lines:
-        if re.match(r"\s*def\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*", line):
-            if seen_header:
-                # Stop at the second header; ignore anything after
-                break
-            seen_header = True
-        cleaned.append(line)
-    txt = "\n".join(cleaned)
-    if not txt.endswith("\n"):
-        txt += "\n"
+        if line.strip().startswith("def test_"):
+            if seen:
+                continue
+            seen = True
+        cleaned_lines.append(line)
+    txt = "\n".join(cleaned_lines)
 
-    # ---------- Helper: check if a line looks truncated/incomplete ----------
-    def _line_incomplete_assert(s: str) -> bool:
-        s = s.strip()
-        if not s.startswith("assert "):
-            return False
-        # Quick balance checks for quotes and parentheses
-
-        def _unescaped_count(s, ch):
-            cnt, i = 0, 0
-            while i < len(s):
-                if s[i] == "\\":
-                    i += 2
-                    continue
-                if s[i] == ch:
-                    cnt += 1
-                i += 1
-            return cnt
-        single_q = _unescaped_count(s, "'") % 2 != 0
-        double_q = _unescaped_count(s, '"') % 2 != 0
-        paren_unbalanced = s.count("(") != s.count(")")
-        # Also consider obviously cut endings
-        bad_tail = s.endswith(("=", "==", "!", "+", "-", "*", "/", ","))
-        return single_q or double_q or paren_unbalanced or bad_tail
-
-    # ---------- If last line is a truncated assert, drop it ----------
-    lines = txt.rstrip("\n").split("\n")
-    if lines:
-        last = lines[-1]
-        if _line_incomplete_assert(last):
-            lines.pop()
-            txt = "\n".join(lines) + "\n"
-
+    # Fix invalid escape sequences like \C, \. by escaping raw backslashes
+    txt = re.sub(r"(?<!\\)\\([^\\nrtbf'\"\\])", r"\\\\\1", txt)
     print("[debug-pre-validate]", repr(txt[:120]))
-
-    # ---------- Ensure body is non-empty under the header ----------
-    # If header is alone, add 'pass'
-    if re.match(r"^\s*def\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*$", txt.strip()):
-        txt = txt + "    pass\n"
-
-    # Ensure there is at least one indented line after the header
-    parts = txt.split("\n")
-    if parts:
-        # Find header index
-        for i, line in enumerate(parts):
-            if re.match(r"\s*def\s+test_[A-Za-z0-9_]*\s*\(\)\s*:\s*", line):
-                # Check next non-empty line
-                body_exists = False
-                for j in range(i+1, len(parts)):
-                    if parts[j].strip() == "":
-                        continue
-                    if parts[j].startswith("    "):
-                        body_exists = True
-                    break
-                if not body_exists:
-                    parts.insert(i+1, "    pass")
-                break
-    txt = "\n".join(parts).rstrip() + "\n"
-
-    # ---------- Progressive parse-repair ----------
-    def _parses(s: str) -> bool:
-        try:
-            ast.parse(s)
-            return True
-        except SyntaxError:
-            return False
-
-    if not _parses(txt):
-        # Iteratively drop trailing lines until it parses, preserving header
-        lines = txt.rstrip("\n").split("\n")
-        while lines and not _parses("\n".join(lines) + "\n"):
-            lines.pop()
-        if lines:
-            txt = "\n".join(lines) + "\n"
-
-    # Final fallback if still not valid
-    if not _parses(txt):
-        txt = (
-            f"def test_{func_name}():\n"
-            f"    # fallback: ensure callable and basic sanity\n"
-            f"    assert callable({func_name})\n"
-        )
+    # --- Ensure it's syntactically valid ---
+    try:
+        ast.parse(txt)
+    except SyntaxError:
+        txt = f"def test_{func_name}():\n    # fallback: safe template\n    assert {func_name}('') is not None"
 
     print("[debug-sanitize-in]", repr(txt[:120]))
     print("[B-after-sanitize]", repr(txt[:120]))
+
     return txt
 
 
@@ -1189,7 +1122,7 @@ def _prompt_for(code_snippet: str) -> str:
         f"- Every assert must call **exactly** `{fn}` (use this exact name).\n"
         "- Do not call any other user-defined helpers.\n"
         "- Use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
-        "- If the code uses string methods (e.g., `.islower()`, `.isupper()`, `.lower()`, `.replace()`), pass **string arguments** like 'abc'.\n"
+        "- If the code uses string methods (e.g., `.is_lower()`, `.is_upper()`, `.lower()`, `.replace()`), pass **string arguments** like 'abc'.\n"
         "- If it compares `sorted(a) == sorted(b)`, pass **string pairs** like ('listen', 'silent').\n"
         "- No pytest fixtures, no parametrize, no classes, no print statements.\n"
         "- Output ONLY the test function (no extra text).\n"
@@ -1248,9 +1181,6 @@ def _try_candidates(
         # candidate = _sanitize_test_src(candidate, func_name)
 
         candidate = _strip_non_target_asserts(candidate, func_name)
-
-        # RE-SANITIZE after any structural edits so parsing sees a valid block
-        candidate = _sanitize_test_src(candidate, func_name)
 
         if _VALIDATOR_DEBUG:
             print("\n[validator] ---------- CANDIDATE BEGIN ----------")
@@ -1414,40 +1344,70 @@ def generate_test_from_code(
 
     # --- Non-arithmetic Tier-1 fallbacks ---
     if fn == "count_vowels":
-        return "# origin: fallback\n" + \
-            "def test_count_vowels(): assert count_vowels('hello') == 2; assert count_vowels('bcd') == 0; assert count_vowels('AEiou') == 5\n"
+        return "# origin: fallback\n" + (
+            "def test_count_vowels():\n"
+            "   assert count_vowels('hello') == 2\n"
+            "   assert count_vowels('bcd') == 0\n"
+            "   assert count_vowels('AEiou') == 5\n"
+        )
 
     if fn == "is_even":
-        return "# origin: fallback\n" + \
-            "def test_is_even(): assert is_even(2) == True; assert is_even(3) == False; assert is_even(0) == True\n"
+        return "# origin: fallback\n" + (
+            "def test_is_even():\n"
+            "   assert is_even(2) == True\n"
+            "   assert is_even(3) == False\n"
+            "   assert is_even(0) == True\n"
+        )
 
     if fn == "is_odd":
-        return "# origin: fallback\n" + \
-            "def test_is_odd(): assert is_odd(2) == False; assert is_odd(3) == True; assert is_odd(1) == True\n"
+        return "# origin: fallback\n" + (
+            "def test_is_odd():\n"
+            "   assert is_odd(2) == False\n"
+            "   assert is_odd(3) == True\n"
+            "   assert is_odd(1) == True\n"
+        )
 
     if fn == "is_lower":
-        return "# origin: fallback\n" + \
-            "def test_is_lower(): assert is_lower('hello') == True; assert is_lower('Hello') == False\n"
+        return "# origin: fallback\n" + (
+            "def test_is_lower():\n"
+            "   assert is_lower('hello') == True\n"
+            "   assert is_lower('Hello') == False\n"
+        )
 
     if fn == "is_upper":
-        return "# origin: fallback\n" + \
-            "def test_is_upper(): assert is_upper('HELLO') == True; assert is_upper('Hello') == False\n"
+        return "# origin: fallback\n" + (
+            "def test_is_upper():\n"
+            "   assert is_upper('HELLO') == True\n"
+            "   assert is_upper('Hello') == False\n"
+        )
 
     if fn == "is_palindrome":
-        return "# origin: fallback\n" + \
-            "def test_is_palindrome(): assert is_palindrome('racecar') == True; assert is_palindrome('python') == False\n"
+        return "# origin: fallback\n" + (
+            "def test_is_palindrome():\n"
+            "   assert is_palindrome('racecar') == True\n"
+            "   assert is_palindrome('python') == False\n"
+        )
 
     if fn == "reverse_string":
-        return "# origin: fallback\n" + \
-            "def test_reverse_string(): assert reverse_string('abc') == 'cba'; assert reverse_string('') == ''\n"
+        return "# origin: fallback\n" + (
+            "def test_reverse_string():\n"
+            "   assert reverse_string('abc') == 'cba'\n"
+            "   assert reverse_string('') == ''\n"
+        )
 
     if fn == "remove_duplicates":
-        return "# origin: fallback\n" + \
-            "def test_remove_duplicates(): assert remove_duplicates([1,1,2,3,2]) == [1,2,3]; assert remove_duplicates([]) == []\n"
+        return "# origin: fallback\n" + (
+            "def test_remove_duplicates():\n"
+            "   assert remove_duplicates([1,1,2,3,2]) == [1,2,3]\n"
+            "   assert remove_duplicates([]) == []\n"
+        )
 
     if fn == "is_anagram":
-        return "# origin: fallback\n" + \
-            "def test_is_anagram(): assert is_anagram('listen','silent') == True; assert is_anagram('rat','car') == False\n"
+        return "# origin: fallback\n" + (
+            "def test_is_anagram():\n"
+            "   assert is_anagram('listen','silent') == True\n"
+            "   assert is_anagram('rat','car') == False\n"
+        )
 
         # --- Non-arithmetic Tier-2 fallbacks (string utilities) ---
 
