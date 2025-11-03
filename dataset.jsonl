@@ -2075,3 +2075,404 @@
 {"input": "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a", "output": "def test_fibonacci(): assert fibonacci(6) == 8; assert fibonacci(9) == 34"}
 {"input": "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a", "output": "def test_fibonacci(): assert fibonacci(3) == 2; assert fibonacci(7) == 13"}
 {"input": "def fibonacci(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a", "output": "def test_fibonacci(): assert fibonacci(8) == 21; assert fibonacci(11) == 89"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('AEIOU')==5; assert count_vowels('BCDFG')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('Python')==1; assert count_vowels('Rhythm')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('HELLO world')==3; assert count_vowels('xyz')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('OpenAI')==4; assert count_vowels('GPT')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('communication')==6; assert count_vowels('try')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('This is a test')==4; assert count_vowels('')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('Queue')==4; assert count_vowels('sky')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('AI is awesome!')==6; assert count_vowels('zzz')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('education')==5; assert count_vowels('bdfrt')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('umbrella')==3; assert count_vowels('dry sky')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('CONSONANT')==3; assert count_vowels('XYZ')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('sequential')==5; assert count_vowels('crypt')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('hEllO')==2; assert count_vowels('WRTY')==0"}
+{"input": "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)", "output": "def test_count_vowels(): assert count_vowels('Automation')==6; assert count_vowels('Psst')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('hello')==3; assert count_consonants('xyz')==3"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('AEIOU')==0; assert count_consonants('BCDFG')==5"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('Rhythm')==6; assert count_consonants('')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('Hello, World!')==7; assert count_consonants('no caps')==4"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('123abc')==2; assert count_consonants('Queue')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('sky')==3; assert count_consonants('ai')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('Python')==5; assert count_consonants('why?')==3"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('aeiouy')==1; assert count_consonants('bcd fgh')==6"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('MIXED case')==5; assert count_consonants('vowels')==4"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('CONSONANT')==6; assert count_consonants('abc')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('bcdfghjklmnpqrstvwxyz')==21; assert count_consonants('aeiou')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('the quick brown fox')==11; assert count_consonants('a e i o u')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('Gpt5 Rocks')==7; assert count_consonants('oop')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('zzz')==3; assert count_consonants('iou')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('try')==3; assert count_consonants('queueing')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('HardWARE')==5; assert count_consonants('IDEA')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('systems')==6; assert count_consonants('area')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('drive')==3; assert count_consonants('idea')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('blank')==4; assert count_consonants('alone')==2"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('sprint')==6; assert count_consonants('aei')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('graphs')==6; assert count_consonants('audio')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('tests')==4; assert count_consonants('ease')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('brisk')==5; assert count_consonants('ooze')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('milk')==3; assert count_consonants('eel')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('stack')==4; assert count_consonants('issue')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('print')==5; assert count_consonants('area 51')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('cloud')==3; assert count_consonants('iouae')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('branch')==5; assert count_consonants('one')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('module')==3; assert count_consonants('aeon')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('syntax')==5; assert count_consonants('iou')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('diff')==3; assert count_consonants('idea!')==1"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('query')==4; assert count_consonants('aei!')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('branching')==7; assert count_consonants('iou ')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('schedules')==6; assert count_consonants('a')==0"}
+{"input": "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)", "output": "def test_count_consonants(): assert count_consonants('progress')==6; assert count_consonants('iouy')==1"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('abc123')=='abc'; assert remove_digits('12345')==''"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('hello2world')=='helloworld'; assert remove_digits('42')==''"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('a1b2c3')=='abc'; assert remove_digits('')==''"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('no123digits')=='nodigits'; assert remove_digits('test')=='test'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('0abc9')=='abc'; assert remove_digits('1a2b3c')=='abc'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('data2025')=='data'; assert remove_digits('AI4Life')=='AILife'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('model007')=='model'; assert remove_digits('99bottles')=='bottles'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('5ive')=='ive'; assert remove_digits('number8')=='number'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('abc123xyz')=='abcxyz'; assert remove_digits('no4u')=='nou'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('mix3dCASE9')=='mixdCASE'; assert remove_digits('123test456')=='test'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('remove9digits0now')=='removedigitsnow'; assert remove_digits('nope')=='nope'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('room101')=='room'; assert remove_digits('abc0')=='abc'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('ver5ion2')=='verion'; assert remove_digits('123abc!')=='abc!'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('python3.10')=='python.'; assert remove_digits('C0D3')=='CD'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('4AI5gen')=='AIgen'; assert remove_digits('zero0')=='zero'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('HELLO2025')=='HELLO'; assert remove_digits('nochange')=='nochange'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('edge123case')=='edgecase'; assert remove_digits('case123')=='case'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('1_2_3')=='___'; assert remove_digits('abc')=='abc'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('0')==''; assert remove_digits('a0b')=='ab'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('2025!')=='!'; assert remove_digits('v3rsion')=='vrsion'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('1a2b3')=='ab'; assert remove_digits('abc42def')=='abcdef'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('987xyz')=='xyz'; assert remove_digits('x9y8z7')=='xyz'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('00abc11')=='abc'; assert remove_digits('12xy34')=='xy'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('space123bar')=='spacebar'; assert remove_digits('none')=='none'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('N0umbers')=='Numbers'; assert remove_digits('12345abc678')=='abc'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('text123text')=='texttext'; assert remove_digits('1one1')=='one'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('t3s7')=='ts'; assert remove_digits('w1t2f3')=='wtf'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('digit5less')=='digitless'; assert remove_digits('no9no')=='nono'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('5ive5')=='ive'; assert remove_digits('2cool4school')=='coolschool'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('abc!123!')=='abc!!'; assert remove_digits('xyz123')=='xyz'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('end0start9')=='endstart'; assert remove_digits('abc')=='abc'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('he11o')=='heo'; assert remove_digits('w0r1d')=='wrd'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('remove007digits')=='removedigits'; assert remove_digits('no123')=='no'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('abc012xyz')=='abcxyz'; assert remove_digits('4u2')=='u'"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('1a2b3c4d5')=='abcd'; assert remove_digits('nothing')=='nothing'"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([1,2,3])==[3,2,1]; assert reverse_list([])==[]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['a','b','c'])==['c','b','a']; assert reverse_list(['x'])==['x']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([True,False])==[False,True]; assert reverse_list([1])==[1]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([10,20,30,40])==[40,30,20,10]; assert reverse_list([7,8])==[8,7]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['apple','banana'])==['banana','apple']; assert reverse_list(['one','two','three'])==['three','two','one']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['A','B','C','D'])==['D','C','B','A']; assert reverse_list([])==[]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([9,8,7,6,5])==[5,6,7,8,9]; assert reverse_list([1,2])==[2,1]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['x','y','z'])==['z','y','x']; assert reverse_list(['p','q'])==['q','p']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([0])==[0]; assert reverse_list([1,0,1])==[1,0,1]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([1,2,3,4,5,6])==[6,5,4,3,2,1]; assert reverse_list(['a','b'])==['b','a']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['red','green','blue'])==['blue','green','red']; assert reverse_list(['one'])==['one']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([True,True,False])==[False,True,True]; assert reverse_list([])==[]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['cat','dog','mouse'])==['mouse','dog','cat']; assert reverse_list(['dog'])==['dog']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([1.1,2.2,3.3])==[3.3,2.2,1.1]; assert reverse_list([4.4])==[4.4]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['up','down','left','right'])==['right','left','down','up']; assert reverse_list(['in','out'])==['out','in']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([[1,2],[3,4]])==[[3,4],[1,2]]; assert reverse_list([[5],[6]])==[[6],[5]]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['a','b','c','d','e'])==['e','d','c','b','a']; assert reverse_list(['start','end'])==['end','start']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([10,20,30])==[30,20,10]; assert reverse_list([1,2,3,4,5])==[5,4,3,2,1]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['python','AI'])==['AI','python']; assert reverse_list(['ML','DL','AI'])==['AI','DL','ML']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['sun','moon','star'])==['star','moon','sun']; assert reverse_list(['earth','mars'])==['mars','earth']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([1,3,5,7])==[7,5,3,1]; assert reverse_list([9,8,7])==[7,8,9]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['Z','Y','X'])==['X','Y','Z']; assert reverse_list(['B','A'])==['A','B']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([100,200,300,400])==[400,300,200,100]; assert reverse_list([11,22])==[22,11]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['front','middle','back'])==['back','middle','front']; assert reverse_list(['a','b'])==['b','a']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([5,4,3,2,1])==[1,2,3,4,5]; assert reverse_list([42])==[42]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['level','up'])==['up','level']; assert reverse_list(['low','high'])==['high','low']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([0,1,2,3,4])==[4,3,2,1,0]; assert reverse_list(['1','2'])==['2','1']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['north','south','east','west'])==['west','east','south','north']; assert reverse_list(['up','down'])==['down','up']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([[1,2,3],['a','b']])==[['a','b'],[1,2,3]]; assert reverse_list([[1],[2]])==[[2],[1]]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['one','two','three'])==['three','two','one']; assert reverse_list(['first'])==['first']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([1,2,1])==[1,2,1]; assert reverse_list(['palindrome'])==['palindrome']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['repeat','after','me'])==['me','after','repeat']; assert reverse_list(['ok','done'])==['done','ok']"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([True,False,True])==[True,False,True]; assert reverse_list([])==[]"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list(['top','mid','bottom'])==['bottom','mid','top']; assert reverse_list(['alpha','beta'])==['beta','alpha']"}
+{"input": "def remove_digits(s):\n    return ''.join(ch for ch in s if not ch.isdigit())", "output": "def test_remove_digits(): assert remove_digits('123abc456xyz')=='abcxyz'; assert remove_digits('x0y0z0')=='xyz'"}
+{"input": "def reverse_list(lst):\n    return lst[::-1]", "output": "def test_reverse_list(): assert reverse_list([9,99,999])==[999,99,9]; assert reverse_list(['x','y'])==['y','x']"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,2,3,2,4,1])==[2,1]; assert find_duplicates([1,2,3])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['a','b','a','c','b'])==['a','b']; assert find_duplicates(['x','y','z'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,1,1,2])==[1]; assert find_duplicates([4,5,6])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['a','a','a'])==['a']; assert find_duplicates(['a','b'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([])==[]; assert find_duplicates(['one'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['cat','dog','cat','mouse'])==['cat']; assert find_duplicates(['apple','banana'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,2,3,3,4,5,5,6])==[3,5]; assert find_duplicates([9,9,9])==['9']"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['x','y','z','x','z'])==['x','z']; assert find_duplicates(['a','b','c'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([10,20,10,30,40,30])==[10,30]; assert find_duplicates([1,2,3])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['a','b','b','c','c','a'])==['b','c','a']; assert find_duplicates(['only'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([0,0,1,2,3,2,4])==[0,2]; assert find_duplicates([5,6,7])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['apple','apple','banana'])==['apple']; assert find_duplicates(['orange'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,2,2,3,4,4,5,6,6])==[2,4,6]; assert find_duplicates([])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['one','two','three','one','two'])==['one','two']; assert find_duplicates(['a'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([9,8,7,9,8])==[9,8]; assert find_duplicates([1,2,3])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['repeat','word','repeat'])==['repeat']; assert find_duplicates(['unique'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,2,3,4,1,5,2])==[1,2]; assert find_duplicates([9])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['a','b','c','a'])==['a']; assert find_duplicates(['d','e','f'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['x','y','x','z','y'])==['x','y']; assert find_duplicates(['a','b'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,1,2,2,3,3])==[1,2,3]; assert find_duplicates([4,5])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['red','red','blue'])==['red']; assert find_duplicates(['green'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([True,False,True,True])==[True]; assert find_duplicates([False,True])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['apple','pear','apple','grape','pear'])==['apple','pear']; assert find_duplicates(['fruit'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,2,3,1,4,2,5,3])==[1,2,3]; assert find_duplicates([9,8])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['a','b','a','b','a'])==['a','b']; assert find_duplicates(['c','d'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([1,2,2,3,3,4,5,5])==[2,3,5]; assert find_duplicates([6,7])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['x','x','y','y','z'])==['x','y']; assert find_duplicates(['a','b'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['repeat','once','repeat','twice','twice'])==['repeat','twice']; assert find_duplicates(['one'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([0,1,0,2,2,3,3,3])==[0,2,3]; assert find_duplicates([9])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['m','n','m','o','p','o'])==['m','o']; assert find_duplicates(['a'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([5,5,6,6,7,8,9])==[5,6]; assert find_duplicates([10])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['z','a','z','b','b'])==['z','b']; assert find_duplicates(['x'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates(['apple','apple','apple','pear'])==['apple']; assert find_duplicates(['pear'])==[]"}
+{"input": "def find_duplicates(lst):\n    seen, dupes = set(), []\n    for x in lst:\n        if x in seen and x not in dupes:\n            dupes.append(x)\n        else:\n            seen.add(x)\n    return dupes", "output": "def test_find_duplicates(): assert find_duplicates([9,8,9,7,7,6])==[9,7]; assert find_duplicates([1])==[]"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1,2,3])==3; assert find_max([-5,-2,-10])==-2"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([10,20,5])==20; assert find_max([0,0,0])==0"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([-1,-2,-3])==-1; assert find_max([1])==1"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([100,50,75])==100; assert find_max([9,8,7])==9"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['a','b','c'])=='c'; assert find_max(['apple','banana'])=='banana'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([0.1,0.2,0.05])==0.2; assert find_max([3.14,2.71])==3.14"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([10,10,10])==10; assert find_max([-100,-50,-75])==-50"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1,3,2,3])==3; assert find_max([5,5,5])==5"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1.5,2.5,0.5])==2.5; assert find_max([9.9,9.8])==9.9"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['x','y','z'])=='z'; assert find_max(['m','n'])=='n'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1,2,3,4,5])==5; assert find_max([10,9,8])==10"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['dog','cat','bat'])=='dog'; assert find_max(['a','z'])=='z'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([5,10,15,20])==20; assert find_max([-10,-5,-15])==-5"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([9])==9; assert find_max([0])==0"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1000,500,200])==1000; assert find_max([0.001,0.002])==0.002"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['apple','pear','peach'])=='pear'; assert find_max(['A','B'])=='B'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([3,1,4,1,5])==5; assert find_max([2,7,1,8])==8"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([-2,-4,-6,-8])==-2; assert find_max([7,0,-7])==7"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([3.5,4.5,2.5])==4.5; assert find_max([10.01,9.99])==10.01"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['abc','xyz'])=='xyz'; assert find_max(['zzz','aaa'])=='zzz'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([8,16,4,2])==16; assert find_max([100,99])==100"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([42])==42; assert find_max([10,20,10])==20"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([7,14,21,28])==28; assert find_max([100,200])==200"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['sun','moon','star'])=='sun'; assert find_max(['earth','mars'])=='mars'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([-10,0,10])==10; assert find_max([-5,-1])==-1"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([99,100,98])==100; assert find_max([5,15])==15"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1.11,1.12,1.13])==1.13; assert find_max([2.2,2.0])==2.2"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['A','Z'])=='Z'; assert find_max(['hello','world'])=='world'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([2,4,8,16,32])==32; assert find_max([64,128])==128"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([-1000,-999])==-999; assert find_max([100,99])==100"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['one','two','three'])=='two'; assert find_max(['alpha','beta'])=='beta'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([0,9,8,7])==9; assert find_max([-9,-8,-7])==-7"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['m','n','o'])=='o'; assert find_max(['y','z'])=='z'"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max([1.2,1.5,1.4])==1.5; assert find_max([10.0,9.9])==10.0"}
+{"input": "def find_max(lst):\n    return max(lst)", "output": "def test_find_max(): assert find_max(['up','down'])=='up'; assert find_max(['go','stop'])=='stop'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1,2,3])==1; assert find_min([-5,-2,-10])==-10"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([10,20,5])==5; assert find_min([0,0,0])==0"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([-1,-2,-3])==-3; assert find_min([1])==1"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([100,50,75])==50; assert find_min([9,8,7])==7"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['a','b','c'])=='a'; assert find_min(['apple','banana'])=='apple'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([0.1,0.2,0.05])==0.05; assert find_min([3.14,2.71])==2.71"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([10,10,10])==10; assert find_min([-100,-50,-75])==-100"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1,3,2,3])==1; assert find_min([5,5,5])==5"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1.5,2.5,0.5])==0.5; assert find_min([9.9,9.8])==9.8"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['x','y','z'])=='x'; assert find_min(['m','n'])=='m'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1,2,3,4,5])==1; assert find_min([10,9,8])==8"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['dog','cat','bat'])=='bat'; assert find_min(['a','z'])=='a'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([5,10,15,20])==5; assert find_min([-10,-5,-15])==-15"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([9])==9; assert find_min([0])==0"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1000,500,200])==200; assert find_min([0.001,0.002])==0.001"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['apple','pear','peach'])=='apple'; assert find_min(['A','B'])=='A'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([3,1,4,1,5])==1; assert find_min([2,7,1,8])==1"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([-2,-4,-6,-8])==-8; assert find_min([7,0,-7])==-7"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([3.5,4.5,2.5])==2.5; assert find_min([10.01,9.99])==9.99"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['abc','xyz'])=='abc'; assert find_min(['zzz','aaa'])=='aaa'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([8,16,4,2])==2; assert find_min([100,99])==99"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([42])==42; assert find_min([10,20,10])==10"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([7,14,21,28])==7; assert find_min([100,200])==100"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['sun','moon','star'])=='moon'; assert find_min(['earth','mars'])=='earth'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([-10,0,10])==-10; assert find_min([-5,-1])==-5"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['A','Z'])=='A'; assert find_min(['hello','world'])=='hello'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([2,4,8,16,32])==2; assert find_min([64,128])==64"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([-1000,-999])==-1000; assert find_min([100,99])==99"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['one','two','three'])=='one'; assert find_min(['alpha','beta'])=='alpha'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([0,9,8,7])==0; assert find_min([-9,-8,-7])==-9"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['m','n','o'])=='m'; assert find_min(['y','z'])=='y'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1.2,1.5,1.4])==1.2; assert find_min([10.0,9.9])==9.9"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min(['up','down'])=='down'; assert find_min(['go','stop'])=='go'"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([99,100,98])==98; assert find_min([5,15])==5"}
+{"input": "def find_min(lst):\n    return min(lst)", "output": "def test_find_min(): assert find_min([1.11,1.12,1.13])==1.11; assert find_min([2.2,2.0])==2.0"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-5)==5; assert get_abs(5)==5"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(0)==0; assert get_abs(-1)==1"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-100)==100; assert get_abs(100)==100"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-3.5)==3.5; assert get_abs(3.5)==3.5"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-0.001)==0.001; assert get_abs(0.001)==0.001"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(10)==10; assert get_abs(-10)==10"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-42)==42; assert get_abs(42)==42"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-7.8)==7.8; assert get_abs(7.8)==7.8"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-999)==999; assert get_abs(999)==999"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-1234)==1234; assert get_abs(1234)==1234"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-2)==2; assert get_abs(2)==2"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-0.5)==0.5; assert get_abs(0.5)==0.5"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(0)==0; assert get_abs(-0)==0"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-321)==321; assert get_abs(321)==321"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-8)==8; assert get_abs(8)==8"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-1.1)==1.1; assert get_abs(1.1)==1.1"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-9999)==9999; assert get_abs(9999)==9999"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-250)==250; assert get_abs(250)==250"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-0.25)==0.25; assert get_abs(0.25)==0.25"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-50)==50; assert get_abs(50)==50"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-12.3)==12.3; assert get_abs(12.3)==12.3"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-88)==88; assert get_abs(88)==88"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-0.0001)==0.0001; assert get_abs(0.0001)==0.0001"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-73)==73; assert get_abs(73)==73"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-2.2)==2.2; assert get_abs(2.2)==2.2"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-1)==1; assert get_abs(1)==1"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-10.5)==10.5; assert get_abs(10.5)==10.5"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-7)==7; assert get_abs(7)==7"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-0.9)==0.9; assert get_abs(0.9)==0.9"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-200)==200; assert get_abs(200)==200"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-6)==6; assert get_abs(6)==6"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-400)==400; assert get_abs(400)==400"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-0.02)==0.02; assert get_abs(0.02)==0.02"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-5.5)==5.5; assert get_abs(5.5)==5.5"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-10000)==10000; assert get_abs(10000)==10000"}
+{"input": "def get_abs(x):\n    return abs(x)", "output": "def test_get_abs(): assert get_abs(-999.99)==999.99; assert get_abs(999.99)==999.99"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1,2,3])==2; assert average([10,20,30])==20"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([5,5,5])==5; assert average([0,0,0])==0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1,3,5,7,9])==5; assert average([2,4,6,8])==5"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([10,0,10,0])==5; assert average([2,2,2])==2"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([100,200,300])==200; assert average([50,50])==50"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1.0,2.0,3.0])==2.0; assert average([4.5,5.5])==5.0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([-5,5])==0; assert average([-10,0,10])==0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([3,3,3,3])==3; assert average([10])==10"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([2,4,6,8])==5; assert average([1,1,1,1])==1"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([9,11])==10; assert average([10,20,30,40])==25"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([-2,-4,-6])==-4; assert average([-1,1])==0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([0.5,1.5,2.5])==1.5; assert average([10.1,9.9])==10.0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1,2,3,4])==2.5; assert average([0,5,10])==5"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([5])==5; assert average([100,200,300,400])==250"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([0,10])==5; assert average([-10,10])==0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([2.2,3.3,4.4])==3.3; assert average([10.0,20.0,30.0])==20.0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1,1,1,2])==1.25; assert average([3,3,3])==3"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([9,8,7,6])==7.5; assert average([2,4,6])==4"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([0,1,2,3,4])==2; assert average([5,10,15])==10"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([2,2,2,2,2])==2; assert average([0,100])==50"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([-5,-10])==-7.5; assert average([5,10,15])==10"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1000,2000,3000])==2000; assert average([50,100])==75"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([0.1,0.2,0.3])==0.2; assert average([10.0,0.0])==5.0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([-1,0,1])==0; assert average([-2,-2,-2])==-2"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([4,8,12,16])==10; assert average([1,2,3,4,5])==3"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([9.5,10.5])==10.0; assert average([5.5,6.5,7.5])==6.5"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([-4,4])==0; assert average([-10,-5,0])==-5"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([3,6,9])==6; assert average([1,2])==1.5"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([7,7,7,7])==7; assert average([10,20,30])==20"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([2,3])==2.5; assert average([-5,5])==0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([100,200,400])==233.33333333333334; assert average([1,2,3])==2"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([0,50,100])==50; assert average([25,75])==50"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([-100,0,100])==0; assert average([-50,50])==0"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([0.25,0.75])==0.5; assert average([1.5,2.5,3.5])==2.5"}
+{"input": "def average(lst):\n    return sum(lst) / len(lst)", "output": "def test_average(): assert average([1,4,7,10])==5.5; assert average([10,0])==5"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('hello')=='HELLO'; assert to_uppercase('World')=='WORLD'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('abc')=='ABC'; assert to_uppercase('Python')=='PYTHON'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('aBc')=='ABC'; assert to_uppercase('xyz')=='XYZ'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('HELLO')=='HELLO'; assert to_uppercase('123')=='123'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('hello world')=='HELLO WORLD'; assert to_uppercase('Hi!')=='HI!'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('python3')=='PYTHON3'; assert to_uppercase('test_case')=='TEST_CASE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('good day')=='GOOD DAY'; assert to_uppercase('Morning')=='MORNING'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('openAI')=='OPENAI'; assert to_uppercase('chatgpt')=='CHATGPT'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('space song')=='SPACE SONG'; assert to_uppercase('ocean eyes')=='OCEAN EYES'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('lower')=='LOWER'; assert to_uppercase('upper')=='UPPER'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('mixed123')=='MIXED123'; assert to_uppercase('case')=='CASE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('')==''; assert to_uppercase('abc def')=='ABC DEF'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('hi-there')=='HI-THERE'; assert to_uppercase('goodbye')=='GOODBYE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('rain')=='RAIN'; assert to_uppercase('storm')=='STORM'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('data')=='DATA'; assert to_uppercase('science')=='SCIENCE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('machine learning')=='MACHINE LEARNING'; assert to_uppercase('AI')=='AI'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('dream')=='DREAM'; assert to_uppercase('Dream')=='DREAM'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('vision')=='VISION'; assert to_uppercase('clear')=='CLEAR'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('sunset')=='SUNSET'; assert to_uppercase('midnight')=='MIDNIGHT'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('code')=='CODE'; assert to_uppercase('Code')=='CODE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('feranmi')=='FERANMI'; assert to_uppercase('Philip')=='PHILIP'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('zenith home care')=='ZENITH HOME CARE'; assert to_uppercase('services')=='SERVICES'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('test!')=='TEST!'; assert to_uppercase('123abc')=='123ABC'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('edge')=='EDGE'; assert to_uppercase('case')=='CASE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('word')=='WORD'; assert to_uppercase('sentence')=='SENTENCE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('moonlight')=='MOONLIGHT'; assert to_uppercase('starlight')=='STARLIGHT'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('cool breeze')=='COOL BREEZE'; assert to_uppercase('summer rain')=='SUMMER RAIN'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('chaos')=='CHAOS'; assert to_uppercase('order')=='ORDER'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('simple')=='SIMPLE'; assert to_uppercase('sentence')=='SENTENCE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('night')=='NIGHT'; assert to_uppercase('day')=='DAY'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('peace')=='PEACE'; assert to_uppercase('love')=='LOVE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('mixedCase')=='MIXEDCASE'; assert to_uppercase('cases')=='CASES'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('lowercase')=='LOWERCASE'; assert to_uppercase('UpperCase')=='UPPERCASE'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('truth')=='TRUTH'; assert to_uppercase('lies')=='LIES'"}
+{"input": "def to_uppercase(s):\n    return s.upper()", "output": "def test_to_uppercase(): assert to_uppercase('calm')=='CALM'; assert to_uppercase('storm')=='STORM'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('HELLO')=='hello'; assert to_lowercase('World')=='world'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('ABC')=='abc'; assert to_lowercase('Python')=='python'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('aBc')=='abc'; assert to_lowercase('XYZ')=='xyz'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('HELLO WORLD')=='hello world'; assert to_lowercase('Hi!')=='hi!'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('PYTHON3')=='python3'; assert to_lowercase('TEST_CASE')=='test_case'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('Good Day')=='good day'; assert to_lowercase('Morning')=='morning'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('OpenAI')=='openai'; assert to_lowercase('ChatGPT')=='chatgpt'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('SPACE SONG')=='space song'; assert to_lowercase('OCEAN EYES')=='ocean eyes'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('LOWER')=='lower'; assert to_lowercase('UPPER')=='upper'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('HI-THERE')=='hi-there'; assert to_lowercase('GOODBYE')=='goodbye'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('RAIN')=='rain'; assert to_lowercase('STORM')=='storm'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('DATA')=='data'; assert to_lowercase('SCIENCE')=='science'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('MACHINE LEARNING')=='machine learning'; assert to_lowercase('AI')=='ai'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('Dream')=='dream'; assert to_lowercase('VISION')=='vision'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('SUNSET')=='sunset'; assert to_lowercase('MIDNIGHT')=='midnight'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('CODE')=='code'; assert to_lowercase('Code')=='code'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('FERANMI')=='feranmi'; assert to_lowercase('Philip')=='philip'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('ZENITH HOME CARE')=='zenith home care'; assert to_lowercase('SERVICES')=='services'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('TEST!')=='test!'; assert to_lowercase('123ABC')=='123abc'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('EDGE')=='edge'; assert to_lowercase('CASE')=='case'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('WORD')=='word'; assert to_lowercase('SENTENCE')=='sentence'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('MOONLIGHT')=='moonlight'; assert to_lowercase('STARLIGHT')=='starlight'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('COOL BREEZE')=='cool breeze'; assert to_lowercase('SUMMER RAIN')=='summer rain'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('CHAOS')=='chaos'; assert to_lowercase('ORDER')=='order'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('SIMPLE')=='simple'; assert to_lowercase('SENTENCE')=='sentence'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('NIGHT')=='night'; assert to_lowercase('DAY')=='day'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('PEACE')=='peace'; assert to_lowercase('LOVE')=='love'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('MIXEDCASE')=='mixedcase'; assert to_lowercase('CASES')=='cases'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('LOWERCASE')=='lowercase'; assert to_lowercase('UpperCase')=='uppercase'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('TRUTH')=='truth'; assert to_lowercase('LIES')=='lies'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('CALM')=='calm'; assert to_lowercase('STORM')=='storm'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('HELLO123')=='hello123'; assert to_lowercase('OK!')=='ok!'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('FOCUS')=='focus'; assert to_lowercase('ENERGY')=='energy'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('MIXED123')=='mixed123'; assert to_lowercase('CASE')=='case'"}
+{"input": "def to_lowercase(s):\n    return s.lower()", "output": "def test_to_lowercase(): assert to_lowercase('')==''; assert to_lowercase('ABC DEF')=='abc def'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('a',3)=='aaa'; assert repeat_string('hi',2)=='hihi'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('x',5)=='xxxxx'; assert repeat_string('abc',3)=='abcabcabc'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('hi',1)=='hi'; assert repeat_string('hi',0)==''"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('!',4)=='!!!!'; assert repeat_string('ok',2)=='okok'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('ha',3)=='hahaha'; assert repeat_string('no',2)=='nono'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('test',2)=='testtest'; assert repeat_string('yes',3)=='yesyesyes'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('go',4)=='gogogogo'; assert repeat_string('run',1)=='run'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('hi ',3)=='hi hi hi '; assert repeat_string('a',2)=='aa'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('x',0)==''; assert repeat_string('y',1)=='y'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('ab',4)=='abababab'; assert repeat_string('cd',3)=='cdcdcd'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('123',2)=='123123'; assert repeat_string('0',5)=='00000'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('-',10)=='----------'; assert repeat_string('=',3)=='==='"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('Hi!',2)=='Hi!Hi!'; assert repeat_string('Bye',1)=='Bye'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('wow',3)=='wowwowwow'; assert repeat_string('ok',2)=='okok'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('hi',5)=='hihihihihi'; assert repeat_string('yo',1)=='yo'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('A',4)=='AAAA'; assert repeat_string('b',3)=='bbb'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('abc ',2)=='abc abc '; assert repeat_string('123',1)=='123'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('ha',5)=='hahahahaha'; assert repeat_string('la',2)=='lala'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('repeat',1)=='repeat'; assert repeat_string('again',2)=='againagain'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('echo',3)=='echoechoecho'; assert repeat_string('echo',0)==''"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('yes',4)=='yesyesyesyes'; assert repeat_string('no',3)=='nonono'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('1',3)=='111'; assert repeat_string('2',4)=='2222'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('word',2)=='wordword'; assert repeat_string('end',1)=='end'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('hi',0)==''; assert repeat_string('ok',3)=='okokok'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('Go!',2)=='Go!Go!'; assert repeat_string('Stop',1)=='Stop'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('na',6)=='nananananana'; assert repeat_string('ba',3)=='bababa'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('yes ',2)=='yes yes '; assert repeat_string('no ',3)=='no no no '"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('z',10)=='zzzzzzzzzz'; assert repeat_string('w',5)=='wwwww'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('loop',2)=='looploop'; assert repeat_string('loop',1)=='loop'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('fun',3)=='funfunfun'; assert repeat_string('boring',0)==''"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('aa',4)=='aaaaaaaa'; assert repeat_string('bb',2)=='bbbb'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('up',3)=='upupup'; assert repeat_string('down',2)=='downdown'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('word ',3)=='word word word '; assert repeat_string('no',1)=='no'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('re',5)=='rerererere'; assert repeat_string('try',2)=='trytry'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('abc',4)=='abcabcabcabc'; assert repeat_string('xyz',3)=='xyzxyzxyz'"}
+{"input": "def repeat_string(s, n):\n    return s * n", "output": "def test_repeat_string(): assert repeat_string('ha!',3)=='ha!ha!ha!'; assert repeat_string('lol',2)=='lollol'"}
