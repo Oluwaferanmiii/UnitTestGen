@@ -22,3 +22,6 @@ dataset.jsonl
 # Test functions
 run_function_tests.py
 function_test_results.log
+
+# Linting / local tooling
+.pylintrc

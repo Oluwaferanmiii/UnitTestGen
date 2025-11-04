@@ -18,6 +18,7 @@ transformers = "==4.44.2"
 torch = "*"
 tensorboard = "*"
 python-dotenv = "*"
+pylint-django = "*"
 
 [dev-packages]
 

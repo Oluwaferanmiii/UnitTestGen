@@ -38,48 +38,53 @@ model = AutoModelForSeq2SeqLM.from_pretrained(BASE_MODEL).to(device)
 
 # Ensure model embeddings match tokenizer vocab (prevents missing-keys weirdness)
 model.resize_token_embeddings(len(tokenizer))
-
 model.config.tie_word_embeddings = True
 model.tie_weights()
 
 # ---------- Preprocessing ----------
-# Use longer source length to avoid truncating real functions too aggressively
 MAX_SRC_LEN = 512
 MAX_TGT_LEN = 256
 
 
-def preprocess(batch):
-    # Build your original prompt per input
-    inputs = [
-        (
-            "Given this Python function:\n```python\n"
-            f"{func}\n"
-            "```, write a PyTest unit test function in Python with at least one assert statement to verify its behavior."
-        )
-        for func in batch["input"]
-    ]
+def build_prompt(func: str) -> str:
+    """Builds the natural-language prompt for the model."""
+    return (
+        "Given this Python function:\n```python\n"
+        f"{func}\n"
+        "```, write a PyTest unit test function in Python with at least one assert "
+        "statement to verify its behavior."
+    )
 
-    # Newer HF uses `text_target` instead of as_target_tokenizer()
-    model_inputs = tokenizer(
-        inputs,
-        max_length=MAX_SRC_LEN,
-        truncation=True,
-    )
-    labels = tokenizer(
-        text_target=batch["output"],
-        max_length=MAX_TGT_LEN,
-        truncation=True,
-    )
+
+def preprocess(batch, tokenizer_name: str):
+    """Pure function suitable for hashing by Datasets."""
+    tok = AutoTokenizer.from_pretrained(tokenizer_name)
+    inputs = [build_prompt(func) for func in batch["input"]]
+    model_inputs = tok(inputs, max_length=MAX_SRC_LEN, truncation=True)
+    labels = tok(text_target=batch["output"],
+                 max_length=MAX_TGT_LEN, truncation=True)
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
 
 
-train_ds = train_ds.map(preprocess, batched=True,
-                        remove_columns=train_ds.column_names)
-eval_ds = eval_ds.map(preprocess,  batched=True,
-                      remove_columns=eval_ds.column_names)
+# Call map with a serializable function (passing model name as primitive)
+train_ds = train_ds.map(
+    preprocess,
+    fn_kwargs={"tokenizer_name": BASE_MODEL},
+    batched=True,
+    remove_columns=train_ds.column_names,
+    new_fingerprint="preprocess_v1_train",
+)
 
-# Let the collator handle dynamic padding (for both inputs and labels)
+eval_ds = eval_ds.map(
+    preprocess,
+    fn_kwargs={"tokenizer_name": BASE_MODEL},
+    batched=True,
+    remove_columns=eval_ds.column_names,
+    new_fingerprint="preprocess_v1_eval",
+)
+
+# ---------- Data Collator ----------
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 # ---------- Training args ----------
@@ -89,7 +94,6 @@ args = TrainingArguments(
     per_device_train_batch_size=4,
     gradient_accumulation_steps=8,   # effective batch size = 32
     learning_rate=3e-5,
-    # scale with total steps (more robust than fixed steps)
     lr_scheduler_type="cosine",
     warmup_ratio=0.01,
     weight_decay=0.02,
@@ -98,7 +102,7 @@ args = TrainingArguments(
     # Logging / eval / saving
     logging_dir=LOGGING_DIR,
     logging_steps=60,
-    eval_strategy="epoch",
+    evaluation_strategy="epoch",  # <-- fixed name
     save_strategy="epoch",
     save_total_limit=3,
     load_best_model_at_end=True,
@@ -108,11 +112,7 @@ args = TrainingArguments(
     # Misc
     push_to_hub=False,
     report_to=["tensorboard"],
-
-    # MPS doesn't support pinned memory; silence the warning
     dataloader_pin_memory=False,
-
-    # Mixed precision only on CUDA; keep False on MPS/CPU
     fp16=torch.cuda.is_available(),
 )
 
