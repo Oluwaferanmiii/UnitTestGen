@@ -1,12 +1,13 @@
 # pylint: disable=broad-exception-caught
 # pylint: disable=no-member
 
+from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .models import TestSession
-from .serializers import TestSessionSerializer, RegisterSerializer
+from .models import TestSession, TestItem
+from .serializers import TestSessionSerializer, TestItemSerializer, RegisterSerializer
 from .ai.codet5_engine import generate_test_from_code
 import ast
 

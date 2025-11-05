@@ -1,15 +1,25 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import TestSession
+from .models import TestSession, TestItem
+
+
+class TestItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestItem
+        fields = ['id', 'pasted_code', 'uploaded_code',
+                  'generated_tests', 'created_at', 'meta']
+        read_only_fields = ['id', 'generated_tests', 'created_at', 'meta']
 
 
 class TestSessionSerializer(serializers.ModelSerializer):
+    items = TestItemSerializer(many=True, read_only=True)
+
     class Meta:
         model = TestSession
         fields = ['id', 'user',
                   'uploaded_code', 'pasted_code',
                   'generated_tests', 'notes',
-                  'created_at', 'updated_at']
+                  'created_at', 'updated_at', 'item_lists', 'items',]
         read_only_fields = ['id', 'generated_tests',
                             'created_at', 'updated_at', 'user']
 
