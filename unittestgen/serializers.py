@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import TestSession, TestItem
 from rest_framework.validators import UniqueValidator
+from django.contrib.auth.password_validation import validate_password
 
 
 class TestItemSerializer(serializers.ModelSerializer):
@@ -45,33 +46,56 @@ class TestSessionSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    # Enforce real email validation + max length + case-insensitive uniqueness
     email = serializers.EmailField(
         required=True,
+        max_length=254,
         validators=[UniqueValidator(
             queryset=User.objects.all(),
             lookup='iexact',
             message='Email already in use.'
         )]
     )
+    # Enforce min & max length + case-insensitive uniqueness
+    # (User.username supports up to 150 chars; keep that as an upper bound)
     username = serializers.CharField(
         min_length=3,
+        max_length=150,
         validators=[UniqueValidator(
             queryset=User.objects.all(),
             lookup='iexact',
             message='Username already taken.'
         )]
     )
+    # Keep 8+ chars; (optional: use validate_password for richer checks)
     password = serializers.CharField(write_only=True, min_length=8)
 
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
 
+    # Trim whitespace so "  John  " doesn’t get stored with spaces
+    def validate_username(self, v: str):
+        v = (v or "").strip()
+        if not v:
+            raise serializers.ValidationError("Username is required.")
+        return v
+
+    def validate_email(self, v: str):
+        v = (v or "").strip()
+        if not v:
+            raise serializers.ValidationError("Email is required.")
+        return v
+
     def create(self, validated_data):
         user = User(
             username=validated_data['username'],
-            email=validated_data['email']
+            email=validated_data['email'],
         )
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+    def validate_password(self, value):
+        validate_password(value)
+        return value
