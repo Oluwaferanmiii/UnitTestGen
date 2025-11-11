@@ -17,8 +17,9 @@ export default function Login() {
     try {
       await login(form.username, form.password);
       nav("/dashboard", { replace: true });
-    } catch {
-      setErr("Invalid credentials or server error.");
+    } catch(e) {
+      console.error("login error:", e);
+      setErr(e.message);
     } finally {
       setLoading(false);
     }

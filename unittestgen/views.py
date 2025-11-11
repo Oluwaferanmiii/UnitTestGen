@@ -1,11 +1,13 @@
 # pylint: disable=broad-exception-caught
 # pylint: disable=no-member
 
+from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import TestSession, TestItem
 from .serializers import (
@@ -20,6 +22,61 @@ import ast
 # -----------------------------
 # Auth
 # -----------------------------
+
+def _client_key(request, username):
+    fwd = request.META.get("HTTP_X_FORWARDED_FOR")
+    ip = (fwd.split(",")[0].strip()
+          if fwd else request.META.get("REMOTE_ADDR", "0"))
+    return f"login:{(username or '').lower().strip()}:{ip}"
+
+
+class ThrottledTokenObtainPairView(TokenObtainPairView):
+    ATTEMPTS = 5          # max wrong attempts
+    BLOCK_MIN = 5         # lockout minutes
+
+    def _client_key(self, request, username):
+        fwd = request.META.get("HTTP_X_FORWARDED_FOR")
+        ip = (fwd.split(",")[0].strip()
+              if fwd else request.META.get("REMOTE_ADDR", "0"))
+        return f"login:{(username or '').lower().strip()}:{ip}"
+
+    def post(self, request, *args, **kwargs):
+        username = (request.data.get("username") or "").strip()
+        key = self._client_key(request, username)
+        blocked_key = f"{key}:blocked"
+
+        # If blocked, short-circuit
+        if cache.get(blocked_key):
+            return Response(
+                {"detail": f"Too many failed attempts. Try again in {self.BLOCK_MIN} minutes."},
+                status=status.HTTP_429_TOO_MANY_REQUESTS,
+            )
+
+        # Validate credentials ourselves so we can control messaging
+        serializer = self.get_serializer(data=request.data)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception:
+            # Failed login: bump counter and maybe block
+            attempts = (cache.get(key) or 0) + 1
+            cache.set(key, attempts, timeout=60 * self.BLOCK_MIN)
+            if attempts >= self.ATTEMPTS:
+                cache.set(blocked_key, True, timeout=60 * self.BLOCK_MIN)
+                return Response(
+                    {"detail": f"Too many failed attempts. Try again in {self.BLOCK_MIN} minutes."},
+                    status=status.HTTP_429_TOO_MANY_REQUESTS,
+                )
+            remaining = max(self.ATTEMPTS - attempts, 0)
+            return Response(
+                {"detail": f"Invalid credentials. {remaining} attempt(s) left."},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+
+        # Success: reset counters and return tokens
+        cache.delete(key)
+        cache.delete(blocked_key)
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]

@@ -54,6 +54,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         )]
     )
     username = serializers.CharField(
+        min_length=3,
         validators=[UniqueValidator(
             queryset=User.objects.all(),
             lookup='iexact',

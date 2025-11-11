@@ -32,8 +32,8 @@ export default function Register() {
       });
       setOk("Registration successful. Please sign in.");
       setTimeout(() => nav("/login"), 800);
-    } catch {
-      setErr("Could not register. Try a different username/email.");
+    } catch(e) {
+      setErr(e.message);
     }
   }
 
