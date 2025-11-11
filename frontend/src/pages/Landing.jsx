@@ -4,24 +4,32 @@ import Btn from "../components/Btn";
 
 export default function Landing() {
   const nav = useNavigate();
+
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      alignItems: "center",
-      justifyItems: "center",
-      color: "#fff",
-      padding: 24,
-    }}>
+    <div
+      className="app-gradient"
+      style={{
+        minHeight: "100vh",
+        display: "grid",
+        alignItems: "center",
+        justifyItems: "center",
+        color: "#fff",
+        padding: 24,
+      }}
+    >
+      {/* Logo top-left (large variant for landing) */}
       <div style={{ position: "absolute", top: 24, left: 24 }}>
-        <Logo />
+        <Logo size="large" />
       </div>
 
-      <div style={{ display: "grid", gap: 24, width: 420, maxWidth: "90%" }}>
-        <Btn variant="solid" onClick={() => nav("/login")}>Sign in</Btn>
-        <Btn variant="outline" onClick={() => nav("/register")}>Sign up</Btn>
+      {/* Buttons (large) */}
+      <div style={{ display: "grid", gap: 24, width: "fit-content" }}>
+        <Btn size="large" variant="outline" onClick={() => nav("/login")}>
+          Sign in
+        </Btn>
+        <Btn size="large" variant="outline" onClick={() => nav("/register")}>
+          Sign up
+        </Btn>
       </div>
     </div>
   );

@@ -1,16 +1,24 @@
-export default function Logo({ size = 28 }) {
+export default function Logo({ size = "medium" }) {
+  // Map string sizes → pixel dimensions
+  const sizeMap = {
+    small: 32,
+    medium: 656,
+    large: 500,
+  };
+
+  // If numeric size passed, use that directly
+  const finalSize = typeof size === "number" ? size : sizeMap[size] || sizeMap.medium;
+
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-      <img
-        src="/logo.svg"
-        alt="UnitTestLab Logo"
-        width={size}
-        height={size}
-        style={{ objectFit: "contain" }}
-      />
-      <span style={{ fontWeight: 800, letterSpacing: 2, color: "#ddd" }}>
-        UNITTESTLAB
-      </span>
-    </div>
+    <img
+      src="/Logo.svg"  // Make sure it's lowercase and inside public/
+      alt="UnitTestLab Logo"
+      width={finalSize}
+      height={finalSize}
+      style={{
+        display: "block",
+        objectFit: "contain",
+      }}
+    />
   );
 }

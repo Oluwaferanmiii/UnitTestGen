@@ -1,18 +1,37 @@
-export default function Btn({ children, variant="solid", onClick, type="button", disabled }) {
-  const base = {
-    padding: "14px 22px",
-    borderRadius: 14,
-    fontWeight: 700,
-    cursor: "pointer",
-    border: "1px solid #999",
-    background: "transparent",
-    color: "#fff",
+export default function Btn({
+  children,
+  variant = "outline",   // "outline" | "solid"
+  size = "medium",       // "small" | "medium" | "large"
+  onClick,
+  type = "button",
+  disabled = false,
+  styleOverride = {},
+}) {
+  // Define dimensions for each size
+  const sizeMap = {
+    small: { width: 180, height: 48, fontSize: 14 },
+    medium: { width: 240, height: 60, fontSize: 16 },
+    large: { width: 428, height: 97, fontSize: 20 },
   };
-  const styles = variant === "solid"
-    ? { ...base, background: "#d4d4d4", color: "#111", border: "none" }
-    : base;
+
+  const { width, height, fontSize } = sizeMap[size] || sizeMap.medium;
+
+  // Determine class variant
+  const className = variant === "solid" ? "button-pill solid" : "button-pill";
+
   return (
-    <button type={type} onClick={onClick} disabled={disabled} style={styles}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={className}
+      style={{
+        width,
+        height,
+        fontSize,
+        ...styleOverride, // <-- this lets us override background color etc.
+      }}
+    >
       {children}
     </button>
   );

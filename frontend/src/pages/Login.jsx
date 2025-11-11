@@ -12,11 +12,12 @@ export default function Login() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    setErr(""); setLoading(true);
+    setErr("");
+    setLoading(true);
     try {
       await login(form.username, form.password);
       nav("/dashboard", { replace: true });
-    } catch (e) {
+    } catch {
       setErr("Invalid credentials or server error.");
     } finally {
       setLoading(false);
@@ -24,44 +25,102 @@ export default function Login() {
   }
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
-      color: "#fff",
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      alignItems: "center",
-      padding: 32,
-      gap: 24,
-    }}>
-      <div style={{ maxWidth: 520, marginLeft: "10vw" }}>
-        <h1 style={{ marginBottom: 24 }}>Sign in</h1>
-        <form onSubmit={onSubmit} style={{ display: "grid", gap: 16 }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
+        color: "#fff",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        alignItems: "center",
+        padding: 32,
+      }}
+    >
+      {/* LEFT SIDE: FORM */}
+      <div
+        style={{
+          maxWidth: 500,
+          justifySelf: "center",
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+        }}
+      >
+        <h1 style={{ marginBottom: 24, fontSize: "2.5rem", fontWeight: 700 }}>
+          Sign in
+        </h1>
+
+        <form onSubmit={onSubmit} style={{ display: "grid", gap: 18 }}>
           <input
             placeholder="Username"
             value={form.username}
             onChange={(e) => setForm({ ...form, username: e.target.value })}
-            style={{ padding: 16, borderRadius: 12, border: "1px solid #555", background:"#d4d4d4" }}
+            style={{
+              width: 428,
+              padding: "16px 20px",
+              borderRadius: 12,
+              border: "none",
+              background: "#d4d4d4",
+              color: "#111",
+              fontSize: "16px",
+            }}
           />
           <input
             type="password"
             placeholder="Password"
             value={form.password}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
-            style={{ padding: 16, borderRadius: 12, border: "1px solid #555", background:"#0b0b0c", color:"#fff" }}
+            style={{
+              width: 428,
+              padding: "16px 20px",
+              borderRadius: 12,
+              border: "1px solid rgba(255,255,255,0.6)",
+              background: "#0b0b0c",
+              color: "#fff",
+              fontSize: "16px",
+            }}
           />
+
+          {/* Legacy/Unused Code */}
+          {/* Forgot Password */}
+          {/* <div style={{ textAlign: "right", fontSize: 14 }}>
+            <Link
+              to="/forgot-password"
+              style={{ color: "rgba(255,255,255,0.75)", textDecoration: "none" }}
+            >
+              Forgot Password?
+            </Link>
+          </div> */}
+
           {err && <div style={{ color: "#f87171" }}>{err}</div>}
-          <Btn type="submit" variant="solid" disabled={loading}>
+
+          {/* Purple button (matches Figma) */}
+          <Btn
+            type="submit"
+            size="medium"
+            variant="solid"
+            disabled={loading}
+            styleOverride={{
+              background: "#5B32A4",
+              color: "#fff",
+              border: "none",
+            }}
+          >
             {loading ? "Logging in..." : "Login"}
           </Btn>
+
           <div style={{ marginTop: 4 }}>
-            Don’t have an account? <Link to="/register" style={{ color: "#22c55e" }}>Sign up</Link>
+            Don’t have an account?{" "}
+            <Link to="/register" style={{ color: "#22c55e" }}>
+              Sign up
+            </Link>
           </div>
         </form>
       </div>
 
+      {/* RIGHT SIDE: LOGO */}
       <div style={{ justifySelf: "center" }}>
-        <Logo size={40} />
+        <Logo size="medium" />
       </div>
     </div>
   );

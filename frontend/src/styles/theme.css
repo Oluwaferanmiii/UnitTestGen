@@ -1,0 +1,63 @@
+/* Global reset + app theme */
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;                 /* <-- removes that white border/margin */
+}
+
+:root{
+  --bg-left: #0b0b0c;
+  --bg-right: #1F044F;       /* deep purple */
+  --btn-border: rgba(255,255,255,0.75);
+  --btn-bg: #d4d4d4;
+  --btn-text-dark: #111;
+  --text: #fff;
+}
+
+/* Landing background (we'll also keep a fallback inline in the component) */
+.app-gradient {
+  background: linear-gradient(120deg, var(--bg-left) 55%, var(--bg-right) 100%);
+}
+
+/* Pill buttons (transparent by default, grey on hover) */
+.button-pill {
+  width: 428px;
+  height: 97px;
+  border-radius: 18px;
+  border: 1px solid var(--btn-border);
+  background: transparent;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.button-pill:hover,
+.button-pill:focus {
+  background: var(--btn-bg);
+  color: var(--btn-text-dark);
+  border-color: transparent;
+  outline: none;
+}
+
+/* If you ever want a solid (always grey) variant */
+.button-pill.solid {
+  background: var(--btn-bg);
+  color: var(--btn-text-dark);
+  border-color: transparent;
+}
+
+.button-pill:active {
+  transform: translateY(1px);
+  filter: brightness(0.96);
+}
+
+.button-pill.solid:hover {
+  filter: brightness(0.92);
+}
+
+.button-pill:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
