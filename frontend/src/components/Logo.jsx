@@ -1,24 +1,40 @@
-export default function Logo({ size = "medium" }) {
-  // Map string sizes → pixel dimensions
-  const sizeMap = {
-    small: 32,
-    medium: 656,
-    large: 500,
+// src/components/Logo.jsx
+export default function Logo({
+  size = "medium",
+  width,          // optional explicit width (px)
+  height,         // optional explicit height (px)
+  src = "/Logo2.svg",
+  alt = "UnitTestLab Logo",
+  style = {},
+}) {
+  // Size presets can be non-square now
+  const presets = {
+    small:  { w: 36,   h: 36 },
+    medium: { w: 656,  h: 656 },
+    large:  { w: 500,  h: 200 },
   };
 
-  // If numeric size passed, use that directly
-  const finalSize = typeof size === "number" ? size : sizeMap[size] || sizeMap.medium;
+  // Start from preset or numeric square
+  let w, h;
+  if (typeof size === "number") {
+    w = h = size;
+  } else if (presets[size]) {
+    ({ w, h } = presets[size]);
+  } else {
+    ({ w, h } = presets.medium);
+  }
+
+  // Explicit props override anything
+  if (typeof width === "number")  w = width;
+  if (typeof height === "number") h = height;
 
   return (
     <img
-      src="/Logo.svg"  // Make sure it's lowercase and inside public/
-      alt="UnitTestLab Logo"
-      width={finalSize}
-      height={finalSize}
-      style={{
-        display: "block",
-        objectFit: "contain",
-      }}
+      src={src}
+      alt={alt}
+      width={w}
+      height={h}
+      style={{ display: "block", objectFit: "contain", ...style }}
     />
   );
 }
