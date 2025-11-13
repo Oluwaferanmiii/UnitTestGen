@@ -1,8 +1,14 @@
+// src/pages/Dashboard.jsx
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { logout } from "../api/auth";
-import { listSessions, createSession, getSession } from "../api/sessions";
+import {
+  listSessions,
+  createSession,
+  getSession,
+  deleteSession,          // ✅ import deleteSession
+} from "../api/sessions";
 import { addItem } from "../api/items";
 import Logo from "../components/Logo";
 import CodeEditor from "../components/CodeEditor";
@@ -19,6 +25,9 @@ export default function Dashboard() {
   const [toast, setToast] = useState("");
   const fileRef = useRef(null);
   const [code, setCode] = useState("");
+  const [menuOpenId, setMenuOpenId] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   // ---------------- Data fetch ----------------
   const sessionsQ = useQuery({
@@ -26,18 +35,45 @@ export default function Dashboard() {
     queryFn: listSessions,
   });
 
+  // 1️⃣ Auto-select most recent session
   useEffect(() => {
     if (!sessionsQ.data || sessionsQ.data.length === 0) return;
     if (activeId == null) {
       setActiveId(sessionsQ.data[0].id);
     }
-  }, [sessionsQ.data]);
+  }, [sessionsQ.data, activeId]);
+
+  // 2️⃣ Handle outside-click to close menu
+  useEffect(() => {
+    function handleClickOutside(e) {
+      // If no menu open, ignore
+      if (menuOpenId === null) return;
+
+      // If click happened inside any dropdown/menu/button → do NOT close
+      const menu = document.getElementById(`menu-${menuOpenId}`);
+      const btn = document.getElementById(`btn-${menuOpenId}`);
+
+      if (menu?.contains(e.target) || btn?.contains(e.target)) {
+        return;
+      }
+
+      // Otherwise → close it
+      setMenuOpenId(null);
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpenId]);
 
   const activeSessionQ = useQuery({
     queryKey: ["session", activeId],
     queryFn: () => getSession(activeId),
     enabled: !!activeId,
   });
+
 
   // ---------------- Mutations ----------------
   const newSessionMut = useMutation({
@@ -64,12 +100,33 @@ export default function Dashboard() {
       setFile(null);
       setFileErr("");
       if (fileRef.current) {
-      fileRef.current.value = "";   
-    }
+        fileRef.current.value = ""; // ✅ clear file input visually
+      }
     },
     onError: (e) => {
-      setToast(typeof e?.message === "string" ? e.message : "Generation failed.");
+      setToast(
+        typeof e?.message === "string" ? e.message : "Generation failed."
+      );
       setTimeout(() => setToast(""), 1800);
+    },
+  });
+
+  const deleteMut = useMutation({
+    mutationFn: deleteSession,
+    onSuccess: (_data, deletedId) => {
+      qc.invalidateQueries({ queryKey: ["sessions"] });
+
+      // If deleting active session → clear active
+      if (deletedId === activeId) {
+        setActiveId(null);
+      }
+
+      setToast("Session deleted.");
+      setTimeout(() => setToast(""), 1200);
+    },
+    onError: () => {
+      setToast("Failed to delete session.");
+      setTimeout(() => setToast(""), 1500);
     },
   });
 
@@ -77,16 +134,34 @@ export default function Dashboard() {
   function handleFileChange(e) {
     setFileErr("");
     const f = e.target.files?.[0];
-    if (!f) return setFile(null);
+    if (!f) {
+      setFile(null);
+      return;
+    }
     if (!f.name.endsWith(".py")) {
       setFileErr("Only .py files are allowed.");
-      return setFile(null);
+      setFile(null);
+      return;
     }
     if (f.size > 512 * 1024) {
       setFileErr("File is too large (max 512 KB).");
-      return setFile(null);
+      setFile(null);
+      return;
     }
     setFile(f);
+  }
+
+  // History row style helper
+  function rowStyle(id) {
+    const selected = id === activeId;
+    return {
+      padding: "10px 14px",
+      borderRadius: 12,
+      border: "1px solid rgba(255,255,255,.14)",
+      background: selected ? "rgba(255,255,255,0.06)" : "transparent",
+      color: "#fff",
+      cursor: "pointer",
+    };
   }
 
   const sessions = useMemo(() => sessionsQ.data ?? [], [sessionsQ.data]);
@@ -123,9 +198,9 @@ export default function Dashboard() {
           onClick={() => newSessionMut.mutate()}
           disabled={newSessionMut.isLoading}
           style={{
-            width: "100%",
+            width: "75%",
             padding: 12,
-            borderRadius: 12,
+            borderRadius: 15,
             marginBottom: 16,
             background: "#d4d4d4",
             color: "#111",
@@ -142,33 +217,87 @@ export default function Dashboard() {
         </div>
 
         <div style={{ display: "grid", gap: 10 }}>
-          {sessions.map((s) => {
-            const selected = s.id === activeId;
-            return (
+          {sessions.map((s) => (
+            <div key={s.id} style={{ position: "relative" }}>
               <div
-                key={s.id}
-                onClick={() => setActiveId(s.id)}
-                style={{
-                  padding: "10px 14px",
-                  borderRadius: 12,
-                  border: "1px solid rgba(255,255,255,.14)",
-                  background: selected ? "rgba(255,255,255,0.06)" : "transparent",
-                  color: "#fff",
-                  cursor: "pointer",
+                onClick={(e) => {
+                  e.stopPropagation();     // <--- prevent closing menu when selecting session
+                  setActiveId(s.id);
+                  setMenuOpenId(null);     // close menu when switching sessions
                 }}
+                style={rowStyle(s.id)}
                 onMouseEnter={(e) => {
-                  if (!selected)
-                    e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                  if (s.id !== activeId)
+                    e.currentTarget.style.background =
+                      "rgba(255,255,255,0.04)";
                 }}
                 onMouseLeave={(e) => {
-                  if (!selected)
+                  if (s.id !== activeId)
                     e.currentTarget.style.background = "transparent";
                 }}
               >
-                {s.title || `Session #${s.id}`}
+                {s.title ? s.title : `Session #${s.id}`}
               </div>
-            );
-          })}
+
+              {/* 3-dot menu button */}
+              <button
+                id={`btn-${s.id}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setMenuOpenId(s.id);
+                  setDeleteId(s.id);
+                }}
+                style={{
+                  position: "absolute",
+                  right: 10,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "transparent",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 18,
+                  cursor: "pointer",
+                  padding: 0,
+                }}
+              >
+                ⋮
+              </button>
+
+              {/* Dropdown menu */}
+              {menuOpenId === s.id && (
+                <div
+                  id={`menu-${s.id}`}
+                  onClick={(e) => e.stopPropagation()} 
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: 36,
+                    background: "rgba(20,20,25,.95)",
+                    border: "1px solid rgba(255,255,255,.15)",
+                    padding: "6px 10px",
+                    borderRadius: 8,
+                    zIndex: 50,
+                    width: 120,
+                  }}
+                >
+                  <div
+                    onClick={() => {
+                      setMenuOpenId(null);
+                      setShowDeleteModal(true);
+                    }}
+                    style={{
+                      padding: "6px 6px",
+                      cursor: "pointer",
+                      color: "#f87171",
+                    }}
+                  >
+                    Delete
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+
           {sessions.length === 0 && (
             <div style={{ opacity: 0.7, fontSize: 14 }}>
               No sessions yet — create one above.
@@ -192,7 +321,7 @@ export default function Dashboard() {
             <button
               onClick={() => {
                 logout();
-                qc.clear(); 
+                qc.clear();
                 nav("/login");
               }}
               style={{
@@ -260,7 +389,6 @@ export default function Dashboard() {
           </div>
 
           {/* Paste mode */}
-          
           {mode === "paste" && (
             <form
               onSubmit={(e) => {
@@ -268,7 +396,7 @@ export default function Dashboard() {
                 const trimmed = code.trim();
                 if (!trimmed || !activeId) return;
                 addItemMut.mutate({ pasted_code: trimmed });
-                setCode(""); // clear editor
+                setCode("");
               }}
               style={{ display: "flex", gap: 12, alignItems: "stretch" }}
             >
@@ -301,17 +429,7 @@ export default function Dashboard() {
                   return;
                 }
                 if (!activeId) return;
-                addItemMut.mutate(
-                  { file },
-                  {
-                    onSuccess: () => {
-                      // ✅ Clear file input and reset everything immediately after upload
-                      if (fileRef.current) fileRef.current.value = "";
-                      setFile(null);
-                      setFileErr("");
-                    },
-                  }
-                );
+                addItemMut.mutate({ file });
               }}
               style={{
                 display: "flex",
@@ -324,7 +442,7 @@ export default function Dashboard() {
               }}
             >
               <input
-                ref={fileRef} 
+                ref={fileRef}
                 type="file"
                 accept=".py"
                 onChange={handleFileChange}
@@ -347,10 +465,12 @@ export default function Dashboard() {
             </form>
           )}
 
-          {fileErr && <div style={{ color: "#f87171", marginTop: 8 }}>{fileErr}</div>}
+          {fileErr && (
+            <div style={{ color: "#f87171", marginTop: 8 }}>{fileErr}</div>
+          )}
         </div>
 
-        {/* === Result area === */}
+        {/* Results */}
         {activeItems.length > 0 && (
           <div style={{ marginTop: 20, display: "grid", gap: 16 }}>
             {activeItems.map((it) => (
@@ -372,7 +492,8 @@ export default function Dashboard() {
                       style={{
                         margin: 0,
                         whiteSpace: "pre-wrap",
-                        fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                        fontFamily:
+                          "ui-monospace, SFMono-Regular, Menlo, monospace",
                         fontSize: 13,
                       }}
                     >
@@ -394,7 +515,8 @@ export default function Dashboard() {
                   style={{
                     margin: 0,
                     whiteSpace: "pre-wrap",
-                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontFamily:
+                      "ui-monospace, SFMono-Regular, Menlo, monospace",
                     fontSize: 13,
                   }}
                 >
@@ -438,6 +560,77 @@ export default function Dashboard() {
           </div>
         )}
       </main>
+
+      {/* Delete modal */}
+      {showDeleteModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.55)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 200,
+          }}
+          onClick={() => setShowDeleteModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "rgba(20,20,25,1)",
+              padding: 24,
+              borderRadius: 12,
+              width: 360,
+              border: "1px solid rgba(255,255,255,.12)",
+            }}
+          >
+            <h3 style={{ marginTop: 0, marginBottom: 12 }}>
+              Delete this session?
+            </h3>
+            <p style={{ opacity: 0.8, fontSize: 14, marginBottom: 20 }}>
+              This action cannot be undone.
+            </p>
+
+            <div
+              style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}
+            >
+              <button
+                style={{
+                  padding: "8px 14px",
+                  borderRadius: 8,
+                  border: "1px solid rgba(255,255,255,.25)",
+                  background: "transparent",
+                  color: "#fff",
+                  cursor: "pointer",
+                }}
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                style={{
+                  padding: "8px 14px",
+                  borderRadius: 8,
+                  background: "#e11d48",
+                  color: "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  if (deleteId != null) {
+                    deleteMut.mutate(deleteId); 
+                  }
+                  setShowDeleteModal(false);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

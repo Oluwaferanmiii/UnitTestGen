@@ -22,5 +22,6 @@ export async function updateSession(id, payload) {
 }
 
 export async function deleteSession(id) {
-  await client.delete(`/sessions/${id}/`);
+  const { data } = await client.delete(`/sessions/${id}/`);
+  return data;
 }
