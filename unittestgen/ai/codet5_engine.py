@@ -1503,7 +1503,7 @@ def generate_test_from_code(
         num_beams=max(1, int(num_beams)),
     )
     if passing:
-        return "# origin: beams\n" + passing
+        return passing
 
     # 2) Sampling for diversity
     passing = _try_candidates(
@@ -1519,25 +1519,25 @@ def generate_test_from_code(
         top_k=top_k,
     )
     if passing:
-        return "# origin: sampling\n" + passing
+        return passing
 
     # 3) Fallbacks for common arithmetic names (always coherent)
     op = _infer_simple_op(code_snippet) or func_name.lower()
     fn = func_name
     if fn == "add":
-        return "# origin: fallback\n" + "def test_add(): assert add(3, 4) == 7; assert add(-2, 5) == 3"
+        return "def test_add(): assert add(3, 4) == 7; assert add(-2, 5) == 3"
     if fn == "subtract":
-        return "# origin: fallback\n" + "def test_subtract(): assert subtract(5, 3) == 2; assert subtract(-2, -3) == 1"
+        return "def test_subtract(): assert subtract(5, 3) == 2; assert subtract(-2, -3) == 1"
     if fn == "multiply":
-        return "# origin: fallback\n" + "def test_multiply(): assert multiply(2, 3) == 6; assert multiply(-1, 5) == -5"
+        return "def test_multiply(): assert multiply(2, 3) == 6; assert multiply(-1, 5) == -5"
     if fn == "divide":
-        return "# origin: fallback\n" + "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
+        return "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
     if fn == "power":
-        return "# origin: fallback\n" + "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
+        return "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
 
     # --- Non-arithmetic Tier-1 fallbacks ---
     if fn == "count_vowels":
-        return "# origin: fallback\n" + (
+        return (
             "def test_count_vowels():\n"
             "   assert count_vowels('hello') == 2\n"
             "   assert count_vowels('bcd') == 0\n"
@@ -1545,7 +1545,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_even":
-        return "# origin: fallback\n" + (
+        return (
             "def test_is_even():\n"
             "   assert is_even(2) == True\n"
             "   assert is_even(3) == False\n"
@@ -1553,7 +1553,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_odd":
-        return "# origin: fallback\n" + (
+        return (
             "def test_is_odd():\n"
             "   assert is_odd(2) == False\n"
             "   assert is_odd(3) == True\n"
@@ -1561,7 +1561,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_lower":
-        return "# origin: fallback\n" + (
+        return (
             "def test_is_lower():\n"
             "   assert is_lower('hello') == True\n"
             "   assert is_lower('Hello') == False\n"
@@ -1569,7 +1569,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_upper":
-        return "# origin: fallback\n" + (
+        return (
             "def test_is_upper():\n"
             "   assert is_upper('HELLO') == True\n"
             "   assert is_upper('Hello') == False\n"
@@ -1577,28 +1577,28 @@ def generate_test_from_code(
         )
 
     if fn == "is_palindrome":
-        return "# origin: fallback\n" + (
+        return (
             "def test_is_palindrome():\n"
             "   assert is_palindrome('racecar') == True\n"
             "   assert is_palindrome('python') == False\n"
         )
 
     if fn == "reverse_string":
-        return "# origin: fallback\n" + (
+        return (
             "def test_reverse_string():\n"
             "   assert reverse_string('abc') == 'cba'\n"
             "   assert reverse_string('') == ''\n"
         )
 
     if fn == "remove_duplicates":
-        return "# origin: fallback\n" + (
+        return (
             "def test_remove_duplicates():\n"
             "   assert remove_duplicates([1,1,2,3,2]) == [1,2,3]\n"
             "   assert remove_duplicates([]) == []\n"
         )
 
     if fn == "is_anagram":
-        return "# origin: fallback\n" + (
+        return (
             "def test_is_anagram():\n"
             "   assert is_anagram('listen','silent') == True\n"
             "   assert is_anagram('rat','car') == False\n"
@@ -1607,7 +1607,7 @@ def generate_test_from_code(
         # --- Non-arithmetic Tier-2 fallbacks (string utilities) ---
 
     if fn == "reverse_words":
-        return "# origin: fallback\n" + (
+        return (
             "def test_reverse_words():\n"
             "    assert reverse_words('hello world') == 'world hello'\n"
             "    assert reverse_words('a b c') == 'c b a'\n"
@@ -1615,21 +1615,21 @@ def generate_test_from_code(
         )
 
     if fn == "normalize_whitespace":
-        return "# origin: fallback\n" + (
+        return (
             "def test_normalize_whitespace():\n"
             "    assert normalize_whitespace('  hello   world  ') == 'hello world'\n"
             "    assert normalize_whitespace('\\tfoo  bar\\n') == 'foo bar'\n"
         )
 
     if fn == "strip_punctuation":
-        return "# origin: fallback\n" + (
+        return (
             "def test_strip_punctuation():\n"
             "    assert strip_punctuation('Hello, world!') == 'Hello world'\n"
             "    assert strip_punctuation('Good-morning!!!') == 'Goodmorning'\n"
         )
 
     if fn == "count_uppercase":
-        return "# origin: fallback\n" + (
+        return (
             "def test_count_uppercase():\n"
             "    assert count_uppercase('Hello World') == 2\n"
             "    assert count_uppercase('no caps') == 0\n"
@@ -1639,7 +1639,7 @@ def generate_test_from_code(
         )
 
     if fn == "strip_numbers":
-        return "# origin: fallback\n" + (
+        return (
             "def test_strip_numbers():\n"
             "    assert strip_numbers('abc123') == 'abc'\n"
             "    assert strip_numbers('no digits') == 'no digits'\n"
@@ -1647,7 +1647,7 @@ def generate_test_from_code(
         )
 
     if fn == "replace_substring":
-        return "# origin: fallback\n" + (
+        return (
             "def test_replace_substring():\n"
             "    assert replace_substring('hello world', 'world', 'there') == 'hello there'\n"
             "    assert replace_substring('abcabc', 'a', 'x') == 'xbcxbc'\n"
@@ -1655,7 +1655,7 @@ def generate_test_from_code(
         )
 
     if fn == "remove_vowels":
-        return "# origin: fallback\n" + (
+        return (
             "def test_remove_vowels():\n"
             "    assert remove_vowels('hello') == 'hll'\n"
             "    assert remove_vowels('AEIOU') == ''\n"
@@ -1663,18 +1663,18 @@ def generate_test_from_code(
         )
 
     if op == "add":
-        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
+        return f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
     if op == "subtract":
-        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(5, 3) == 2; assert {fn}(-2, -3) == 1"
+        return f"def test_{fn}(): assert {fn}(5, 3) == 2; assert {fn}(-2, -3) == 1"
     if op == "multiply":
-        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(2, 3) == 6; assert {fn}(-1, 5) == -5"
+        return f"def test_{fn}(): assert {fn}(2, 3) == 6; assert {fn}(-1, 5) == -5"
     if op == "divide" or fn == "divide":
-        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(6, 3) == 2; assert {fn}(-8, 4) == -2"
+        return f"def test_{fn}(): assert {fn}(6, 3) == 2; assert {fn}(-8, 4) == -2"
     if op == "power":
-        return "# origin: fallback\n" + f"def test_{fn}(): assert {fn}(2, 3) == 8; assert {fn}(3, 0) == 1"
+        return f"def test_{fn}(): assert {fn}(2, 3) == 8; assert {fn}(3, 0) == 1"
 
     # Worst-case: valid test shell (avoid wrong asserts)
-    return "# origin: fallback\n" + f"def test_{fn}():\n    # model could not produce a valid passing test yet\n    assert callable({fn})\n"
+    return f"def test_{fn}():\n    # model could not produce a valid passing test yet\n    assert callable({fn})\n"
 
 
 # -----------------------------
