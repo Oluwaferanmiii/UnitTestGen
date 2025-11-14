@@ -7,6 +7,7 @@ User = get_user_model()
 class TestSession(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='test_sessions')
+    title = models.CharField(max_length=120, blank=True, default="New Session")
     uploaded_code = models.FileField(
         upload_to='uploaded_code/', blank=True, null=True)
     pasted_code = models.TextField(blank=True, null=True)

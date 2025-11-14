@@ -19,6 +19,7 @@ class TestSessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestSession
         fields = ['id', 'user',
+                  "title",
                   'uploaded_code', 'pasted_code', 'generated_tests',
                   'notes', 'created_at', 'updated_at',
                   'item_limit',

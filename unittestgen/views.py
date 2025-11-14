@@ -16,19 +16,16 @@ from .serializers import (
     RegisterSerializer,
 )
 from .ai.codet5_engine import generate_test_from_code
+
 import ast
+import re
+from pathlib import Path
+from django.utils import timezone
 
 
 # -----------------------------
 # Auth
 # -----------------------------
-
-def _client_key(request, username):
-    fwd = request.META.get("HTTP_X_FORWARDED_FOR")
-    ip = (fwd.split(",")[0].strip()
-          if fwd else request.META.get("REMOTE_ADDR", "0"))
-    return f"login:{(username or '').lower().strip()}:{ip}"
-
 
 class ThrottledTokenObtainPairView(TokenObtainPairView):
     ATTEMPTS = 5          # max wrong attempts
@@ -90,6 +87,70 @@ class RegisterView(APIView):
                 status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# -----------------------------
+# Session title helpers
+# -----------------------------
+
+def infer_title_from_code(code: str) -> str | None:
+    """
+    Try to infer a short, nice session title from the user's source code.
+    E.g. "Tests for is_palindrome()" or "add(), subtract()"
+    """
+    fnames = []
+
+    # 1) Try AST parsing
+    try:
+        tree = ast.parse(code)
+        fnames = [n.name for n in tree.body if isinstance(n, ast.FunctionDef)]
+    except Exception:
+        fnames = []
+
+    # 2) Fallback to a quick regex if AST failed / found nothing
+    if not fnames:
+        m = re.search(r"def\s+(\w+)\s*\(", code)
+        if m:
+            fnames = [m.group(1)]
+
+    if not fnames:
+        return None
+
+    if len(fnames) == 1:
+        return f"Tests for {fnames[0]}()"
+    if len(fnames) <= 3:
+        return ", ".join(f"{n}()" for n in fnames)
+    return f"{fnames[0]}() + {len(fnames) - 1} more"
+
+
+def maybe_set_session_title(session: TestSession, *, source_code: str | None, uploaded_file):
+    """
+    Set an auto title for a session, but only if it doesn't already have one.
+    Priority:
+      1) Function name(s) from code
+      2) Uploaded filename
+      3) Timestamp-based fallback
+    """
+    if session.title:   # already named (auto or user-renamed)
+        return
+
+    title = None
+
+    # 1) Use source code if available
+    if source_code:
+        title = infer_title_from_code(source_code)
+
+    # 2) Fallback to filename if upload used
+    if not title and uploaded_file:
+        stem = Path(uploaded_file.name).stem
+        title = f"{stem}.py tests"
+
+    # 3) Ultimate fallback: timestamp-y session label
+    if not title:
+        title = timezone.now().strftime("Session – %d %b %H:%M")
+
+    session.title = title
+    session.save(update_fields=["title"])
 
 
 # -----------------------------
@@ -207,6 +268,14 @@ class CreateTestItemView(APIView):
             meta={"origin": "generate", "strategy": "beam"},
         )
 
+        # 🔥 Only auto-title the FIRST time this session gets an item
+        if session.items.count() == 1:
+            maybe_set_session_title(
+                session,
+                source_code=raw_code,
+                uploaded_file=uploaded_file,
+            )
+
         return Response(TestItemSerializer(item).data, status=status.HTTP_201_CREATED)
 
 
@@ -287,8 +356,6 @@ class RegenerateTestView(APIView):
 
 # -----------------------------
 # Legacy single-shot endpoint (OPTIONAL)
-# Keeps backward compatibility for earlier tests (create session + generate immediately)
-# You can remove this later from urls.py if you go all-in on the new flow.
 # -----------------------------
 
 class CreateTestSessionView(generics.CreateAPIView):
@@ -331,7 +398,6 @@ class CreateTestSessionView(generics.CreateAPIView):
 
 # -----------------------------
 # (Optional) User-focused list/detail for legacy compatibility
-# If you keep using them elsewhere, they’re harmless alongside the new views.
 # -----------------------------
 
 class UserTestSessionListView(generics.ListAPIView):
@@ -352,4 +418,6 @@ class UserTestSessionDetailView(generics.RetrieveAPIView):
     serializer_class = TestSessionSerializer
 
     def get_queryset(self):
-        return TestSession.objects.filter(user=self.request.user).prefetch_related("items")
+        return TestSession.objects.filter(
+            user=self.request.user
+        ).prefetch_related("items")

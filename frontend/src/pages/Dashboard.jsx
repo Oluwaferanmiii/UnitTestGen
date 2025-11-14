@@ -226,6 +226,10 @@ export default function Dashboard() {
     (a, b) => new Date(b.created_at) - new Date(a.created_at)
   );
 
+  const activeTitle =
+  activeSessionQ.data?.title ||
+  (activeId ? `Session #${activeId}` : "Session Title");
+
   // ---------------- Render ----------------
   return (
     <div
@@ -373,7 +377,7 @@ export default function Dashboard() {
               alignItems: "center",
             }}
           >
-            <h2 style={{ margin: 0 }}>Session Title</h2>
+            <h2 style={{ margin: 0 }}>{activeTitle}</h2>
             <button
               onClick={() => {
                 logout();
