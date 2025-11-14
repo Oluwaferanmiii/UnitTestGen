@@ -268,11 +268,12 @@ export default function Dashboard() {
   return (
     <div
       style={{
-        minHeight: "100vh",
+        height: "100vh",
         display: "grid",
         gridTemplateColumns: "320px 1fr",
         background: "linear-gradient(120deg,#0b0b0c 55%, #1a1040 100%)",
         color: "#fff",
+        overflow: "hidden",
       }}
     >
       {/* Sidebar */}
@@ -282,6 +283,8 @@ export default function Dashboard() {
           padding: 16,
           background:
             "linear-gradient(rgba(10,10,11,.98) 0%, rgba(12,8,24,.98) 100%)",
+          height: "100vh", 
+          overflowY: "auto", 
         }}
       >
         <div style={{ marginBottom: 12 }}>
@@ -419,7 +422,12 @@ export default function Dashboard() {
       </aside>
 
       {/* Main */}
-      <main style={{ padding: 20 }}>
+      <main style={{ 
+        padding: 20,
+        height: "100vh",
+        overflowY: "auto",
+        boxSizing: "border-box",
+        }}>
         {/* Header */}
         <header style={{ marginBottom: 16 }}>
           <div
