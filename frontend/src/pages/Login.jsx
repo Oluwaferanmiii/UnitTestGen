@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../api/auth";
 import Logo from "../components/Logo";
@@ -7,15 +7,24 @@ import Btn from "../components/Btn";
 export default function Login() {
   const nav = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
+  const [remember, setRemember] = useState(true);
   const [err, setErr] = useState("");
+  const [info, setInfo] = useState(""); 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("sessionExpired") === "1") {
+      setInfo("Session expired, please log in again.");
+      sessionStorage.removeItem("sessionExpired");
+    }
+  }, []);
 
   async function onSubmit(e) {
     e.preventDefault();
     setErr("");
     setLoading(true);
     try {
-      await login(form.username, form.password);
+      await login(form.username, form.password, remember);
       nav("/dashboard", { replace: true });
     } catch(e) {
       console.error("login error:", e);
@@ -81,6 +90,27 @@ export default function Login() {
               fontSize: "16px",
             }}
           />
+          {/* Remember me */}
+          <label
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              fontSize: 14,
+              opacity: 0.9,
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+            />
+            <span>Remember me on this device</span>
+          </label>
+
+          {err && (
+            <div style={{ color: "#f87171", fontSize: 14 }}>{err}</div>
+          )}
 
           {/* Legacy/Unused Code */}
           {/* Forgot Password */}
@@ -92,8 +122,9 @@ export default function Login() {
               Forgot Password?
             </Link>
           </div> */}
-
-          {err && <div style={{ color: "#f87171" }}>{err}</div>}
+          {info && (
+            <div style={{ color: "#e5e7eb", fontSize: 14 }}>{info}</div>
+          )}
 
           {/* Purple button (matches Figma) */}
           <Btn

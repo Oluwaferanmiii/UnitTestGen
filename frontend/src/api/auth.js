@@ -1,5 +1,23 @@
 import client from "./client";
 
+function getStorageWithToken() {
+  if (sessionStorage.getItem("access")) return sessionStorage;
+  if (localStorage.getItem("access")) return localStorage;
+  return null;
+}
+
+export function getAccessToken() {
+  const store = getStorageWithToken();
+  return store ? store.getItem("access") : null;
+}
+
+export function clearTokens() {
+  localStorage.removeItem("access");
+  localStorage.removeItem("refresh");
+  sessionStorage.removeItem("access");
+  sessionStorage.removeItem("refresh");
+}
+
 function extractErr(error) {
   const d = error?.response?.data;
   if (!d) return "Network error, try again.";
@@ -18,14 +36,23 @@ function extractErr(error) {
   return "Something went wrong. Please try again.";
 }
 
-export async function login(username, password) {
+export async function login(username, password, rememberMe = false) {
   try {
     const { data } = await client.post("/token/", { username, password });
-    localStorage.setItem("access", data.access);
-    localStorage.setItem("refresh", data.refresh);
+
+    const store = rememberMe ? localStorage : sessionStorage;
+
+    // Clear both first, then set in the chosen one
+    clearTokens();
+    store.setItem("access", data.access);
+    store.setItem("refresh", data.refresh);
+
+    // Optional: remember flag (not strictly required but nice to have)
+    store.setItem("remember_me", rememberMe ? "1" : "0");
+
     return data;
   } catch (e) {
-    throw new Error(extractErr(e));   // 🔴 important
+    throw new Error(extractErr(e)); // 🔴 important
   }
 }
 
@@ -39,6 +66,5 @@ export async function register(payload) {
 }
 
 export function logout() {
-  localStorage.removeItem("access");
-  localStorage.removeItem("refresh");
+  clearTokens();
 }
