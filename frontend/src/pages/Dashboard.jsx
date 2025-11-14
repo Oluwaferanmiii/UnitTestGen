@@ -29,6 +29,7 @@ export default function Dashboard() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [copiedId, setCopiedId] = useState(null);
 
   // ---------------- Data fetch ----------------
   const sessionsQ = useQuery({
@@ -132,6 +133,52 @@ export default function Dashboard() {
   });
 
   // ---------------- Handlers ----------------
+  async function handleCopyTests(text, itemId) {
+    if (!text) return;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // Fallback
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      setCopiedId(itemId);
+      setTimeout(() => setCopiedId(null), 1000); // show "Copied" for 1s
+    } catch (err) {
+      console.error("Copy failed", err);
+      setToast("Failed to copy tests.");
+      setTimeout(() => setToast(""), 1500);
+    }
+  }
+
+  function handleDownloadTests(text, itemId) {
+    if (!text) return;
+
+    // Attempt to extract test function name
+    let filename = `tests_item_${itemId}.py`;  // fallback
+
+    const match = text.match(/def\s+(test_[a-zA-Z0-9_]+)\s*\(/);
+    if (match && match[1]) {
+      filename = `${match[1]}.py`;
+    }
+
+    const blob = new Blob([text], { type: "text/x-python;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
   function validateAndSetFile(f) {
     setFileErr("");
 
@@ -567,20 +614,77 @@ export default function Dashboard() {
                     />
                   </>
                 )}
-                <div style={{ opacity: 0.8, marginBottom: 6 }}>
-                  Generated tests:
-                </div>
-                <pre
-                  style={{
-                    margin: 0,
-                    whiteSpace: "pre-wrap",
-                    fontFamily:
-                      "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    fontSize: 13,
-                  }}
-                >
-                  {it.generated_tests || "# (empty)"}
-                </pre>
+                  {/* Header row for Generated tests + actions */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: 6,
+                    }}
+                  >
+                    <div style={{ opacity: 0.8 }}>Generated tests:</div>
+
+                    <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                      {/* Copy button */}
+                      <button
+                        type="button"
+                        onClick={() => handleCopyTests(it.generated_tests, it.id)}
+                        style={{
+                          border: "none",
+                          background: "transparent",
+                          cursor: "pointer",
+                          padding: 4,
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 4,
+                        }}
+                        title="Copy tests to clipboard"
+                      >
+                        {copiedId === it.id ? (
+                          <span style={{ fontSize: 12, color: "#a7f3d0" }}>Copied</span>
+                        ) : (
+                          <img
+                            src="/copy.svg"
+                            alt="Copy"
+                            style={{ width: 16, height: 16 }}
+                          />
+                        )}
+                      </button>
+
+                      {/* Download button */}
+                      <button
+                        type="button"
+                        onClick={() => handleDownloadTests(it.generated_tests, it.id)}
+                        style={{
+                          border: "none",
+                          background: "transparent",
+                          cursor: "pointer",
+                          padding: 4,
+                        }}
+                        title="Download tests as .py"
+                      >
+                        <img
+                          src="/download.svg" 
+                          alt="Download"
+                          style={{ width: 16, height: 16 }}
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Actual test code */}
+                  <pre
+                    style={{
+                      margin: 0,
+                      whiteSpace: "pre-wrap",
+                      fontFamily:
+                        "ui-monospace, SFMono-Regular, Menlo, monospace",
+                      fontSize: 13,
+                    }}
+                  >
+                    {it.generated_tests || "# (empty)"}
+                  </pre>
               </div>
             ))}
           </div>
