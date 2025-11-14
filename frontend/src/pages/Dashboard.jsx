@@ -110,21 +110,34 @@ export default function Dashboard() {
       }
     },
     onError: (e) => {
-      setToast(
-        typeof e?.message === "string" ? e.message : "Generation failed."
-      );
+      const data = e?.response?.data;
+      let msg =
+        (data && (data.error || data.detail)) ||
+        e?.message ||
+        "Generation failed.";
+
+      setToast(msg);
       setTimeout(() => setToast(""), 1800);
     },
   });
 
+  const isGenerating = addItemMut.isPending; 
+
   const deleteMut = useMutation({
     mutationFn: deleteSession,
     onSuccess: (_data, deletedId) => {
+      // Get current sessions from cache (before invalidation)
+      const current = qc.getQueryData(["sessions"]) || [];
+      const remaining = current.filter((s) => s.id !== deletedId);
+
+      // Immediately update the cache so the sidebar stays in sync
+      qc.setQueryData(["sessions"], remaining);
       qc.invalidateQueries({ queryKey: ["sessions"] });
 
-      // If deleting active session → clear active
+      // If we just deleted the active session, move to next one (if any)
       if (deletedId === activeId) {
-        setActiveId(null);
+        const next = remaining.length ? remaining[0].id : null;
+        setActiveId(next);
       }
 
       setToast("Session deleted.");
@@ -241,9 +254,11 @@ export default function Dashboard() {
 
   const sessions = useMemo(() => sessionsQ.data ?? [], [sessionsQ.data]);
 
-  const activeItems = [...(activeSessionQ.data?.items ?? [])].sort(
-    (a, b) => new Date(b.created_at) - new Date(a.created_at)
-  );
+  const activeItems = activeId
+    ? [...(activeSessionQ.data?.items ?? [])].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      )
+    : [];
 
   const activeTitle =
   activeSessionQ.data?.title ||
@@ -503,15 +518,16 @@ export default function Dashboard() {
                 style={{
                   padding: "12px 18px",
                   borderRadius: 12,
-                  background: "#5B32A4",
+                  background: isGenerating ? "#4a278a" : "#5B32A4",
                   color: "#fff",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: isGenerating ? "wait" : "pointer",
+                  opacity: isGenerating ? 0.85 : 1,
                   alignSelf: "flex-start",
                 }}
-                disabled={addItemMut.isLoading || !activeId}
+                disabled={isGenerating  || !activeId}
               >
-                {addItemMut.isLoading ? "Generating…" : "Generate"}
+                {isGenerating ? "Generating…" : "Generate"}
               </button>
             </form>
           )}
@@ -599,15 +615,16 @@ export default function Dashboard() {
                 style={{
                   padding: "10px 16px",
                   borderRadius: 12,
-                  background: "#5B32A4",
+                  background: isGenerating ? "#4a278a" : "#5B32A4",
                   color: "#fff",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: isGenerating ? "wait" : "pointer",
+                  opacity: isGenerating ? 0.85 : 1,
                   whiteSpace: "nowrap",
                 }}
-                disabled={addItemMut.isLoading || !activeId}
+                disabled={isGenerating || !activeId}
               >
-                {addItemMut.isLoading ? "Uploading…" : "Generate"}
+                {isGenerating ? "Generating…" : "Generate"}
               </button>
             </form>
           )}

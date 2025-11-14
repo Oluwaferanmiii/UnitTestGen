@@ -213,7 +213,8 @@ class CreateTestItemView(APIView):
 
     def post(self, request, session_id: int):
         session = get_object_or_404(
-            TestSession, id=session_id, user=request.user)
+            TestSession, id=session_id, user=request.user
+        )
 
         # Enforce per-session limit (optional)
         if session.items.count() >= session.item_limit:
@@ -268,20 +269,53 @@ class CreateTestItemView(APIView):
             meta={"origin": "generate", "strategy": "beam"},
         )
 
-        # 🔥 Only auto-title the FIRST time this session gets an item
-        if session.items.count() == 1:
-            maybe_set_session_title(
-                session,
-                source_code=raw_code,
-                uploaded_file=uploaded_file,
-            )
+        # ---------- Auto-name session on first useful generation ----------
+        current_title = (session.title or "").strip()
 
-        return Response(TestItemSerializer(item).data, status=status.HTTP_201_CREATED)
+        # Titles we treat as "default-ish" regardless of exact casing
+        default_titles = {
+            "",
+            "new session",
+            f"session #{session.id}",
+            f"session {session.id}",
+        }
 
+        if current_title.lower() in default_titles:
+            func_name = None
+
+            # 1) Try to infer from user code: first non-test def
+            for line in raw_code.splitlines():
+                t = line.strip()
+                if t.startswith("def ") and "(" in t and not t.startswith("def test_"):
+                    func_name = t[4: t.index("(")].strip()
+                    break
+
+            # 2) Fallback: infer from generated tests (def test_xxx)
+            if not func_name:
+                for line in test_output.splitlines():
+                    t = line.strip()
+                    if t.startswith("def test_") and "(" in t:
+                        # e.g. "test_is_palindrome"
+                        name = t[4: t.index("(")].strip()
+                        if name.startswith("test_"):
+                            name = name[5:]  # -> "is_palindrome"
+                        func_name = name
+                        break
+
+            if func_name:
+                session.title = f"Tests for {func_name}()"
+                session.save(update_fields=["title"])
+
+        # -----------------------------------------------------------------
+
+        return Response(
+            TestItemSerializer(item).data, status=status.HTTP_201_CREATED
+        )
 
 # -----------------------------
 # Regenerate (sampling; newest item by default)
 # -----------------------------
+
 
 class RegenerateTestView(APIView):
     """
