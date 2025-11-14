@@ -28,6 +28,7 @@ export default function Dashboard() {
   const [menuOpenId, setMenuOpenId] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   // ---------------- Data fetch ----------------
   const sessionsQ = useQuery({
@@ -131,24 +132,32 @@ export default function Dashboard() {
   });
 
   // ---------------- Handlers ----------------
-  function handleFileChange(e) {
+  function validateAndSetFile(f) {
     setFileErr("");
-    const f = e.target.files?.[0];
+
     if (!f) {
       setFile(null);
       return;
     }
+
     if (!f.name.endsWith(".py")) {
       setFileErr("Only .py files are allowed.");
       setFile(null);
       return;
     }
+
     if (f.size > 512 * 1024) {
       setFileErr("File is too large (max 512 KB).");
       setFile(null);
       return;
     }
+
     setFile(f);
+  }
+
+  function handleFileChange(e) {
+    const f = e.target.files?.[0];
+    validateAndSetFile(f);
   }
 
   // History row style helper
@@ -419,7 +428,6 @@ export default function Dashboard() {
             </form>
           )}
 
-          {/* Upload mode */}
           {mode === "upload" && (
             <form
               onSubmit={(e) => {
@@ -435,19 +443,69 @@ export default function Dashboard() {
                 display: "flex",
                 gap: 12,
                 alignItems: "center",
-                background: "#0b0b0c",
-                border: "1px solid rgba(255,255,255,.2)",
-                borderRadius: 12,
-                padding: 12,
               }}
             >
+              {/* Dropzone / clickable area */}
+              <div
+                onClick={() => {
+                  if (fileRef.current) fileRef.current.click();
+                }}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsDragging(true);
+                }}
+                onDragLeave={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsDragging(false);
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsDragging(false);
+
+                  let f =
+                    (e.dataTransfer.files && e.dataTransfer.files[0]) ||
+                    (e.dataTransfer.items &&
+                      e.dataTransfer.items[0]?.kind === "file" &&
+                      e.dataTransfer.items[0].getAsFile());
+
+                  if (f) {
+                    validateAndSetFile(f);
+                  }
+                }}
+                style={{
+                  flex: 1,
+                  padding: 12,
+                  borderRadius: 12,
+                  background: isDragging ? "#111827" : "#0b0b0c",
+                  border: isDragging
+                    ? "1px dashed rgba(255,255,255,.6)"
+                    : "1px solid rgba(255,255,255,.2)",
+                  transition: "background 120ms ease, border 120ms ease",
+                  cursor: "pointer",
+                  fontSize: 14,
+                  color: "#e5e5e5",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span>
+                  {file ? `Selected file: ${file.name}` : "Drop .py file here or click to choose"}
+                </span>
+              </div>
+
+              {/* Hidden native input, still used for click-to-select */}
               <input
                 ref={fileRef}
                 type="file"
                 accept=".py"
                 onChange={handleFileChange}
-                style={{ color: "#fff" }}
+                style={{ display: "none" }}
               />
+
               <button
                 type="submit"
                 style={{
@@ -457,6 +515,7 @@ export default function Dashboard() {
                   color: "#fff",
                   border: "none",
                   cursor: "pointer",
+                  whiteSpace: "nowrap",
                 }}
                 disabled={addItemMut.isLoading || !activeId}
               >
