@@ -7,7 +7,8 @@ import {
   listSessions,
   createSession,
   getSession,
-  deleteSession,          // ✅ import deleteSession
+  deleteSession, 
+  updateSession,
 } from "../api/sessions";
 import { addItem } from "../api/items";
 import Logo from "../components/Logo";
@@ -30,6 +31,9 @@ export default function Dashboard() {
   const [deleteId, setDeleteId] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
+  const [showRenameModal, setShowRenameModal] = useState(false);
+  const [renameId, setRenameId] = useState(null);
+  const [renameValue, setRenameValue] = useState("");
 
   // ---------------- Data fetch ----------------
   const sessionsQ = useQuery({
@@ -128,6 +132,21 @@ export default function Dashboard() {
     },
     onError: () => {
       setToast("Failed to delete session.");
+      setTimeout(() => setToast(""), 1500);
+    },
+  });
+
+  const renameMut = useMutation({
+    mutationFn: ({ id, title }) => updateSession(id, { title }),
+    onSuccess: (_data, vars) => {
+      qc.invalidateQueries({ queryKey: ["sessions"] });
+      qc.invalidateQueries({ queryKey: ["session", vars.id] });
+
+      setToast("Session renamed.");
+      setTimeout(() => setToast(""), 1200);
+    },
+    onError: () => {
+      setToast("Failed to rename session.");
       setTimeout(() => setToast(""), 1500);
     },
   });
@@ -337,9 +356,27 @@ export default function Dashboard() {
                     padding: "6px 10px",
                     borderRadius: 8,
                     zIndex: 50,
-                    width: 120,
+                    width: 140,
                   }}
                 >
+                  <div
+                    onClick={() => {
+                      setMenuOpenId(null);
+                      setRenameId(s.id);
+                      setRenameValue(s.title || "New Session");
+                      setShowRenameModal(true);
+                    }}
+                    style={{
+                      padding: "6px 6px",
+                      cursor: "pointer",
+                      color: "#e5e7eb",
+                      borderBottom: "1px solid rgba(255,255,255,.12)",
+                      marginBottom: 4,
+                    }}
+                  >
+                    Rename
+                  </div>
+
                   <div
                     onClick={() => {
                       setMenuOpenId(null);
@@ -727,6 +764,102 @@ export default function Dashboard() {
           </div>
         )}
       </main>
+
+      {/* Rename modal */}
+      {showRenameModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.55)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 210,
+          }}
+          onClick={() => setShowRenameModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "rgba(20,20,25,1)",
+              padding: 24,
+              borderRadius: 12,
+              width: 380,
+              border: "1px solid rgba(255,255,255,.12)",
+            }}
+          >
+            <h3 style={{ marginTop: 0, marginBottom: 12 }}>
+              Rename session
+            </h3>
+
+            <label style={{ fontSize: 14, opacity: 0.9 }}>
+              New title
+            </label>
+            <input
+              type="text"
+              value={renameValue}
+              onChange={(e) => setRenameValue(e.target.value)}
+              style={{
+                marginTop: 6,
+                width: "100%",
+                padding: "8px 10px",
+                borderRadius: 8,
+                border: "1px solid rgba(255,255,255,.25)",
+                background: "rgba(15,15,20,1)",
+                color: "#fff",
+                fontSize: 14,
+              }}
+              maxLength={120}
+            />
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: 10,
+                marginTop: 18,
+              }}
+            >
+              <button
+                style={{
+                  padding: "8px 14px",
+                  borderRadius: 8,
+                  border: "1px solid rgba(255,255,255,.25)",
+                  background: "transparent",
+                  color: "#fff",
+                  cursor: "pointer",
+                }}
+                onClick={() => setShowRenameModal(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                style={{
+                  padding: "8px 14px",
+                  borderRadius: 8,
+                  background: "#6366f1",
+                  color: "#fff",
+                  border: "none",
+                  cursor: "pointer",
+                  opacity: renameMut.isLoading ? 0.7 : 1,
+                }}
+                disabled={renameMut.isLoading}
+                onClick={() => {
+                  const trimmed = renameValue.trim() || "New Session";
+                  if (!renameId) return;
+
+                  renameMut.mutate({ id: renameId, title: trimmed });
+                  setShowRenameModal(false);
+                }}
+              >
+                {renameMut.isLoading ? "Saving…" : "Save"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Delete modal */}
       {showDeleteModal && (
