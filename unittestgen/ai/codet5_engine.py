@@ -93,6 +93,12 @@ def _extract_function_name(code_snippet: str) -> str:
     return "generated"
 
 
+def _ensure_pytest_import(txt: str) -> str:
+    if "import pytest" not in txt:
+        return "import pytest\n\n" + txt
+    return txt
+
+
 def _is_number(x: Any) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool)
 
@@ -581,6 +587,10 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
 
     func_name = _extract_function_name(func_src)
 
+    lines = test_src.splitlines()
+    lines = [ln for ln in lines if not ln.strip().startswith("import pytest")]
+    test_src = "\n".join(lines)
+
     # --- Structural pre-checks (unchanged behavior) ---
     num_asserts = _count_asserts(test_src)
     if num_asserts < 1 or num_asserts > 12:
@@ -987,6 +997,7 @@ def _decode_and_clean(tokenizer, seq_ids, func_name: str, *, func_src: str = "")
 
     # Final safety cleanup
     txt = _sanitize_test_src(txt, func_name)
+    txt = _ensure_pytest_import(txt)
     return txt
 
 
@@ -1436,13 +1447,13 @@ def generate_test_from_code(
     # decoding size
     max_new_tokens: int = 240,
     # candidate budgets
-    beam_candidates: int = 6,
+    beam_candidates: int = 4,
     sample_candidates: int = 12,
     # beam params
-    num_beams: int = 6,
+    num_beams: int = 4,
     # sampling params
-    temperature: float = 0.75,
-    top_k: int = 80,
+    temperature: float = 0.85,
+    top_k: int = 100,
 ) -> str:
     """
     Generate a PyTest-style unit test and validate it automatically.
@@ -1484,7 +1495,7 @@ def generate_test_from_code(
                 temperature=max(0.1, float(temperature)),
                 top_k=max(0, int(top_k)),
                 top_p=(0.92),
-                num_beams=1,
+                num_beams=4,
                 num_return_sequences=1,
             )
         txt = _decode_and_clean(tokenizer, raw[0], func_name)
@@ -1503,7 +1514,7 @@ def generate_test_from_code(
         num_beams=max(1, int(num_beams)),
     )
     if passing:
-        return passing
+        return "# Origin: Beams \n" + passing
 
     # 2) Sampling for diversity
     passing = _try_candidates(
@@ -1519,25 +1530,35 @@ def generate_test_from_code(
         top_k=top_k,
     )
     if passing:
-        return passing
+        return "# Origin : sampling \n" + passing
 
     # 3) Fallbacks for common arithmetic names (always coherent)
     op = _infer_simple_op(code_snippet) or func_name.lower()
     fn = func_name
     if fn == "add":
-        return "def test_add(): assert add(3, 4) == 7; assert add(-2, 5) == 3"
+        return _ensure_pytest_import("def test_add():\n"
+                                     "assert add(3, 4) == 7;\n"
+                                     "assert add(-2, 5) == 3\n")
     if fn == "subtract":
-        return "def test_subtract(): assert subtract(5, 3) == 2; assert subtract(-2, -3) == 1"
+        return _ensure_pytest_import("def test_subtract():\n"
+                                     "assert subtract(5, 3) == 2;\n"
+                                     "assert subtract(-2, -3) == 1\n")
     if fn == "multiply":
-        return "def test_multiply(): assert multiply(2, 3) == 6; assert multiply(-1, 5) == -5"
+        return _ensure_pytest_import("def test_multiply():\n"
+                                     "assert multiply(2, 3) == 6;\n"
+                                     "assert multiply(-1, 5) == -5\n")
     if fn == "divide":
-        return "def test_divide(): assert divide(6, 3) == 2; assert divide(-8, 4) == -2"
+        return _ensure_pytest_import("def test_divide():\n"
+                                     "assert divide(6, 3) == 2;\n"
+                                     "assert divide(-8, 4) == -2")
     if fn == "power":
-        return "def test_power(): assert power(2, 3) == 8; assert power(3, 0) == 1"
+        return _ensure_pytest_import("def test_power():\n"
+                                     "assert power(2, 3) == 8;\n"
+                                     "assert power(3, 0) == 1")
 
     # --- Non-arithmetic Tier-1 fallbacks ---
     if fn == "count_vowels":
-        return (
+        return _ensure_pytest_import(
             "def test_count_vowels():\n"
             "   assert count_vowels('hello') == 2\n"
             "   assert count_vowels('bcd') == 0\n"
@@ -1545,7 +1566,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_even":
-        return (
+        return _ensure_pytest_import(
             "def test_is_even():\n"
             "   assert is_even(2) == True\n"
             "   assert is_even(3) == False\n"
@@ -1553,7 +1574,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_odd":
-        return (
+        return _ensure_pytest_import(
             "def test_is_odd():\n"
             "   assert is_odd(2) == False\n"
             "   assert is_odd(3) == True\n"
@@ -1561,7 +1582,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_lower":
-        return (
+        return _ensure_pytest_import(
             "def test_is_lower():\n"
             "   assert is_lower('hello') == True\n"
             "   assert is_lower('Hello') == False\n"
@@ -1569,7 +1590,7 @@ def generate_test_from_code(
         )
 
     if fn == "is_upper":
-        return (
+        return _ensure_pytest_import(
             "def test_is_upper():\n"
             "   assert is_upper('HELLO') == True\n"
             "   assert is_upper('Hello') == False\n"
@@ -1577,28 +1598,36 @@ def generate_test_from_code(
         )
 
     if fn == "is_palindrome":
-        return (
+        return _ensure_pytest_import(
             "def test_is_palindrome():\n"
             "   assert is_palindrome('racecar') == True\n"
             "   assert is_palindrome('python') == False\n"
         )
 
     if fn == "reverse_string":
-        return (
+        return _ensure_pytest_import(
             "def test_reverse_string():\n"
             "   assert reverse_string('abc') == 'cba'\n"
             "   assert reverse_string('') == ''\n"
         )
 
+    if fn == "repeat_string":
+        return _ensure_pytest_import(
+            "def test_repeat_string():\n"
+            "    assert repeat_string('hi', 3) == 'hihihi'\n"
+            "    assert repeat_string('a', 0) == ''\n"
+            "    assert repeat_string('', 5) == ''\n"
+        )
+
     if fn == "remove_duplicates":
-        return (
+        return _ensure_pytest_import(
             "def test_remove_duplicates():\n"
             "   assert remove_duplicates([1,1,2,3,2]) == [1,2,3]\n"
             "   assert remove_duplicates([]) == []\n"
         )
 
     if fn == "is_anagram":
-        return (
+        return _ensure_pytest_import(
             "def test_is_anagram():\n"
             "   assert is_anagram('listen','silent') == True\n"
             "   assert is_anagram('rat','car') == False\n"
@@ -1607,7 +1636,7 @@ def generate_test_from_code(
         # --- Non-arithmetic Tier-2 fallbacks (string utilities) ---
 
     if fn == "reverse_words":
-        return (
+        return _ensure_pytest_import(
             "def test_reverse_words():\n"
             "    assert reverse_words('hello world') == 'world hello'\n"
             "    assert reverse_words('a b c') == 'c b a'\n"
@@ -1615,21 +1644,21 @@ def generate_test_from_code(
         )
 
     if fn == "normalize_whitespace":
-        return (
+        return _ensure_pytest_import(
             "def test_normalize_whitespace():\n"
             "    assert normalize_whitespace('  hello   world  ') == 'hello world'\n"
             "    assert normalize_whitespace('\\tfoo  bar\\n') == 'foo bar'\n"
         )
 
     if fn == "strip_punctuation":
-        return (
+        return _ensure_pytest_import(
             "def test_strip_punctuation():\n"
             "    assert strip_punctuation('Hello, world!') == 'Hello world'\n"
             "    assert strip_punctuation('Good-morning!!!') == 'Goodmorning'\n"
         )
 
     if fn == "count_uppercase":
-        return (
+        return _ensure_pytest_import(
             "def test_count_uppercase():\n"
             "    assert count_uppercase('Hello World') == 2\n"
             "    assert count_uppercase('no caps') == 0\n"
@@ -1639,7 +1668,7 @@ def generate_test_from_code(
         )
 
     if fn == "strip_numbers":
-        return (
+        return _ensure_pytest_import(
             "def test_strip_numbers():\n"
             "    assert strip_numbers('abc123') == 'abc'\n"
             "    assert strip_numbers('no digits') == 'no digits'\n"
@@ -1647,7 +1676,7 @@ def generate_test_from_code(
         )
 
     if fn == "replace_substring":
-        return (
+        return _ensure_pytest_import(
             "def test_replace_substring():\n"
             "    assert replace_substring('hello world', 'world', 'there') == 'hello there'\n"
             "    assert replace_substring('abcabc', 'a', 'x') == 'xbcxbc'\n"
@@ -1655,26 +1684,19 @@ def generate_test_from_code(
         )
 
     if fn == "remove_vowels":
-        return (
+        return _ensure_pytest_import(
             "def test_remove_vowels():\n"
             "    assert remove_vowels('hello') == 'hll'\n"
             "    assert remove_vowels('AEIOU') == ''\n"
             "    assert remove_vowels('xyz') == 'xyz'\n"
         )
 
-    if op == "add":
-        return f"def test_{fn}(): assert {fn}(3, 4) == 7; assert {fn}(-2, 5) == 3"
-    if op == "subtract":
-        return f"def test_{fn}(): assert {fn}(5, 3) == 2; assert {fn}(-2, -3) == 1"
-    if op == "multiply":
-        return f"def test_{fn}(): assert {fn}(2, 3) == 6; assert {fn}(-1, 5) == -5"
-    if op == "divide" or fn == "divide":
-        return f"def test_{fn}(): assert {fn}(6, 3) == 2; assert {fn}(-8, 4) == -2"
-    if op == "power":
-        return f"def test_{fn}(): assert {fn}(2, 3) == 8; assert {fn}(3, 0) == 1"
-
     # Worst-case: valid test shell (avoid wrong asserts)
-    return f"def test_{fn}():\n    # model could not produce a valid passing test yet\n    assert callable({fn})\n"
+    return _ensure_pytest_import(
+        f"def test_{fn}():\n"
+        "    # model could not produce a valid passing test yet\n"
+        f"    assert callable({fn})\n"
+    )
 
 
 # -----------------------------
@@ -1683,7 +1705,7 @@ def generate_test_from_code(
 def generate_test_from_code_validated(
     code_snippet: str,
     *,
-    num_beams: int = 6,
+    num_beams: int = 4,
     max_new_tokens: int = 140,
 ) -> str:
     """Calls the same validated generator; retained for back-compat."""

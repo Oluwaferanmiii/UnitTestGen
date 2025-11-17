@@ -16,7 +16,7 @@ class TestSession(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     notes = models.TextField(blank=True, null=True)
 
-    item_limit = models.PositiveIntegerField(default=20)
+    item_limit = models.PositiveIntegerField(default=50)
 
     def __str__(self):
         return f"Session {self.id} by {self.user.username} on {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"  # pylint: disable = no-member
