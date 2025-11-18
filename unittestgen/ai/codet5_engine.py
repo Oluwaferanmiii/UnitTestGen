@@ -71,21 +71,42 @@ def _load_model_and_tokenizer():
 # -----------------------------
 # Small helpers
 # -----------------------------
+def _extract_function_defs(code_snippet: str) -> list[tuple[str, str]]:
+    """
+    Return a list of (func_name, source_segment) for all top-level
+    non-test functions in the snippet.
+    """
+    try:
+        tree = ast.parse(code_snippet)
+    except SyntaxError:
+        return []
+
+    fn_defs: list[tuple[str, str]] = []
+    for node in tree.body:
+        if isinstance(node, ast.FunctionDef) and not node.name.startswith("test_"):
+            src = ast.get_source_segment(code_snippet, node) or ""
+            fn_defs.append((node.name, src))
+    return fn_defs
+
+
 def _extract_function_name(code_snippet: str) -> str:
     """
-    Extracts a valid function name from a Python source snippet.
-    Handles cases with imports, decorators, comments, or empty lines before def.
-    Returns 'generated' if no function name is found.
+    Extract a function name from the snippet.
+    New logic: if multiple top-level defs exist, return the *first*.
+    Preserves ALL old fallback behaviors.
     """
     if not code_snippet:
         return "generated"
 
-    # Match the first 'def func_name(' in the file, ignoring leading content
+    # NEW: use top-level defs first
+    defs = _extract_function_defs(code_snippet)
+    if defs:
+        return defs[0][0]   # first function in the file
+
     match = re.search(r"\bdef\s+([A-Za-z_][A-Za-z_0-9]*)\s*\(", code_snippet)
     if match:
         return match.group(1).strip()
 
-    # fallback: check if something like 'lambda' or similar patterns exist
     alt = re.search(r"([A-Za-z_][A-Za-z_0-9]*)\s*=", code_snippet)
     if alt:
         return alt.group(1).strip()
@@ -379,10 +400,13 @@ def _find_first_binop(node: ast.AST) -> Optional[str]:
     return None
 
 
-def _infer_simple_op(func_src: str) -> Optional[str]:
+def _infer_simple_op(func_src: str, *, target_name: str | None = None) -> Optional[str]:
     """
-    Inspect a function and infer {'add','subtract','multiply','power','divide'}.
-    Returns None if we cannot confidently infer a single simple arithmetic op.
+    Inspect source and infer {'add','subtract','multiply','power','divide'}.
+
+    If target_name is given, we only analyse the FunctionDef whose name matches
+    target_name. If target_name is None, we fall back to the old behaviour:
+    look at the first function in the module.
     """
     try:
         t = ast.parse(func_src)
@@ -390,26 +414,37 @@ def _infer_simple_op(func_src: str) -> Optional[str]:
         return None
 
     for node in t.body:
-        if isinstance(node, ast.FunctionDef):
-            # Look for a direct return first
-            for stmt in node.body:
-                if isinstance(stmt, ast.Return) and stmt.value is not None:
-                    val = stmt.value
-                    # First, check simple binop / pow call in the return
-                    kind = _find_first_binop(val)
-                    if kind:
-                        return kind
-                    # Also recognize a plain division (we don't oracle-check divide later,
-                    # but we still allow detection)
-                    if isinstance(val, ast.BinOp) and isinstance(val.op, (ast.Div, ast.FloorDiv)):
-                        return "divide"
-                    # Handle trivial IfExp (ternary) where each branch is a simple binop
-                    if isinstance(val, ast.IfExp):
-                        k1 = _find_first_binop(val.body)
-                        k2 = _find_first_binop(val.orelse)
-                        if k1 and k1 == k2:
-                            return k1
+        if not isinstance(node, ast.FunctionDef):
+            continue
+
+        # In multi-function files, skip other functions
+        if target_name is not None and node.name != target_name:
+            continue
+
+        # Look for a direct return first
+        for stmt in node.body:
+            if isinstance(stmt, ast.Return) and stmt.value is not None:
+                val = stmt.value
+                # First, check simple binop / pow call in the return
+                kind = _find_first_binop(val)
+                if kind:
+                    return kind
+                # Also recognize a plain division
+                if isinstance(val, ast.BinOp) and isinstance(
+                    val.op, (ast.Div, ast.FloorDiv)
+                ):
+                    return "divide"
+                # Handle trivial IfExp (ternary) where each branch is a simple binop
+                if isinstance(val, ast.IfExp):
+                    k1 = _find_first_binop(val.body)
+                    k2 = _find_first_binop(val.orelse)
+                    if k1 and k1 == k2:
+                        return k1
+
+        # If we were targeting a specific name, don't look further
+        if target_name is not None:
             break
+
     return None
 # ---------- END: stronger AST-based operation inference ----------
 
@@ -442,7 +477,8 @@ def _arithmetic_oracle(func_name: str, f, *, func_src: Optional[str] = None) -> 
         ],
     }
 
-    inferred = _infer_simple_op(func_src) if func_src else None
+    inferred = _infer_simple_op(
+        func_src, target_name=func_name) if func_src else None
     key = inferred or func_name.lower()
     if key not in table:   # e.g., divide or other custom behavior
         return True
@@ -556,7 +592,7 @@ def _asserts_focus_on_target(test_src: str, func_name: str, *, min_ratio: float 
     return (hits / total) >= min_ratio
 
 
-def _run_test_safely(func_src: str, test_src: str) -> bool:
+def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = None,) -> bool:
     """
     Execute function + test in an isolated namespace.
     Returns True only if:
@@ -585,8 +621,9 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
     func_src = _clean_code(func_src)
     test_src = _clean_code(test_src)
 
-    func_name = _extract_function_name(func_src)
+    target_name = func_name or _extract_function_name(func_src)
 
+    # strip import pytest from the test body
     lines = test_src.splitlines()
     lines = [ln for ln in lines if not ln.strip().startswith("import pytest")]
     test_src = "\n".join(lines)
@@ -597,19 +634,19 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
         _vd(f"reject: bad assert count = {num_asserts}")
         return False
 
-    if not _calls_target(test_src, func_name):
+    if not _calls_target(test_src, target_name):
         _vd("reject: test does not call target")
         return False
 
-    if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
+    if not _asserts_focus_on_target(test_src, target_name, min_ratio=1.0):
         _vd("reject: at least one assert does not reference target")
         return False
 
-    if _has_foreign_calls(test_src, func_name):
+    if _has_foreign_calls(test_src, target_name):
         _vd("reject: foreign user-level calls detected")
         return False
 
-    # --- Syntax precheck to fail clearly before exec ---
+    # --- Syntax precheck ---
     try:
         ast.parse(func_src)
         ast.parse(test_src)
@@ -617,34 +654,27 @@ def _run_test_safely(func_src: str, test_src: str) -> bool:
         _vd(f"reject: syntax precheck failed: {e}")
         return False
 
-    # --- Execute in a fresh namespace (unchanged semantics) ---
-    # Execute in a fresh namespace
+    # --- Execute in a fresh namespace ---
     ns: dict = {}
     try:
-        # define function
-        exec(func_src, ns, ns)  # pylint: disable=exec-used
-
-        # run test (asserts must pass) — execute exactly what the model produced
-        exec(test_src, ns, ns)  # pylint: disable=exec-used
-
-    except Exception as e:  # pylint: disable=broad-exception-caught
+        exec(func_src, ns, ns)   # pylint: disable=exec-used
+        exec(test_src, ns, ns)   # pylint: disable=exec-used
+    except Exception as e:       # pylint: disable=broad-exception-caught
         _vd(f"reject: exec raised: {type(e).__name__}: {e}")
         return False
 
-    # --- Post-exec semantic checks (unchanged) ---
+    # --- Post-exec semantic checks ---
     if not _asserts_semantically_true(ns, test_src):
         _vd("reject: semantic re-check failed")
         return False
 
-    # Semantic oracle for simple arithmetic (skip divide variants)
-    f = ns.get(func_name)
-    if callable(f) and not _arithmetic_oracle(func_name, f, func_src=func_src):
+    f = ns.get(target_name)
+    if callable(f) and not _arithmetic_oracle(target_name, f, func_src=func_src):
         _vd("reject: arithmetic oracle failed")
         return False
 
-    # NaN check on arithmetic outputs for literal calls
-    if func_name.lower() in {"add", "subtract", "multiply", "power"}:
-        for args, _ in _extract_calls_in_test(test_src, func_name):
+    if target_name.lower() in {"add", "subtract", "multiply", "power"}:
+        for args, _ in _extract_calls_in_test(test_src, target_name):
             try:
                 out = f(*args)
             except Exception:   # pylint: disable=broad-exception-caught
@@ -1218,28 +1248,53 @@ _STRING_COUNTER_FEWSHOT = (
 )
 
 
-def _prompt_for(code_snippet: str) -> str:
-    fn = _extract_function_name(code_snippet)
+def _prompt_for(code_snippet: str, func_name: str | None = None) -> str:
+    """
+    Build a prompt for a SINGLE target function.
 
-    # --- Shared base instruction ---
+    - If the file contains multiple functions, we first extract the body of the
+      specific `func_name` and show ONLY that in the prompt.
+    - We still assume the rest of the file is available at runtime, but the
+      tests must not call any other user-defined functions.
+    """
+    fn = func_name or _extract_function_name(code_snippet)
+
+    # --- Isolate the source for just this function, if possible ---
+    func_src = None
+    for name, src in _extract_function_defs(code_snippet):
+        if name == fn:
+            func_src = (src or "").strip()
+            break
+
+    # Fallback: if we didn't find a clean def block, use the whole snippet
+    if not func_src:
+        func_src = code_snippet.strip()
+
+    name_lower = fn.lower()
+    code_lower = func_src.lower()
+
+    # --- Shared base instruction (now clearly scoped to a single function) ---
     base = (
-        "Given this Python function:\n```python\n"
-        f"{code_snippet}\n"
+        "You are given a Python file that may contain several functions.\n"
+        f"Your task is to write tests **only** for the function `{fn}` shown below.\n"
+        "Do not test or call any other functions from the file.\n\n"
+        "Target function:\n"
+        "```python\n"
+        f"{func_src}\n"
         "```\n"
-        "Write ONE PyTest unit test function named `test_<function_name>` with at least two assert statements.\n"
+        "Write ONE PyTest unit test function named `test_<function_name>` "
+        "with at least two assert statements.\n"
         f"- Every assert must call **exactly** `{fn}` (use this exact name).\n"
         "- Do not call any other user-defined helpers.\n"
         "- Use only these builtins if needed: abs, round, int, float, len, sum, max, min, and math.\n"
-        "- If the code uses string methods (e.g., `.islower()`, `.isupper()`, `.lower()`, `.replace()`), pass **string arguments** like 'abc'.\n"
+        "- If the code uses string methods (e.g., `.islower()`, `.isupper()`, `.lower()`, `.replace()`), "
+        "pass **string arguments** like 'abc'.\n"
         "- If it compares `sorted(a) == sorted(b)`, pass **string pairs** like ('listen', 'silent').\n"
         "- No pytest fixtures, no parametrize, no classes, no print statements.\n"
         "- Output ONLY the test function (no extra text).\n"
     )
 
-    # --- Choose the correct few-shot context ---
-    name_lower = fn.lower()
-    code_lower = code_snippet.lower()
-
+    # --- Helper predicates using ONLY this function's body ---
     def looks_like_is_lower() -> bool:
         return ("is_lower" in name_lower) or (".islower(" in code_lower)
 
@@ -1247,14 +1302,12 @@ def _prompt_for(code_snippet: str) -> str:
         return ("is_upper" in name_lower) or (".isupper(" in code_lower)
 
     def looks_like_string_counter() -> bool:
-        name = name_lower
         body = code_lower
         return (
-            # obvious name cues
-            "count" in name
-            or name.startswith(("num_", "len_"))
-            or "uppercase" in name
-            or "lowercase" in name
+            "count" in name_lower
+            or name_lower.startswith(("num_", "len_"))
+            or "uppercase" in name_lower
+            or "lowercase" in name_lower
             # structural cues (numeric aggregation)
             or ("sum(" in body and ".isupper(" in body)
             or ("sum(" in body and ".islower(" in body)
@@ -1265,31 +1318,37 @@ def _prompt_for(code_snippet: str) -> str:
         )
 
     def looks_like_string_predicate() -> bool:
-        return looks_like_is_lower() or looks_like_is_upper() or any(
-            k in code_lower for k in [".isalpha(", ".isdigit(", ".istitle("]
-        ) or re.search(r"^is_(alpha|digit|title)$", name_lower)
+        return (
+            looks_like_is_lower()
+            or looks_like_is_upper()
+            or any(k in code_lower for k in [".isalpha(", ".isdigit(", ".istitle("])
+            or re.search(r"^is_(alpha|digit|title)$", name_lower)
+        )
+
+    # --- Special routing for counters / string predicates / anagram / palindrome ---
 
     if looks_like_string_counter():
         return _STRING_COUNTER_FEWSHOT + base + (
             "\nRULE: Every assert must call EXACTLY "
             f"`{fn}`; do NOT call `is_upper`/`islower` directly.\n"
-            "RULE: Compare the result to integers (0, 1, 2, ...), never booleans."
+            "RULE: Compare the result to integers (0, 1, 2, ...), never booleans.\n"
             "RULE: Include examples with mixed case, empty strings, and no uppercase letters."
         )
 
-    # --- Routing logic ---
     elif looks_like_is_lower():
         return _STRING_PREDICATE_FEWSHOT_LOWER + base + (
-            "\nRULE: For `is_lower`, 'HELLO' must be False, 'hello' must be True, and '123' must be False.\n"
+            "\nRULE: For `is_lower`, 'HELLO' must be False, "
+            "'hello' must be True, and '123' must be False.\n"
             "Avoid numeric strings as positives."
         )
 
     elif looks_like_is_upper():
         return _STRING_PREDICATE_FEWSHOT_UPPER + base + (
-            "\nRULE: For `is_upper`, 'HELLO' must be True, 'hello' must be False, and '123' must be False."
+            "\nRULE: For `is_upper`, 'HELLO' must be True, "
+            "'hello' must be False, and '123' must be False."
         )
 
-    elif looks_like_is_anagram(fn, code_snippet):
+    elif looks_like_is_anagram(fn, func_src):
         return (
             "### is_anagram examples\n"
             "Given this function:\n"
@@ -1304,10 +1363,10 @@ def _prompt_for(code_snippet: str) -> str:
             "    assert is_anagram('rat','car') == False\n"
             "```\n\n"
             + base
-            + "\nRULE: Every assert must call `{fn}` with exactly two string arguments."
+            + f"\nRULE: Every assert must call `{fn}` with exactly two string arguments."
         )
 
-    elif looks_like_is_palindrome(fn, code_snippet):
+    elif looks_like_is_palindrome(fn, func_src):
         return (
             "### is_palindrome examples\n"
             "Given this function:\n"
@@ -1330,18 +1389,19 @@ def _prompt_for(code_snippet: str) -> str:
         prompt += "\nRULE: For string predicates, use alphabetic examples; avoid numeric literals.\n"
         return prompt
 
-    # --- Fallback: general predicate or numeric ---
-    elif _looks_like_predicate(code_snippet):
+    # --- Fallback: general predicate or numeric, still using only this function's code ---
+    elif _looks_like_predicate(func_src):
         return _PREDICATE_FEWSHOT + base
 
-    # --- Default for non-predicate functions ---
-    elif _function_expects_strings(code_snippet) or _is_anagram_like(code_snippet):
-        base += (
+    elif _function_expects_strings(func_src) or _is_anagram_like(func_src):
+        base_extra = (
             "\nAdditional constraints:\n"
             "- Use **string** inputs (e.g., 'HELLO'/'Hello', 'racecar'/'python', 'listen'/'silent').\n"
             "- Avoid numbers for these tests.\n"
         )
+        return base + base_extra
 
+    # Default: plain numeric or general function
     return base
 
 
@@ -1421,7 +1481,7 @@ def _try_candidates(
             rejections.append((candidate, reason))
             continue
 
-        ok = _run_test_safely(code_snippet, candidate)
+        ok = _run_test_safely(code_snippet, candidate, func_name=func_name)
         if ok:
             return candidate
         else:
@@ -1440,35 +1500,34 @@ def _try_candidates(
 # Public API: auto-validated generation (beams → sampling → fallback)
 # -----------------------------
 
+# -----------------------------
+# Single-function generator helper
+# -----------------------------
 
-def generate_test_from_code(
+
+def _generate_for_single_function(
     code_snippet: str,
+    func_name: str,
     *,
-    # decoding size
-    max_new_tokens: int = 240,
-    # candidate budgets
-    beam_candidates: int = 4,
-    sample_candidates: int = 12,
-    # beam params
-    num_beams: int = 4,
-    # sampling params
-    temperature: float = 0.85,
-    top_k: int = 100,
+    max_new_tokens: int,
+    beam_candidates: int,
+    sample_candidates: int,
+    num_beams: int,
+    temperature: float,
+    top_k: int,
 ) -> str:
     """
-    Generate a PyTest-style unit test and validate it automatically.
+    Core generation/validation pipeline for a SINGLE function name.
 
-    Strategy:
-      1) Try several beam candidates (deterministic) → return first that calls the target and passes.
-      2) If none pass, try several sampling candidates (diverse) → return first that passes.
-      3) If still none pass, return a safe fallback.
-
-    Your CLI one-liner keeps working the same.
+    This is essentially your old generate_test_from_code logic, but
+    parameterized by func_name so we can reuse it for multi-function files.
     """
-    print("[validator] generate_test_from_code: beams→sampling→fallback")
+    print(
+        f"[validator] generate(single): {func_name} – beams→sampling→fallback")
+
     tokenizer, model = _load_model_and_tokenizer()
-    func_name = _extract_function_name(code_snippet)
-    prompt = _prompt_for(code_snippet)
+    # NOTE: we now pass func_name into the prompt, instead of re-extracting it
+    prompt = _prompt_for(code_snippet, func_name)
 
     enc = tokenizer(
         prompt,
@@ -1479,7 +1538,9 @@ def generate_test_from_code(
         return_attention_mask=True,
     ).to(DEVICE)
 
-    # Optional: bypass validator to inspect raw model output quickly
+    # -------------------------
+    # Optional: bypass validator (unchanged)
+    # -------------------------
     if _BYPASS_VALIDATOR:
         with torch.inference_mode():
             raw = model.generate(
@@ -1501,7 +1562,9 @@ def generate_test_from_code(
         txt = _decode_and_clean(tokenizer, raw[0], func_name)
         return "# origin: raw_unvalidated\n" + txt
 
-    # 1) Deterministic beams
+    # -------------------------
+    # 1) Deterministic beams  (unchanged)
+    # -------------------------
     passing = _try_candidates(
         tokenizer,
         model,
@@ -1516,7 +1579,9 @@ def generate_test_from_code(
     if passing:
         return "# Origin: Beams \n" + passing
 
-    # 2) Sampling for diversity
+    # -------------------------
+    # 2) Sampling for diversity (unchanged)
+    # -------------------------
     passing = _try_candidates(
         tokenizer,
         model,
@@ -1532,29 +1597,42 @@ def generate_test_from_code(
     if passing:
         return "# Origin : sampling \n" + passing
 
-    # 3) Fallbacks for common arithmetic names (always coherent)
-    op = _infer_simple_op(code_snippet) or func_name.lower()
+    # -------------------------
+    # 3) Fallbacks (your existing block, using fn = func_name)
+    # -------------------------
     fn = func_name
+    op = _infer_simple_op(code_snippet, target_name=fn) or fn.lower()
+
     if fn == "add":
-        return _ensure_pytest_import("def test_add():\n"
-                                     "assert add(3, 4) == 7;\n"
-                                     "assert add(-2, 5) == 3\n")
+        return _ensure_pytest_import(
+            "def test_add():\n"
+            "   assert add(3, 4) == 7\n"
+            "   assert add(-2, 5) == 3\n"
+        )
     if fn == "subtract":
-        return _ensure_pytest_import("def test_subtract():\n"
-                                     "assert subtract(5, 3) == 2;\n"
-                                     "assert subtract(-2, -3) == 1\n")
+        return _ensure_pytest_import(
+            "def test_subtract():\n"
+            "   assert subtract(5, 3) == 2\n"
+            "   assert subtract(-2, -3) == 1\n"
+        )
     if fn == "multiply":
-        return _ensure_pytest_import("def test_multiply():\n"
-                                     "assert multiply(2, 3) == 6;\n"
-                                     "assert multiply(-1, 5) == -5\n")
+        return _ensure_pytest_import(
+            "def test_multiply():\n"
+            "   assert multiply(2, 3) == 6\n"
+            "   assert multiply(-1, 5) == -5\n"
+        )
     if fn == "divide":
-        return _ensure_pytest_import("def test_divide():\n"
-                                     "assert divide(6, 3) == 2;\n"
-                                     "assert divide(-8, 4) == -2")
+        return _ensure_pytest_import(
+            "def test_divide():\n"
+            "   assert divide(8, 4) == 2\n"
+            "   assert divide(-6, 3) == -2"
+        )
     if fn == "power":
-        return _ensure_pytest_import("def test_power():\n"
-                                     "assert power(2, 3) == 8;\n"
-                                     "assert power(3, 0) == 1")
+        return _ensure_pytest_import(
+            "def test_power():\n"
+            "   assert power(2, 3) == 8\n"
+            "   assert power(3, 0) == 1"
+        )
 
     # --- Non-arithmetic Tier-1 fallbacks ---
     if fn == "count_vowels":
@@ -1633,8 +1711,7 @@ def generate_test_from_code(
             "   assert is_anagram('rat','car') == False\n"
         )
 
-        # --- Non-arithmetic Tier-2 fallbacks (string utilities) ---
-
+    # --- Non-arithmetic Tier-2 fallbacks (string utilities) ---
     if fn == "reverse_words":
         return _ensure_pytest_import(
             "def test_reverse_words():\n"
@@ -1698,10 +1775,118 @@ def generate_test_from_code(
         f"    assert callable({fn})\n"
     )
 
+# -----------------------------
+# Merge helper for multi-function tests
+# -----------------------------
+
+
+def _merge_multi_function_tests(snippets: list[str]) -> str:
+    """
+    Merge several single-function test snippets into one block:
+    - keep a single `import pytest` at the top
+    - drop per-snippet '# Origin: ...' comments
+    """
+    bodies: list[str] = []
+    saw_import = False
+
+    for snippet in snippets:
+        lines_out: list[str] = []
+        for line in snippet.splitlines():
+            stripped = line.strip()
+
+            if stripped.startswith("# Origin"):
+                # we will add one combined origin header at the top
+                continue
+            if stripped.startswith("import pytest"):
+                if not saw_import:
+                    lines_out.append("import pytest")
+                    saw_import = True
+                continue
+
+            lines_out.append(line)
+
+        body = "\n".join(lines_out).strip()
+        if body:
+            bodies.append(body)
+
+    header = "# Origin: Beams (multi-function)\n"
+    return header + "\n\n".join(bodies)
+
+
+# -----------------------------
+# Public API: multi-function aware
+# -----------------------------
+def generate_test_from_code(
+    code_snippet: str,
+    *,
+    # decoding size
+    max_new_tokens: int = 240,
+    # candidate budgets
+    beam_candidates: int = 4,
+    sample_candidates: int = 12,
+    # beam params
+    num_beams: int = 4,
+    # sampling params
+    temperature: float = 0.85,
+    top_k: int = 100,
+) -> str:
+    """
+    Generate PyTest-style unit tests and validate them automatically.
+
+    - If there is 0 or 1 top-level user function: behave like before,
+      but now we pass the *isolated function source* into the generator.
+    - If there are 2+ functions: generate tests for each (using each
+      function's own source) and merge them.
+    """
+    fn_defs = _extract_function_defs(code_snippet)
+
+    # 0 or 1 function → single-function path
+    if len(fn_defs) <= 1:
+        if fn_defs:
+            single_name, single_src = fn_defs[0]
+        else:
+            # fallback: no explicit def found, keep current behaviour
+            single_name = _extract_function_name(code_snippet)
+            single_src = code_snippet
+
+        return _generate_for_single_function(
+            # <- isolated src (or whole snippet if unknown)
+            single_src,
+            single_name,
+            max_new_tokens=max_new_tokens,
+            beam_candidates=beam_candidates,
+            sample_candidates=sample_candidates,
+            num_beams=num_beams,
+            temperature=temperature,
+            top_k=top_k,
+        )
+
+    # Multi-function path
+    print(
+        f"[multi] Detected {len(fn_defs)} functions: {[n for n, _ in fn_defs]}")
+    snippets: list[str] = []
+
+    for func_name, fn_src in fn_defs:
+        # IMPORTANT: pass this function's own source, not the whole file
+        tests_for_fn = _generate_for_single_function(
+            fn_src,
+            func_name,
+            max_new_tokens=max_new_tokens,
+            beam_candidates=beam_candidates,
+            sample_candidates=sample_candidates,
+            num_beams=num_beams,
+            temperature=temperature,
+            top_k=top_k,
+        )
+        snippets.append(tests_for_fn)
+
+    return _merge_multi_function_tests(snippets)
 
 # -----------------------------
 # Back-compat wrapper (kept for convenience)
 # -----------------------------
+
+
 def generate_test_from_code_validated(
     code_snippet: str,
     *,
