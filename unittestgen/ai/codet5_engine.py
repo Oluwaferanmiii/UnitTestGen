@@ -358,6 +358,51 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
 
     return True
 
+
+def _normalize_test_for_similarity(txt: str) -> str:
+    """
+    Normalize test code so we can compare structure instead of exact formatting:
+    - drop comments and blank lines
+    - lowercase
+    - collapse whitespace
+    """
+    lines = []
+    for line in txt.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("#"):
+            continue
+        lines.append(stripped)
+
+    joined = " ".join(lines)
+    # collapse multiple spaces
+    joined = re.sub(r"\s+", " ", joined)
+    return joined.lower().strip()
+
+
+def _too_similar(a: str, b: str, *, threshold: float = 0.88) -> bool:
+    """
+    Return True if two tests are "too similar" to be considered a regeneration.
+    Uses:
+      - normalized text similarity
+      - argument patterns of calls to the target function
+    """
+    na = _normalize_test_for_similarity(a)
+    nb = _normalize_test_for_similarity(b)
+
+    if not na or not nb:
+        return False
+
+    ratio = difflib.SequenceMatcher(None, na, nb).ratio()
+    if ratio >= threshold:
+        return True
+
+    # Optional: compare literal call argument patterns if same target used.
+    # We don't know func_name here, so this part will be done in the regen helper
+    # where func_name is known.
+    return False
+
 # ---------- NEW: stronger AST-based operation inference ----------
 
 
@@ -1405,6 +1450,34 @@ def _prompt_for(code_snippet: str, func_name: str | None = None) -> str:
     return base
 
 
+def _regen_prompt_for(
+    code_snippet: str,
+    func_name: str,
+    previous_test: str,
+) -> str:
+    """
+    Prompt variant for regeneration:
+    - Reuses the normal few-shot prompt logic.
+    - Shows the previously generated test and explicitly asks
+      for a different one.
+    """
+    base = _prompt_for(code_snippet, func_name)
+
+    extra = (
+        "\n\nThe following test function was generated earlier:\n"
+        "```python\n"
+        f"{previous_test.strip()}\n"
+        "```\n"
+        "Now write a *different* valid PyTest test function for "
+        f"`{func_name}`:\n"
+        "- Use different input combinations or assertions than the previous test.\n"
+        "- You may still test similar behavior, but avoid copying the same literal values.\n"
+        "- Follow all previous rules (no fixtures, no classes, focus on this function only).\n"
+    )
+
+    return base + extra
+
+
 def _try_candidates(
     tokenizer,
     model,
@@ -1881,6 +1954,147 @@ def generate_test_from_code(
         snippets.append(tests_for_fn)
 
     return _merge_multi_function_tests(snippets)
+
+# -----------------------------
+# Regeneration helper (NEW)
+# -----------------------------
+
+
+def regenerate_test_for_function(
+    code_snippet: str,
+    func_name: str,
+    previous_test: str,
+    *,
+    max_new_tokens: int = 240,
+    sample_candidates: int = 12,
+    temperature: float = 0.95,
+    top_k: int = 120,
+) -> str:
+    """
+    Regenerate a *different* test for a single function.
+
+    - Uses sampling-only (no beams) to increase diversity.
+    - Uses a regen-specific prompt that shows the previous test.
+    - Rejects tests that are too similar to the previous one.
+    """
+    print(f"[validator] regenerate(single): {func_name} - sampling-only")
+
+    tokenizer, model = _load_model_and_tokenizer()
+    prompt = _regen_prompt_for(code_snippet, func_name, previous_test)
+
+    enc = tokenizer(
+        prompt,
+        return_tensors="pt",
+        truncation=True,
+        max_length=512,
+        padding=True,
+        return_attention_mask=True,
+    ).to(DEVICE)
+
+    with torch.inference_mode():
+        outs = model.generate(
+            enc["input_ids"],
+            attention_mask=enc["attention_mask"],
+            max_new_tokens=max_new_tokens,
+            min_length=0,
+            no_repeat_ngram_size=0,
+            early_stopping=True,
+            do_sample=True,
+            temperature=max(0.1, float(temperature)),
+            top_k=max(0, int(top_k)),
+            num_beams=1,
+            num_return_sequences=max(1, int(sample_candidates)),
+        )
+
+    norm_prev = _normalize_test_for_similarity(previous_test)
+
+    best_candidate: str | None = None
+    rejections = []
+
+    for i in range(outs.shape[0]):
+        raw_candidate = _decode_and_clean(
+            tokenizer,
+            outs[i],
+            func_name,
+            func_src=code_snippet,
+        )
+        candidate = _strip_non_target_asserts(raw_candidate, func_name)
+
+        if _VALIDATOR_DEBUG:
+            print("\n[regen] ---------- CANDIDATE BEGIN ----------")
+            print(candidate)
+            print("[regen] ----------- CANDIDATE END -----------")
+
+        # --- Fast syntax guard ---
+        try:
+            ast.parse(candidate)
+        except SyntaxError:
+            if _VALIDATOR_DEBUG:
+                print("[regen] REJECT (pre): syntax")
+            rejections.append((candidate, "syntax"))
+            continue
+
+        # --- Similarity check vs previous test ---
+        norm_cand = _normalize_test_for_similarity(candidate)
+        if _too_similar(norm_prev, norm_cand):
+            if _VALIDATOR_DEBUG:
+                print("[regen] REJECT: too similar (text)")
+            rejections.append((candidate, "too similar (text)"))
+            continue
+
+        # Extra: compare literal call argument patterns if possible
+        prev_calls = _extract_calls_in_test(previous_test, func_name)
+        cand_calls = _extract_calls_in_test(candidate, func_name)
+        if prev_calls and cand_calls:
+            # sort for deterministic comparison
+            prev_set = sorted(prev_calls)
+            cand_set = sorted(cand_calls)
+            if prev_set == cand_set:
+                if _VALIDATOR_DEBUG:
+                    print("[regen] REJECT: same call argument patterns")
+                rejections.append((candidate, "same call args"))
+                continue
+
+        # --- Structural checks (reuse normal validator logic) ---
+        def _first_reject_reason(test_src: str):
+            n = _count_asserts(test_src)
+            if n < 1 or n > 12:
+                return f"bad assert count={n}"
+            if not _calls_target(test_src, func_name):
+                return "does not call target"
+            if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
+                return "an assert does not reference target"
+            if _has_foreign_calls(test_src, func_name):
+                return "foreign user-level calls"
+            return None
+
+        reason = _first_reject_reason(candidate)
+        if reason is not None:
+            if _VALIDATOR_DEBUG:
+                print(f"[regen] REJECT (pre): {reason}")
+            rejections.append((candidate, reason))
+            continue
+
+        ok = _run_test_safely(code_snippet, candidate, func_name=func_name)
+        if ok:
+            best_candidate = candidate
+            break
+        else:
+            if _VALIDATOR_DEBUG:
+                print("[regen] REJECT (run): failed in exec/semantic/oracle")
+            rejections.append((candidate, "exec/semantic/oracle"))
+
+    if best_candidate is not None:
+        return "# Origin: Regen (sampling)\n" + best_candidate
+
+    # If everything failed, as a last resort just return the previous test
+    # (or you could fall back to _generate_for_single_function)
+    if _VALIDATOR_DEBUG and rejections:
+        print("\n[regen] SUMMARY: all regen candidates rejected.")
+        for idx, (_cand, why) in enumerate(rejections, 1):
+            print(f"[regen]  {idx:02d}. reason: {why}")
+
+    return "# Origin: Regen (fallback – reused previous)\n" + previous_test
 
 # -----------------------------
 # Back-compat wrapper (kept for convenience)

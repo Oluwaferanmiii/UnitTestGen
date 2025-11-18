@@ -15,7 +15,8 @@ from .serializers import (
     TestItemSerializer,
     RegisterSerializer,
 )
-from .ai.codet5_engine import generate_test_from_code
+from .ai.codet5_engine import (
+    generate_test_from_code, regenerate_test_for_function)
 
 import ast
 import re
@@ -327,7 +328,7 @@ class RegenerateTestView(APIView):
     def post(self, request, pk: int):  # pk == session_id
         session = get_object_or_404(TestSession, id=pk, user=request.user)
 
-        # Choose target item: latest by default (ordering = ['-created_at'] on TestItem)
+        # Choose target item: latest by default
         item_id = request.query_params.get("item_id")
         if item_id:
             item = get_object_or_404(TestItem, id=item_id, session=session)
@@ -339,7 +340,7 @@ class RegenerateTestView(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
-        # Load the source code for this item
+        # Load source code for this item
         if item.pasted_code:
             raw_code = item.pasted_code
         elif item.uploaded_code:
@@ -352,19 +353,45 @@ class RegenerateTestView(APIView):
                 )
         else:
             return Response(
-                {"error": "No code available for this item."},
+                {"error": 'No code available for this item.'},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # (Optional) Gather previous outputs to avoid duplicates when we switch to sampling
-        previous_texts = [
-            it.generated_tests for it in session.items.all() if it.generated_tests]
+        previous_test = item.generated_tests or ""
 
-        # For now, call the existing generator; we’ll wire strategy="sample" next
+        # 🔹 Infer function name: prefer test file, then source code
+        func_name = None
+
+        # 1) From existing generated tests: def test_xxx():
+        for line in previous_test.splitlines():
+            t = line.strip()
+            if t.startswith("def test_") and "(" in t:
+                name = t[4: t.index("(")].strip()   # "test_is_palindrome"
+                if name.startswith("test_"):
+                    name = name[5:]                 # -> "is_palindrome"
+                func_name = name
+                break
+
+        # 2) Fallback: from user code (first non-test function)
+        if not func_name:
+            for line in raw_code.splitlines():
+                t = line.strip()
+                if t.startswith("def ") and "(" in t and not t.startswith("def test_"):
+                    func_name = t[4: t.index("(")].strip()
+                    break
+
+        if not func_name:
+            return Response(
+                {"error": "Could not infer target function name for regeneration."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         try:
-            # Example (when you update codet5_engine):
-            # new_tests = generate_test_from_code(raw_code, strategy="sample", previous_texts=previous_texts)
-            new_tests = generate_test_from_code(raw_code)
+            new_tests = regenerate_test_for_function(
+                raw_code,
+                func_name,
+                previous_test=previous_test,
+            )
             ast.parse(new_tests)
         except SyntaxError as e:
             return Response(
@@ -385,7 +412,10 @@ class RegenerateTestView(APIView):
             meta={"origin": "regenerate", "strategy": "sample"},
         )
 
-        return Response(TestItemSerializer(regenerated).data, status=status.HTTP_201_CREATED)
+        return Response(
+            TestItemSerializer(regenerated).data,
+            status=status.HTTP_201_CREATED,
+        )
 
 
 # -----------------------------
