@@ -16,7 +16,10 @@ from .serializers import (
     RegisterSerializer,
 )
 from .ai.codet5_engine import (
-    generate_test_from_code, regenerate_test_for_function)
+    generate_test_from_code,
+    regenerate_test_for_function,
+    regenerate_tests_from_code,
+)
 
 import ast
 import re
@@ -321,14 +324,14 @@ class CreateTestItemView(APIView):
 class RegenerateTestView(APIView):
     """
     POST /api/regenerate/<session_id>/?item_id=<optional>
-    Regenerate tests for the latest item in the session, or for a specific item if item_id is given.
+    Regenerate tests for the latest item in the session,
+    or for a specific item if item_id is given.
     """
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk: int):  # pk == session_id
         session = get_object_or_404(TestSession, id=pk, user=request.user)
 
-        # Choose target item: latest by default
         item_id = request.query_params.get("item_id")
         if item_id:
             item = get_object_or_404(TestItem, id=item_id, session=session)
@@ -353,44 +356,16 @@ class RegenerateTestView(APIView):
                 )
         else:
             return Response(
-                {"error": 'No code available for this item.'},
+                {"error": "No code available for this item."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        previous_test = item.generated_tests or ""
-
-        # 🔹 Infer function name: prefer test file, then source code
-        func_name = None
-
-        # 1) From existing generated tests: def test_xxx():
-        for line in previous_test.splitlines():
-            t = line.strip()
-            if t.startswith("def test_") and "(" in t:
-                name = t[4: t.index("(")].strip()   # "test_is_palindrome"
-                if name.startswith("test_"):
-                    name = name[5:]                 # -> "is_palindrome"
-                func_name = name
-                break
-
-        # 2) Fallback: from user code (first non-test function)
-        if not func_name:
-            for line in raw_code.splitlines():
-                t = line.strip()
-                if t.startswith("def ") and "(" in t and not t.startswith("def test_"):
-                    func_name = t[4: t.index("(")].strip()
-                    break
-
-        if not func_name:
-            return Response(
-                {"error": "Could not infer target function name for regeneration."},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        previous_tests = item.generated_tests or ""
 
         try:
-            new_tests = regenerate_test_for_function(
+            new_tests = regenerate_tests_from_code(
                 raw_code,
-                func_name,
-                previous_test=previous_test,
+                previous_tests=previous_tests,
             )
             ast.parse(new_tests)
         except SyntaxError as e:

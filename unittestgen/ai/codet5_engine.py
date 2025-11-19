@@ -1853,11 +1853,16 @@ def _generate_for_single_function(
 # -----------------------------
 
 
-def _merge_multi_function_tests(snippets: list[str]) -> str:
+def _merge_multi_function_tests(
+    snippets: list[str],
+    *,
+    origin: str = "Beams (multi-function)",
+) -> str:
     """
     Merge several single-function test snippets into one block:
     - keep a single `import pytest` at the top
     - drop per-snippet '# Origin: ...' comments
+    - allow a custom origin string for the combined header
     """
     bodies: list[str] = []
     saw_import = False
@@ -1882,13 +1887,59 @@ def _merge_multi_function_tests(snippets: list[str]) -> str:
         if body:
             bodies.append(body)
 
-    header = "# Origin: Beams (multi-function)\n"
+    header = f"# Origin: {origin}\n"
     return header + "\n\n".join(bodies)
 
+
+def _split_multi_function_tests(
+    tests_block: str,
+    func_names: list[str],
+) -> dict[str, str]:
+    """
+    Given a merged tests block and a list of function names,
+    return {func_name: its_test_source}.
+
+    It looks for `def test_<func_name>(` and grabs everything
+    until the next `def test_...` or end of file.
+    """
+    by_func: dict[str, str] = {name: "" for name in func_names}
+    lines = tests_block.splitlines()
+
+    current = None
+    buffer: list[str] = []
+
+    def flush():
+        nonlocal buffer, current
+        if current is not None and buffer:
+            by_func[current] = "\n".join(buffer).strip()
+        buffer = []
+
+    for line in lines:
+        stripped = line.strip()
+        m = re.match(r"^def\s+test_([A-Za-z_][A-Za-z_0-9]*)\s*\(", stripped)
+        if m:
+            # e.g. test_add -> add
+            name = m.group(1)
+            if name.startswith("test_"):
+                name = name[5:]
+            flush()
+            if name in by_func:
+                current = name
+                buffer = [line]
+            else:
+                current = None   # unknown test; we just ignore it
+        else:
+            if current is not None:
+                buffer.append(line)
+
+    flush()
+    return by_func
 
 # -----------------------------
 # Public API: multi-function aware
 # -----------------------------
+
+
 def generate_test_from_code(
     code_snippet: str,
     *,
@@ -2094,7 +2145,77 @@ def regenerate_test_for_function(
         for idx, (_cand, why) in enumerate(rejections, 1):
             print(f"[regen]  {idx:02d}. reason: {why}")
 
-    return "# Origin: Regen (fallback – reused previous)\n" + previous_test
+    return "# Origin: Regen (fallback - reused previous)\n" + previous_test
+
+
+def regenerate_tests_from_code(
+    code_snippet: str,
+    previous_tests: str,
+    *,
+    max_new_tokens: int = 240,
+    sample_candidates: int = 12,
+    temperature: float = 0.95,
+    top_k: int = 120,
+) -> str:
+    """
+    Multi-function aware regeneration entry point.
+
+    - If there are 0 functions: return previous_tests (or a noop comment).
+    - If there is 1 function: delegate to regenerate_test_for_function.
+    - If there are 2+ functions: regen each function separately and merge.
+    """
+    fn_defs = _extract_function_defs(code_snippet)
+
+    # 0 functions -> nothing we can meaningfully regen
+    if not fn_defs:
+        return previous_tests or "# Origin: Regen (noop - no functions found)\n"
+
+    # Single-function case: reuse the existing helper
+    if len(fn_defs) == 1:
+        func_name, _ = fn_defs[0]
+        return regenerate_test_for_function(
+            code_snippet,
+            func_name,
+            previous_test=previous_tests or "",
+            max_new_tokens=max_new_tokens,
+            sample_candidates=sample_candidates,
+            temperature=temperature,
+            top_k=top_k,
+        )
+
+    # ---------------- Multi-function path ----------------
+    func_names = [name for name, _ in fn_defs]
+
+    # You said you've already added this helper:
+    # prev_by_func: { "add": "def test_add..." , ... }
+    prev_by_func = _split_multi_function_tests(
+        previous_tests or "",
+        func_names,
+    )
+
+    snippets: list[str] = []
+
+    for func_name, _fn_src in fn_defs:
+        # Previous test block just for THIS function (may be empty)
+        per_func_prev = prev_by_func.get(func_name, "")
+
+        new_test = regenerate_test_for_function(
+            code_snippet,
+            func_name,
+            previous_test=per_func_prev,
+            max_new_tokens=max_new_tokens,
+            sample_candidates=sample_candidates,
+            temperature=temperature,
+            top_k=top_k,
+        )
+        snippets.append(new_test)
+
+    # Use a different origin label so you can distinguish in UI/logs
+    merged = _merge_multi_function_tests(
+        snippets,
+        origin="# Origin: Regen (multi-function)\n",
+    )
+    return merged
 
 # -----------------------------
 # Back-compat wrapper (kept for convenience)
