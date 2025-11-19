@@ -19,7 +19,7 @@ export async function addItem(sessionId, { pasted_code, file }) {
 }
 
 export async function regenerate(sessionId, itemId) {
-  const q = itemId ? `?item_id=${itemId}` : "";
-  const { data } = await client.post(`/regenerate/${sessionId}/${q}`);
+  const query = itemId ? `?item_id=${itemId}` : "";
+  const { data } = await client.post(`/regenerate/${sessionId}/${query}`);
   return data;
 }

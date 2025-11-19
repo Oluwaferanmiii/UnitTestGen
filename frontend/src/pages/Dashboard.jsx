@@ -10,7 +10,7 @@ import {
   deleteSession, 
   updateSession,
 } from "../api/sessions";
-import { addItem } from "../api/items";
+import { addItem, regenerate } from "../api/items";
 import Logo from "../components/Logo";
 import CodeEditor from "../components/CodeEditor";
 
@@ -163,6 +163,21 @@ export default function Dashboard() {
       setTimeout(() => setToast(""), 1500);
     },
   });
+
+const regenMut = useMutation({
+  mutationFn: ({ sessionId, itemId }) => regenerate(sessionId, itemId),
+
+  onSuccess: () => {
+    qc.invalidateQueries({ queryKey: ["session", activeId] });
+    setToast("Regenerated tests.");
+    setTimeout(() => setToast(""), 1200);
+  },
+
+  onError: () => {
+    setToast("Regeneration failed.");
+    setTimeout(() => setToast(""), 1500);
+  },
+});
 
   // ---------------- Handlers ----------------
   async function handleCopyTests(text, itemId) {
@@ -716,6 +731,28 @@ export default function Dashboard() {
                             style={{ width: 16, height: 16 }}
                           />
                         )}
+                      </button>
+
+                      {/* Regenerate button */}
+                      <button
+                        type="button"
+                        onClick={() =>
+                          regenMut.mutate({ sessionId: activeId, itemId: it.id })
+                        }
+                        style={{
+                          border: "none",
+                          background: "transparent",
+                          cursor: "pointer",
+                          padding: 4,
+                        }}
+                        title="Regenerate tests for this code"
+                        disabled={regenMut.isPending}
+                      >
+                        <img
+                          src="/Reload.svg"       // make sure reload.svg is in /public
+                          alt="Regenerate"
+                          style={{ width: 16, height: 16 }}
+                        />
                       </button>
 
                       {/* Download button */}
