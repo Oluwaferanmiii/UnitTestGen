@@ -29,7 +29,7 @@ SAVE_PATH = os.environ.get("SAVE_PATH", "./results/fine_tuned_codet5p_updated")
 
 # ---------- Load dataset and make an eval split ----------
 raw = load_dataset("json", data_files=DATASET_PATH)["train"]
-split = raw.train_test_split(test_size=0.05, seed=42)
+split = raw.train_test_split(test_size=0.1, seed=42)
 train_ds, eval_ds = split["train"], split["test"]
 
 # ---------- Tokenizer / Model ----------
@@ -90,18 +90,18 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 # ---------- Training args ----------
 args = TrainingArguments(
     output_dir=SAVE_PATH,
-    num_train_epochs=8,
+    num_train_epochs=6,
     per_device_train_batch_size=4,
-    gradient_accumulation_steps=8,   # effective batch size = 32
+    gradient_accumulation_steps=4,   # effective batch size = 32
     learning_rate=3e-5,
     lr_scheduler_type="cosine",
-    warmup_ratio=0.01,
-    weight_decay=0.02,
+    warmup_ratio=0.03,
+    weight_decay=0.01,
     label_smoothing_factor=0.1,
 
     # Logging / eval / saving
     logging_dir=LOGGING_DIR,
-    logging_steps=60,
+    logging_steps=50,
     evaluation_strategy="epoch",  # <-- fixed name
     save_strategy="epoch",
     save_total_limit=3,
