@@ -1569,6 +1569,59 @@ def _try_candidates(
 
     return None
 
+# ---- Helper to identify function kind ----
+
+
+def _guess_task_kind(code: str) -> str:
+    """
+    Heuristic: try to guess whether this function is more 'numeric'
+    or 'string-y' based on simple markers.
+    Returns 'numeric' or 'string'.
+    """
+    code_lower = code.lower()
+
+    numeric_markers = [
+        "%", "+", "-", "*", "/", "**",
+        "range(", "sum(", "len(",
+        "for ", "while ",
+        "int(", "float(",
+    ]
+    string_markers = [
+        "split(", "join(", "replace(",
+        ".lower(", ".upper(", ".strip(",
+        "startswith(", "endswith(",
+        "in 'aeiou'", 'in "aeiou"',
+        "isalpha(", "isdigit(",
+    ]
+
+    num_hits = sum(m in code_lower for m in numeric_markers)
+    str_hits = sum(m in code_lower for m in string_markers)
+
+    if num_hits > str_hits:
+        return "numeric"
+    if str_hits > num_hits:
+        return "string"
+    # tie / unknown: numeric is a slightly safer default for your use case
+    return "numeric"
+
+
+_DECODE_PRESETS = {
+    "string": {
+        "beam_candidates": 4,
+        "num_beams": 4,
+        "sample_candidates": 12,
+        "temperature": 0.85,
+        "top_k": 100,
+    },
+    "numeric": {
+        "beam_candidates": 6,
+        "num_beams": 6,
+        "sample_candidates": 4,
+        "temperature": 0.4,
+        "top_k": 20,
+    },
+}
+
 # -----------------------------
 # Public API: auto-validated generation (beams → sampling → fallback)
 # -----------------------------
@@ -1945,14 +1998,14 @@ def generate_test_from_code(
     *,
     # decoding size
     max_new_tokens: int = 240,
-    # candidate budgets
-    beam_candidates: int = 4,
-    sample_candidates: int = 12,
+    # candidate budgets (None = choose from presets)
+    beam_candidates: int | None = None,
+    sample_candidates: int | None = None,
     # beam params
-    num_beams: int = 4,
+    num_beams: int | None = None,
     # sampling params
-    temperature: float = 0.85,
-    top_k: int = 100,
+    temperature: float | None = None,
+    top_k: int | None = None,
 ) -> str:
     """
     Generate PyTest-style unit tests and validate them automatically.
@@ -1961,7 +2014,29 @@ def generate_test_from_code(
       but now we pass the *isolated function source* into the generator.
     - If there are 2+ functions: generate tests for each (using each
       function's own source) and merge them.
+
+    If decode params are not provided (None), we infer a rough task kind
+    ('numeric' vs 'string') from the code and pull defaults from
+    _DECODE_PRESETS. This means:
+      - UI/REST calls with no explicit params get good defaults.
+      - run_function_tests.py can still override everything explicitly.
     """
+    # ---- 1) Resolve presets (if caller didn't override) ----
+    task_kind = _guess_task_kind(code_snippet)
+    preset = _DECODE_PRESETS["numeric" if task_kind == "numeric" else "string"]
+
+    if beam_candidates is None:
+        beam_candidates = preset["beam_candidates"]
+    if num_beams is None:
+        num_beams = preset["num_beams"]
+    if sample_candidates is None:
+        sample_candidates = preset["sample_candidates"]
+    if temperature is None:
+        temperature = preset["temperature"]
+    if top_k is None:
+        top_k = preset["top_k"]
+
+    # ---- 2) Extract functions (same behaviour as your existing code) ----
     fn_defs = _extract_function_defs(code_snippet)
 
     # 0 or 1 function → single-function path
@@ -1985,7 +2060,7 @@ def generate_test_from_code(
             top_k=top_k,
         )
 
-    # Multi-function path
+    # ---- 3) Multi-function path ----
     print(
         f"[multi] Detected {len(fn_defs)} functions: {[n for n, _ in fn_defs]}")
     snippets: list[str] = []
@@ -2213,7 +2288,7 @@ def regenerate_tests_from_code(
     # Use a different origin label so you can distinguish in UI/logs
     merged = _merge_multi_function_tests(
         snippets,
-        origin="# Origin: Regen (multi-function)\n",
+        origin="Regen (multi-function)\n",
     )
     return merged
 

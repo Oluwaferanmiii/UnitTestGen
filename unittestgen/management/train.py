@@ -92,7 +92,7 @@ args = TrainingArguments(
     output_dir=SAVE_PATH,
     num_train_epochs=6,
     per_device_train_batch_size=4,
-    gradient_accumulation_steps=4,   # effective batch size = 32
+    gradient_accumulation_steps=4,   # effective batch size = 16
     learning_rate=3e-5,
     lr_scheduler_type="cosine",
     warmup_ratio=0.03,
