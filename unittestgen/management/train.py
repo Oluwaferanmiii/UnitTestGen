@@ -90,7 +90,7 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 # ---------- Training args ----------
 args = TrainingArguments(
     output_dir=SAVE_PATH,
-    num_train_epochs=6,
+    num_train_epochs=5,
     per_device_train_batch_size=4,
     gradient_accumulation_steps=4,   # effective batch size = 16
     learning_rate=3e-5,
