@@ -540,6 +540,39 @@ def _arithmetic_oracle(func_name: str, f, *, func_src: Optional[str] = None) -> 
     return True
 
 
+def _is_arithmetic_function(func_name: str, func_src: str | None) -> bool:
+    """
+    Decide if we should run the arithmetic oracle.
+
+    Be *very* conservative here:
+    - Only obvious add/subtract/multiply/power-style binary functions.
+    - Everything else skips the oracle.
+    """
+    if not func_src:
+        return False
+
+    name = func_name.lower()
+
+    # Only run oracle if it's literally named like a simple op
+    if name not in {"add", "subtract", "multiply", "power"}:
+        return False
+
+    try:
+        tree = ast.parse(func_src)
+        fn = next(
+            n for n in tree.body
+            if isinstance(n, ast.FunctionDef) and n.name == func_name
+        )
+    except Exception:
+        return False
+
+    # Must have exactly two positional args
+    if len(fn.args.args) != 2:
+        return False
+
+    return True
+
+
 def _calls_target(test_src: str, func_name: str) -> bool:
     """Does the generated test call the function `func_name` at least once?"""
     try:
@@ -714,9 +747,10 @@ def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = No
         return False
 
     f = ns.get(target_name)
-    if callable(f) and not _arithmetic_oracle(target_name, f, func_src=func_src):
-        _vd("reject: arithmetic oracle failed")
-        return False
+    if callable(f) and _is_arithmetic_function(target_name, func_src):
+        if not _arithmetic_oracle(target_name, f, func_src=func_src):
+            _vd("reject: arithmetic oracle failed")
+            return False
 
     if target_name.lower() in {"add", "subtract", "multiply", "power"}:
         for args, _ in _extract_calls_in_test(test_src, target_name):
@@ -1514,7 +1548,7 @@ def _try_candidates(
         candidate = _decode_and_clean(
             tokenizer, outs[i], func_name, func_src=code_snippet
         )
-        # If your _decode_and_clean doesn't call the sanitizer internally,
+        # If _decode_and_clean doesn't call the sanitizer internally,
         # uncomment the next line:
         # candidate = _sanitize_test_src(candidate, func_name)
 
@@ -1601,7 +1635,7 @@ def _guess_task_kind(code: str) -> str:
         return "numeric"
     if str_hits > num_hits:
         return "string"
-    # tie / unknown: numeric is a slightly safer default for your use case
+    # tie / unknown: numeric is a slightly safer default for use cases
     return "numeric"
 
 
@@ -1645,11 +1679,26 @@ def _generate_for_single_function(
     """
     Core generation/validation pipeline for a SINGLE function name.
 
-    This is essentially your old generate_test_from_code logic, but
+    This is essentially my old generate_test_from_code logic, but
     parameterized by func_name so we can reuse it for multi-function files.
     """
     print(
-        f"[validator] generate(single): {func_name} – beams→sampling→fallback")
+        f"[validator] generate(single): {func_name} - beams→sampling→fallback")
+
+    task_kind = _guess_task_kind(code_snippet)
+    preset = _DECODE_PRESETS["numeric" if task_kind == "numeric" else "string"]
+    print(f"[decoder] {func_name}: task_kind={task_kind}, preset={preset}")
+
+    if beam_candidates is None:
+        beam_candidates = preset["beam_candidates"]
+    if num_beams is None:
+        num_beams = preset["num_beams"]
+    if sample_candidates is None:
+        sample_candidates = preset["sample_candidates"]
+    if temperature is None:
+        temperature = preset["temperature"]
+    if top_k is None:
+        top_k = preset["top_k"]
 
     tokenizer, model = _load_model_and_tokenizer()
     # NOTE: we now pass func_name into the prompt, instead of re-extracting it
@@ -1665,7 +1714,7 @@ def _generate_for_single_function(
     ).to(DEVICE)
 
     # -------------------------
-    # Optional: bypass validator (unchanged)
+    # Optional: bypass validator
     # -------------------------
     if _BYPASS_VALIDATOR:
         with torch.inference_mode():
@@ -1689,7 +1738,7 @@ def _generate_for_single_function(
         return "# origin: raw_unvalidated\n" + txt
 
     # -------------------------
-    # 1) Deterministic beams  (unchanged)
+    # 1) Deterministic beams
     # -------------------------
     passing = _try_candidates(
         tokenizer,
@@ -1706,7 +1755,7 @@ def _generate_for_single_function(
         return "# Origin: Beams \n" + passing
 
     # -------------------------
-    # 2) Sampling for diversity (unchanged)
+    # 2) Sampling for diversity
     # -------------------------
     passing = _try_candidates(
         tokenizer,
@@ -1724,7 +1773,7 @@ def _generate_for_single_function(
         return "# Origin : sampling \n" + passing
 
     # -------------------------
-    # 3) Fallbacks (your existing block, using fn = func_name)
+    # 3) Fallbacks
     # -------------------------
     fn = func_name
     op = _infer_simple_op(code_snippet, target_name=fn) or fn.lower()
@@ -2104,6 +2153,20 @@ def regenerate_test_for_function(
     - Rejects tests that are too similar to the previous one.
     """
     print(f"[validator] regenerate(single): {func_name} - sampling-only")
+
+    # ---- NEW: tweak regen sampling per task kind ----
+    task_kind = _guess_task_kind(code_snippet)
+
+    if task_kind == "string":
+        # allow more diversity for string behavior
+        sample_candidates = max(sample_candidates, 16)
+        temperature = max(temperature, 0.95)
+        top_k = max(top_k, 120)
+    else:
+        # be a bit more conservative for numeric behavior
+        sample_candidates = max(sample_candidates, 8)
+        temperature = min(temperature, 0.8)
+        top_k = min(top_k, 40)
 
     tokenizer, model = _load_model_and_tokenizer()
     prompt = _regen_prompt_for(code_snippet, func_name, previous_test)
