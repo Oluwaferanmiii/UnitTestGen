@@ -951,7 +951,7 @@ const regenMut = useMutation({
               Delete this session?
             </h3>
             <p style={{ opacity: 0.8, fontSize: 14, marginBottom: 20 }}>
-              This action cannot be undone.
+              This will delete {sessions.find(s => s.id === deleteId)?.title || `Session #${deleteId}`}
             </p>
 
             <div
