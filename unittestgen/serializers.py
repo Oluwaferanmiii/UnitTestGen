@@ -5,6 +5,9 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
 
+MAX_CODE_CHARS = 8000
+
+
 class TestItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestItem
@@ -26,6 +29,14 @@ class TestSessionSerializer(serializers.ModelSerializer):
                   'items',]
         read_only_fields = ['id', 'generated_tests',
                             'created_at', 'updated_at', 'user']
+
+    def validate_pasted_code(self, value):
+        if value and len(value) > MAX_CODE_CHARS:
+            raise serializers.ValidationError(
+                f"Code is too long (>{MAX_CODE_CHARS} characters). "
+                "Please shorten it or split into multiple sessions."
+            )
+        return value
 
     # == LEGACY UNUSED CODE TO ENFORCE SESSION CANNOT BE EMPTY
     # def validate(self, attrs):

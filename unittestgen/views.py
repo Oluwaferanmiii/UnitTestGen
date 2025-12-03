@@ -14,6 +14,7 @@ from .serializers import (
     TestSessionSerializer,
     TestItemSerializer,
     RegisterSerializer,
+    MAX_CODE_CHARS,
 )
 from .ai.codet5_engine import (
     generate_test_from_code,
@@ -173,7 +174,7 @@ class SessionListCreateView(generics.ListCreateAPIView):
         return (
             TestSession.objects
             .filter(user=self.request.user)
-            .order_by("-created_at")
+            .order_by("-updated_at")
             .prefetch_related("items")
         )
 
@@ -230,6 +231,26 @@ class CreateTestItemView(APIView):
         pasted_code = request.data.get("pasted_code")
         uploaded_file = request.FILES.get("uploaded_code")
 
+        # ------------------------------
+        # Validate pasted code length
+        # ------------------------------
+        if pasted_code and len(pasted_code) > MAX_CODE_CHARS:
+            return Response(
+                {"error": f"Code too long. Max allowed is {MAX_CODE_CHARS} characters."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # ------------------------------
+        # Validate uploaded file size
+        # ------------------------------
+
+        MAX_FILE_BYTES = 200_000  # ~200 KB, adjust as needed
+        if uploaded_file and uploaded_file.size > MAX_FILE_BYTES:
+            return Response(
+                {"error": f"Uploaded file too large. Limit is {MAX_FILE_BYTES // 1024} KB."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         if not pasted_code and not uploaded_file:
             return Response(
                 {"error": "Provide pasted_code or uploaded_code."},
@@ -247,6 +268,33 @@ class CreateTestItemView(APIView):
                     {"error": "Failed to read uploaded file as UTF-8."},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
+            # ------------------------------
+            # Validate uploaded file content length
+            # ------------------------------
+            if len(raw_code) > MAX_CODE_CHARS:
+                return Response(
+                    {"error": f"Uploaded code too long. Max allowed is {MAX_CODE_CHARS} characters."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            # --- Validate that the pasted / uploaded content is actually Python
+        try:
+            tree = ast.parse(raw_code)
+        except SyntaxError:
+            return Response(
+                {"error": "Your code is not valid Python. "
+                          "Please paste a valid Python function or .py file."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Require at least one function definition so we don’t try to test random text
+        has_func_def = any(isinstance(n, ast.FunctionDef) for n in tree.body)
+        if not has_func_def:
+            return Response(
+                {"error": "No function definitions found. "
+                          "Please paste Python code that defines at least one function."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         # Generate tests (first-pass: beam; regenerate uses sampling)
         try:
@@ -272,6 +320,9 @@ class CreateTestItemView(APIView):
             generated_tests=test_output,
             meta={"origin": "generate", "strategy": "beam"},
         )
+
+        session.updated_at = timezone.now()
+        session.save(update_fields=["updated_at"])
 
         # ---------- Auto-name session on first useful generation ----------
         current_title = (session.title or "").strip()
@@ -367,28 +418,45 @@ class RegenerateTestView(APIView):
                 raw_code,
                 previous_tests=previous_tests,
             )
+
+            # extra safety: make sure we got a string back
+            if not isinstance(new_tests, str):
+                raise ValueError(
+                    f"regenerate_tests_from_code returned {type(new_tests)!r}, expected str"
+                )
+
             ast.parse(new_tests)
+
         except SyntaxError as e:
+            import traceback
+            traceback.print_exc()
             return Response(
-                {"error": f"Generated invalid Python: {str(e)}"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            )
-        except Exception as e:
-            return Response(
-                {"error": f"Regeneration failed: {str(e)}"},
+                {"error": f"Generated invalid Python: {e}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-        regenerated = TestItem.objects.create(
-            session=session,
-            pasted_code=item.pasted_code,
-            uploaded_code=item.uploaded_code,
-            generated_tests=new_tests,
-            meta={"origin": "regenerate", "strategy": "sample"},
-        )
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            return Response(
+                {"error": f"Regeneration failed: {e}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+        item.generated_tests = new_tests
+
+        # keep meta as dict, but mark that this came from regeneration
+        meta = item.meta or {}
+        meta.update({"origin": "regenerate", "strategy": "sample"})
+        item.meta = meta
+
+        item.save(update_fields=["generated_tests", "meta"])
+
+        session.updated_at = timezone.now()
+        session.save(update_fields=["updated_at"])
 
         return Response(
-            TestItemSerializer(regenerated).data,
+            TestItemSerializer(item).data,
             status=status.HTTP_201_CREATED,
         )
 
@@ -447,7 +515,7 @@ class UserTestSessionListView(generics.ListAPIView):
         return (
             TestSession.objects
             .filter(user=self.request.user)
-            .order_by("-created_at")
+            .order_by("-updated_at")
             .prefetch_related("items")
         )
 

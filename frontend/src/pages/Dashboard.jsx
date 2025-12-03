@@ -34,6 +34,8 @@ export default function Dashboard() {
   const [showRenameModal, setShowRenameModal] = useState(false);
   const [renameId, setRenameId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // ---------------- Data fetch ----------------
   const sessionsQ = useQuery({
@@ -97,6 +99,9 @@ export default function Dashboard() {
     mutationFn: async (payload) => {
       if (!activeId) throw new Error("No active session.");
       return addItem(activeId, payload);
+    },
+    onMutate: () => {
+    setToast("Generation started…");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["session", activeId] });
@@ -167,6 +172,10 @@ export default function Dashboard() {
 const regenMut = useMutation({
   mutationFn: ({ sessionId, itemId }) => regenerate(sessionId, itemId),
 
+  onMutate: () => {
+    setToast("Regeneration started…");
+  },
+
   onSuccess: () => {
     qc.invalidateQueries({ queryKey: ["session", activeId] });
     setToast("Regenerated tests.");
@@ -178,6 +187,9 @@ const regenMut = useMutation({
     setTimeout(() => setToast(""), 1500);
   },
 });
+
+  const isRegenerating = regenMut.isPending;
+  const isBusy = isGenerating || isRegenerating;
 
   // ---------------- Handlers ----------------
   async function handleCopyTests(text, itemId) {
@@ -269,6 +281,25 @@ const regenMut = useMutation({
 
   const sessions = useMemo(() => sessionsQ.data ?? [], [sessionsQ.data]);
 
+  // 🔍 Filtered search results (by title OR item code/tests)
+  const searchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [];
+
+    return sessions.filter((s) => {
+      const title = (s.title || `Session #${s.id}`).toLowerCase();
+      const inTitle = title.includes(q);
+
+      const inItems = (s.items || []).some((it) => {
+        const pasted = (it.pasted_code || "").toLowerCase();
+        const tests = (it.generated_tests || "").toLowerCase();
+        return pasted.includes(q) || tests.includes(q);
+      });
+
+      return inTitle || inItems;
+    });
+  }, [searchQuery, sessions]);
+
   const activeItems = activeId
     ? [...(activeSessionQ.data?.items ?? [])].sort(
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
@@ -306,25 +337,83 @@ const regenMut = useMutation({
           <Logo width={200} height={75} />
         </div>
 
+        {/* New Session button */}
         <button
           onClick={() => newSessionMut.mutate()}
           disabled={newSessionMut.isLoading}
           style={{
-            width: "75%",
+            width: "100%",
             padding: 12,
             borderRadius: 15,
-            marginBottom: 16,
-            background: "#d4d4d4",
-            color: "#111",
+            marginBottom: 5,
+            background: "transparent",
+            color: "#fff",
             border: "none",
             cursor: "pointer",
             fontWeight: 600,
+            transition: "0.15s ease",
+            opacity: newSessionMut.isLoading ? 0.7 : 1,
+            display: "flex",
+            alignItems: "center",
+            gap: 10,           
+            justifyContent: "flex-start",
           }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.background = "rgba(255,255,255,0.1)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.background = "transparent")
+          }
         >
-          {newSessionMut.isLoading ? "Creating…" : "New Session"}
+          <img
+            src="New_session.svg" 
+            alt=""
+            style={{ width: 18, height: 18, opacity: 0.9 }}
+          />
+          {newSessionMut.isLoading ? "Creating…" : "New session"}
+        </button>
+        
+        {/* search button */}
+        <button
+          onClick={() => setShowSearchModal(true)}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 15,
+            marginBottom: 16,
+            background: "transparent",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: 600,
+            transition: "0.15s ease",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            gap: 10,
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.background = "rgba(255,255,255,0.1)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.background = "transparent")
+          }
+        >
+          <img
+            src="/search.svg"
+            alt=""
+            style={{ width: 18, height: 18, opacity: 0.9 }}
+          />
+          Search sessions
         </button>
 
-        <div style={{ opacity: 0.9, marginBottom: 10, fontWeight: 600 }}>
+        <div
+          style={{
+            opacity: 0.9,
+            marginBottom: 10,
+            fontWeight: 600,
+          }}
+        >
           Test History
         </div>
 
@@ -548,7 +637,7 @@ const regenMut = useMutation({
                   opacity: isGenerating ? 0.85 : 1,
                   alignSelf: "flex-start",
                 }}
-                disabled={isGenerating  || !activeId}
+                disabled={isBusy  || !activeId}
               >
                 {isGenerating ? "Generating…" : "Generate"}
               </button>
@@ -645,7 +734,7 @@ const regenMut = useMutation({
                   opacity: isGenerating ? 0.85 : 1,
                   whiteSpace: "nowrap",
                 }}
-                disabled={isGenerating || !activeId}
+                disabled={isBusy || !activeId}
               >
                 {isGenerating ? "Generating…" : "Generate"}
               </button>
@@ -736,6 +825,7 @@ const regenMut = useMutation({
                       {/* Regenerate button */}
                       <button
                         type="button"
+                        disabled={isBusy}
                         onClick={() =>
                           regenMut.mutate({ sessionId: activeId, itemId: it.id })
                         }
@@ -746,7 +836,6 @@ const regenMut = useMutation({
                           padding: 4,
                         }}
                         title="Regenerate tests for this code"
-                        disabled={regenMut.isPending}
                       >
                         <img
                           src="/Reload.svg"       // make sure reload.svg is in /public
@@ -812,20 +901,151 @@ const regenMut = useMutation({
           <div
             style={{
               position: "fixed",
-              bottom: 18,
-              left: "50%",
-              transform: "translateX(-50%)",
+              top: 75,
+              right: 30,
               background: "rgba(40,40,48,.92)",
               border: "1px solid rgba(255,255,255,.15)",
               padding: "10px 14px",
               borderRadius: 10,
               fontSize: 14,
+              zIndex: 999, 
             }}
           >
             {toast}
           </div>
         )}
       </main>
+      
+      {/* Search modal */}
+      {showSearchModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.55)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 205,
+          }}
+          onClick={() => setShowSearchModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "rgba(20,20,25,1)",
+              padding: 24,
+              borderRadius: 12,
+              width: 500,
+              border: "1px solid rgba(255,255,255,.12)",
+              maxHeight: "70vh",
+              display: "flex",
+              flexDirection: "column",
+              gap: 12,
+            }}
+          >
+            <h3 style={{ margin: 0 }}>Search test history</h3>
+            <p style={{ margin: 0, opacity: 0.8, fontSize: 13 }}>
+              Search by session title or code/tests within that session.
+            </p>
+
+            <input
+              type="text"
+              autoFocus
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Type to search…"
+              style={{
+                marginTop: 6,
+                width: "100%",
+                padding: "8px 10px",
+                borderRadius: 8,
+                border: "1px solid rgba(255,255,255,.25)",
+                background: "rgba(15,15,20,1)",
+                color: "#fff",
+                fontSize: 14,
+              }}
+            />
+
+            <div
+              style={{
+                marginTop: 8,
+                overflowY: "auto",
+                flex: 1,
+                borderRadius: 8,
+                border: "1px solid rgba(255,255,255,.12)",
+                padding: 6,
+                background: "rgba(10,10,15,1)",
+              }}
+            >
+              {searchQuery.trim() === "" && (
+                <div style={{ opacity: 0.7, fontSize: 13, padding: 6 }}>
+                  Start typing to search your sessions…
+                </div>
+              )}
+
+              {searchQuery.trim() !== "" && searchResults.length === 0 && (
+                <div style={{ opacity: 0.7, fontSize: 13, padding: 6 }}>
+                  No matches found.
+                </div>
+              )}
+
+              {searchResults.map((s) => (
+                <div
+                  key={s.id}
+                  onClick={() => {
+                    setActiveId(s.id);
+                    setShowSearchModal(false);
+                    setSearchQuery("");
+                  }}
+                  style={{
+                    padding: "8px 10px",
+                    borderRadius: 8,
+                    marginBottom: 4,
+                    cursor: "pointer",
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                  }}
+                >
+                  <div style={{ fontSize: 14, fontWeight: 500 }}>
+                    {s.title || `Session #${s.id}`}
+                  </div>
+                  <div style={{ fontSize: 12, opacity: 0.7, marginTop: 2 }}>
+                    {s.items?.length
+                      ? `${s.items.length} item${s.items.length > 1 ? "s" : ""}`
+                      : "No items yet"}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginTop: 8,
+              }}
+            >
+              <button
+                style={{
+                  padding: "8px 14px",
+                  borderRadius: 8,
+                  border: "1px solid rgba(255,255,255,.25)",
+                  background: "transparent",
+                  color: "#fff",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setShowSearchModal(false);
+                  setSearchQuery("");
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Rename modal */}
       {showRenameModal && (
@@ -975,7 +1195,7 @@ const regenMut = useMutation({
                 style={{
                   padding: "8px 14px",
                   borderRadius: 8,
-                  background: "#e11d48",
+                  background: "#880808",
                   color: "#fff",
                   border: "none",
                   cursor: "pointer",

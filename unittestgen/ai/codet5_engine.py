@@ -2236,8 +2236,8 @@ def regenerate_test_for_function(
         cand_calls = _extract_calls_in_test(candidate, func_name)
         if prev_calls and cand_calls:
             # sort for deterministic comparison
-            prev_set = sorted(prev_calls)
-            cand_set = sorted(cand_calls)
+            prev_set = sorted(prev_calls, key=repr)
+            cand_set = sorted(cand_calls, key=repr)
             if prev_set == cand_set:
                 if _VALIDATOR_DEBUG:
                     print("[regen] REJECT: same call argument patterns")

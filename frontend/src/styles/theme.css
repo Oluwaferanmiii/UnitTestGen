@@ -61,3 +61,28 @@ html, body, #root {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;                 /* thinner scrollbar */
+  scrollbar-color: #9ca3af transparent;  /* thumb color | track color */
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;               /* hide the white track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.9);  /* grey thumb */
+  border-radius: 9999px;
+}
+
+/* Optional: hover effect */
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(209, 213, 219, 0.9);
+}
