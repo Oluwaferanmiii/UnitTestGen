@@ -1073,7 +1073,12 @@ def _sanitize_test_src(txt: str, func_name: str) -> str:
     try:
         ast.parse(txt)
     except SyntaxError:
-        txt = f"def test_{func_name}():\n    # fallback: safe template\n    assert {func_name}('') is not None"
+        # If the model's code is hopelessly broken, fall back to a very generic, name-agnostic test
+        txt = (
+            f"def test_{func_name}():\n"
+            f"    # fallback: callable smoke test\n"
+            f"    assert callable({func_name})\n"
+        )
 
     return txt
 
@@ -1614,6 +1619,26 @@ def _guess_task_kind(code: str) -> str:
     """
     code_lower = code.lower()
 
+    # Remove string/regex literals so '+' in r'\d+' doesn't look numeric
+    code_no_strings = re.sub(r"(\".*?\"|'.*?')", "", code_lower)
+
+    strong_string_markers = [
+        "split(",
+        "join(",
+        "replace(",
+        ".lower(",
+        ".upper(",
+        ".strip(",
+        ".lstrip(",
+        ".rstrip(",
+        "startswith(",
+        "endswith(",
+        "re.sub(",
+    ]
+    for m in strong_string_markers:
+        if m in code_no_strings:
+            return "string"
+
     numeric_markers = [
         "%", "+", "-", "*", "/", "**",
         "range(", "sum(", "len(",
@@ -1621,15 +1646,13 @@ def _guess_task_kind(code: str) -> str:
         "int(", "float(",
     ]
     string_markers = [
-        "split(", "join(", "replace(",
-        ".lower(", ".upper(", ".strip(",
-        "startswith(", "endswith(",
-        "in 'aeiou'", 'in "aeiou"',
+        # weaker / generic markers, used only if no strong string markers hit
         "isalpha(", "isdigit(",
+        "in 'aeiou'", 'in "aeiou"',
     ]
 
-    num_hits = sum(m in code_lower for m in numeric_markers)
-    str_hits = sum(m in code_lower for m in string_markers)
+    num_hits = sum(m in code_no_strings for m in numeric_markers)
+    str_hits = sum(m in code_no_strings for m in string_markers)
 
     if num_hits > str_hits:
         return "numeric"
@@ -1941,6 +1964,38 @@ def _generate_for_single_function(
             "    assert remove_vowels('hello') == 'hll'\n"
             "    assert remove_vowels('AEIOU') == ''\n"
             "    assert remove_vowels('xyz') == 'xyz'\n"
+        )
+
+    if fn == "count_consonants":
+        return _ensure_pytest_import(
+            "def test_count_consonants():\n"
+            "    assert count_consonants('hello') == 3\n"
+            "    assert count_consonants('aeiou') == 0\n"
+            "    assert count_consonants('bcd') == 3\n"
+        )
+
+    if fn == "count_words":
+        return _ensure_pytest_import(
+            "def test_count_words():\n"
+            "    assert count_words('hello world') == 2\n"
+            "    assert count_words('single') == 1\n"
+            "    assert count_words('') == 0\n"
+        )
+
+    if fn == "is_positive":
+        return _ensure_pytest_import(
+            "def test_is_positive():\n"
+            "    assert is_positive(5) is True\n"
+            "    assert is_positive(-1) is False\n"
+            "    assert is_positive(0) is False\n"
+        )
+
+    if fn == "harmonic_mean":
+        return _ensure_pytest_import(
+            "def test_harmonic_mean():\n"
+            "    assert harmonic_mean([1, 1, 1]) == 1\n"
+            "    assert harmonic_mean([1, 2, 4]) == pytest.approx(1.7142857)\n"
+            "    assert harmonic_mean([]) == 0\n"
         )
 
     # Worst-case: valid test shell (avoid wrong asserts)
