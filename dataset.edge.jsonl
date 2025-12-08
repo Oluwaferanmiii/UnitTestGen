@@ -1,0 +1,75 @@
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(0,0)==0; assert add(-1,1)==0; assert add(10**9,-10**9)==0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(-5,-5)==-10; assert add(-1,0)==-1; assert add(1,-2)==-1"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(999999999,1)==1000000000; assert add(-999999999,-1)==-1000000000; assert add(0,-999)==-999"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(0.1,0.2)==0.30000000000000004; assert add(-0.5,0.5)==0.0; assert add(1.5,-0.5)==1.0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add('', '')==''; assert add('a','b')=='ab'; assert add('😀','😁')=='😀😁'"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add([],[])==[]; assert add([1],[2])==[1,2]; assert add(['x'],[])==['x']"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add({},{} )=={}; assert add({'a':1},{'b':2})=={'a':1,'b':2}; assert add({'x':1},{} )=={'x':1}"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(() ,() )==(); assert add((1,), (2,))==(1,2); assert add((),(3,4))==(3,4)"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add('','abc')=='abc'; assert add('abc','')=='abc'; assert add(' ',' ')==' '"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(True,True)==2; assert add(True,False)==1; assert add(False,False)==0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(-1,-999999999)==-1000000000; assert add(500,-500)==0; assert add(3,-7)==-4"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(1e308,1e308)==float('inf'); assert add(-1e308,-1e308)==-float('inf'); assert add(1e308,-1e308)==0.0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add('a','😊')=='a😊'; assert add('á','é')=='áé'; assert add('🐍','code')=='🐍code'"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add([[],[]],[1])==[[],[],1]; assert add([1,[2]],[3])==[1,[2],3]; assert add([0],[[]])==[0,[]]"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add('', '🙂')=='🙂'; assert add('🙂','')=='🙂'; assert add('👍','👎')=='👍👎'"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(0,-0)==0; assert add(-0.0,0.0)==0.0; assert add(0.0,0.0)==0.0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(-1000000000,999999999)==-1; assert add(250000000,-250000000)==0; assert add(42,-42)==0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add('abc','123')=='abc123'; assert add('','123')=='123'; assert add('abc','')=='abc'"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add([],[1,2,3])==[1,2,3]; assert add([1,2],[])==[1,2]; assert add([0],[0])==[0,0]"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add((-1,),(-2,))==(-1,-2); assert add((),(1,))==(1,); assert add((0,),())==(0,)"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(True,5)==6; assert add(False,5)==5; assert add(-1,True)==0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add(1e-12,1e-12)==2e-12; assert add(-1e-12,1e-12)==0.0; assert add(3.14,-3.14)==0.0"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add('🔥','🔥')=='🔥🔥'; assert add('☺️','☹️')=='☺️☹️'; assert add('✨','')=='✨'"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add({'a':1},{})=={'a':1}; assert add({}, {'b':2})=={'b':2}; assert add({'x':1},{'x':2})=={'x':2}"}
+{"input": "def add(a,b): return a+b", "output": "def test_add(): assert add([1],[[]])==[1,[]]; assert add([[]],[])==[[]]; assert add([],['a'])==['a']"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0,0)==0; assert subtract(1,1)==0; assert subtract(-1,-1)==0"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0,5)==-5; assert subtract(5,0)==5; assert subtract(0,-5)==5"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(-5,-10)==5; assert subtract(-10,-5)==-5; assert subtract(-1,-2)==1"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(10**9,10**9)==0; assert subtract(10**9,10**9-1)==1; assert subtract(-(10**9),10**9)==-2*10**9"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(1,-1)==2; assert subtract(-1,1)==-2; assert subtract(-3,-5)==2"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0.0,0.0)==0.0; assert subtract(0.3,0.1)==0.19999999999999998; assert subtract(-0.5,-0.25)==-0.25"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(1.5,1.5)==0.0; assert subtract(-1.5,1.5)==-3.0; assert subtract(1.5,-1.5)==3.0"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(True,True)==0; assert subtract(True,False)==1; assert subtract(False,True)==-1"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(0,True)==-1; assert subtract(True,0)==1; assert subtract(5,True)==4"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(1e308,1e308)==0.0; assert subtract(1e308,-1e308)==float('inf'); assert subtract(-1e308,1e308)==-float('inf')"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(-1e-12,1e-12)==-2e-12; assert subtract(1e-12,-1e-12)==2e-12; assert subtract(0.0,1e-12)==-1e-12"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(2**63-1,2**63-1)==0; assert subtract(-(2**63-1),2**63-1)==-2*(2**63-1); assert subtract(2**63-1,0)==2**63-1"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(-1000000000,0)==-1000000000; assert subtract(0,-1000000000)==1000000000; assert subtract(-1000000000,1)==-1000000001"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(5,10)==-5; assert subtract(10,5)==5; assert subtract(5,5)==0"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(1,-0)==1; assert subtract(-0,1)==-1; assert subtract(-0,-0)==0"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(-2,-0)==-2; assert subtract(-2,0)==-2; assert subtract(0,-2)==2"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(999999999,1000000000)==-1; assert subtract(1000000000,999999999)==1; assert subtract(-999999999,-1000000000)==1"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(3.14,3.14)==0.0; assert subtract(3.14,0.0)==3.14; assert subtract(0.0,3.14)==-3.14"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(-3.14,-3.14)==0.0; assert subtract(-3.14,3.14)==-6.28; assert subtract(3.14,-3.14)==6.28"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(100,-1)==101; assert subtract(-1,100)==-101; assert subtract(-100,-1)==-99"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(1,2)==-1; assert subtract(2,1)==1; assert subtract(-1,2)==-3"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(50,49)==1; assert subtract(49,50)==-1; assert subtract(50,51)==-1"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(10**5,10**5-1)==1; assert subtract(10**5-1,10**5)==-1; assert subtract(-10**5,10**5-1)==-2*10**5+1"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(7,-7)==14; assert subtract(-7,7)==-14; assert subtract(-7,-7)==0"}
+{"input": "def subtract(a, b): return a - b", "output": "def test_subtract(): assert subtract(True,2)==-1; assert subtract(2,True)==1; assert subtract(False,-2)==2"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('')==''; assert rotate_right('a')=='a'; assert rotate_right('aa')=='aa'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('ab')=='ba'; assert rotate_right('abc')=='cab'; assert rotate_right('abcd')=='dabc'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('hello')=='ohell'; assert rotate_right('world')=='dworl'; assert rotate_right('test')=='ttes'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('😊a')=='a😊'; assert rotate_right('a😊')=='😊a'; assert rotate_right('🙂🙂')=='🙂🙂'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right(' Café')=='é Caf'; assert rotate_right('café')=='écaf'; assert rotate_right('ño')=='oñ'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('   ')=='   '; assert rotate_right(' a ')==' a '; assert rotate_right('  a')=='a  '"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('a b')=='b a'; assert rotate_right(' hi')=='ihi'; assert rotate_right('hi ')==' hi'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('123')=='312'; assert rotate_right('001')=='100'; assert rotate_right('10')=='01'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('!@#')=='#@!'; assert rotate_right('?.')=='.?'; assert rotate_right('---')=='---'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('A')=='A'; assert rotate_right('Aa')=='aA'; assert rotate_right('ABc')=='cAB'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('mixedCASE')=='EmixedCAS'; assert rotate_right('TestIng')=='gTestIn'; assert rotate_right('CamelCase')=='eCamelCas'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('0')=='0'; assert rotate_right('01')=='10'; assert rotate_right('010')=='001'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right(' spaced')=='d space'; assert rotate_right('spaced ')==' spaced'; assert rotate_right('  spaced')=='d  space'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('longstring')=='glongstrin'; assert rotate_right('rotate')=='erotat'; assert rotate_right('python')=='npytho'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('abcabc')=='cabcab'; assert rotate_right('aaaaab')=='baaaaa'; assert rotate_right('ababab')=='babaab'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('#tag')=='g#ta'; assert rotate_right('##tag')=='g##ta'; assert rotate_right('tag#')=='#tag'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('_hidden')=='n_hidde'; assert rotate_right('__x')=='x__'; assert rotate_right('_')=='_'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('日本語')=='語日本'; assert rotate_right('語日')=='日語'; assert rotate_right('語')=='語'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('😊😊a')=='a😊😊'; assert rotate_right('a😊😊')=='😊a😊'; assert rotate_right('😊a😊')=='😊😊a'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('tab\t')=='\ttab'; assert rotate_right('\ttab')=='b\tta'; assert rotate_right('a\tb')=='ba\t'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right(' ')==' '; assert rotate_right('  a')=='a  '; assert rotate_right('a  ')=='  a'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('ab cd')=='dab c'; assert rotate_right(' cdab')=='b cda'; assert rotate_right('abcd ')==' abcd'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('0a0')=='00a'; assert rotate_right('a0a')=='aa0'; assert rotate_right('00a')=='a00'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('END!')=='!END'; assert rotate_right('YES?')=='?YES'; assert rotate_right('ok!')=='!ok'"}
+{"input": "def rotate_right(s):\n    return s[-1:] + s[:-1]", "output": "def test_rotate_right(): assert rotate_right('abc')=='cab'; assert rotate_right('ab')=='ba'; assert rotate_right('ab')=='ba'"}

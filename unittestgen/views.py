@@ -298,7 +298,7 @@ class CreateTestItemView(APIView):
 
         # Generate tests (first-pass: beam; regenerate uses sampling)
         try:
-            test_output = generate_test_from_code(raw_code)
+            test_output = generate_test_from_code(raw_code, mode="base",)
             # Validate generated Python to avoid returning broken code
             ast.parse(test_output)
         except SyntaxError as e:
@@ -417,6 +417,7 @@ class RegenerateTestView(APIView):
             new_tests = regenerate_tests_from_code(
                 raw_code,
                 previous_tests=previous_tests,
+                mode="base",
             )
 
             # extra safety: make sure we got a string back
@@ -492,7 +493,7 @@ class CreateTestSessionView(generics.CreateAPIView):
             return
 
         try:
-            test_output = generate_test_from_code(raw_code)
+            test_output = generate_test_from_code(raw_code, mode="base",)
             ast.parse(test_output)  # Validate Python syntax
             session.generated_tests = test_output
         except SyntaxError as e:

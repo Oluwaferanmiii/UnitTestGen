@@ -41,30 +41,48 @@ def _vd(msg: str) -> None:
 # -----------------------------
 # Model path (from env)
 # -----------------------------
-MODEL_DIR = os.environ.get(
+BASE_MODEL_DIR = os.environ.get(
     "MODEL_PATH",
     "/Users/oluwaferanmiii/Python/Thesis/fine_tuned_codet5p"
 )
 
-if not os.path.exists(MODEL_DIR):
+EDGE_MODEL_DIR = os.environ.get("EDGE_MODEL_PATH", BASE_MODEL_DIR)
+
+if not os.path.exists(BASE_MODEL_DIR):
     raise FileNotFoundError(
-        f"[codet5_engine] Directory {MODEL_DIR} does not exist!"
+        f"[codet5_engine] Directory {BASE_MODEL_DIR} does not exist!"
     )
 
-print(f"[codet5_engine] Loading model from: {MODEL_DIR}")
+print(f"[codet5_engine] Loading model from: {BASE_MODEL_DIR}")
+if EDGE_MODEL_DIR != BASE_MODEL_DIR:
+    print(f"[codet5_engine] Edge model from: {EDGE_MODEL_DIR}")
 
 
 # -----------------------------
 # Lazy single-load (cached)
 # -----------------------------
-@lru_cache(maxsize=1)
-def _load_model_and_tokenizer():
-    tok = AutoTokenizer.from_pretrained(MODEL_DIR)
-    mdl = AutoModelForSeq2SeqLM.from_pretrained(MODEL_DIR)
+@lru_cache(maxsize=None)
+def _load_model_and_tokenizer(mode: str = "base"):
+    """
+    Load tokenizer + model for either:
+      - mode='base'  → BASE_MODEL_DIR
+      - mode='edge'  → EDGE_MODEL_DIR  (falls back to base if env not set)
+    """
+    if mode == "edge":
+        model_dir = EDGE_MODEL_DIR
+    else:
+        # default / unknown → base
+        model_dir = BASE_MODEL_DIR
+
+    tok = AutoTokenizer.from_pretrained(model_dir)
+    mdl = AutoModelForSeq2SeqLM.from_pretrained(model_dir)
     mdl.to(DEVICE)
     mdl.eval()
     torch.set_grad_enabled(False)
-    print("[codet5_engine] Model & tokenizer loaded (cached)")
+    print(
+        f"[codet5_engine] Model & tokenizer loaded (cached) "
+        f"- mode={mode}, dir={model_dir}"
+    )
     return tok, mdl
 
 
@@ -670,7 +688,7 @@ def _asserts_focus_on_target(test_src: str, func_name: str, *, min_ratio: float 
     return (hits / total) >= min_ratio
 
 
-def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = None,) -> bool:
+def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = None, mode: str = "base",) -> bool:
     """
     Execute function + test in an isolated namespace.
     Returns True only if:
@@ -1530,6 +1548,7 @@ def _try_candidates(
     num_beams: int = 1,
     temperature: float = 0.7,
     top_k: int = 50,
+    mode: str = "base",
 ):
     """Generate `num_return` candidates and return the first passing one, else None."""
     with torch.inference_mode():
@@ -1593,7 +1612,8 @@ def _try_candidates(
             rejections.append((candidate, reason))
             continue
 
-        ok = _run_test_safely(code_snippet, candidate, func_name=func_name)
+        ok = _run_test_safely(code_snippet, candidate,
+                              func_name=func_name, mode=mode,)
         if ok:
             return candidate
         else:
@@ -1698,6 +1718,7 @@ def _generate_for_single_function(
     num_beams: int,
     temperature: float,
     top_k: int,
+    mode: str = "base",
 ) -> str:
     """
     Core generation/validation pipeline for a SINGLE function name.
@@ -1723,7 +1744,7 @@ def _generate_for_single_function(
     if top_k is None:
         top_k = preset["top_k"]
 
-    tokenizer, model = _load_model_and_tokenizer()
+    tokenizer, model = _load_model_and_tokenizer(mode)
     # NOTE: we now pass func_name into the prompt, instead of re-extracting it
     prompt = _prompt_for(code_snippet, func_name)
 
@@ -1773,6 +1794,7 @@ def _generate_for_single_function(
         do_sample=False,
         num_return=max(1, int(beam_candidates)),
         num_beams=max(1, int(num_beams)),
+        mode=mode,
     )
     if passing:
         return "# Origin: Beams \n" + passing
@@ -1791,6 +1813,7 @@ def _generate_for_single_function(
         num_return=max(1, int(sample_candidates)),
         temperature=temperature,
         top_k=top_k,
+        mode=mode,
     )
     if passing:
         return "# Origin : sampling \n" + passing
@@ -2110,6 +2133,7 @@ def generate_test_from_code(
     # sampling params
     temperature: float | None = None,
     top_k: int | None = None,
+    mode: str = "base",
 ) -> str:
     """
     Generate PyTest-style unit tests and validate them automatically.
@@ -2162,6 +2186,7 @@ def generate_test_from_code(
             num_beams=num_beams,
             temperature=temperature,
             top_k=top_k,
+            mode=mode,
         )
 
     # ---- 3) Multi-function path ----
@@ -2170,7 +2195,6 @@ def generate_test_from_code(
     snippets: list[str] = []
 
     for func_name, fn_src in fn_defs:
-        # IMPORTANT: pass this function's own source, not the whole file
         tests_for_fn = _generate_for_single_function(
             fn_src,
             func_name,
@@ -2180,6 +2204,7 @@ def generate_test_from_code(
             num_beams=num_beams,
             temperature=temperature,
             top_k=top_k,
+            mode=mode,
         )
         snippets.append(tests_for_fn)
 
@@ -2199,6 +2224,7 @@ def regenerate_test_for_function(
     sample_candidates: int = 12,
     temperature: float = 0.95,
     top_k: int = 120,
+    mode: str = "base",
 ) -> str:
     """
     Regenerate a *different* test for a single function.
@@ -2223,7 +2249,7 @@ def regenerate_test_for_function(
         temperature = min(temperature, 0.8)
         top_k = min(top_k, 40)
 
-    tokenizer, model = _load_model_and_tokenizer()
+    tokenizer, model = _load_model_and_tokenizer(mode)
     prompt = _regen_prompt_for(code_snippet, func_name, previous_test)
 
     enc = tokenizer(
@@ -2319,7 +2345,8 @@ def regenerate_test_for_function(
             rejections.append((candidate, reason))
             continue
 
-        ok = _run_test_safely(code_snippet, candidate, func_name=func_name)
+        ok = _run_test_safely(code_snippet, candidate,
+                              func_name=func_name, mode=mode,)
         if ok:
             best_candidate = candidate
             break
@@ -2349,6 +2376,7 @@ def regenerate_tests_from_code(
     sample_candidates: int = 12,
     temperature: float = 0.95,
     top_k: int = 120,
+    mode: str = "base",
 ) -> str:
     """
     Multi-function aware regeneration entry point.
@@ -2374,13 +2402,12 @@ def regenerate_tests_from_code(
             sample_candidates=sample_candidates,
             temperature=temperature,
             top_k=top_k,
+            mode=mode,
         )
 
     # ---------------- Multi-function path ----------------
     func_names = [name for name, _ in fn_defs]
 
-    # You said you've already added this helper:
-    # prev_by_func: { "add": "def test_add..." , ... }
     prev_by_func = _split_multi_function_tests(
         previous_tests or "",
         func_names,
@@ -2389,7 +2416,6 @@ def regenerate_tests_from_code(
     snippets: list[str] = []
 
     for func_name, _fn_src in fn_defs:
-        # Previous test block just for THIS function (may be empty)
         per_func_prev = prev_by_func.get(func_name, "")
 
         new_test = regenerate_test_for_function(
@@ -2400,6 +2426,7 @@ def regenerate_tests_from_code(
             sample_candidates=sample_candidates,
             temperature=temperature,
             top_k=top_k,
+            mode=mode,
         )
         snippets.append(new_test)
 
@@ -2420,12 +2447,14 @@ def generate_test_from_code_validated(
     *,
     num_beams: int = 4,
     max_new_tokens: int = 140,
+    mode: str = "base",
 ) -> str:
     """Calls the same validated generator; retained for back-compat."""
     return generate_test_from_code(
         code_snippet,
         num_beams=num_beams,
         max_new_tokens=max_new_tokens,
+        mode=mode,
     )
 
 

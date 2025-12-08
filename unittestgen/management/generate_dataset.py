@@ -5,7 +5,7 @@ import os
 from collections import defaultdict
 
 # ----------------------------
-# Config (tweak as needed)
+# Config
 # ----------------------------
 # write cleaned output here (non-destructive)
 DATASET_FILE = "dataset.jsonl"
