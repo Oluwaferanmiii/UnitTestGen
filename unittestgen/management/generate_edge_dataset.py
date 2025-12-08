@@ -111,84 +111,572 @@ edge_functions = [
     "def rotate_right(s):\n    return s[-1:] + s[:-1]",
     "def rotate_right(s):\n    return s[-1:] + s[:-1]",
     "def rotate_right(s):\n    return s[-1:] + s[:-1]",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
+    "def divide(a, b): return a / b if b != 0 else 0",
 ]
 
 edge_tests = [
-    "def test_add(): assert add(0,0)==0; assert add(-1,1)==0; assert add(10**9,-10**9)==0",
-    "def test_add(): assert add(-5,-5)==-10; assert add(-1,0)==-1; assert add(1,-2)==-1",
-    "def test_add(): assert add(999999999,1)==1000000000; assert add(-999999999,-1)==-1000000000; assert add(0,-999)==-999",
-    "def test_add(): assert add(0.1,0.2)==0.30000000000000004; assert add(-0.5,0.5)==0.0; assert add(1.5,-0.5)==1.0",
-    "def test_add(): assert add('', '')==''; assert add('a','b')=='ab'; assert add('😀','😁')=='😀😁'",
-    "def test_add(): assert add([],[])==[]; assert add([1],[2])==[1,2]; assert add(['x'],[])==['x']",
-    "def test_add(): assert add({},{} )=={}; assert add({'a':1},{'b':2})=={'a':1,'b':2}; assert add({'x':1},{} )=={'x':1}",
-    "def test_add(): assert add(() ,() )==(); assert add((1,), (2,))==(1,2); assert add((),(3,4))==(3,4)",
-    "def test_add(): assert add('','abc')=='abc'; assert add('abc','')=='abc'; assert add(' ',' ')==' '",
-    "def test_add(): assert add(True,True)==2; assert add(True,False)==1; assert add(False,False)==0",
-    "def test_add(): assert add(-1,-999999999)==-1000000000; assert add(500,-500)==0; assert add(3,-7)==-4",
-    "def test_add(): assert add(1e308,1e308)==float('inf'); assert add(-1e308,-1e308)==-float('inf'); assert add(1e308,-1e308)==0.0",
-    "def test_add(): assert add('a','😊')=='a😊'; assert add('á','é')=='áé'; assert add('🐍','code')=='🐍code'",
-    "def test_add(): assert add([[],[]],[1])==[[],[],1]; assert add([1,[2]],[3])==[1,[2],3]; assert add([0],[[]])==[0,[]]",
-    "def test_add(): assert add('', '🙂')=='🙂'; assert add('🙂','')=='🙂'; assert add('👍','👎')=='👍👎'",
-    "def test_add(): assert add(0,-0)==0; assert add(-0.0,0.0)==0.0; assert add(0.0,0.0)==0.0",
-    "def test_add(): assert add(-1000000000,999999999)==-1; assert add(250000000,-250000000)==0; assert add(42,-42)==0",
-    "def test_add(): assert add('abc','123')=='abc123'; assert add('','123')=='123'; assert add('abc','')=='abc'",
-    "def test_add(): assert add([],[1,2,3])==[1,2,3]; assert add([1,2],[])==[1,2]; assert add([0],[0])==[0,0]",
-    "def test_add(): assert add((-1,),(-2,))==(-1,-2); assert add((),(1,))==(1,); assert add((0,),())==(0,)",
-    "def test_add(): assert add(True,5)==6; assert add(False,5)==5; assert add(-1,True)==0",
-    "def test_add(): assert add(1e-12,1e-12)==2e-12; assert add(-1e-12,1e-12)==0.0; assert add(3.14,-3.14)==0.0",
-    "def test_add(): assert add('🔥','🔥')=='🔥🔥'; assert add('☺️','☹️')=='☺️☹️'; assert add('✨','')=='✨'",
-    "def test_add(): assert add({'a':1},{})=={'a':1}; assert add({}, {'b':2})=={'b':2}; assert add({'x':1},{'x':2})=={'x':2}",
-    "def test_add(): assert add([1],[[]])==[1,[]]; assert add([[]],[])==[[]]; assert add([],['a'])==['a']",
-    "def test_subtract(): assert subtract(0,0)==0; assert subtract(1,1)==0; assert subtract(-1,-1)==0",
-    "def test_subtract(): assert subtract(0,5)==-5; assert subtract(5,0)==5; assert subtract(0,-5)==5",
-    "def test_subtract(): assert subtract(-5,-10)==5; assert subtract(-10,-5)==-5; assert subtract(-1,-2)==1",
-    "def test_subtract(): assert subtract(10**9,10**9)==0; assert subtract(10**9,10**9-1)==1; assert subtract(-(10**9),10**9)==-2*10**9",
-    "def test_subtract(): assert subtract(1,-1)==2; assert subtract(-1,1)==-2; assert subtract(-3,-5)==2",
-    "def test_subtract(): assert subtract(0.0,0.0)==0.0; assert subtract(0.3,0.1)==0.19999999999999998; assert subtract(-0.5,-0.25)==-0.25",
-    "def test_subtract(): assert subtract(1.5,1.5)==0.0; assert subtract(-1.5,1.5)==-3.0; assert subtract(1.5,-1.5)==3.0",
-    "def test_subtract(): assert subtract(True,True)==0; assert subtract(True,False)==1; assert subtract(False,True)==-1",
-    "def test_subtract(): assert subtract(0,True)==-1; assert subtract(True,0)==1; assert subtract(5,True)==4",
-    "def test_subtract(): assert subtract(1e308,1e308)==0.0; assert subtract(1e308,-1e308)==float('inf'); assert subtract(-1e308,1e308)==-float('inf')",
-    "def test_subtract(): assert subtract(-1e-12,1e-12)==-2e-12; assert subtract(1e-12,-1e-12)==2e-12; assert subtract(0.0,1e-12)==-1e-12",
-    "def test_subtract(): assert subtract(2**63-1,2**63-1)==0; assert subtract(-(2**63-1),2**63-1)==-2*(2**63-1); assert subtract(2**63-1,0)==2**63-1",
-    "def test_subtract(): assert subtract(-1000000000,0)==-1000000000; assert subtract(0,-1000000000)==1000000000; assert subtract(-1000000000,1)==-1000000001",
-    "def test_subtract(): assert subtract(5,10)==-5; assert subtract(10,5)==5; assert subtract(5,5)==0",
-    "def test_subtract(): assert subtract(1,-0)==1; assert subtract(-0,1)==-1; assert subtract(-0,-0)==0",
-    "def test_subtract(): assert subtract(-2,-0)==-2; assert subtract(-2,0)==-2; assert subtract(0,-2)==2",
-    "def test_subtract(): assert subtract(999999999,1000000000)==-1; assert subtract(1000000000,999999999)==1; assert subtract(-999999999,-1000000000)==1",
-    "def test_subtract(): assert subtract(3.14,3.14)==0.0; assert subtract(3.14,0.0)==3.14; assert subtract(0.0,3.14)==-3.14",
-    "def test_subtract(): assert subtract(-3.14,-3.14)==0.0; assert subtract(-3.14,3.14)==-6.28; assert subtract(3.14,-3.14)==6.28",
-    "def test_subtract(): assert subtract(100,-1)==101; assert subtract(-1,100)==-101; assert subtract(-100,-1)==-99",
-    "def test_subtract(): assert subtract(1,2)==-1; assert subtract(2,1)==1; assert subtract(-1,2)==-3",
-    "def test_subtract(): assert subtract(50,49)==1; assert subtract(49,50)==-1; assert subtract(50,51)==-1",
-    "def test_subtract(): assert subtract(10**5,10**5-1)==1; assert subtract(10**5-1,10**5)==-1; assert subtract(-10**5,10**5-1)==-2*10**5+1",
-    "def test_subtract(): assert subtract(7,-7)==14; assert subtract(-7,7)==-14; assert subtract(-7,-7)==0",
-    "def test_subtract(): assert subtract(True,2)==-1; assert subtract(2,True)==1; assert subtract(False,-2)==2",
-    "def test_rotate_right(): assert rotate_right('')==''; assert rotate_right('a')=='a'; assert rotate_right('aa')=='aa'",
-    "def test_rotate_right(): assert rotate_right('ab')=='ba'; assert rotate_right('abc')=='cab'; assert rotate_right('abcd')=='dabc'",
-    "def test_rotate_right(): assert rotate_right('hello')=='ohell'; assert rotate_right('world')=='dworl'; assert rotate_right('test')=='ttes'",
-    "def test_rotate_right(): assert rotate_right('😊a')=='a😊'; assert rotate_right('a😊')=='😊a'; assert rotate_right('🙂🙂')=='🙂🙂'",
-    "def test_rotate_right(): assert rotate_right(' Café')=='é Caf'; assert rotate_right('café')=='écaf'; assert rotate_right('ño')=='oñ'",
-    "def test_rotate_right(): assert rotate_right('   ')=='   '; assert rotate_right(' a ')==' a '; assert rotate_right('  a')=='a  '",
-    "def test_rotate_right(): assert rotate_right('a b')=='b a'; assert rotate_right(' hi')=='ihi'; assert rotate_right('hi ')==' hi'",
-    "def test_rotate_right(): assert rotate_right('123')=='312'; assert rotate_right('001')=='100'; assert rotate_right('10')=='01'",
-    "def test_rotate_right(): assert rotate_right('!@#')=='#@!'; assert rotate_right('?.')=='.?'; assert rotate_right('---')=='---'",
-    "def test_rotate_right(): assert rotate_right('A')=='A'; assert rotate_right('Aa')=='aA'; assert rotate_right('ABc')=='cAB'",
-    "def test_rotate_right(): assert rotate_right('mixedCASE')=='EmixedCAS'; assert rotate_right('TestIng')=='gTestIn'; assert rotate_right('CamelCase')=='eCamelCas'",
-    "def test_rotate_right(): assert rotate_right('0')=='0'; assert rotate_right('01')=='10'; assert rotate_right('010')=='001'",
-    "def test_rotate_right(): assert rotate_right(' spaced')=='d space'; assert rotate_right('spaced ')==' spaced'; assert rotate_right('  spaced')=='d  space'",
-    "def test_rotate_right(): assert rotate_right('longstring')=='glongstrin'; assert rotate_right('rotate')=='erotat'; assert rotate_right('python')=='npytho'",
-    "def test_rotate_right(): assert rotate_right('abcabc')=='cabcab'; assert rotate_right('aaaaab')=='baaaaa'; assert rotate_right('ababab')=='babaab'",
-    "def test_rotate_right(): assert rotate_right('#tag')=='g#ta'; assert rotate_right('##tag')=='g##ta'; assert rotate_right('tag#')=='#tag'",
-    "def test_rotate_right(): assert rotate_right('_hidden')=='n_hidde'; assert rotate_right('__x')=='x__'; assert rotate_right('_')=='_'",
-    "def test_rotate_right(): assert rotate_right('日本語')=='語日本'; assert rotate_right('語日')=='日語'; assert rotate_right('語')=='語'",
-    "def test_rotate_right(): assert rotate_right('😊😊a')=='a😊😊'; assert rotate_right('a😊😊')=='😊a😊'; assert rotate_right('😊a😊')=='😊😊a'",
-    "def test_rotate_right(): assert rotate_right('tab\t')=='\ttab'; assert rotate_right('\ttab')=='b\tta'; assert rotate_right('a\tb')=='ba\t'",
-    "def test_rotate_right(): assert rotate_right('abc')=='cab'; assert rotate_right('ab')=='ba'; assert rotate_right('ab')=='ba'",
-    "def test_rotate_right(): assert rotate_right(' ')==' '; assert rotate_right('  a')=='a  '; assert rotate_right('a  ')=='  a'",
-    "def test_rotate_right(): assert rotate_right('ab cd')=='dab c'; assert rotate_right(' cdab')=='b cda'; assert rotate_right('abcd ')==' abcd'",
-    "def test_rotate_right(): assert rotate_right('0a0')=='00a'; assert rotate_right('a0a')=='aa0'; assert rotate_right('00a')=='a00'",
-    "def test_rotate_right(): assert rotate_right('END!')=='!END'; assert rotate_right('YES?')=='?YES'; assert rotate_right('ok!')=='!ok'",
+    "def test_add():\n"
+    "    assert add(0, 0) == 0\n"
+    "    assert add(-1, 1) == 0\n"
+    "    assert add(1, -1) == 0",
+
+    "def test_add():\n"
+    "    assert add(10**12, 1) == 10**12 + 1\n"
+    "    assert add(-10**12, -1) == -(10**12 + 1)\n"
+    "    assert add(10**12, -10**12) == 0",
+
+    "def test_add():\n"
+    "    assert add(1e308, 1e308) == float('inf')\n"
+    "    assert add(-1e308, -1e308) == -float('inf')\n"
+    "    assert add(1e308, -1e308) == 0.0",
+
+    "def test_add():\n"
+    "    assert add(0.1, 0.2) == 0.30000000000000004\n"
+    "    assert add(-0.5, 0.5) == 0.0\n"
+    "    assert add(1.5, -1.5) == 0.0",
+
+    "def test_add():\n"
+    "    assert add(True, True) == 2\n"
+    "    assert add(True, False) == 1\n"
+    "    assert add(False, False) == 0",
+
+    "def test_add():\n"
+    "    assert add('', '') == ''\n"
+    "    assert add('', 'abc') == 'abc'\n"
+    "    assert add('abc', '') == 'abc'",
+
+    "def test_add():\n"
+    "    assert add('🔥', '🔥') == '🔥🔥'\n"
+    "    assert add('🙂', '🙃') == '🙂🙃'\n"
+    "    assert add('á', 'é') == 'áé'",
+
+    "def test_add():\n"
+    "    assert add([], []) == []\n"
+    "    assert add([1], []) == [1]\n"
+    "    assert add([], [1, 2, 3]) == [1, 2, 3]",
+
+    "def test_add():\n"
+    "    assert add([1], [2]) == [1, 2]\n"
+    "    assert add([[], []], [1]) == [[], [], 1]\n"
+    "    assert add([0], [[]]) == [0, []]",
+
+    "def test_add():\n"
+    "    assert add((), ()) == ()\n"
+    "    assert add((1,), (2,)) == (1, 2)\n"
+    "    assert add((), (3, 4)) == (3, 4)",
+
+    "def test_add():\n"
+    "    assert add((-1,), (-2,)) == (-1, -2)\n"
+    "    assert add((), (1,)) == (1,)\n"
+    "    assert add((0,), ()) == (0,)",
+
+    "def test_add():\n"
+    "    assert add(0.0, -0.0) == 0.0\n"
+    "    assert add(-0.0, -0.0) == 0.0\n"
+    "    assert add(0, -0) == 0",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add('1', 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(2, '1')",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add([1, 2], (3, 4))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add((1, 2), [3, 4])",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add({'a': 1}, {'b': 2})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add({'x': 1}, {})",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(1, None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(None, None)",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add('abc', ['d'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add({'k': 'v'}, ['list'])",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add({'k': 'v'}, ('tuple',))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add({1, 2}, {3, 4})",
+
+    "def test_add():\n"
+    "    large_list = list(range(1000))\n"
+    "    result = add(large_list, [])\n"
+    "    assert len(result) == 1000\n"
+    "    assert result[0] == 0\n"
+    "    assert result[-1] == 999",
+
+    "def test_add():\n"
+    "    large_list = list(range(500))\n"
+    "    result = add([], large_list)\n"
+    "    assert len(result) == 500\n"
+    "    assert result[0] == 0\n"
+    "    assert result[-1] == 499",
+
+    "def test_add():\n"
+    "    assert add(1e-12, 1e-12) == 2e-12\n"
+    "    assert add(-1e-12, 1e-12) == 0.0\n"
+    "    assert add(3.14, -3.14) == 0.0",
+
+    "def test_add():\n"
+    "    assert add(1 + 2j, 3 + 4j) == 4 + 6j\n"
+    "    assert add(1 + 0j, 0) == 1 + 0j\n"
+    "    assert add(0, 1 + 0j) == 1 + 0j",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add('bytes', b'bytes')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(b'bytes', 'bytes')",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(object(), 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(1, object())",
+
+    "def test_add():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(add, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        add(1, add)",
+
+    "def test_subtract():\n"
+    "    assert subtract(0, 0) == 0\n"
+    "    assert subtract(-1, 0) == -1\n"
+    "    assert subtract(0, -1) == 1",
+
+    "def test_subtract():\n"
+    "    assert subtract(10**12, 10**12) == 0\n"
+    "    assert subtract(10**12, -10**12) == 2 * 10**12\n"
+    "    assert subtract(-10**12, 10**12) == -2 * 10**12",
+
+    "def test_subtract():\n"
+    "    assert subtract(1e308, 1e308) == 0.0\n"
+    "    assert subtract(1e308, -1e308) == float('inf')\n"
+    "    assert subtract(-1e308, 1e308) == -float('inf')",
+
+    "def test_subtract():\n"
+    "    assert subtract(1e-12, 1e-12) == 0.0\n"
+    "    assert subtract(-1e-12, 1e-12) == -2e-12\n"
+    "    assert subtract(1e-12, -1e-12) == 2e-12",
+
+    "def test_subtract():\n"
+    "    assert subtract(0.1, 0.2) == -0.1\n"
+    "    assert subtract(-0.5, -0.25) == -0.25\n"
+    "    assert subtract(1.5, -1.5) == 3.0",
+
+    "def test_subtract():\n"
+    "    assert subtract(True, True) == 0\n"
+    "    assert subtract(True, False) == 1\n"
+    "    assert subtract(False, True) == -1",
+
+    "def test_subtract():\n"
+    "    assert subtract(0, True) == -1\n"
+    "    assert subtract(True, 0) == 1\n"
+    "    assert subtract(False, False) == 0",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract('abc', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(1, 'abc')",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract([], {})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract({}, [])",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract('🔥', '🔥')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract('🙂', '🙃')",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract([1, 2, 3], [1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract([], [1])",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract((1,), (1,))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract((), (1,))",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract({'a': 1}, {'b': 2})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract({'x': 1}, {})",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(1, None)",
+
+    "def test_subtract():\n"
+    "    large_list = list(range(500))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(large_list, [])",
+
+    "def test_subtract():\n"
+    "    tiny = [1e-12] * 3\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(tiny, tiny)",
+
+    "def test_subtract():\n"
+    "    assert subtract(0.0, -0.0) == 0.0\n"
+    "    assert subtract(-0.0, 0.0) == -0.0\n"
+    "    assert subtract(-0.0, -0.0) == 0.0",
+
+    "def test_subtract():\n"
+    "    assert subtract(2**63 - 1, 0) == 2**63 - 1\n"
+    "    assert subtract(-(2**63 - 1), 0) == -(2**63 - 1)\n"
+    "    assert subtract(2**63 - 1, -(2**63 - 1)) == 2 * (2**63 - 1)",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract({'k': 'v'}, ['list'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(['list'], {'k': 'v'})",
+
+    "def test_subtract():\n"
+    "    assert subtract(3.14, 3.14) == 0.0\n"
+    "    assert subtract(3.14, 0.0) == 3.14\n"
+    "    assert subtract(0.0, 3.14) == -3.14",
+
+    "def test_subtract():\n"
+    "    assert subtract(-3.14, -3.14) == 0.0\n"
+    "    assert subtract(-3.14, 3.14) == -6.28\n"
+    "    assert subtract(3.14, -3.14) == 6.28",
+
+    "def test_subtract():\n"
+    "    assert subtract(1e5, 1e5 - 1) == 1.0\n"
+    "    assert subtract(1e5 - 1, 1e5) == -1.0\n"
+    "    assert subtract(-1e5, 1e5 - 1) == -2e5 + 1",
+
+    "def test_subtract():\n"
+    "    assert subtract(1 + 2j, 3 + 4j) == (-2 - 2j)\n"
+    "    assert subtract(1 + 0j, 0) == 1 + 0j\n"
+    "    assert subtract(0, 1 + 0j) == -1 - 0j",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(b'bytes', 'str')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract('str', b'bytes')",
+
+    "def test_subtract():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(object(), 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        subtract(1, object())",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('') == ''\n"
+    "    assert rotate_right('a') == 'a'\n"
+    "    assert rotate_right('aa') == 'aa'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('ab') == 'ba'\n"
+    "    assert rotate_right('abc') == 'cab'\n"
+    "    assert rotate_right('abcd') == 'dabc'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('aaa') == 'aaa'\n"
+    "    assert rotate_right('bbbb') == 'bbbb'\n"
+    "    assert rotate_right('aba') == 'aab'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('   ') == '   '\n"
+    "    assert rotate_right(' a ') == ' a '\n"
+    "    assert rotate_right('  a') == 'a  '",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('a b') == 'b a'\n"
+    "    assert rotate_right(' hi') == 'ihi'\n"
+    "    assert rotate_right('hi ') == ' hi'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('café') == 'écaf'\n"
+    "    assert rotate_right(' Café') == 'é Caf'\n"
+    "    assert rotate_right('ño') == 'oñ'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('😊a') == 'a😊'\n"
+    "    assert rotate_right('a😊') == '😊a'\n"
+    "    assert rotate_right('😊😊') == '😊😊'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('😊😊a') == 'a😊😊'\n"
+    "    assert rotate_right('a😊😊') == '😊a😊'\n"
+    "    assert rotate_right('😊a😊') == '😊😊a'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('日本語') == '語日本'\n"
+    "    assert rotate_right('語日') == '日語'\n"
+    "    assert rotate_right('語') == '語'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('0') == '0'\n"
+    "    assert rotate_right('01') == '10'\n"
+    "    assert rotate_right('010') == '001'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('0a0') == '00a'\n"
+    "    assert rotate_right('a0a') == 'aa0'\n"
+    "    assert rotate_right('00a') == 'a00'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('123') == '312'\n"
+    "    assert rotate_right('001') == '100'\n"
+    "    assert rotate_right('10') == '01'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('!@#') == '#@!'\n"
+    "    assert rotate_right('?.') == '.?'\n"
+    "    assert rotate_right('---') == '---'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('#tag') == 'g#ta'\n"
+    "    assert rotate_right('##tag') == 'g##ta'\n"
+    "    assert rotate_right('tag#') == '#tag'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('A') == 'A'\n"
+    "    assert rotate_right('Aa') == 'aA'\n"
+    "    assert rotate_right('ABc') == 'cAB'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('mixedCASE') == 'EmixedCAS'\n"
+    "    assert rotate_right('TestIng') == 'gTestIn'\n"
+    "    assert rotate_right('CamelCase') == 'eCamelCas'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('_hidden') == 'n_hidde'\n"
+    "    assert rotate_right('__x') == 'x__'\n"
+    "    assert rotate_right('_') == '_'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('ab cd') == 'dab c'\n"
+    "    assert rotate_right(' cdab') == 'b cda'\n"
+    "    assert rotate_right('abcd ') == ' abcd'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('longstring') == 'glongstrin'\n"
+    "    assert rotate_right('rotate') == 'erotat'\n"
+    "    assert rotate_right('python') == 'npytho'",
+
+    "def test_rotate_right():\n"
+    "    s = 'abcabc'\n"
+    "    r1 = rotate_right(s)\n"
+    "    r2 = rotate_right(r1)\n"
+    "    assert r1 == 'cabcab'\n"
+    "    assert r2 == 'bcabca'",
+
+    "def test_rotate_right():\n"
+    "    s = 'abc'\n"
+    "    t = s\n"
+    "    for _ in range(len(s)):\n"
+    "        t = rotate_right(t)\n"
+    "    assert t == s\n"
+    "    assert len(t) == len(s)",
+
+    "def test_rotate_right():\n"
+    "    s = 'a' * 1000\n"
+    "    r = rotate_right(s)\n"
+    "    assert len(r) == 1000\n"
+    "    assert r[0] == 'a'\n"
+    "    assert r[-1] == 'a'",
+
+    "def test_rotate_right():\n"
+    "    s = ' ' * 100\n"
+    "    r = rotate_right(s)\n"
+    "    assert r == s\n"
+    "    assert len(r) == len(s)",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('tab\\t') == '\\ttab'\n"
+    "    assert rotate_right('\\ttab') == 'b\\tta'\n"
+    "    assert rotate_right('a\\tb') == 'ba\\t'",
+
+    "def test_rotate_right():\n"
+    "    assert rotate_right('line\\n') == '\\nline'\n"
+    "    assert rotate_right('\\nline') == 'eline\\n'\n"
+    "    assert rotate_right('a\\nb') == 'ba\\n'",
+
+    "def test_divide():\n"
+    "    assert divide(0, 1) == 0\n"
+    "    assert divide(0, -5) == 0\n"
+    "    assert divide(1, 0) == 0",
+
+    "def test_divide():\n"
+    "    assert divide(10**12, 1) == 10**12\n"
+    "    assert divide(10**12, -1) == -10**12\n"
+    "    assert divide(-10**12, 1) == -10**12",
+
+    "def test_divide():\n"
+    "    assert divide(1e308, 1e308) == 1.0\n"
+    "    assert divide(1e308, -1e308) == -1.0\n"
+    "    assert divide(-1e308, 1e308) == -1.0",
+
+    "def test_divide():\n"
+    "    assert divide(1e308, 1e-308) == float('inf')\n"
+    "    assert divide(-1e308, 1e-308) == -float('inf')\n"
+    "    assert divide(1e-308, 1e308) == 0.0",
+
+    "def test_divide():\n"
+    "    assert divide(1e-12, 1) == 1e-12\n"
+    "    assert divide(1, 1e-12) == 1e12\n"
+    "    assert divide(-1, 1e-12) == -1e12",
+
+    "def test_divide():\n"
+    "    assert divide(0.5, 0.25) == 2.0\n"
+    "    assert divide(-0.5, 0.25) == -2.0\n"
+    "    assert divide(0.5, -0.25) == -2.0",
+
+    "def test_divide():\n"
+    "    assert divide(2.5, 0.5) == 5.0\n"
+    "    assert divide(2.5, -0.5) == -5.0\n"
+    "    assert divide(-2.5, 0.5) == -5.0",
+
+    "def test_divide():\n"
+    "    assert divide(0.0001, 0.0002) == 0.5\n"
+    "    assert divide(0.0002, 0.0001) == 2.0\n"
+    "    assert divide(-0.0002, 0.0001) == -2.0",
+
+    "def test_divide():\n"
+    "    assert divide(3.14159, 1) == 3.14159\n"
+    "    assert divide(3.14159, 2) == 3.14159 / 2\n"
+    "    assert divide(-3.14159, 2) == -3.14159 / 2",
+
+    "def test_divide():\n"
+    "    assert divide(0, 0.1) == 0\n"
+    "    assert divide(0, -0.1) == 0\n"
+    "    assert divide(0, 100) == 0",
+
+    "def test_divide():\n"
+    "    assert divide(999999999, 3) == 333333333\n"
+    "    assert divide(3, 999999999) == 3 / 999999999\n"
+    "    assert divide(-3, 999999999) == -3 / 999999999",
+
+    "def test_divide():\n"
+    "    assert divide(123456789, 1) == 123456789\n"
+    "    assert divide(123456789, 9) == 13717421\n"
+    "    assert divide(9, 123456789) == 9 / 123456789",
+
+    "def test_divide():\n"
+    "    assert divide(2**20, 2) == 2**19\n"
+    "    assert divide(2**10, 2) == 512\n"
+    "    assert divide(2**10, -2) == -512",
+
+    "def test_divide():\n"
+    "    assert divide(8, 4) == 2\n"
+    "    assert divide(8, 3) == 8 / 3\n"
+    "    assert divide(8, -3) == -8 / 3",
+
+    "def test_divide():\n"
+    "    assert divide(-8, 4) == -2\n"
+    "    assert divide(-8, -4) == 2\n"
+    "    assert divide(-8, 3) == -8 / 3",
+
+    "def test_divide():\n"
+    "    assert divide(7, 7) == 1\n"
+    "    assert divide(-7, 7) == -1\n"
+    "    assert divide(7, -7) == -1",
+
+    "def test_divide():\n"
+    "    assert divide(-100, -1) == 100\n"
+    "    assert divide(-100, 1) == -100\n"
+    "    assert divide(100, -1) == -100",
+
+    "def test_divide():\n"
+    "    assert divide(1, 0.1) == 10\n"
+    "    assert divide(1, -0.1) == -10\n"
+    "    assert divide(-1, 0.1) == -10",
+
+    "def test_divide():\n"
+    "    assert divide(3, 1) == 3\n"
+    "    assert divide(3, -1) == -3\n"
+    "    assert divide(-3, -1) == 3",
+
+    "def test_divide():\n"
+    "    assert divide(10, 3) == 10 / 3\n"
+    "    assert divide(10, 5) == 2\n"
+    "    assert divide(10, 10) == 1",
+
+    "def test_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide('a', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(1, 'a')",
+
+    "def test_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide([], 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(1, [])",
+
+    "def test_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide({}, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(1, {})",
+
+    "def test_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(1, None)",
+
+    "def test_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(object(), 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        divide(2, object())",
+
 ]
 
 # ----------------------------
