@@ -1642,23 +1642,6 @@ def _guess_task_kind(code: str) -> str:
     # Remove string/regex literals so '+' in r'\d+' doesn't look numeric
     code_no_strings = re.sub(r"(\".*?\"|'.*?')", "", code_lower)
 
-    strong_string_markers = [
-        "split(",
-        "join(",
-        "replace(",
-        ".lower(",
-        ".upper(",
-        ".strip(",
-        ".lstrip(",
-        ".rstrip(",
-        "startswith(",
-        "endswith(",
-        "re.sub(",
-    ]
-    for m in strong_string_markers:
-        if m in code_no_strings:
-            return "string"
-
     numeric_markers = [
         "%", "+", "-", "*", "/", "**",
         "range(", "sum(", "len(",
@@ -1666,20 +1649,23 @@ def _guess_task_kind(code: str) -> str:
         "int(", "float(",
     ]
     string_markers = [
-        # weaker / generic markers, used only if no strong string markers hit
-        "isalpha(", "isdigit(",
+        "split(", "join(", "replace(",
+        ".lower(", ".upper(", ".strip(",
+        "startswith(", "endswith(",
         "in 'aeiou'", 'in "aeiou"',
+        "isalpha(", "isdigit(",
+        "re.sub(",      # 👈 new: regex-based string utilities
     ]
 
     num_hits = sum(m in code_no_strings for m in numeric_markers)
     str_hits = sum(m in code_no_strings for m in string_markers)
 
-    if num_hits > str_hits:
-        return "numeric"
     if str_hits > num_hits:
         return "string"
-    # tie / unknown: numeric is a slightly safer default for use cases
-    return "numeric"
+    if num_hits > str_hits:
+        return "numeric"
+    # Tie or no hits: prefer 'string' (safer for your use case)
+    return "string"
 
 
 _DECODE_PRESETS = {
