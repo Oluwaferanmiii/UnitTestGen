@@ -9,6 +9,7 @@ Pipfile.lock
 fine_tuned_codet5p/
 results/
 logs/
+logs_edge/
 
 
 

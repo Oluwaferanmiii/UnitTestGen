@@ -1136,6 +1136,1656 @@ edge_functions = [
     "def sum_of_squares(nums): return sum(n*n for n in nums)",
     "def sum_of_squares(nums): return sum(n*n for n in nums)",
     "def sum_of_squares(nums): return sum(n*n for n in nums)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def get_abs(n): return abs(n)",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def factorial(n):\n    if n < 0: raise ValueError\n    r = 1\n    for i in range(2, n + 1): r *= i\n    return r",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def every_other(xs):\n    return xs[1::2]",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def starts_with_vowel(s):\n    return s[0].lower() in 'aeiou' if s else False",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def unique_list(lst): return list(dict.fromkeys(lst))",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def average(lst):\n    return sum(lst) / len(lst)",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def power(a, b): return a ** b",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def sort_list(lst): return sorted(lst)",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def normalize_case(s):\n    return s.capitalize()",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def prefix_sum(xs):\n    total = 0\n    out = []\n    for x in xs:\n        total += x\n        out.append(total)\n    return out",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def factorial_recursive(n):\n    if n < 0: raise ValueError('Negative not allowed')\n    if n == 0: return 1\n    return n * factorial_recursive(n-1)",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def split_and_strip(s, sep):\n    return [w.strip() for w in s.split(sep)]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def interleave_lists(a, b):\n    return [x for pair in zip(a, b) for x in pair]",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def second_largest(lst):\n    uniq = sorted(set(lst))\n    return uniq[-2] if len(uniq) >= 2 else None",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def invert_dict(d): return {v: k for k, v in d.items()}",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def clamp(x, low, high): return max(low, min(x, high))",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def list_difference(a, b): return [x for x in a if x not in b]",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def remove_char(s, c):\n    return s.replace(c, '')",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def list_intersection(a, b): return list(set(a) & set(b))",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def unique_chars(s):\n    return set(s)",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def running_total(nums):\n    total = 0\n    out = []\n    for n in nums:\n        total += n\n        out.append(total)\n    return out",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def filter_falsey(lst): return [x for x in lst if x]",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def sum_nested_list(xs):\n    total = 0\n    for x in xs:\n        if isinstance(x, list):\n            total += sum_nested_list(x)\n        else:\n            total += x\n    return total",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def filter_none(lst): return [x for x in lst if x is not None]",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_first(lst): return lst[0] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def get_last(lst): return lst[-1] if lst and len(lst) > 0 else None",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def max_of_two(a, b): return a if a > b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def min_of_two(a, b): return a if a < b else b",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_even(lst): return [x for x in lst if x % 2 == 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def filter_odd(lst): return [x for x in lst if x % 2 != 0]",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def safe_divide(a, b):\n    return a / b if b != 0 else 0",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def filter_positive(xs):\n    return [x for x in xs if x > 0]",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def even_or_odd(n):\n    return n % 2 == 0",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def remove_negative(xs):\n    return [x for x in xs if x >= 0]",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def flatten_full(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list):\n            out.extend(flatten_full(x))\n        else:\n            out.append(x)\n    return out",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def absolute(n):\n    return abs(n)",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def capitalize_words(s):\n    return ' '.join(w.capitalize() for w in s.split())",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def all_positive(xs):\n    return all(x > 0 for x in xs)",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def swap_case(s):\n    return s.swapcase()",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def any_negative(xs):\n    return any(x < 0 for x in xs)",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def index_of(xs, value):\n    return xs.index(value) if value in xs else -1",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def trim_string(s):\n    return s.strip()",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def average_list(xs):\n    return sum(xs) / len(xs) if xs else 0",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def remove_keys(d, keys): return {k: v for k, v in d.items() if k not in keys}",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def longest_word(s):\n    return max(s.split(' '), key=len) if s.split() else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def shortest_word(s):\n    words = s.split(); return min(words, key=len) if words else ''",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def capitalize_str(s):\n    return s.capitalize()",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def binary_search(arr, target):\n    low, high = 0, len(arr)-1\n    while low <= high:\n        mid = (low+high)//2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: low = mid+1\n        else: high = mid-1\n    return -1",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def remove_empty(lst):\n    return [x for x in lst if x]",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def sum_list(xs):\n    return sum(xs)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def starts_with(s, prefix):\n    return s.startswith(prefix)",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def flatten_deep(xs):\n    out = []\n    for x in xs:\n        if isinstance(x, list): out.extend(flatten_deep(x))\n        else: out.append(x)\n    return out",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def concat_str(a, b):\n    return a + b",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def is_divisible(a, b):\n    if b == 0: return False\n    return a % b == 0",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def string_to_int(s):\n    return int(s)",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def product_list(nums):\n    if not nums: return 0\n    result = 1\n    for n in nums: result *= n\n    return result",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def ends_with(s, suffix):\n    return s.endswith(suffix)",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "def is_lower(s): return s.islower()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef normalize_whitespace(s): return re.sub(r'\\s+', ' ', s).strip()",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "import re\ndef strip_numbers(s): return re.sub(r'\\d+', '', s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_vowels(s):\n    return sum(ch.lower() in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def count_consonants(s):\n    return sum(ch.isalpha() and ch.lower() not in 'aeiou' for ch in s)",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def to_snake_case(s):\n    out=\"\"\n    for c in s:\n        if c.isupper(): out+=\"_\"+c.lower()\n        else: out+=c\n    return out.lstrip(\"_\")",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def count_words(s):\n    return len(s.split())",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def is_positive(n):\n    return n > 0",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
+    "def harmonic_mean(xs):\n    if not xs: return 0\n    return len(xs) / sum(1/x for x in xs)",
 ]
 
 edge_tests = [
@@ -6970,6 +8620,8634 @@ edge_tests = [
     "    with pytest.raises(TypeError): sum_of_squares('abc')\n"
     "    with pytest.raises(TypeError): sum_of_squares([object()])\n"
     "    with pytest.raises(TypeError): sum_of_squares([1, object()])",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(0) == 0\n"
+    "    assert get_abs(-0) == 0\n"
+    "    assert get_abs(1) == 1",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(-1) == 1\n"
+    "    assert get_abs(-999) == 999\n"
+    "    assert get_abs(999) == 999",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(10**12) == 10**12\n"
+    "    assert get_abs(-(10**12)) == 10**12\n"
+    "    assert get_abs(10**18) == 10**18",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(0.0) == 0.0\n"
+    "    assert get_abs(-0.0) == 0.0\n"
+    "    assert get_abs(3.14) == 3.14",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(-3.14) == 3.14\n"
+    "    assert get_abs(-1e-9) == 1e-9\n"
+    "    assert get_abs(1e-9) == 1e-9",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(float('inf')) == float('inf')\n"
+    "    assert get_abs(float('-inf')) == float('inf')\n"
+    "    assert get_abs(float('inf')) > 0",
+
+    "def test_get_abs():\n"
+    "    nan = float('nan')\n"
+    "    assert get_abs(nan) != get_abs(nan)\n"
+    "    assert get_abs(nan) != nan\n"
+    "    assert get_abs(nan) != 0",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(True) == 1\n"
+    "    assert get_abs(False) == 0\n"
+    "    assert get_abs(-True) == 1",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(5+0j) == 5\n"
+    "    assert get_abs(-5+0j) == 5\n"
+    "    assert get_abs(3+4j) == 5",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(0+0j) == 0\n"
+    "    assert get_abs(1j) == 1\n"
+    "    assert get_abs(-1j) == 1",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(2+3j) == (13)**0.5\n"
+    "    assert get_abs(-2-3j) == (13)**0.5\n"
+    "    assert get_abs(0+5j) == 5",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs('5')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs('-5')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs('0')",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs([])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs({})",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs([1, -2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs((1, -2))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs({'a': 1})",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(set([1]))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(set())",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(-2**63) == 2**63\n"
+    "    assert get_abs(2**63) == 2**63\n"
+    "    assert get_abs(-(2**31)) == 2**31",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(0.0000001) == 0.0000001\n"
+    "    assert get_abs(-0.0000001) == 0.0000001\n"
+    "    assert get_abs(1.23456789) == 1.23456789",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(-1.23456789) == 1.23456789\n"
+    "    assert get_abs(-9999999.999) == 9999999.999\n"
+    "    assert get_abs(9999999.999) == 9999999.999",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(0j) == 0\n"
+    "    assert get_abs(1+1j) == (2)**0.5\n"
+    "    assert get_abs(-1-1j) == (2)**0.5",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(-True) == 1\n"
+    "    assert get_abs(+True) == 1\n"
+    "    assert get_abs(+False) == 0",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(b'1')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(b'-1')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(bytearray(b'1'))",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(get_abs)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(lambda x: x)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs(abs)",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(1e308) == 1e308\n"
+    "    assert get_abs(-1e308) == 1e308\n"
+    "    assert get_abs(1e-308) == 1e-308",
+
+    "def test_get_abs():\n"
+    "    assert get_abs(-1e-308) == 1e-308\n"
+    "    assert get_abs(42) == 42\n"
+    "    assert get_abs(-42) == 42",
+
+    "def test_get_abs():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs('')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs('abc')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_abs('3.14')",
+
+    "def test_factorial():\n"
+    "    assert factorial(0) == 1\n"
+    "    assert factorial(1) == 1\n"
+    "    assert factorial(2) == 2",
+
+    "def test_factorial():\n"
+    "    assert factorial(3) == 6\n"
+    "    assert factorial(4) == 24\n"
+    "    assert factorial(5) == 120",
+
+    "def test_factorial():\n"
+    "    assert factorial(6) == 720\n"
+    "    assert factorial(7) == 5040\n"
+    "    assert factorial(8) == 40320",
+
+    "def test_factorial():\n"
+    "    assert factorial(10) == 3628800\n"
+    "    assert factorial(12) == 479001600\n"
+    "    assert factorial(15) == 1307674368000",
+
+    "def test_factorial():\n"
+    "    assert factorial(True) == 1\n"
+    "    assert factorial(False) == 1\n"
+    "    assert factorial(2) == 2",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        factorial(-1)\n"
+    "    with pytest.raises(ValueError):\n"
+    "        factorial(-10)",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(1.5)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(2.0)",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial('5')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial('')",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial([5])",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial({'n': 5})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial((5,))",
+
+    "def test_factorial():\n"
+    "    assert factorial(20) == 2432902008176640000\n"
+    "    assert factorial(18) == 6402373705728000",
+
+    "def test_factorial():\n"
+    "    assert factorial(9) == 362880\n"
+    "    assert factorial(11) == 39916800",
+
+    "def test_factorial():\n"
+    "    assert factorial(16) == 20922789888000\n"
+    "    assert factorial(17) == 355687428096000",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(3 + 0j)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(1j)",
+
+    "def test_factorial():\n"
+    "    assert factorial(13) == 6227020800\n"
+    "    assert factorial(14) == 87178291200",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(float('inf'))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(float('nan'))",
+
+    "def test_factorial():\n"
+    "    assert factorial(19) == 121645100408832000\n"
+    "    assert factorial(3) == 6",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(b'5')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(bytearray(b'5'))",
+
+    "def test_factorial():\n"
+    "    assert factorial(4) == 24\n"
+    "    assert factorial(2) == 2",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(set([1]))",
+
+    "def test_factorial():\n"
+    "    assert factorial(0) == 1\n"
+    "    assert factorial(1) == 1",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(range(5))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(iter([5]))",
+
+    "def test_factorial():\n"
+    "    assert factorial(6) == 720\n"
+    "    assert factorial(7) == 5040",
+
+    "def test_factorial():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(lambda x: x)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial(print)",
+
+    "def test_factorial():\n"
+    "    assert factorial(8) == 40320\n"
+    "    assert factorial(5) == 120",
+
+    "def test_every_other():\n"
+    "    assert every_other([]) == []\n"
+    "    assert every_other([1]) == []\n"
+    "    assert every_other([1, 2]) == [2]",
+
+    "def test_every_other():\n"
+    "    assert every_other([1, 2, 3]) == [2]\n"
+    "    assert every_other([1, 2, 3, 4]) == [2, 4]",
+
+    "def test_every_other():\n"
+    "    assert every_other(['a', 'b', 'c', 'd']) == ['b', 'd']\n"
+    "    assert every_other(['x']) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([0, 0, 0, 0]) == [0, 0]\n"
+    "    assert every_other([0, 1, 0, 1]) == [1, 1]",
+
+    "def test_every_other():\n"
+    "    assert every_other([-1, -2, -3, -4]) == [-2, -4]\n"
+    "    assert every_other([-1]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([True, False, True, False]) == [False, False]\n"
+    "    assert every_other([False]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([None, 1, None, 2]) == [1, 2]\n"
+    "    assert every_other([None]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([(1,), (2,), (3,), (4,)]) == [(2,), (4,)]\n"
+    "    assert every_other([(1,)]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([[1], [2], [3]]) == [[2]]\n"
+    "    assert every_other([[1], [2], [3], [4]]) == [[2], [4]]",
+
+    "def test_every_other():\n"
+    "    assert every_other(['😊', '😃', '😄', '😁']) == ['😃', '😁']\n"
+    "    assert every_other(['😊']) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([1.1, 2.2, 3.3, 4.4]) == [2.2, 4.4]\n"
+    "    assert every_other([1.1]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other(range(5)) == [1, 3]\n"
+    "    assert every_other(range(1)) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other('abcd') == 'bd'\n"
+    "    assert every_other('a') == ''",
+
+    "def test_every_other():\n"
+    "    assert every_other(b'abcdef') == b'bdf'\n"
+    "    assert every_other(b'a') == b''",
+
+    "def test_every_other():\n"
+    "    assert every_other((1, 2, 3, 4, 5)) == (2, 4)\n"
+    "    assert every_other((1,)) == ()",
+
+    "def test_every_other():\n"
+    "    assert every_other([[], [1], [], [2]]) == [[1], [2]]\n"
+    "    assert every_other([[]]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([0, -1, -2, -3]) == [-1, -3]\n"
+    "    assert every_other([0]) == []",
+
+    "def test_every_other():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other(123)",
+
+    "def test_every_other():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other(True)",
+
+    "def test_every_other():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other({'a': 1, 'b': 2})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other({1, 2, 3})",
+
+    "def test_every_other():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        every_other(lambda x: x)",
+
+    "def test_every_other():\n"
+    "    assert every_other([1, 2, 3, 4, 5, 6]) == [2, 4, 6]\n"
+    "    assert every_other([1, 2, 3, 4, 5]) == [2, 4]",
+
+    "def test_every_other():\n"
+    "    assert every_other(['a', '', 'b', '']) == ['', '']\n"
+    "    assert every_other(['']) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([float('inf'), 1, float('-inf'), 2]) == [1, 2]\n"
+    "    assert every_other([float('nan')]) == []",
+
+    "def test_every_other():\n"
+    "    assert every_other([1, None, 2, None]) == [None, None]\n"
+    "    assert every_other([None]) == []",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('a') is True\n"
+    "    assert starts_with_vowel('e') is True\n"
+    "    assert starts_with_vowel('b') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('Apple') is True\n"
+    "    assert starts_with_vowel('banana') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('Umbrella') is True\n"
+    "    assert starts_with_vowel('Cat') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('') is False\n"
+    "    assert starts_with_vowel(None) is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel(' ') is False\n"
+    "    assert starts_with_vowel(' a') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('1apple') is False\n"
+    "    assert starts_with_vowel('!orange') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('Árbol') is False\n"
+    "    assert starts_with_vowel('ábc') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('æther') is False\n"
+    "    assert starts_with_vowel('øzone') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('O') is True\n"
+    "    assert starts_with_vowel('I') is True",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('\\nabc') is False\n"
+    "    assert starts_with_vowel('\\tabc') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('😊apple') is False\n"
+    "    assert starts_with_vowel('🍎') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('u') is True\n"
+    "    assert starts_with_vowel('y') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('AEIOU') is True\n"
+    "    assert starts_with_vowel('BCDF') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('a123') is True\n"
+    "    assert starts_with_vowel('e!@#') is True",
+
+    "def test_starts_with_vowel():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with_vowel(123)",
+
+    "def test_starts_with_vowel():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with_vowel([])",
+
+    "def test_starts_with_vowel():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with_vowel({})",
+
+    "def test_starts_with_vowel():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with_vowel(True)",
+
+    "def test_starts_with_vowel():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with_vowel(b'apple')",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('a\\n') is True\n"
+    "    assert starts_with_vowel('e\\t') is True",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('Aardvark') is True\n"
+    "    assert starts_with_vowel('aardvark') is True",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('ø') is False\n"
+    "    assert starts_with_vowel('ß') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('ufo') is True\n"
+    "    assert starts_with_vowel('UFO') is True",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel(' ') is False\n"
+    "    assert starts_with_vowel('') is False",
+
+    "def test_starts_with_vowel():\n"
+    "    assert starts_with_vowel('ábc') is True\n"
+    "    assert starts_with_vowel('́abc') is False",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([]) == []\n"
+    "    assert unique_list([1, 1, 1]) == [1]\n"
+    "    assert unique_list([1, 2, 1, 2]) == [1, 2]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['a', 'a', 'b']) == ['a', 'b']\n"
+    "    assert unique_list(['x']) == ['x']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([0, 0, 1, 0]) == [0, 1]\n"
+    "    assert unique_list([-1, -1, -2]) == [-1, -2]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['A', 'a', 'A']) == ['A', 'a']\n"
+    "    assert unique_list(['', '', 'a']) == ['', 'a']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([True, True, False]) == [True, False]\n"
+    "    assert unique_list([False, False]) == [False]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([(1, 2), (1, 2), (2, 3)]) == [(1, 2), (2, 3)]\n"
+    "    assert unique_list([(0,), (0,)]) == [(0,)]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([1.1, 1.1, 2.2]) == [1.1, 2.2]\n"
+    "    assert unique_list([0.0, 0.0]) == [0.0]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['🙂', '🙂', 'a']) == ['🙂', 'a']\n"
+    "    assert unique_list(['a', '🙂', 'a']) == ['a', '🙂']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([None, None, 1]) == [None, 1]\n"
+    "    assert unique_list([None, None]) == [None]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['a', 'b', 'a', 'c']) == ['a', 'b', 'c']\n"
+    "    assert unique_list(['x', 'x', 'y']) == ['x', 'y']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([' ', ' ', 'a']) == [' ', 'a']\n"
+    "    assert unique_list(['', '']) == ['']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([1, '1', 1]) == [1, '1']\n"
+    "    assert unique_list(['1', 1, '1']) == ['1', 1]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([[1], [1], [2]]) == [[1], [2]]\n"
+    "    assert unique_list([[0], [0]]) == [[0]]",
+
+    "def test_unique_list():\n"
+    "    x = [1]\n"
+    "    assert unique_list([x, x, [2]]) == [x, [2]]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['a\\n', 'a\\n', 'b']) == ['a\\n', 'b']\n"
+    "    assert unique_list(['\\t', '\\t']) == ['\\t']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([10**9, 10**9, 1]) == [10**9, 1]\n"
+    "    assert unique_list([-10**9, -10**9]) == [-10**9]",
+
+    "def test_unique_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_list(123)",
+
+    "def test_unique_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_list(None)",
+
+    "def test_unique_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_list('abc')",
+
+    "def test_unique_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_list({1, 2, 3})",
+
+    "def test_unique_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_list({'a': 1})",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['a', 'A', 'a', 'A']) == ['a', 'A']\n"
+    "    assert unique_list(['ß', 'ß', 'ss']) == ['ß', 'ss']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([0, False, 0]) == [0, False]\n"
+    "    assert unique_list([True, 1, True]) == [True, 1]",
+
+    "def test_unique_list():\n"
+    "    assert unique_list(['a'*50, 'a'*50, 'b']) == ['a'*50, 'b']\n"
+    "    assert unique_list(['c']) == ['c']",
+
+    "def test_unique_list():\n"
+    "    assert unique_list([(), (), (1,)]) == [(), (1,)]\n"
+    "    assert unique_list([(1, 1), (1, 1)]) == [(1, 1)]",
+
+    "def test_average():\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        average([])",
+
+    "def test_average():\n"
+    "    assert average([0]) == 0\n"
+    "    assert average([0, 0, 0]) == 0",
+
+    "def test_average():\n"
+    "    assert average([1]) == 1\n"
+    "    assert average([1, 1, 1]) == 1",
+
+    "def test_average():\n"
+    "    assert average([1, 2]) == 1.5\n"
+    "    assert average([1, 2, 3]) == 2",
+
+    "def test_average():\n"
+    "    assert average([-1, -2]) == -1.5\n"
+    "    assert average([-1, -2, -3]) == -2",
+
+    "def test_average():\n"
+    "    assert average([1, -1]) == 0\n"
+    "    assert average([5, -5, 5, -5]) == 0",
+
+    "def test_average():\n"
+    "    assert average([0.5, 0.5]) == 0.5\n"
+    "    assert average([0.1, 0.2]) == 0.15",
+
+    "def test_average():\n"
+    "    assert average([-0.5, 0.5]) == 0.0\n"
+    "    assert average([-0.1, -0.2]) == -0.15",
+
+    "def test_average():\n"
+    "    assert average([10**6, 10**6]) == 10**6\n"
+    "    assert average([-10**6, 10**6]) == 0",
+
+    "def test_average():\n"
+    "    assert average([1, 2, 2]) == 5/3\n"
+    "    assert average([3, 3, 3, 3]) == 3",
+
+    "def test_average():\n"
+    "    assert average([True, False]) == 0.5\n"
+    "    assert average([True, True]) == 1",
+
+    "def test_average():\n"
+    "    assert average([False, False]) == 0\n"
+    "    assert average([True, False, True]) == 2/3",
+
+    "def test_average():\n"
+    "    assert average([1.0, 2.0, 3.0]) == 2.0\n"
+    "    assert average([0.0, 0.0]) == 0.0",
+
+    "def test_average():\n"
+    "    assert average([100, 0, -100]) == 0\n"
+    "    assert average([50, 50, -100]) == 0",
+
+    "def test_average():\n"
+    "    assert average([1e-9, 1e-9]) == 1e-9\n"
+    "    assert average([-1e-9, 1e-9]) == 0",
+
+    "def test_average():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average(None)",
+
+    "def test_average():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average(123)",
+
+    "def test_average():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average('abc')",
+
+    "def test_average():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average([1, '2', 3])",
+
+    "def test_average():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average([None, None])",
+
+    "def test_average():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average([[1], [2]])",
+
+    "def test_average():\n"
+    "    assert average([0, 1, 2, 3]) == 1.5\n"
+    "    assert average([3, 2, 1, 0]) == 1.5",
+
+    "def test_average():\n"
+    "    assert average([999999999, 1]) == 500000000\n"
+    "    assert average([-999999999, -1]) == -500000000",
+
+    "def test_average():\n"
+    "    assert average([2, 4, 6, 8]) == 5\n"
+    "    assert average([1, 3, 5, 7, 9]) == 5",
+
+    "def test_average():\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        average(list())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average([float('nan')])",
+
+    "def test_power():\n"
+    "    assert power(0, 0) == 1\n"
+    "    assert power(0, 5) == 0\n"
+    "    assert power(5, 0) == 1",
+
+    "def test_power():\n"
+    "    assert power(1, 1000) == 1\n"
+    "    assert power(-1, 2) == 1\n"
+    "    assert power(-1, 3) == -1",
+
+    "def test_power():\n"
+    "    assert power(2, 10) == 1024\n"
+    "    assert power(2, -1) == 0.5\n"
+    "    assert power(4, -2) == 0.0625",
+
+    "def test_power():\n"
+    "    assert power(-2, 2) == 4\n"
+    "    assert power(-2, 3) == -8\n"
+    "    assert power(-2, 0) == 1",
+
+    "def test_power():\n"
+    "    assert power(0.5, 2) == 0.25\n"
+    "    assert power(4, 0.5) == 2\n"
+    "    assert power(9, 0.5) == 3",
+
+    "def test_power():\n"
+    "    assert power(10, 1) == 10\n"
+    "    assert power(10, 2) == 100\n"
+    "    assert power(10, 3) == 1000",
+
+    "def test_power():\n"
+    "    assert power(True, 5) == 1\n"
+    "    assert power(False, 5) == 0\n"
+    "    assert power(True, 0) == 1",
+
+    "def test_power():\n"
+    "    assert power(5, True) == 5\n"
+    "    assert power(5, False) == 1\n"
+    "    assert power(0, True) == 0",
+
+    "def test_power():\n"
+    "    assert power(2.5, 2) == 6.25\n"
+    "    assert power(-2.5, 2) == 6.25\n"
+    "    assert power(-2.5, 3) == -15.625",
+
+    "def test_power():\n"
+    "    assert power(0.0, 5) == 0.0\n"
+    "    assert power(5.0, 0) == 1.0\n"
+    "    assert power(0.0, 0) == 1.0",
+
+    "def test_power():\n"
+    "    assert power(2, 31) == 2147483648\n"
+    "    assert power(2, 32) == 4294967296\n"
+    "    assert power(2, 33) == 8589934592",
+
+    "def test_power():\n"
+    "    assert power(-10, 1) == -10\n"
+    "    assert power(-10, 2) == 100\n"
+    "    assert power(-10, 3) == -1000",
+
+    "def test_power():\n"
+    "    assert power(100, -2) == 0.0001\n"
+    "    assert power(4, -0.5) == 0.5\n"
+    "    assert power(9, -0.5) == 1 / 3",
+
+    "def test_power():\n"
+    "    assert power(1, -999999) == 1\n"
+    "    assert power(1, 999999) == 1\n"
+    "    assert power(1, 0) == 1",
+
+    "def test_power():\n"
+    "    assert power(-1, 999999) == -1\n"
+    "    assert power(-1, 1000000) == 1\n"
+    "    assert power(-1, 0) == 1",
+
+    "def test_power():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power('2', 3)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power(2, '3')",
+
+    "def test_power():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power(None, 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power(2, None)",
+
+    "def test_power():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power([2], 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power(2, [2])",
+
+    "def test_power():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power({}, 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        power(2, {})",
+
+    "def test_power():\n"
+    "    assert power(7, 1) == 7\n"
+    "    assert power(7, 2) == 49\n"
+    "    assert power(7, 3) == 343",
+
+    "def test_power():\n"
+    "    assert power(0, 1) == 0\n"
+    "    assert power(0, 2) == 0\n"
+    "    assert power(0, -1) == 0",
+
+    "def test_power():\n"
+    "    assert power(1e2, 2) == 10000.0\n"
+    "    assert power(1e-2, 2) == 0.0001\n"
+    "    assert power(1e2, -1) == 0.01",
+
+    "def test_power():\n"
+    "    assert power(3, 3) == 27\n"
+    "    assert power(3, 4) == 81\n"
+    "    assert power(3, 5) == 243",
+
+    "def test_power():\n"
+    "    assert power(-3, 4) == 81\n"
+    "    assert power(-3, 5) == -243\n"
+    "    assert power(-3, 6) == 729",
+
+    "def test_power():\n"
+    "    with pytest.raises(OverflowError):\n"
+    "        power(10, 10000)",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([]) == []\n"
+    "    assert sort_list([1]) == [1]\n"
+    "    assert sort_list([2, 1]) == [1, 2]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([0, -1, 1]) == [-1, 0, 1]\n"
+    "    assert sort_list([-3, -1, -2]) == [-3, -2, -1]\n"
+    "    assert sort_list([0, 0, 0]) == [0, 0, 0]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([1, 1, 1]) == [1, 1, 1]\n"
+    "    assert sort_list([2, 1, 2, 1]) == [1, 1, 2, 2]\n"
+    "    assert sort_list([3, 3, 2, 3]) == [2, 3, 3, 3]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([10**12, -10**12, 0]) == [-10**12, 0, 10**12]\n"
+    "    assert sort_list([999999999, -999999999, 1]) == [-999999999, 1, 999999999]\n"
+    "    assert sort_list([2**63 - 1, -(2**63), 0]) == [-(2**63), 0, 2**63 - 1]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([0.0, -0.0, 0.0]) == [0.0, -0.0, 0.0] if False else sorted([0.0, -0.0, 0.0])\n"
+    "    assert sort_list([0.1, 0.01, 0.001]) == [0.001, 0.01, 0.1]\n"
+    "    assert sort_list([-0.5, -0.1, -0.9]) == [-0.9, -0.5, -0.1]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([float('inf'), 1.0, 0.0]) == [0.0, 1.0, float('inf')]\n"
+    "    assert sort_list([float('-inf'), 0.0, 1.0]) == [float('-inf'), 0.0, 1.0]\n"
+    "    assert sort_list([float('-inf'), float('inf'), 0.0]) == [float('-inf'), 0.0, float('inf')]",
+
+    "def test_sort_list():\n"
+    "    xs = [float('nan'), 1.0, 2.0]\n"
+    "    out = sort_list(xs)\n"
+    "    assert len(out) == 3\n"
+    "    assert 1.0 in out and 2.0 in out",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([True, False, True]) == [False, True, True]\n"
+    "    assert sort_list([False, False]) == [False, False]\n"
+    "    assert sort_list([True]) == [True]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list(['b', 'a', 'c']) == ['a', 'b', 'c']\n"
+    "    assert sort_list(['', 'a', ' ']) == ['', ' ', 'a']\n"
+    "    assert sort_list(['aa', 'a', 'aaa']) == ['a', 'aa', 'aaa']",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([1, '1'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([None, 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([object(), object()])",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([(1, 2), (1, 1), (0, 5)]) == [(0, 5), (1, 1), (1, 2)]\n"
+    "    assert sort_list([(), (1,), (0,)]) == [(), (0,), (1,)]\n"
+    "    assert sort_list([(2, 0), (1, 99), (1, 2)]) == [(1, 2), (1, 99), (2, 0)]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([b'b', b'a', b'c']) == [b'a', b'b', b'c']\n"
+    "    assert sort_list([b'', b'a', b' ']) == [b'', b' ', b'a']\n"
+    "    assert sort_list([b'aa', b'a', b'aaa']) == [b'a', b'aa', b'aaa']",
+
+    "def test_sort_list():\n"
+    "    assert sort_list([[1, 2], [1, 1], [0]]) == [[0], [1, 1], [1, 2]]\n"
+    "    assert sort_list([[], [0], [0, 0]]) == [[], [0], [0, 0]]\n"
+    "    assert sort_list([[1], [1, 0], [1, 0, 0]]) == [[1], [1, 0], [1, 0, 0]]",
+
+    "def test_sort_list():\n"
+    "    assert sort_list(['A', 'a', 'B', 'b']) == ['A', 'B', 'a', 'b']\n"
+    "    assert sort_list(['Z', 'z', 'Y', 'y']) == ['Y', 'Z', 'y', 'z']\n"
+    "    assert sort_list(['Á', 'A', 'a']) == sorted(['Á', 'A', 'a'])",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([1, '1'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list(['a', None])",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([1, 2, [3]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([[1], 2])",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([{'a': 1}, {'b': 2}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([{'a': 1}, 1])",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([{1, 2}, {1}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([{1}, 1])",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([complex(1, 2), complex(0, 1)])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([complex(1, 0), 1])",
+
+    "def test_sort_list():\n"
+    "    xs = list(range(1000, -1, -1))\n"
+    "    out = sort_list(xs)\n"
+    "    assert out[0] == 0\n"
+    "    assert out[-1] == 1000\n"
+    "    assert len(out) == 1001",
+
+    "def test_sort_list():\n"
+    "    xs = [3, 1, 2]\n"
+    "    out = sort_list(xs)\n"
+    "    assert xs == [3, 1, 2]\n"
+    "    assert out == [1, 2, 3]",
+
+    "def test_sort_list():\n"
+    "    xs = ['b', 'a', 'c']\n"
+    "    out = sort_list(xs)\n"
+    "    assert xs == ['b', 'a', 'c']\n"
+    "    assert out == ['a', 'b', 'c']",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list(object())",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list('cba')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list(b'cba')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list((3, 2, 1))",
+
+    "def test_sort_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([float('nan'), 'a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([None, None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sort_list([1, None])",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('') == ''\n"
+    "    assert normalize_case('a') == 'A'\n"
+    "    assert normalize_case('A') == 'A'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('abc') == 'Abc'\n"
+    "    assert normalize_case('ABC') == 'Abc'\n"
+    "    assert normalize_case('aBC') == 'Abc'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case(' hello') == ' hello'\n"
+    "    assert normalize_case(' hello world') == ' hello world'\n"
+    "    assert normalize_case('  a') == '  a'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('hello world') == 'Hello world'\n"
+    "    assert normalize_case('HELLO WORLD') == 'Hello world'\n"
+    "    assert normalize_case('hELLO wORLD') == 'Hello world'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('1abc') == '1abc'\n"
+    "    assert normalize_case('123ABC') == '123abc'\n"
+    "    assert normalize_case('1AbC') == '1abc'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('!abc') == '!abc'\n"
+    "    assert normalize_case('#HELLO') == '#hello'\n"
+    "    assert normalize_case('?Test') == '?test'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('äbc') == 'Äbc'\n"
+    "    assert normalize_case('ÄBC') == 'Äbc'\n"
+    "    assert normalize_case('ßtest') == 'Sstest'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('😊abc') == '😊abc'\n"
+    "    assert normalize_case('😊ABC') == '😊abc'\n"
+    "    assert normalize_case('😊aBC') == '😊abc'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('\\nabc') == '\\nabc'\n"
+    "    assert normalize_case('\\tabc') == '\\tabc'\n"
+    "    assert normalize_case('\\nABC') == '\\nabc'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('a\\nb') == 'A\\nb'\n"
+    "    assert normalize_case('A\\nB') == 'A\\nb'\n"
+    "    assert normalize_case('a\\nB') == 'A\\nb'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case(' ') == ' '\n"
+    "    assert normalize_case('   ') == '   '\n"
+    "    assert normalize_case(' a ') == ' a '",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('z') == 'Z'\n"
+    "    assert normalize_case('Z') == 'Z'\n"
+    "    assert normalize_case('zZz') == 'Zzz'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('ñandú') == 'Ñandú'\n"
+    "    assert normalize_case('ÑANDÚ') == 'Ñandú'\n"
+    "    assert normalize_case('ñANDÚ') == 'Ñandú'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('ørlando') == 'Ørlando'\n"
+    "    assert normalize_case('ØRLANDO') == 'Ørlando'\n"
+    "    assert normalize_case('øRLANDO') == 'Ørlando'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('İstanbul') == 'İstanbul'\n"
+    "    assert normalize_case('istanbul') == 'Istanbul'\n"
+    "    assert normalize_case('ISTANBUL') == 'Istanbul'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('σigma') == 'Σigma'\n"
+    "    assert normalize_case('ΣIGMA') == 'Σigma'\n"
+    "    assert normalize_case('σIGMA') == 'Σigma'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('ǆungla') == 'ǅungla'\n"
+    "    assert normalize_case('ǅUNGLa') == 'ǅungla'\n"
+    "    assert normalize_case('ǆUNGLa') == 'ǅungla'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('mañana') == 'Mañana'\n"
+    "    assert normalize_case('MAÑANA') == 'Mañana'\n"
+    "    assert normalize_case('mAÑANA') == 'Mañana'",
+
+    "def test_normalize_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(123)",
+
+    "def test_normalize_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(['a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case({'a': 1})",
+
+    "def test_normalize_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(b'abc')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(bytearray(b'abc'))",
+
+    "def test_normalize_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_case(True)",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('x' * 1000) == 'X' + 'x' * 999\n"
+    "    assert normalize_case('X' * 1000) == 'X' + 'x' * 999",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('camelCase') == 'Camelcase'\n"
+    "    assert normalize_case('PascalCase') == 'Pascalcase'\n"
+    "    assert normalize_case('snake_case') == 'Snake_case'",
+
+    "def test_normalize_case():\n"
+    "    assert normalize_case('ümlaut') == 'Ümlaut'\n"
+    "    assert normalize_case('ÜMLAUT') == 'Ümlaut'\n"
+    "    assert normalize_case('üMLAUT') == 'Ümlaut'",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([]) == []\n"
+    "    assert prefix_sum([0]) == [0]\n"
+    "    assert prefix_sum([0, 0, 0]) == [0, 0, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([1]) == [1]\n"
+    "    assert prefix_sum([1, 2]) == [1, 3]\n"
+    "    assert prefix_sum([1, 2, 3]) == [1, 3, 6]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([-1]) == [-1]\n"
+    "    assert prefix_sum([-1, -2]) == [-1, -3]\n"
+    "    assert prefix_sum([-1, -2, -3]) == [-1, -3, -6]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([10, -5, 2]) == [10, 5, 7]\n"
+    "    assert prefix_sum([-10, 5]) == [-10, -5]\n"
+    "    assert prefix_sum([5, -5]) == [5, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([1e6]) == [1e6]\n"
+    "    assert prefix_sum([1e6, 1]) == [1e6, 1e6 + 1]\n"
+    "    assert prefix_sum([-1e6, 1e6]) == [-1e6, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([0.5, 0.5]) == [0.5, 1.0]\n"
+    "    assert prefix_sum([-0.5, 0.2]) == [-0.5, -0.3]\n"
+    "    assert prefix_sum([0.1, 0.1, 0.1]) == [0.1, 0.2, 0.3]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([100, -100, 100]) == [100, 0, 100]\n"
+    "    assert prefix_sum([2, -4, 6]) == [2, -2, 4]\n"
+    "    assert prefix_sum([-5, 5, -5]) == [-5, 0, -5]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([999999999]) == [999999999]\n"
+    "    assert prefix_sum([-999999999]) == [-999999999]\n"
+    "    assert prefix_sum([1, -1, 1, -1]) == [1, 0, 1, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([3, 3, 3]) == [3, 6, 9]\n"
+    "    assert prefix_sum([3, -3, 3]) == [3, 0, 3]\n"
+    "    assert prefix_sum([-3, 3, -3]) == [-3, 0, -3]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([1, 0, 0]) == [1, 1, 1]\n"
+    "    assert prefix_sum([0, 1, 0]) == [0, 1, 1]\n"
+    "    assert prefix_sum([0, 0, 1]) == [0, 0, 1]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([True, True, False]) == [1, 2, 2]\n"
+    "    assert prefix_sum([False, True]) == [0, 1]\n"
+    "    assert prefix_sum([True, False, True]) == [1, 1, 2]",
+
+    "def test_prefix_sum():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum(123)",
+
+    "def test_prefix_sum():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([1, 'a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum(['1', 2])",
+
+    "def test_prefix_sum():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([1, None])",
+
+    "def test_prefix_sum():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([[], []])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([[1], [2]])",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([0, -1, -2, -3]) == [0, -1, -3, -6]\n"
+    "    assert prefix_sum([-5, 0, 5]) == [-5, -5, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([1, -1, 2, -2, 3]) == [1, 0, 2, 0, 3]\n"
+    "    assert prefix_sum([-3, 3, -3, 3]) == [-3, 0, -3, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([50, 50, 50]) == [50, 100, 150]\n"
+    "    assert prefix_sum([-50, -50, -50]) == [-50, -100, -150]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([7]) == [7]\n"
+    "    assert prefix_sum([-7]) == [-7]\n"
+    "    assert prefix_sum([7, -7]) == [7, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([2, 2, 2, 2]) == [2, 4, 6, 8]\n"
+    "    assert prefix_sum([2, -2, -2]) == [2, 0, -2]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([0, 1, -1, 1, -1]) == [0, 1, 0, 1, 0]\n"
+    "    assert prefix_sum([5, -5, 0]) == [5, 0, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([10, -10, 10, -10]) == [10, 0, 10, 0]\n"
+    "    assert prefix_sum([-10, 10, -10, 10]) == [-10, 0, -10, 0]",
+
+    "def test_prefix_sum():\n"
+    "    assert prefix_sum([1.5, -0.5, 2.0]) == [1.5, 1.0, 3.0]\n"
+    "    assert prefix_sum([-0.1, -0.1, -0.1]) == [-0.1, -0.2, -0.3]",
+
+    "def test_prefix_sum():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum('123')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum({'a': 1})",
+
+    "def test_prefix_sum():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([1, 2, '3'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        prefix_sum([True, 'False'])",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(0) == 1\n"
+    "    assert factorial_recursive(1) == 1\n"
+    "    assert factorial_recursive(2) == 2",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(3) == 6\n"
+    "    assert factorial_recursive(4) == 24\n"
+    "    assert factorial_recursive(5) == 120",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        factorial_recursive(-1)\n"
+    "    with pytest.raises(ValueError):\n"
+    "        factorial_recursive(-10)\n"
+    "    with pytest.raises(ValueError):\n"
+    "        factorial_recursive(-999)",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(True) == 1\n"
+    "    assert factorial_recursive(False) == 1\n"
+    "    assert factorial_recursive(6) == 720",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(2.5)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('5')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(None)",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(7) == 5040\n"
+    "    assert factorial_recursive(8) == 40320\n"
+    "    assert factorial_recursive(9) == 362880",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(10) == 3628800\n"
+    "    assert factorial_recursive(11) == 39916800\n"
+    "    assert factorial_recursive(12) == 479001600",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(13) == 6227020800\n"
+    "    assert factorial_recursive(14) == 87178291200\n"
+    "    assert factorial_recursive(15) == 1307674368000",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(RecursionError):\n"
+    "        factorial_recursive(5000)\n"
+    "    with pytest.raises(RecursionError):\n"
+    "        factorial_recursive(10000)\n"
+    "    with pytest.raises(RecursionError):\n"
+    "        factorial_recursive(20000)",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive([5])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive({'n': 5})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(object())",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(16) == 20922789888000\n"
+    "    assert factorial_recursive(17) == 355687428096000\n"
+    "    assert factorial_recursive(18) == 6402373705728000",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(19) == 121645100408832000\n"
+    "    assert factorial_recursive(20) == 2432902008176640000\n"
+    "    assert factorial_recursive(21) == 51090942171709440000",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        factorial_recursive(-0.1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(float('nan'))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(float('inf'))",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(1+2j)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(b'3')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(bytearray(b'4'))",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(25) == 15511210043330985984000000\n"
+    "    assert factorial_recursive(26) == 403291461126605635584000000\n"
+    "    assert factorial_recursive(27) == 10888869450418352160768000000",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(28) == 304888344611713860501504000000\n"
+    "    assert factorial_recursive(29) == 8841761993739701954543616000000\n"
+    "    assert factorial_recursive(30) == 265252859812191058636308480000000",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('0')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('01')",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive((5,))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive({5})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(range(5))",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(31) == 8222838654177922817725562880000000\n"
+    "    assert factorial_recursive(32) == 263130836933693530167218012160000000\n"
+    "    assert factorial_recursive(33) == 8683317618811886495518194401280000000",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(34) == 295232799039604140847618609643520000000\n"
+    "    assert factorial_recursive(35) == 10333147966386144929666651337523200000000\n"
+    "    assert factorial_recursive(36) == 371993326789901217467999448150835200000000",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('5.0')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(' 5 ')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('five')",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(37) == 13763753091226345046315979581580902400000000\n"
+    "    assert factorial_recursive(38) == 523022617466601111760007224100074291200000000\n"
+    "    assert factorial_recursive(39) == 20397882081197443358640281739902897356800000000",
+
+    "def test_factorial_recursive():\n"
+    "    assert factorial_recursive(40) == 815915283247897734345611269596115894272000000000\n"
+    "    assert factorial_recursive(41) == 33452526613163807108170062053440751665152000000000\n"
+    "    assert factorial_recursive(42) == 1405006117752879898543142606244511569936384000000000",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('٣')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('５')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive('Ⅳ')",
+
+    "def test_factorial_recursive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(Decimal('5'))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(Fraction(5, 1))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        factorial_recursive(Fraction(1, 2))",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('', ',') == ['']\n"
+    "    assert split_and_strip('a,b,c', ',') == ['a','b','c']\n"
+    "    assert split_and_strip(' a , b , c ', ',') == ['a','b','c']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a,,b', ',') == ['a','','b']\n"
+    "    assert split_and_strip(',a,b,', ',') == ['','a','b','']\n"
+    "    assert split_and_strip(',,', ',') == ['','','']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip(' one | two | three ', '|') == ['one','two','three']\n"
+    "    assert split_and_strip('one|two|three', '|') == ['one','two','three']\n"
+    "    assert split_and_strip(' one| two|three ', '|') == ['one','two','three']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a;b;c', ';') == ['a','b','c']\n"
+    "    assert split_and_strip(' a ; b ; c ', ';') == ['a','b','c']\n"
+    "    assert split_and_strip('a ;b; c', ';') == ['a','b','c']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('x y z', ' ') == ['x','y','z']\n"
+    "    assert split_and_strip('  x   y  z  ', ' ') == ['','', 'x','','','y','','z','','']\n"
+    "    assert split_and_strip('x', ' ') == ['x']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('\\n a \\n b \\n', '\\n') == ['','a','b','']\n"
+    "    assert split_and_strip('a\\nb\\nc', '\\n') == ['a','b','c']\n"
+    "    assert split_and_strip('\\n\\n', '\\n') == ['','','']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('😊 , 😃 , 😄 ', ',') == ['😊','😃','😄']\n"
+    "    assert split_and_strip('😊|😃|😄', '|') == ['😊','😃','😄']\n"
+    "    assert split_and_strip(' 😊 ', ',') == ['😊']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a| b |c| ', '|') == ['a','b','c','']\n"
+    "    assert split_and_strip('|a|b|c', '|') == ['','a','b','c']\n"
+    "    assert split_and_strip('|', '|') == ['','']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('1, 2 ,3 , 4', ',') == ['1','2','3','4']\n"
+    "    assert split_and_strip('1|2|3', '|') == ['1','2','3']\n"
+    "    assert split_and_strip(' 1 ', ',') == ['1']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a\\tb\\tc', '\\t') == ['a','b','c']\n"
+    "    assert split_and_strip(' a\\t b \\t c ', '\\t') == ['a','b','c']\n"
+    "    assert split_and_strip('\\t', '\\t') == ['','']",
+
+    "def test_split_and_strip():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        split_and_strip(None, ',')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        split_and_strip(123, ',')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        split_and_strip(['a,b'], ',')",
+
+    "def test_split_and_strip():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('a,b,c', None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('abc', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('abc', [])",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a--b--c', '--') == ['a','b','c']\n"
+    "    assert split_and_strip('--a--b--', '--') == ['','a','b','']\n"
+    "    assert split_and_strip('----', '--') == ['','','']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a,b, c ,d ', ',') == ['a','b','c','d']\n"
+    "    assert split_and_strip(' a ,b,c,d', ',') == ['a','b','c','d']\n"
+    "    assert split_and_strip('a,b,c,d ', ',') == ['a','b','c','d']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('mixed CASE , Test ', ',') == ['mixed CASE','Test']\n"
+    "    assert split_and_strip('UPPER|lower', '|') == ['UPPER','lower']\n"
+    "    assert split_and_strip(' MiXeD ', ',') == ['MiXeD']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a,b,,', ',') == ['a','b','','']\n"
+    "    assert split_and_strip(',,a,b', ',') == ['','','a','b']\n"
+    "    assert split_and_strip('', '|') == ['']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip(' word ', ',') == ['word']\n"
+    "    assert split_and_strip(' word | ', '|') == ['word','']\n"
+    "    assert split_and_strip(' | word', '|') == ['','word']",
+
+    "def test_split_and_strip():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        split_and_strip(object(), ',')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        split_and_strip(b'a,b,c', ',')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        split_and_strip(True, ',')",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('a,b,c', ',') == ['a','b','c']\n"
+    "    assert split_and_strip('a|b|c', '|') == ['a','b','c']\n"
+    "    assert split_and_strip('a:b:c', ':') == ['a','b','c']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('  spaced  out  ', ' ') == ['','','spaced','','out','','']\n"
+    "    assert split_and_strip(' spaced ', ' ') == ['','spaced','']\n"
+    "    assert split_and_strip(' ', ' ') == ['','']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('α, β , γ', ',') == ['α','β','γ']\n"
+    "    assert split_and_strip('λ|μ|ν', '|') == ['λ','μ','ν']\n"
+    "    assert split_and_strip(' Ω ', ',') == ['Ω']",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('end.', '.') == ['end','']\n"
+    "    assert split_and_strip('.start', '.') == ['','start']\n"
+    "    assert split_and_strip('.', '.') == ['','']",
+
+    "def test_split_and_strip():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('a,b,c', sep=',') if False else split_and_strip('a,b,c', sep=1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('abc', sep=None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('abc', sep={})",
+
+    "def test_split_and_strip():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('abc', ('a',))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('a,b,c', 3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        split_and_strip('a,b,c', True)",
+
+    "def test_split_and_strip():\n"
+    "    assert split_and_strip('🔥 ,  💧 , 🌱 ', ',') == ['🔥','💧','🌱']\n"
+    "    assert split_and_strip('🔥|💧|🌱', '|') == ['🔥','💧','🌱']\n"
+    "    assert split_and_strip('  🔥  ', ',') == ['🔥']",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([], []) == []\n"
+    "    assert interleave_lists([], [1,2,3]) == []\n"
+    "    assert interleave_lists([1,2,3], []) == []",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([1], [2]) == [1,2]\n"
+    "    assert interleave_lists([1,2], [3,4]) == [1,3,2,4]\n"
+    "    assert interleave_lists([0,0], [1,1]) == [0,1,0,1]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([1,2,3], [9]) == [1,9]\n"
+    "    assert interleave_lists([1], [9,8,7]) == [1,9]\n"
+    "    assert interleave_lists([1,2], [9,8,7]) == [1,9,2,8]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([None, 1], [2, None]) == [None,2,1,None]\n"
+    "    assert interleave_lists([None], [None]) == [None,None]\n"
+    "    assert interleave_lists([None, None], [1]) == [None,1]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([True, False], [1, 0]) == [True,1,False,0]\n"
+    "    assert interleave_lists([False], [True]) == [False,True]\n"
+    "    assert interleave_lists([True, True], [False, False]) == [True,False,True,False]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists(['', 'a'], ['b', '']) == ['', 'b', 'a', '']\n"
+    "    assert interleave_lists(['   '], ['x']) == ['   ','x']\n"
+    "    assert interleave_lists(['\\n'], ['\\t']) == ['\\n','\\t']",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists(['😊'], ['😃']) == ['😊','😃']\n"
+    "    assert interleave_lists(['😊','a'], ['b','😊']) == ['😊','b','a','😊']\n"
+    "    assert interleave_lists(['😀','😃','😁'], ['x','y']) == ['😀','x','😃','y']",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([(1,2)], [(3,4)]) == [(1,2),(3,4)]\n"
+    "    assert interleave_lists([(1,)], [(2,)]) == [(1,),(2,)]\n"
+    "    assert interleave_lists([(1,2),(3,4)], [(0,0)]) == [(1,2),(0,0)]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([[1],[2]], [[3],[4]]) == [[1],[3],[2],[4]]\n"
+    "    assert interleave_lists([[],[1]], [[2],[]]) == [[],[2],[1],[]]\n"
+    "    assert interleave_lists([[1,2,3]], [[4,5]]) == [[1,2,3],[4,5]]",
+
+    "def test_interleave_lists():\n"
+    "    a = [1,2]\n"
+    "    b = a\n"
+    "    assert interleave_lists([a], [b]) == [a,b]\n"
+    "    assert interleave_lists([a,a], [b,b]) == [a,b,a,b]\n"
+    "    assert interleave_lists([[1],[1]], [[1],[1]]) == [[1],[1],[1],[1]]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([1.5, -0.5], [2.5, 0.5]) == [1.5,2.5,-0.5,0.5]\n"
+    "    assert interleave_lists([0.1, 0.2], [0.3]) == [0.1,0.3]\n"
+    "    assert interleave_lists([float('inf')], [1]) == [float('inf'),1]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([float('nan')], [0]) != [float('nan'),0]\n"
+    "    assert interleave_lists([0], [float('nan')]) != [0,float('nan')]\n"
+    "    assert interleave_lists([float('nan')], [float('nan')]) != [float('nan'),float('nan')]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([10**12, -10**12], [1, -1]) == [10**12,1,-10**12,-1]\n"
+    "    assert interleave_lists([2**31], [-(2**31)]) == [2**31, -(2**31)]\n"
+    "    assert interleave_lists([0, 10**9, 10**9], [1, 2]) == [0,1,10**9,2]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([{'a':1}], [{'b':2}]) == [{'a':1},{'b':2}]\n"
+    "    assert interleave_lists([{}], [{}]) == [{},{}]\n"
+    "    assert interleave_lists([{'x':0},{'y':1}], [{'z':2}]) == [{'x':0},{'z':2}]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([set([1]), set([2])], [set([3]), set([4])]) == [set([1]),set([3]),set([2]),set([4])]\n"
+    "    assert interleave_lists([set()], [set()]) == [set(), set()]\n"
+    "    assert interleave_lists([set([1,2])], [set([3])]) == [set([1,2]), set([3])]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists(range(3), range(3)) == [0,0,1,1,2,2]\n"
+    "    assert interleave_lists(range(0), range(5)) == []\n"
+    "    assert interleave_lists(range(5), range(0)) == []",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists('ab', 'XY') == ['a','X','b','Y']\n"
+    "    assert interleave_lists('a', 'XYZ') == ['a','X']\n"
+    "    assert interleave_lists('', 'Z') == []",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists((1,2), (3,4)) == [1,3,2,4]\n"
+    "    assert interleave_lists((1,2,3), (9,)) == [1,9]\n"
+    "    assert interleave_lists((), ()) == []",
+
+    "def test_interleave_lists():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists(None, [])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists([], None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists(None, None)",
+
+    "def test_interleave_lists():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists(123, [1,2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists([1,2], 123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists(object(), object())",
+
+    "def test_interleave_lists():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists([1,2], 3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists(3.14, [1,2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        interleave_lists('ab', None)",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([1,2,3], [4,5,6]) == [1,4,2,5,3,6]\n"
+    "    assert interleave_lists([1,2,3,4], [9,8,7]) == [1,9,2,8,3,7]\n"
+    "    assert interleave_lists([0], [0,0,0,0]) == [0,0]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([[], []], [[], []]) == [[],[],[],[]]\n"
+    "    assert interleave_lists([[[]]], [[1]]) == [[[]],[1]]\n"
+    "    assert interleave_lists([[1],[2],[3]], [[4]]) == [[1],[4]]",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists(['a\\n', 'b\\t'], ['x\\t', 'y\\n']) == ['a\\n','x\\t','b\\t','y\\n']\n"
+    "    assert interleave_lists(['\\0'], ['\\0']) == ['\\0','\\0']\n"
+    "    assert interleave_lists([' '], ['\\n']) == [' ','\\n']",
+
+    "def test_interleave_lists():\n"
+    "    assert interleave_lists([1, -1, 1], [0, 0, 0]) == [1,0,-1,0,1,0]\n"
+    "    assert interleave_lists([1,2,3], [0,0]) == [1,0,2,0]\n"
+    "    assert interleave_lists([0,0], [1,2,3]) == [0,1,0,2]",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([]) is None\n"
+    "    assert second_largest([1]) is None\n"
+    "    assert second_largest([1,1,1]) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([1,2]) == 1\n"
+    "    assert second_largest([2,1]) == 1\n"
+    "    assert second_largest([1,2,3]) == 2",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([3,3,2,2,1]) == 2\n"
+    "    assert second_largest([5,5,5,4]) == 4\n"
+    "    assert second_largest([0,0,0,-1]) == 0",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([-1,-2,-3]) == -2\n"
+    "    assert second_largest([-10,-5,-1]) == -5\n"
+    "    assert second_largest([-1,-1,-2]) == -2",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([0,1,0]) == 0\n"
+    "    assert second_largest([0,0,1]) == 0\n"
+    "    assert second_largest([1,0,0]) == 0",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([10**9, 1, 10**8]) == 10**8\n"
+    "    assert second_largest([10**12, 10**12-1]) == 10**12-1\n"
+    "    assert second_largest([1,10**6,10**6]) == 1",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([1.5, 2.5, 3.5]) == 2.5\n"
+    "    assert second_largest([0.1, 0.1, 0.2]) == 0.1\n"
+    "    assert second_largest([-1.1, -2.2, -3.3]) == -2.2",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([True, False]) == False\n"
+    "    assert second_largest([True, True, False]) == False\n"
+    "    assert second_largest([False, False]) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest(['a','b','c']) == 'b'\n"
+    "    assert second_largest(['z','y','x']) == 'y'\n"
+    "    assert second_largest(['a','a','b']) == 'a'",
+
+    "def test_second_largest():\n"
+    "    assert second_largest(['apple','banana','cherry']) == 'banana'\n"
+    "    assert second_largest(['aa','aaa','a']) == 'aa'\n"
+    "    assert second_largest(['same','same']) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([(), (1,), (2,)]) == (1,)\n"
+    "    assert second_largest([(1,2),(1,1),(1,3)]) == (1,2)\n"
+    "    assert second_largest([(),()]) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest(['😊','😀','😃']) == '😃'\n"
+    "    assert second_largest(['😀','😀','😃']) == '😀'\n"
+    "    assert second_largest(['😊']) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([1,2,2,3,3]) == 2\n"
+    "    assert second_largest([5,4,4,4]) == 4\n"
+    "    assert second_largest([9,8,9,8]) == 8",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([0,-1,-2,-3]) == -1\n"
+    "    assert second_largest([-100,0,100]) == 0\n"
+    "    assert second_largest([1,-1]) == -1",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([1e-9, 1e-10]) == 1e-10\n"
+    "    assert second_largest([1e3, 1e3, 1e2]) == 1e2\n"
+    "    assert second_largest([0.0, -0.0]) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest(range(5)) == 3\n"
+    "    assert second_largest(range(2)) == 0\n"
+    "    assert second_largest(range(1)) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([b'a', b'b', b'c']) == b'b'\n"
+    "    assert second_largest([b'z', b'z', b'y']) == b'y'\n"
+    "    assert second_largest([b'a']) is None",
+
+    "def test_second_largest():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest('abc')",
+
+    "def test_second_largest():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest([1,'a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest([{},1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest([[],[1]])",
+
+    "def test_second_largest():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest([1, None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest([float('nan'), 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        second_largest([object(), object()])",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([10,9,8,7]) == 9\n"
+    "    assert second_largest([7,8,9,10]) == 9\n"
+    "    assert second_largest([9,10,10]) == 9",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([1,1,2,3,4]) == 3\n"
+    "    assert second_largest([4,3,2,1,1]) == 3\n"
+    "    assert second_largest([2,2,3,3]) == 2",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([100,50,50,25]) == 50\n"
+    "    assert second_largest([5,10,15]) == 10\n"
+    "    assert second_largest([42]) is None",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([1,2,3,4,5]) == 4\n"
+    "    assert second_largest([5,4,3,2,1]) == 4\n"
+    "    assert second_largest([2,1,2]) == 1",
+
+    "def test_second_largest():\n"
+    "    assert second_largest([0,0,1,1,2,2]) == 1\n"
+    "    assert second_largest([3,3,3,2]) == 2\n"
+    "    assert second_largest([1,1]) is None",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({}) == {}\n"
+    "    assert invert_dict({'a': 1}) == {1: 'a'}\n"
+    "    assert invert_dict({1: 'a'}) == {'a': 1}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 2}) == {1: 'a', 2: 'b'}\n"
+    "    assert invert_dict({1: 2, 3: 4}) == {2: 1, 4: 3}\n"
+    "    assert invert_dict({'x': 'y'}) == {'y': 'x'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({0: False}) == {False: 0}\n"
+    "    assert invert_dict({True: 1}) == {1: True}\n"
+    "    assert invert_dict({False: 0}) == {0: False}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': None}) == {None: 'a'}\n"
+    "    assert invert_dict({None: 'x'}) == {'x': None}\n"
+    "    assert invert_dict({None: None}) == {None: None}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 1}) == {1: 'b'}\n"
+    "    assert invert_dict({1: 'x', 2: 'x'}) == {'x': 2}\n"
+    "    assert invert_dict({'x': 'y', 'z': 'y'}) == {'y': 'z'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 2, 'c': 1}) == {1: 'c', 2: 'b'}\n"
+    "    assert invert_dict({1: 2, 3: 2, 5: 6}) == {2: 3, 6: 5}\n"
+    "    assert invert_dict({'k': 0, 'v': 0}) == {0: 'v'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'😊': 1}) == {1: '😊'}\n"
+    "    assert invert_dict({1: '😊'}) == {'😊': 1}\n"
+    "    assert invert_dict({'😀': '😃'}) == {'😃': '😀'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({1.1: 2.2}) == {2.2: 1.1}\n"
+    "    assert invert_dict({0.0: 0.0}) == {0.0: 0.0}\n"
+    "    assert invert_dict({-1.5: 3.5}) == {3.5: -1.5}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({(1, 2): 'a'}) == {'a': (1, 2)}\n"
+    "    assert invert_dict({'x': (1, 2)}) == {(1, 2): 'x'}\n"
+    "    assert invert_dict({(): 'empty'}) == {'empty': ()}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({1: True, 2: False}) == {True: 1, False: 2}\n"
+    "    assert invert_dict({True: 'yes', False: 'no'}) == {'yes': True, 'no': False}\n"
+    "    assert invert_dict({True: True}) == {True: True}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 'b', 'c': 'd'}) == {'b': 'a', 'd': 'c'}\n"
+    "    assert invert_dict({'aa': 'bb'}) == {'bb': 'aa'}\n"
+    "    assert invert_dict({'': 'x'}) == {'x': ''}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 2, 'c': 3}) == {1: 'a', 2: 'b', 3: 'c'}\n"
+    "    assert invert_dict({10: 20, 30: 40}) == {20: 10, 40: 30}\n"
+    "    assert invert_dict({'x': 0}) == {0: 'x'}",
+
+    "def test_invert_dict():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict('abc')",
+
+    "def test_invert_dict():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict([('a', 1)])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict((('a', 1),))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({['a']: 1})",
+
+    "def test_invert_dict():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({'a': []})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({'a': {}})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({'a': set()})",
+
+    "def test_invert_dict():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({1: {2}})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({1: object()})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({object(): 1})",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 2, 'a': 3}) == {3: 'a', 2: 'b'}\n"
+    "    assert invert_dict({1: 'x', 1: 'y'}) == {'y': 1}\n"
+    "    assert invert_dict({'k': 'v', 'k': 'z'}) == {'z': 'k'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 1, 'c': 1}) == {1: 'c'}\n"
+    "    assert invert_dict({1: 2, 2: 2, 3: 2}) == {2: 3}\n"
+    "    assert invert_dict({'x': 'y', 'z': 'y', 'w': 'y'}) == {'y': 'w'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({0: 0, 1: 1}) == {0: 0, 1: 1}\n"
+    "    assert invert_dict({-1: -2, -3: -4}) == {-2: -1, -4: -3}\n"
+    "    assert invert_dict({10**6: 1}) == {1: 10**6}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': 1, 'b': 2, 'c': 2}) == {1: 'a', 2: 'c'}\n"
+    "    assert invert_dict({'x': 9, 'y': 8, 'z': 9}) == {9: 'z', 8: 'y'}\n"
+    "    assert invert_dict({'one': 1, 'two': 2, 'uno': 1}) == {1: 'uno', 2: 'two'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({True: 1, False: 0}) == {1: True, 0: False}\n"
+    "    assert invert_dict({1: True, 0: False}) == {True: 1, False: 0}\n"
+    "    assert invert_dict({False: False}) == {False: False}",
+
+    "def test_invert_dict():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({'a': [1, 2]})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({'b': {'x': 1}})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        invert_dict({'c': set([1])})",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({None: 1, 'a': 2}) == {1: None, 2: 'a'}\n"
+    "    assert invert_dict({1: None, 2: 'a'}) == {None: 1, 'a': 2}\n"
+    "    assert invert_dict({None: None, 'x': None}) == {None: 'x'}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'a': True, 'b': True}) == {True: 'b'}\n"
+    "    assert invert_dict({True: 'a', False: 'a'}) == {'a': False}\n"
+    "    assert invert_dict({True: 1, False: 1}) == {1: False}",
+
+    "def test_invert_dict():\n"
+    "    assert invert_dict({'long_key_name': 'v'}) == {'v': 'long_key_name'}\n"
+    "    assert invert_dict({'k1': 'v1', 'k2': 'v2'}) == {'v1': 'k1', 'v2': 'k2'}\n"
+    "    assert invert_dict({'x': 'y', 'y': 'x'}) == {'y': 'x', 'x': 'y'}",
+
+    "def test_clamp():\n"
+    "    assert clamp(5, 0, 10) == 5\n"
+    "    assert clamp(-1, 0, 10) == 0\n"
+    "    assert clamp(11, 0, 10) == 10",
+
+    "def test_clamp():\n"
+    "    assert clamp(0, 0, 0) == 0\n"
+    "    assert clamp(1, 1, 1) == 1\n"
+    "    assert clamp(-1, -1, -1) == -1",
+
+    "def test_clamp():\n"
+    "    assert clamp(0, -5, 5) == 0\n"
+    "    assert clamp(-10, -5, 5) == -5\n"
+    "    assert clamp(10, -5, 5) == 5",
+
+    "def test_clamp():\n"
+    "    assert clamp(5.5, 0.0, 10.0) == 5.5\n"
+    "    assert clamp(-1.5, 0.0, 10.0) == 0.0\n"
+    "    assert clamp(11.1, 0.0, 10.0) == 10.0",
+
+    "def test_clamp():\n"
+    "    assert clamp(True, 0, 1) == 1\n"
+    "    assert clamp(False, 0, 1) == 0\n"
+    "    assert clamp(True, False, True) == True",
+
+    "def test_clamp():\n"
+    "    assert clamp(0, -1, 1) == 0\n"
+    "    assert clamp(-1, -1, 1) == -1\n"
+    "    assert clamp(1, -1, 1) == 1",
+
+    "def test_clamp():\n"
+    "    assert clamp(100, 0, 50) == 50\n"
+    "    assert clamp(-100, -50, 50) == -50\n"
+    "    assert clamp(25, 0, 50) == 25",
+
+    "def test_clamp():\n"
+    "    assert clamp(1e9, 0, 1e8) == 1e8\n"
+    "    assert clamp(-1e9, -1e8, 1e8) == -1e8\n"
+    "    assert clamp(0.0, -1e-3, 1e-3) == 0.0",
+
+    "def test_clamp():\n"
+    "    assert clamp(-0.0, 0.0, 1.0) == 0.0\n"
+    "    assert clamp(0.0, 0.0, 0.0) == 0.0\n"
+    "    assert clamp(1.0, 1.0, 1.0) == 1.0",
+
+    "def test_clamp():\n"
+    "    assert clamp(5, 10, 0) == 10\n"
+    "    assert clamp(-5, 10, 0) == 10\n"
+    "    assert clamp(15, 10, 0) == 10",
+
+    "def test_clamp():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp('5', 0, 10)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(5, '0', 10)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(5, 0, '10')",
+
+    "def test_clamp():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(None, 0, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(1, None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(1, 0, None)",
+
+    "def test_clamp():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp([1], 0, 10)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(1, [0], 10)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(1, 0, [10])",
+
+    "def test_clamp():\n"
+    "    assert clamp(-5, -10, -1) == -5\n"
+    "    assert clamp(-15, -10, -1) == -10\n"
+    "    assert clamp(0, -10, -1) == -1",
+
+    "def test_clamp():\n"
+    "    assert clamp(2.5, 2.5, 2.5) == 2.5\n"
+    "    assert clamp(2.4, 2.5, 2.5) == 2.5\n"
+    "    assert clamp(2.6, 2.5, 2.5) == 2.5",
+
+    "def test_clamp():\n"
+    "    assert clamp(1, -1, True) == True\n"
+    "    assert clamp(0, False, True) == 0\n"
+    "    assert clamp(-1, False, True) == False",
+
+    "def test_clamp():\n"
+    "    assert clamp(5, -float('inf'), float('inf')) == 5\n"
+    "    assert clamp(-1e9, -float('inf'), 0) == -1e9\n"
+    "    assert clamp(1e9, 0, float('inf')) == 1e9",
+
+    "def test_clamp():\n"
+    "    assert clamp(0, -0.0, 0.0) == 0.0\n"
+    "    assert clamp(-0.0, -0.0, 0.0) == 0.0\n"
+    "    assert clamp(0.0, -0.0, 0.0) == 0.0",
+
+    "def test_clamp():\n"
+    "    assert clamp(999999999999, 0, 999999999998) == 999999999998\n"
+    "    assert clamp(-999999999999, -999999999998, 0) == -999999999998\n"
+    "    assert clamp(1, -999999999998, 999999999998) == 1",
+
+    "def test_clamp():\n"
+    "    assert clamp(3, 3, 5) == 3\n"
+    "    assert clamp(5, 3, 5) == 5\n"
+    "    assert clamp(4, 3, 5) == 4",
+
+    "def test_clamp():\n"
+    "    assert clamp(3, 5, 3) == 5\n"
+    "    assert clamp(4, 5, 3) == 5\n"
+    "    assert clamp(6, 5, 3) == 5",
+
+    "def test_clamp():\n"
+    "    assert clamp(1e-9, 0.0, 1e-8) == 1e-9\n"
+    "    assert clamp(-1e-9, 0.0, 1e-8) == 0.0\n"
+    "    assert clamp(1e-7, 0.0, 1e-8) == 1e-8",
+
+    "def test_clamp():\n"
+    "    assert clamp(42, 42, 100) == 42\n"
+    "    assert clamp(100, 42, 100) == 100\n"
+    "    assert clamp(101, 42, 100) == 100",
+
+    "def test_clamp():\n"
+    "    assert clamp(0, -1, 0) == 0\n"
+    "    assert clamp(-1, -1, 0) == -1\n"
+    "    assert clamp(1, -1, 0) == 0",
+
+    "def test_clamp():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(object(), 0, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(1, object(), 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        clamp(1, 0, object())",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([], []) == []\n"
+    "    assert list_difference([], [1, 2]) == []\n"
+    "    assert list_difference([1, 2], []) == [1, 2]\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([1, 2, 3], [1, 2, 3]) == []\n"
+    "    assert list_difference([1, 2, 3], [3]) == [1, 2]\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([-1, -2, -3], [-2]) == [-1, -3]\n"
+    "    assert list_difference([-1, -1], [-1]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([0, 1, 2], [0]) == [1, 2]\n"
+    "    assert list_difference([0, 0, 0], [0]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference(['a', 'b', 'c'], ['b']) == ['a', 'c']\n"
+    "    assert list_difference(['a', 'a'], ['a']) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference(['A', 'a'], ['a']) == ['A']\n"
+    "    assert list_difference(['a', 'A'], ['A']) == ['a']\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([True, False], [True]) == [False]\n"
+    "    assert list_difference([False, False], [False]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([1.0, 2.0, 3.0], [2.0]) == [1.0, 3.0]\n"
+    "    assert list_difference([1.1, 1.1], [1.1]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([None, 1, None], [None]) == [1]\n"
+    "    assert list_difference([None], [None]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([(1, 2), (3, 4)], [(1, 2)]) == [(3, 4)]\n"
+    "    assert list_difference([(1, 2)], [(1, 2)]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference(['', 'a', ''], ['']) == ['a']\n"
+    "    assert list_difference([''], ['']) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference(['🙂', 'a', '🙂'], ['🙂']) == ['a']\n"
+    "    assert list_difference(['🙂'], ['🙂']) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([10**9, 1], [10**9]) == [1]\n"
+    "    assert list_difference([10**9], [10**9]) == []\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([0, -0], [0]) == []\n"
+    "    assert list_difference([-0], [0]) == []\n",
+
+    "def test_list_difference():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference(None, [])\n",
+
+    "def test_list_difference():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference([], None)\n",
+
+    "def test_list_difference():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference(123, [1])\n",
+
+    "def test_list_difference():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference([1, 2], 123)\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([], []) == []\n"
+    "    assert list_difference([], ['x']) == []\n"
+    "    assert list_difference(['x'], []) == ['x']\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([1, 2, 3], [1, 2, 3]) == []\n"
+    "    assert list_difference([1, 2, 3], [2]) == [1, 3]\n"
+    "    assert list_difference([1, 2, 3], [4]) == [1, 2, 3]\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([1, 1, 2, 2], [1]) == [2, 2]\n"
+    "    assert list_difference([1, 1, 1], [1]) == []\n"
+    "    assert list_difference([2, 2], [1]) == [2, 2]\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([-1, -2, -3], [-2]) == [-1, -3]\n"
+    "    assert list_difference([-1, -1], [-1]) == []\n"
+    "    assert list_difference([-3, -2, -1], []) == [-3, -2, -1]\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference(['a', 'b', 'a'], ['a']) == ['b']\n"
+    "    assert list_difference(['a', 'A'], ['a']) == ['A']\n"
+    "    assert list_difference(['x', 'y'], ['z']) == ['x', 'y']\n",
+
+    "def test_list_difference():\n"
+    "    assert list_difference([None, 1, None], [None]) == [1]\n"
+    "    assert list_difference([None], [None]) == []\n"
+    "    assert list_difference([1, None], []) == [1, None]\n",
+
+    "def test_list_difference():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference(None, [])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference([], None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_difference(123, 456)\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('', 'a') == ''\n"
+    "    assert remove_char('', '') == ''\n"
+    "    assert remove_char('a', 'a') == ''\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('aaa', 'a') == ''\n"
+    "    assert remove_char('aba', 'a') == 'b'\n"
+    "    assert remove_char('abc', 'x') == 'abc'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('a a a', ' ') == 'aaa'\n"
+    "    assert remove_char('   ', ' ') == ''\n"
+    "    assert remove_char(' a b ', ' ') == 'ab'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('AaA', 'a') == 'AA'\n"
+    "    assert remove_char('AaA', 'A') == 'a'\n"
+    "    assert remove_char('abcABC', 'A') == 'abcBC'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('😊a😊', '😊') == 'a'\n"
+    "    assert remove_char('😊😊', '😊') == ''\n"
+    "    assert remove_char('a😊b', '😊') == 'ab'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('line\\nline', '\\n') == 'lineline'\n"
+    "    assert remove_char('a\\nb\\n', '\\n') == 'ab'\n"
+    "    assert remove_char('\\n', '\\n') == ''\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('tab\\tchar', '\\t') == 'tabchar'\n"
+    "    assert remove_char('\\t\\t', '\\t') == ''\n"
+    "    assert remove_char('a\\tb', '\\t') == 'ab'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('!!!', '!') == ''\n"
+    "    assert remove_char('!a!b!', '!') == 'ab'\n"
+    "    assert remove_char('abc!', '!') == 'abc'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('123123', '1') == '2323'\n"
+    "    assert remove_char('000', '0') == ''\n"
+    "    assert remove_char('10203', '0') == '123'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('repeat', 'r') == 'epeat'\n"
+    "    assert remove_char('repeat', 'e') == 'rpat'\n"
+    "    assert remove_char('repeat', 't') == 'repea'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('mixED', 'E') == 'mixD'\n"
+    "    assert remove_char('mixED', 'e') == 'mixED'\n"
+    "    assert remove_char('CASE', 'S') == 'CAE'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('a b c', 'b') == 'a  c'\n"
+    "    assert remove_char('abcabc', 'b') == 'acac'\n"
+    "    assert remove_char('bbb', 'b') == ''\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('edge-case', '-') == 'edgecase'\n"
+    "    assert remove_char('--a--', '-') == 'a'\n"
+    "    assert remove_char('no-dash', '_') == 'no-dash'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('a'*10, 'a') == ''\n"
+    "    assert remove_char('a'*10, 'b') == 'a'*10\n"
+    "    assert remove_char('bbbbba', 'b') == 'a'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('中文中文', '中') == '文文'\n"
+    "    assert remove_char('αβγα', 'α') == 'βγ'\n"
+    "    assert remove_char('résumé', 'é') == 'résum'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('0x0x0', 'x') == '000'\n"
+    "    assert remove_char('101010', '1') == '000'\n"
+    "    assert remove_char('202020', '2') == '000'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('a_b_c', '_') == 'abc'\n"
+    "    assert remove_char('__init__', '_') == 'init'\n"
+    "    assert remove_char('no_underscore', '-') == 'no_underscore'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char(' spaced ', ' ') == 'spaced'\n"
+    "    assert remove_char('  lead', ' ') == 'lead'\n"
+    "    assert remove_char('trail  ', ' ') == 'trail'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('camelCase', 'C') == 'amelase'\n"
+    "    assert remove_char('snake_case', 'c') == 'snake_ase'\n"
+    "    assert remove_char('PascalCase', 'P') == 'ascalCase'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('..,,!!', '!') == '..,,'\n"
+    "    assert remove_char('?!?', '?') == '!'\n"
+    "    assert remove_char('--==--', '=') == '----'\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('a\\u200ba', '\\u200b') == 'aa'\n"
+    "    assert remove_char('\\u200b\\u200b', '\\u200b') == ''\n"
+    "    assert remove_char('a\\u200bb', 'b') == 'a\\u200b'\n",
+
+    "def test_remove_char():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        remove_char(None, 'a')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        remove_char(123, '1')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        remove_char(['a','b'], 'a')\n",
+
+    "def test_remove_char():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_char('abc', None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_char('abc', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_char('abc', ['a'])\n",
+
+    "def test_remove_char():\n"
+    "    assert remove_char('AaAa', 'a') == 'AA'\n"
+    "    assert remove_char('AaAa', 'A') == 'aa'\n"
+    "    assert remove_char('AaAa', 'x') == 'AaAa'\n",
+
+    "def test_remove_char():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_char('abc', '')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_char('abc', 'ab')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_char('abc', '😊😊')\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([], [])) == []\n"
+    "    assert sorted(list_intersection([1, 2, 3], [])) == []\n"
+    "    assert sorted(list_intersection([], [1, 2, 3])) == []\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([1, 1, 2, 2, 3], [2, 2, 4])) == [2]\n"
+    "    assert sorted(list_intersection([0, 0, 0], [0])) == [0]\n"
+    "    assert sorted(list_intersection([1, 2, 3], [3, 3, 3])) == [3]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([-1, -2, -3], [-3, -4])) == [-3]\n"
+    "    assert sorted(list_intersection([-1, 0, 1], [2, 1, 0])) == [0, 1]\n"
+    "    assert sorted(list_intersection([-10, -10], [-10, 10])) == [-10]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([1.0, 2.0, 3.0], [3, 4, 5])) == [3.0]\n"
+    "    assert sorted(list_intersection([0.0, -0.0], [0])) == [0.0]\n"
+    "    assert sorted(list_intersection([1.5, 2.5], [2.5, 3.5])) == [2.5]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([True, False], [1, 0])) == [0, 1]\n"
+    "    assert sorted(list_intersection([True, True, False], [True])) == [True]\n"
+    "    assert sorted(list_intersection([False], [0, 2, 3])) == [False]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection(['a', 'b', 'c'], ['b', 'x'])) == ['b']\n"
+    "    assert sorted(list_intersection(['', ' '], [' '])) == [' ']\n"
+    "    assert sorted(list_intersection(['😊', 'a'], ['😊', 'b'])) == ['😊']\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([None, 1, 2], [None, 0])) == [None]\n"
+    "    assert sorted(list_intersection([None, None], [None])) == [None]\n"
+    "    assert sorted(list_intersection([None, 'x'], ['x'])) == ['x']\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([(1, 2), (3, 4)], [(3, 4), (0, 0)])) == [(3, 4)]\n"
+    "    assert sorted(list_intersection([(1,), (1,), (2,)], [(2,), (2,)])) == [(2,)]\n"
+    "    assert sorted(list_intersection([(), (1,)], [()])) == [()]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([1, 2, 3], [3, 2, 1])) == [1, 2, 3]\n"
+    "    assert sorted(list_intersection([1, 2, 3], [4, 5, 6])) == []\n"
+    "    assert sorted(list_intersection([2, 2, 2], [2])) == [2]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([10**12, 10**6], [10**12])) == [10**12]\n"
+    "    assert sorted(list_intersection([10**9, -10**9], [-10**9, 0])) == [-10**9]\n"
+    "    assert sorted(list_intersection([2**63, 2**10], [2**63, 1])) == [2**63]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([float('inf'), 1.0], [float('inf'), 2.0])) == [float('inf')]\n"
+    "    assert sorted(list_intersection([float('-inf'), 0], [float('-inf')])) == [float('-inf')]\n"
+    "    assert sorted(list_intersection([float('inf'), float('-inf')], [float('inf')])) == [float('inf')]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([float('nan')], [float('nan')])) == []\n"
+    "    assert sorted(list_intersection([float('nan'), 1.0], [1.0])) == [1.0]\n"
+    "    assert sorted(list_intersection([float('nan'), 2.0], [2.0, float('nan')])) == [2.0]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([1, '1'], ['1', 2])) == ['1']\n"
+    "    assert sorted(list_intersection([1, '1'], [1])) == [1]\n"
+    "    assert sorted(list_intersection(['1'], [1])) == []\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([b'a', b'b'], [b'b', b'c'])) == [b'b']\n"
+    "    assert sorted(list_intersection([b'a'], [b'a'])) == [b'a']\n"
+    "    assert sorted(list_intersection([b'a'], ['a'])) == []\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([1, 2, 3], (3, 4, 5))) == [3]\n"
+    "    assert sorted(list_intersection((1, 2), [2, 3])) == [2]\n"
+    "    assert sorted(list_intersection((1, 2), (2, 3))) == [2]\n",
+
+    "def test_list_intersection():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection(None, [1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([1], None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection(None, None)\n",
+
+    "def test_list_intersection():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([[]], [[]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([[1]], [[1]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([{'a': 1}], [{'a': 1}])\n",
+
+    "def test_list_intersection():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([{1}, {2}], [{2}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([{1, 2}], [{1, 2}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([set()], [set()])\n",
+
+    "def test_list_intersection():\n"
+    "    class _Unhashable:\n"
+    "        __hash__ = None\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([_Unhashable()], [_Unhashable()])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([_Unhashable(), 1], [1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        list_intersection([_Unhashable()], [1])\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection(range(0), range(10))) == []\n"
+    "    assert sorted(list_intersection(range(5), range(3, 8))) == [3, 4]\n"
+    "    assert sorted(list_intersection(range(-3, 3), range(2, 6))) == [2]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([0, -0, 0.0], [0])) == [0]\n"
+    "    assert sorted(list_intersection([-0.0], [0])) == [0.0]\n"
+    "    assert sorted(list_intersection([0, 1], [-0.0, 2])) == [0]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection(['a\\n', 'b'], ['a\\n'])) == ['a\\n']\n"
+    "    assert sorted(list_intersection(['\\t', ' '], ['\\t'])) == ['\\t']\n"
+    "    assert sorted(list_intersection(['\\n', '\\r'], ['\\r', 'x'])) == ['\\r']\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection(['a'*1000, 'b'], ['a'*1000])) == ['a'*1000]\n"
+    "    assert sorted(list_intersection(['', ''], [''])) == ['']\n"
+    "    assert sorted(list_intersection(['x'*0], [''])) == ['']\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection([1, 2, 3], [3, 2, 1, 1, 1])) == [1, 2, 3]\n"
+    "    assert sorted(list_intersection([2, 2, 3, 3], [3, 3, 4, 4])) == [3]\n"
+    "    assert sorted(list_intersection([1, 2, 2, 2], [2, 2])) == [2]\n",
+
+    "def test_list_intersection():\n"
+    "    assert sorted(list_intersection(['a', None, 'b'], [None, 'c'])) == [None]\n"
+    "    assert sorted(list_intersection([None, None], [None])) == [None]\n"
+    "    assert sorted(list_intersection([None, 1], [2, None, 3])) == [None]\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('') == set()\n"
+    "    assert unique_chars('aaaa') == {'a'}\n"
+    "    assert unique_chars('abca') == {'a','b','c'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('   ') == {' '}\n"
+    "    assert unique_chars(' a  b ') == {' ', 'a', 'b'}\n"
+    "    assert unique_chars('\\t\\t') == {'\\t'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('\\n') == {'\\n'}\n"
+    "    assert unique_chars('a\\nb') == {'a','\\n','b'}\n"
+    "    assert unique_chars('a\\n\\na') == {'a','\\n'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('🙂') == {'🙂'}\n"
+    "    assert unique_chars('🙂🙂a') == {'🙂','a'}\n"
+    "    assert unique_chars('😀😃😀') == {'😀','😃'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('Aa') == {'A','a'}\n"
+    "    assert unique_chars('aA') == {'a','A'}\n"
+    "    assert unique_chars('AAAaaa') == {'A','a'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('a0a0') == {'a','0'}\n"
+    "    assert unique_chars('0000') == {'0'}\n"
+    "    assert unique_chars('123321') == {'1','2','3'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('!@#!') == {'!','@','#'}\n"
+    "    assert unique_chars('..,,') == {'.',','}\n"
+    "    assert unique_chars('---___') == {'-','_'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('a\\u200bb') == {'a','\\u200b','b'}\n"
+    "    assert unique_chars('aa\\u200baa') == {'a','\\u200b'}\n"
+    "    assert unique_chars('\\u200b') == {'\\u200b'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('e\\u0301') == {'e','\\u0301'}\n"
+    "    assert unique_chars('e\\u0301e') == {'e','\\u0301'}\n"
+    "    assert unique_chars('\\u0301') == {'\\u0301'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('a' * 1000) == {'a'}\n"
+    "    assert unique_chars(('ab' * 500)) == {'a','b'}\n"
+    "    assert unique_chars(('abc' * 100)) == {'a','b','c'}\n",
+
+    "def test_unique_chars():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(['a','b'])\n",
+
+    "def test_unique_chars():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(b'abc')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(bytearray(b'abc'))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(object())\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('İ') == {'İ'}\n"
+    "    assert unique_chars('ß') == {'ß'}\n"
+    "    assert unique_chars('ΩΩA') == {'Ω','A'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('a a') == {'a',' '}\n"
+    "    assert unique_chars('  a') == {' ','a'}\n"
+    "    assert unique_chars('a  ') == {'a',' '}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('\\\\') == {'\\\\'}\n"
+    "    assert unique_chars('\\\\n') == {'\\\\','n'}\n"
+    "    assert unique_chars('\\\\t') == {'\\\\','t'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('0.0') == {'0','.'}\n"
+    "    assert unique_chars('-0') == {'-','0'}\n"
+    "    assert unique_chars('+-') == {'+','-'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('🧪pytest🧪') == {'🧪','p','y','t','e','s'}\n"
+    "    assert unique_chars('test') == {'t','e','s'}\n"
+    "    assert unique_chars('') == set()\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('a\\r\\n') == {'a','\\r','\\n'}\n"
+    "    assert unique_chars('\\r\\n') == {'\\r','\\n'}\n"
+    "    assert unique_chars('\\r') == {'\\r'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('a\\x00b') == {'a','\\x00','b'}\n"
+    "    assert unique_chars('\\x00\\x00') == {'\\x00'}\n"
+    "    assert unique_chars('\\x00') == {'\\x00'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('Aa\\nAa') == {'A','a','\\n'}\n"
+    "    assert unique_chars('A a') == {'A','a',' '}\n"
+    "    assert unique_chars('A\\ta') == {'A','a','\\t'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('中文中文') == {'中','文'}\n"
+    "    assert unique_chars('あいあ') == {'あ','い'}\n"
+    "    assert unique_chars('한글한') == {'한','글'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('()()') == {'(',')'}\n"
+    "    assert unique_chars('[]{}') == {'[',']','{','}'}\n"
+    "    assert unique_chars(',:;') == {',',':',';'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('mixED') == {'m','i','x','E','D'}\n"
+    "    assert unique_chars('MiXeD') == {'M','i','X','e','D'}\n"
+    "    assert unique_chars('mIx') == {'m','I','x'}\n",
+
+    "def test_unique_chars():\n"
+    "    assert unique_chars('   \\t') == {' ','\\t'}\n"
+    "    assert unique_chars('\\t \\t') == {'\\t',' '}\n"
+    "    assert unique_chars(' \\n ') == {' ','\\n'}\n",
+
+    "def test_unique_chars():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(True)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        unique_chars(False)\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([]) == []\n"
+    "    assert running_total([0]) == [0]\n"
+    "    assert running_total([0, 0, 0]) == [0, 0, 0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([1]) == [1]\n"
+    "    assert running_total([1, 2, 3]) == [1, 3, 6]\n"
+    "    assert running_total([5, -2, 1]) == [5, 3, 4]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([-1]) == [-1]\n"
+    "    assert running_total([-1, -2, -3]) == [-1, -3, -6]\n"
+    "    assert running_total([-5, 5]) == [-5, 0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([10, -10, 10, -10]) == [10, 0, 10, 0]\n"
+    "    assert running_total([2, -2, 2, -2]) == [2, 0, 2, 0]\n"
+    "    assert running_total([1, -1, 1]) == [1, 0, 1]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([1.5, 0.5]) == [1.5, 2.0]\n"
+    "    assert running_total([-0.5, 0.5]) == [-0.5, 0.0]\n"
+    "    assert running_total([0.1, 0.2, 0.3]) == [0.1, 0.30000000000000004, 0.6000000000000001]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([10**6, 1]) == [1000000, 1000001]\n"
+    "    assert running_total([-10**6, 10**6]) == [-1000000, 0]\n"
+    "    assert running_total([999999999]) == [999999999]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([True, True, False]) == [1, 2, 2]\n"
+    "    assert running_total([False, True]) == [0, 1]\n"
+    "    assert running_total([True, False, True]) == [1, 1, 2]\n",
+
+    "def test_running_total():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total('123')\n",
+
+    "def test_running_total():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([1, '2', 3])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([None, 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([object()])\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([0, -1, -2, -3]) == [0, -1, -3, -6]\n"
+    "    assert running_total([3, -1, -2]) == [3, 2, 0]\n"
+    "    assert running_total([-2, 2, 2]) == [-2, 0, 2]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([100, 0, -100]) == [100, 100, 0]\n"
+    "    assert running_total([5, 0, 0]) == [5, 5, 5]\n"
+    "    assert running_total([0, 5, 0]) == [0, 5, 5]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([1e-9, 1e-9]) == [1e-09, 2e-09]\n"
+    "    assert running_total([-1e-9, 1e-9]) == [-1e-09, 0.0]\n"
+    "    assert running_total([1e3, -1e3, 1e3]) == [1000.0, 0.0, 1000.0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([7]) == [7]\n"
+    "    assert running_total([-7]) == [-7]\n"
+    "    assert running_total([7, -7]) == [7, 0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([2, 2, 2, 2]) == [2, 4, 6, 8]\n"
+    "    assert running_total([-2, -2]) == [-2, -4]\n"
+    "    assert running_total([1, 2, -3, 4]) == [1, 3, 0, 4]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([0.0, 0.0]) == [0.0, 0.0]\n"
+    "    assert running_total([-0.0, 0.0]) == [-0.0, 0.0]\n"
+    "    assert running_total([0.0, -1.0, 1.0]) == [0.0, -1.0, 0.0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([100, -50, -25, -25]) == [100, 50, 25, 0]\n"
+    "    assert running_total([1, -2, 3, -4]) == [1, -1, 2, -2]\n"
+    "    assert running_total([-1, 2, -1]) == [-1, 1, 0]\n",
+
+    "def test_running_total():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([1, 2, None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([[], 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([{}, 1])\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([1, -1, 0]) == [1, 0, 0]\n"
+    "    assert running_total([0, 1, -1]) == [0, 1, 0]\n"
+    "    assert running_total([-1, 0, 1]) == [-1, -1, 0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([1000000000, -1000000000]) == [1000000000, 0]\n"
+    "    assert running_total([-1000000000, 1000000000]) == [-1000000000, 0]\n"
+    "    assert running_total([1000000000, 1]) == [1000000000, 1000000001]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([0, 0, 5]) == [0, 0, 5]\n"
+    "    assert running_total([5, 0, 0]) == [5, 5, 5]\n"
+    "    assert running_total([0, 5, 0]) == [0, 5, 5]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([1, 2, -1, -2]) == [1, 3, 2, 0]\n"
+    "    assert running_total([-2, 1, 1]) == [-2, -1, 0]\n"
+    "    assert running_total([3, -3, 1]) == [3, 0, 1]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([0.25, 0.25, 0.5]) == [0.25, 0.5, 1.0]\n"
+    "    assert running_total([-0.25, -0.25]) == [-0.25, -0.5]\n"
+    "    assert running_total([0.5, -0.25, -0.25]) == [0.5, 0.25, 0.0]\n",
+
+    "def test_running_total():\n"
+    "    assert running_total([True, False, False]) == [1, 1, 1]\n"
+    "    assert running_total([False, False, True]) == [0, 0, 1]\n"
+    "    assert running_total([True, True, True]) == [1, 2, 3]\n",
+
+    "def test_running_total():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([1, 2, '3'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total(['1', 2, 3])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([1, 2, {}])\n",
+
+    "def test_running_total():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([1, 2, []])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([1, object()])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        running_total([None])\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([]) == []\n"
+    "    assert filter_falsey([0, False, None, '']) == []\n"
+    "    assert filter_falsey([1, True, 'a']) == [1, True, 'a']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([0, 1, 2, 0]) == [1, 2]\n"
+    "    assert filter_falsey([False, True, False]) == [True]\n"
+    "    assert filter_falsey([None, 'x', None]) == ['x']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey(['', 'a', '']) == ['a']\n"
+    "    assert filter_falsey([' ', '']) == [' ']\n"
+    "    assert filter_falsey(['', ' ', 'x']) == [' ', 'x']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([[], [1], []]) == [[1]]\n"
+    "    assert filter_falsey([{}, {'a': 1}]) == [{'a': 1}]\n"
+    "    assert filter_falsey([(), (1,)]) == [(1,)]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([0.0, 0.1, -0.1]) == [0.1, -0.1]\n"
+    "    assert filter_falsey([0.0, -0.0]) == []\n"
+    "    assert filter_falsey([1.5, 0.0, 2.5]) == [1.5, 2.5]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([True, False, True]) == [True, True]\n"
+    "    assert filter_falsey([False, False]) == []\n"
+    "    assert filter_falsey([True]) == [True]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([None, None, 1]) == [1]\n"
+    "    assert filter_falsey([None, 0, False]) == []\n"
+    "    assert filter_falsey([None, 'a']) == ['a']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey(['0', 0]) == ['0']\n"
+    "    assert filter_falsey(['False', False]) == ['False']\n"
+    "    assert filter_falsey(['None', None]) == ['None']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([set(), {1}]) == [{1}]\n"
+    "    assert filter_falsey([frozenset(), frozenset({1})]) == [frozenset({1})]\n"
+    "    assert filter_falsey([{'a'}, set()]) == [{'a'}]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([[], (), {}]) == []\n"
+    "    assert filter_falsey([[0], (0,), {'x': 0}]) == [[0], (0,), {'x': 0}]\n"
+    "    assert filter_falsey([{}, {'': ''}]) == [{'': ''}]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([0, '', [], {}, ()]) == []\n"
+    "    assert filter_falsey([1, ' ', [0]]) == [1, ' ', [0]]\n"
+    "    assert filter_falsey([False, True, []]) == [True]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([float('nan'), 0]) == [float('nan')]\n"
+    "    assert filter_falsey([float('inf'), 0]) == [float('inf')]\n"
+    "    assert filter_falsey([float('-inf'), None]) == [float('-inf')]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([b'', b'a']) == [b'a']\n"
+    "    assert filter_falsey([b'0', b'']) == [b'0']\n"
+    "    assert filter_falsey([b'\\x00']) == [b'\\x00']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey(['\\n', '']) == ['\\n']\n"
+    "    assert filter_falsey(['\\t', None]) == ['\\t']\n"
+    "    assert filter_falsey(['\\0', '']) == ['\\0']\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([1, 2, 3]) == [1, 2, 3]\n"
+    "    assert filter_falsey([0, 0, 0]) == []\n"
+    "    assert filter_falsey([0, 1, 0, 2]) == [1, 2]\n",
+
+    "def test_filter_falsey():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey('abc')\n",
+
+    "def test_filter_falsey():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey(True)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey(object())\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([[False], [True]]) == [[False], [True]]\n"
+    "    assert filter_falsey([[0], []]) == [[0]]\n"
+    "    assert filter_falsey([[None], []]) == [[None]]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([{'a': None}, {}]) == [{'a': None}]\n"
+    "    assert filter_falsey([{0: 0}, {}]) == [{0: 0}]\n"
+    "    assert filter_falsey([{}, {}]) == []\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([(), (0,)]) == [(0,)]\n"
+    "    assert filter_falsey([(False,), ()]) == [(False,)]\n"
+    "    assert filter_falsey([(), ()]) == []\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([True, 1, 'x']) == [True, 1, 'x']\n"
+    "    assert filter_falsey([False, 0, '']) == []\n"
+    "    assert filter_falsey([None, [], {}]) == []\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([float('nan'), None]) == [float('nan')]\n"
+    "    assert filter_falsey([float('inf'), float('-inf')]) == [float('inf'), float('-inf')]\n"
+    "    assert filter_falsey([0, float('nan')]) == [float('nan')]\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([{'x': []}, {'y': 1}]) == [{'x': []}, {'y': 1}]\n"
+    "    assert filter_falsey([{'': ''}, {}]) == [{'': ''}]\n"
+    "    assert filter_falsey([{'a': False}, {}]) == [{'a': False}]\n",
+
+    "def test_filter_falsey():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey({'a': 1})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey({1, 2, 3})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_falsey(frozenset([1, 2]))\n",
+
+    "def test_filter_falsey():\n"
+    "    assert filter_falsey([{'a': []}, [], {'b': 0}, {}]) == [{'a': []}, {'b': 0}]\n"
+    "    assert filter_falsey([[[]], []]) == [[[]]]\n"
+    "    assert filter_falsey([{'x': False}, {'y': None}, {}]) == [{'x': False}, {'y': None}]\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([]) == 0\n"
+    "    assert sum_nested_list([[]]) == 0\n"
+    "    assert sum_nested_list([[[]], []]) == 0\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([0]) == 0\n"
+    "    assert sum_nested_list([0, 0, 0]) == 0\n"
+    "    assert sum_nested_list([0, [0, [0]], 0]) == 0\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([1]) == 1\n"
+    "    assert sum_nested_list([1, 2, 3]) == 6\n"
+    "    assert sum_nested_list([1, [2, 3], 4]) == 10\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([-1]) == -1\n"
+    "    assert sum_nested_list([-1, -2, -3]) == -6\n"
+    "    assert sum_nested_list([-1, [2, [-3]], 4]) == 2\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([[1, 2], [3, 4]]) == 10\n"
+    "    assert sum_nested_list([[1], [2], [3]]) == 6\n"
+    "    assert sum_nested_list([[1, [2]], [[3], 4]]) == 10\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([1, [2, [3, [4]]]]) == 10\n"
+    "    assert sum_nested_list([[1, [2, [3]]], 4]) == 10\n"
+    "    assert sum_nested_list([[[[[5]]]]]) == 5\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([1, [], 2]) == 3\n"
+    "    assert sum_nested_list([[], [1, []], 2, [[]]]) == 3\n"
+    "    assert sum_nested_list([[[]], 1, [[[]]]]) == 1\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([1.5, [2.5]]) == 4.0\n"
+    "    assert sum_nested_list([0.1, [0.2, [0.3]]]) == 0.6000000000000001\n"
+    "    assert sum_nested_list([-0.5, [0.2, [-0.1]]]) == -0.4\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([10**9, [-10**9]]) == 0\n"
+    "    assert sum_nested_list([10**12, [1, [-1]]]) == 10**12\n"
+    "    assert sum_nested_list([-10**12, [10**12, [0]]]) == 0\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([True, False, [True]]) == 2\n"
+    "    assert sum_nested_list([[False], [0], [1]]) == 1\n"
+    "    assert sum_nested_list([True, [2, [False]]]) == 3\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([None]) == 0\n"
+    "    assert sum_nested_list([1, None, [2]]) == 3\n"
+    "    assert sum_nested_list([None, [None, [None]]]) == 0\n",
+
+    "def test_sum_nested_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list(['1'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([1, ['2']])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([['a', 'b']])\n",
+
+    "def test_sum_nested_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([{'a': 1}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([1, {'b': 2}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([[{'x': 1}], 2])\n",
+
+    "def test_sum_nested_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([object()])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([1, object()])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([[object()]])\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([float('inf')]) == float('inf')\n"
+    "    assert sum_nested_list([float('-inf'), [1]]) == float('-inf')\n"
+    "    assert sum_nested_list([float('inf'), float('-inf')]) != 0\n",
+
+    "def test_sum_nested_list():\n"
+    "    r = sum_nested_list([float('nan')])\n"
+    "    assert r != r\n"
+    "    r2 = sum_nested_list([1.0, [float('nan')]])\n"
+    "    assert r2 != r2\n"
+    "    r3 = sum_nested_list([float('nan'), [float('nan')]])\n"
+    "    assert r3 != r3\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([1, (2, 3)]) == 6\n"
+    "    assert sum_nested_list([(1, 2), [3]]) == 6\n"
+    "    assert sum_nested_list([(1,), [(2,), [3]]]) == 6\n",
+
+    "def test_sum_nested_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([1, (2, '3')])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([('x',), 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([(1, 2), ('a', 'b')])\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([0, [-0.0]]) == 0.0\n"
+    "    assert sum_nested_list([-0.0, [0.0]]) == 0.0\n"
+    "    assert sum_nested_list([0.0, [-0.0], [0]]) == 0.0\n",
+
+    "def test_sum_nested_list():\n"
+    "    big = list(range(1000))\n"
+    "    assert sum_nested_list(big) == sum(range(1000))\n"
+    "    assert sum_nested_list([big, []]) == sum(range(1000))\n"
+    "    assert sum_nested_list([[], [big]]) == sum(range(1000))\n",
+
+    "def test_sum_nested_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list('123')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list(None)\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([[[-1, -2], [-3]], [[4]]]) == -2\n"
+    "    assert sum_nested_list([[1, [2]], [], [[3, [4]]]]) == 10\n"
+    "    assert sum_nested_list([[], [], []]) == 0\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([True, [True, [True]]]) == 3\n"
+    "    assert sum_nested_list([False, [False], False]) == 0\n"
+    "    assert sum_nested_list([True, [0, [False]]]) == 1\n",
+
+    "def test_sum_nested_list():\n"
+    "    assert sum_nested_list([1, [2, [3, [4, [5]]]]]) == 15\n"
+    "    assert sum_nested_list([[1], [[2], [[[3]]]]]) == 6\n"
+    "    assert sum_nested_list([[[[[1]]]]]) == 1\n",
+
+    "def test_sum_nested_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([[1, 2], '3'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([['4'], [5]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_nested_list([[None], 1])\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([]) == []\n"
+    "    assert filter_none([None]) == []\n"
+    "    assert filter_none([None, None]) == []\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([1, None, 2]) == [1, 2]\n"
+    "    assert filter_none([None, 0, None]) == [0]\n"
+    "    assert filter_none([0, None, 0]) == [0, 0]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([False, None, True]) == [False, True]\n"
+    "    assert filter_none([None, False]) == [False]\n"
+    "    assert filter_none([True, None]) == [True]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none(['a', None, 'b']) == ['a', 'b']\n"
+    "    assert filter_none([None, '']) == ['']\n"
+    "    assert filter_none(['', None, 'x']) == ['', 'x']\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([[], None, []]) == [[], []]\n"
+    "    assert filter_none([None, {}]) == [{}]\n"
+    "    assert filter_none([{}, None, {}]) == [{}, {}]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([1.1, None, 2.2]) == [1.1, 2.2]\n"
+    "    assert filter_none([None, 0.0]) == [0.0]\n"
+    "    assert filter_none([0.0, None, 0.0]) == [0.0, 0.0]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([(), None, (1,)]) == [(), (1,)]\n"
+    "    assert filter_none([None, ()]) == [()]\n"
+    "    assert filter_none([(), (), None]) == [(), ()]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([[1], None, [2]]) == [[1], [2]]\n"
+    "    assert filter_none([None, [None]]) == [[None]]\n"
+    "    assert filter_none([[None], None]) == [[None]]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([{'a': 1}, None]) == [{'a': 1}]\n"
+    "    assert filter_none([None, {'a': None}]) == [{'a': None}]\n"
+    "    assert filter_none([{'x': 1}, None, {'y': 2}]) == [{'x': 1}, {'y': 2}]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([1, 2, 3]) == [1, 2, 3]\n"
+    "    assert filter_none([None, 1, 2, 3, None]) == [1, 2, 3]\n"
+    "    assert filter_none([None, None, 5]) == [5]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([True, False, None]) == [True, False]\n"
+    "    assert filter_none([None, True, False]) == [True, False]\n"
+    "    assert filter_none([False, None, False]) == [False, False]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none(['😊', None, '😃']) == ['😊', '😃']\n"
+    "    assert filter_none([None, '😊']) == ['😊']\n"
+    "    assert filter_none(['😊', None]) == ['😊']\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([0, None, False]) == [0, False]\n"
+    "    assert filter_none([None, 0, False]) == [0, False]\n"
+    "    assert filter_none([None, None, False]) == [False]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([[[]], None]) == [[[]]]\n"
+    "    assert filter_none([None, [[]]]) == [[[]]]\n"
+    "    assert filter_none([[[]], None, [[]]]) == [[[]], [[]]]\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([{'a': [None]}, None]) == [{'a': [None]}]\n"
+    "    assert filter_none([None, {'b': 2}]) == [{'b': 2}]\n"
+    "    assert filter_none([{'x': None}, None]) == [{'x': None}]\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none(None)\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none(123)\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none('abc')\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none(3.14)\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none(True)\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none({'a': 1})\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none((1, 2, 3))\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none(set([1, 2, 3]))\n",
+
+    "def test_filter_none():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_none(object())\n",
+
+    "def test_filter_none():\n"
+    "    assert filter_none([None, None, None, 1]) == [1]\n"
+    "    assert filter_none([None, 'a', None, 'b', None]) == ['a', 'b']\n"
+    "    assert filter_none([None, None, {}]) == [{}]\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([]) is None\n"
+    "    assert get_first([1]) == 1\n"
+    "    assert get_first([None]) is None\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([0]) == 0\n"
+    "    assert get_first(['']) == ''\n"
+    "    assert get_first([False]) is False\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([1, 2, 3]) == 1\n"
+    "    assert get_first(['a', 'b']) == 'a'\n"
+    "    assert get_first([True, False]) is True\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([[], 1, 2]) == []\n"
+    "    assert get_first([{}, 'x']) == {}\n"
+    "    assert get_first([(), 5]) == ()\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([[1, 2], [3]]) == [1, 2]\n"
+    "    assert get_first([{'a': 1}, {'b': 2}]) == {'a': 1}\n"
+    "    assert get_first([{'k': []}, {'k': [1]}]) == {'k': []}\n",
+
+    "def test_get_first():\n"
+    "    assert get_first(['😊', 'a']) == '😊'\n"
+    "    assert get_first(['\\n', 'x']) == '\\n'\n"
+    "    assert get_first(['\\t', 'y']) == '\\t'\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([10**12, -1]) == 10**12\n"
+    "    assert get_first([-10**12, 1]) == -10**12\n"
+    "    assert get_first([2**63, 0]) == 2**63\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([1.5, 2.5]) == 1.5\n"
+    "    assert get_first([-0.0, 1.0]) == -0.0\n"
+    "    assert get_first([float('inf'), -1]) == float('inf')\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([float('-inf'), 0]) == float('-inf')\n"
+    "    assert get_first([float('nan'), 1]) != get_first([float('nan'), 1])\n"
+    "    assert get_first([0.0, -0.0]) == 0.0\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([b'', b'a']) == b''\n"
+    "    assert get_first([b'hi']) == b'hi'\n"
+    "    assert get_first([bytearray(b'x'), bytearray(b'y')]) == bytearray(b'x')\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([set(), {1}]) == set()\n"
+    "    assert get_first([frozenset(), frozenset({1})]) == frozenset()\n"
+    "    assert get_first([{'a'}, {'b'}]) == {'a'}\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([range(0), range(1)]) == range(0)\n"
+    "    assert list(get_first([range(3), range(2)])) == [0, 1, 2]\n"
+    "    assert get_first([range(1), 'x']).start == 0\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([{'nested': [None]}, {'nested': []}]) == {'nested': [None]}\n"
+    "    assert get_first([[None], []]) == [None]\n"
+    "    assert get_first([[''], ['a']]) == ['']\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([(1, 2), (3, 4)]) == (1, 2)\n"
+    "    assert get_first([(None,), (1,)]) == (None,)\n"
+    "    assert get_first([('a',), ()]) == ('a',)\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([[[]], []]) == [[]]\n"
+    "    assert get_first([[[1, 2]], [3]]) == [[1, 2]]\n"
+    "    assert get_first([['x', ['y']], ['z']]) == ['x', ['y']]\n",
+
+    "def test_get_first():\n"
+    "    assert get_first('') is None\n"
+    "    assert get_first('abc') == 'a'\n"
+    "    assert get_first('😊a') == '😊'\n",
+
+    "def test_get_first():\n"
+    "    assert get_first(None) == None\n"
+    "    assert get_first(False) == None\n"
+    "    assert get_first(0) == None\n",
+
+    "def test_get_first():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first(object())\n",
+
+    "def test_get_first():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first({'a': 1})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first({1, 2, 3})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first((x for x in [1, 2, 3]))\n",
+
+    "def test_get_first():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first(b'abc')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first(bytearray(b'abc'))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        get_first(range(5))\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([{'a': 1}]) == {'a': 1}\n"
+    "    assert get_first([{'a': 1}]) == get_first([{'a': 1}])\n"
+    "    assert get_first(['same', 'same']) == 'same'\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([0, None, False]) == 0\n"
+    "    assert get_first([None, 0, False]) == None\n"
+    "    assert get_first([False, 0, None]) == False\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([' ', 'x']) == ' '\n"
+    "    assert get_first(['\\u200b', 'a']) == '\\u200b'\n"
+    "    assert get_first(['\\r', 'n']) == '\\r'\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([[1], 2, 3]) == [1]\n"
+    "    assert get_first([{'x': 1}, 2]) == {'x': 1}\n"
+    "    assert get_first([{'x': None}, {'x': 1}]) == {'x': None}\n",
+
+    "def test_get_first():\n"
+    "    assert get_first([Ellipsis, 1, 2]) == Ellipsis\n"
+    "    assert get_first([NotImplemented, 'x']) == NotImplemented\n"
+    "    assert get_first([complex(1, 2), 0]) == complex(1, 2)\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([]) is None\n"
+    "    assert get_last([None]) is None\n"
+    "    assert get_last([0]) == 0\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([False]) is False\n"
+    "    assert get_last([True]) is True\n"
+    "    assert get_last([0, False]) is False\n",
+
+    "def test_get_last():\n"
+    "    assert get_last(['']) == ''\n"
+    "    assert get_last([' ', '']) == ''\n"
+    "    assert get_last(['a', ' ']) == ' '\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([[], []]) == []\n"
+    "    assert get_last([[1], []]) == []\n"
+    "    assert get_last([[], [1, 2]]) == [1, 2]\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([{}, {}]) == {}\n"
+    "    assert get_last([{'a': 1}, {}]) == {}\n"
+    "    assert get_last([{}, {'b': 2}]) == {'b': 2}\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([set(), set([1])]) == {1}\n"
+    "    assert get_last([set([1, 2]), set()]) == set()\n"
+    "    assert get_last([set()]) == set()\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([(), (1,)]) == (1,)\n"
+    "    assert get_last([(1, 2), ()]) == ()\n"
+    "    assert get_last([('a',), ('b', 'c')]) == ('b', 'c')\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([float('inf')]) == float('inf')\n"
+    "    assert get_last([float('-inf')]) == float('-inf')\n"
+    "    assert get_last([0.0, float('inf')]) == float('inf')\n",
+
+    "def test_get_last():\n"
+    "    x = []\n"
+    "    y = {'k': 'v'}\n"
+    "    assert get_last([x, y]) is y\n"
+    "    assert get_last([y, x]) is x\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([Ellipsis]) is Ellipsis\n"
+    "    assert get_last([NotImplemented]) is NotImplemented\n"
+    "    assert get_last([0, Ellipsis]) is Ellipsis\n",
+
+    "def test_get_last():\n"
+    "    assert get_last(['\\n']) == '\\n'\n"
+    "    assert get_last(['a', '\\n']) == '\\n'\n"
+    "    assert get_last(['\\t', ' ']) == ' '\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([b'']) == b''\n"
+    "    assert get_last([b'a', b'']) == b''\n"
+    "    assert get_last([b'x', b'y']) == b'y'\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([complex(1, 2)]) == complex(1, 2)\n"
+    "    assert get_last([complex(0, 0), complex(-1, 3)]) == complex(-1, 3)\n"
+    "    assert get_last([1, complex(2, 0)]) == complex(2, 0)\n",
+
+    "def test_get_last():\n"
+    "    assert get_last(['😊']) == '😊'\n"
+    "    assert get_last(['a', '😊']) == '😊'\n"
+    "    assert get_last(['🙂', '🙃', '🙂']) == '🙂'\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([0, -0]) == 0\n"
+    "    assert get_last([1, -1, 0]) == 0\n"
+    "    assert get_last([-1, 1, -0]) == 0\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([10**18]) == 10**18\n"
+    "    assert get_last([-(10**18), 10**18]) == 10**18\n"
+    "    assert get_last([10**18, -(10**18)]) == -(10**18)\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([0.1 + 0.2]) == 0.30000000000000004\n"
+    "    assert get_last([1.0, 0.1 + 0.2]) == 0.30000000000000004\n"
+    "    assert get_last([0.3, 0.1 + 0.2]) == 0.30000000000000004\n",
+
+    "def test_get_last():\n"
+    "    assert get_last(['ab', '']) == ''\n"
+    "    assert get_last(['', 'ab']) == 'ab'\n"
+    "    assert get_last(['ab', 'cd']) == 'cd'\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([None, 0]) == 0\n"
+    "    assert get_last([0, None]) is None\n"
+    "    assert get_last([None, None]) is None\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([[None], None]) is None\n"
+    "    assert get_last([None, [None]]) == [None]\n"
+    "    assert get_last([[0], [False]]) == [False]\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([{'a': 1}, {'a': 1}]) == {'a': 1}\n"
+    "    assert get_last([{'a': 1}, {'a': 2}]) == {'a': 2}\n"
+    "    assert get_last([{'x': []}, {'x': []}]) == {'x': []}\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([range(0)]) == range(0)\n"
+    "    assert get_last([range(1)]) == range(1)\n"
+    "    assert get_last([range(3), range(0)]) == range(0)\n",
+
+    "def test_get_last():\n"
+    "    assert get_last([0, '0']) == '0'\n"
+    "    assert get_last(['0', 0]) == 0\n"
+    "    assert get_last([True, 1]) == 1\n",
+
+    "def test_get_last():\n"
+    "    class Falsy:\n"
+    "        def __bool__(self):\n"
+    "            return False\n"
+    "    f = Falsy()\n"
+    "    assert get_last([f]) is f\n"
+    "    assert get_last([0, f]) is f\n",
+
+    "def test_get_last():\n"
+    "    assert get_last(['end', None, '']) == ''\n"
+    "    assert get_last(['only', 'one', 'last']) == 'last'\n"
+    "    assert get_last([[], None, {}]) == {}\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(1, 2) == 2\n"
+    "    assert max_of_two(-1, -2) == -1\n"
+    "    assert max_of_two(0, 0) == 0\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(10, -10) == 10\n"
+    "    assert max_of_two(-5, 5) == 5\n"
+    "    assert max_of_two(1, 1) == 1\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(1.5, 1.4) == 1.5\n"
+    "    assert max_of_two(-1.5, -1.4) == -1.4\n"
+    "    assert max_of_two(0.0, -0.0) == 0.0\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(True, False) == True\n"
+    "    assert max_of_two(False, False) == False\n"
+    "    assert max_of_two(True, True) == True\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two('b', 'a') == 'b'\n"
+    "    assert max_of_two('abc', 'ab') == 'abc'\n"
+    "    assert max_of_two('', 'x') == 'x'\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two([1, 2], [1, 1]) == [1, 2]\n"
+    "    assert max_of_two([0], []) == [0]\n"
+    "    assert max_of_two([1], [1]) == [1]\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two((1, 2), (1, 1)) == (1, 2)\n"
+    "    assert max_of_two((0,), ()) == (0,)\n"
+    "    assert max_of_two((1,), (1,)) == (1,)\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(10**12, 10**11) == 10**12\n"
+    "    assert max_of_two(-10**12, -10**11) == -10**11\n"
+    "    assert max_of_two(10**18, 0) == 10**18\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(3.14, 3.1400001) == 3.1400001\n"
+    "    assert max_of_two(-3.14, -3.1400001) == -3.14\n"
+    "    assert max_of_two(1e-9, 1e-10) == 1e-9\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(float('inf'), 1) == float('inf')\n"
+    "    assert max_of_two(float('-inf'), 0) == 0\n"
+    "    assert max_of_two(float('inf'), float('inf')) == float('inf')\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(None, 1) == 1\n"
+    "    assert max_of_two(None, None) is None\n"
+    "    assert max_of_two(1, None) == 1\n",
+
+    "def test_max_of_two():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        max_of_two('a', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        max_of_two([], 1)\n",
+
+    "def test_max_of_two():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        max_of_two({}, {})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        max_of_two(object(), object())\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two('😊', '😀') == '😊'\n"
+    "    assert max_of_two('a', '😊') == '😊'\n"
+    "    assert max_of_two('😊', '😊') == '😊'\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(b'b', b'a') == b'b'\n"
+    "    assert max_of_two(b'', b'a') == b'a'\n"
+    "    assert max_of_two(b'x', b'x') == b'x'\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(0, False) == 0\n"
+    "    assert max_of_two(True, 0) == True\n"
+    "    assert max_of_two(False, -1) == False\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(-0.0, 0.0) == 0.0\n"
+    "    assert max_of_two(0.0, -0.0) == 0.0\n"
+    "    assert max_of_two(-0.0, -0.0) == -0.0\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two('Z', 'a') == 'a'\n"
+    "    assert max_of_two('A', 'a') == 'a'\n"
+    "    assert max_of_two('z', 'Z') == 'z'\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two([1, 2, 3], [1, 2]) == [1, 2, 3]\n"
+    "    assert max_of_two([1], [1, 0]) == [1, 0]\n"
+    "    assert max_of_two([], []) == []\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two((2, 0), (1, 9)) == (2, 0)\n"
+    "    assert max_of_two((1, 2, 3), (1, 2)) == (1, 2, 3)\n"
+    "    assert max_of_two((), ()) == ()\n",
+
+    "def test_max_of_two():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        max_of_two(1, '1')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        max_of_two([], None)\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(5, 5.0) == 5\n"
+    "    assert max_of_two(5.0, 5) == 5.0\n"
+    "    assert max_of_two(0, 0.0) == 0\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two('long', 'longer') == 'longer'\n"
+    "    assert max_of_two('same', 'same') == 'same'\n"
+    "    assert max_of_two('', '') == ''\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(2**63, 2**62) == 2**63\n"
+    "    assert max_of_two(-(2**63), -(2**62)) == -(2**62)\n"
+    "    assert max_of_two(2**31, -2**31) == 2**31\n",
+
+    "def test_max_of_two():\n"
+    "    assert max_of_two(1e308, 1e307) == 1e308\n"
+    "    assert max_of_two(-1e308, -1e307) == -1e307\n"
+    "    assert max_of_two(1e-308, 0) == 1e-308\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(1, 2) == 1\n"
+    "    assert min_of_two(-1, -2) == -2\n"
+    "    assert min_of_two(0, 0) == 0\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(10, -10) == -10\n"
+    "    assert min_of_two(-5, 5) == -5\n"
+    "    assert min_of_two(1, 1) == 1\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(1.5, 1.4) == 1.4\n"
+    "    assert min_of_two(-1.5, -1.4) == -1.5\n"
+    "    assert min_of_two(0.0, -0.0) == 0.0\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(True, False) == False\n"
+    "    assert min_of_two(False, False) == False\n"
+    "    assert min_of_two(True, True) == True\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two('a', 'b') == 'a'\n"
+    "    assert min_of_two('ab', 'abc') == 'ab'\n"
+    "    assert min_of_two('', 'x') == ''\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two([1, 1], [1, 2]) == [1, 1]\n"
+    "    assert min_of_two([], [0]) == []\n"
+    "    assert min_of_two([1], [1]) == [1]\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two((1, 1), (1, 2)) == (1, 1)\n"
+    "    assert min_of_two((), (0,)) == ()\n"
+    "    assert min_of_two((1,), (1,)) == (1,)\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(10**12, 10**11) == 10**11\n"
+    "    assert min_of_two(-10**12, -10**11) == -10**12\n"
+    "    assert min_of_two(10**18, 0) == 0\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(3.14, 3.1400001) == 3.14\n"
+    "    assert min_of_two(-3.14, -3.1400001) == -3.1400001\n"
+    "    assert min_of_two(1e-9, 1e-10) == 1e-10\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(float('inf'), 1) == 1\n"
+    "    assert min_of_two(float('-inf'), 0) == float('-inf')\n"
+    "    assert min_of_two(float('inf'), float('inf')) == float('inf')\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(None, 1) is None\n"
+    "    assert min_of_two(None, None) is None\n"
+    "    assert min_of_two(1, None) is None\n",
+
+    "def test_min_of_two():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        min_of_two('a', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        min_of_two([], 1)\n",
+
+    "def test_min_of_two():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        min_of_two({}, {})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        min_of_two(object(), object())\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two('😀', '😃') == '😀'\n"
+    "    assert min_of_two('a', '😊') == 'a'\n"
+    "    assert min_of_two('😊', '😊') == '😊'\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(b'a', b'b') == b'a'\n"
+    "    assert min_of_two(b'', b'a') == b''\n"
+    "    assert min_of_two(b'x', b'x') == b'x'\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(0, False) == False\n"
+    "    assert min_of_two(True, 0) == 0\n"
+    "    assert min_of_two(False, -1) == -1\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(-0.0, 0.0) == -0.0\n"
+    "    assert min_of_two(0.0, -0.0) == -0.0\n"
+    "    assert min_of_two(-0.0, -0.0) == -0.0\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two('Z', 'a') == 'Z'\n"
+    "    assert min_of_two('A', 'a') == 'A'\n"
+    "    assert min_of_two('z', 'Z') == 'Z'\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two([1, 2], [1, 2, 3]) == [1, 2]\n"
+    "    assert min_of_two([1, 0], [1]) == [1]\n"
+    "    assert min_of_two([], []) == []\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two((1, 9), (2, 0)) == (1, 9)\n"
+    "    assert min_of_two((1, 2), (1, 2, 3)) == (1, 2)\n"
+    "    assert min_of_two((), ()) == ()\n",
+
+    "def test_min_of_two():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        min_of_two(1, '1')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        min_of_two([], None)\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(5, 5.0) == 5\n"
+    "    assert min_of_two(5.0, 5) == 5.0\n"
+    "    assert min_of_two(0, 0.0) == 0\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two('long', 'longer') == 'long'\n"
+    "    assert min_of_two('same', 'same') == 'same'\n"
+    "    assert min_of_two('', '') == ''\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(2**63, 2**62) == 2**62\n"
+    "    assert min_of_two(-(2**63), -(2**62)) == -(2**63)\n"
+    "    assert min_of_two(2**31, -2**31) == -2**31\n",
+
+    "def test_min_of_two():\n"
+    "    assert min_of_two(1e308, 1e307) == 1e307\n"
+    "    assert min_of_two(-1e308, -1e307) == -1e308\n"
+    "    assert min_of_two(1e-308, 0) == 0\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([]) == []\n"
+    "    assert filter_even([1, 3, 5]) == []\n"
+    "    assert filter_even([2, 4, 6]) == [2, 4, 6]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([0]) == [0]\n"
+    "    assert filter_even([0, 1, 2]) == [0, 2]\n"
+    "    assert filter_even([1, 0, 3]) == [0]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([-2, -1, 0, 1, 2]) == [-2, 0, 2]\n"
+    "    assert filter_even([-4, -3, -2]) == [-4, -2]\n"
+    "    assert filter_even([-1, -3]) == []\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([10**6, 10**6 + 1]) == [10**6]\n"
+    "    assert filter_even([-(10**6)]) == [-(10**6)]\n"
+    "    assert filter_even([10**6 + 3]) == []\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([True, False]) == [False]\n"
+    "    assert filter_even([True, 2]) == [2]\n"
+    "    assert filter_even([False, 0]) == [False, 0]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([2.0, 4.0]) == [2.0, 4.0]\n"
+    "    assert filter_even([2.5, 3.5]) == []\n"
+    "    assert filter_even([0.0, 1.0]) == [0.0]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([1, 2, 3, 4, 5]) == [2, 4]\n"
+    "    assert filter_even([4, 3, 2, 1]) == [4, 2]\n"
+    "    assert filter_even([2, 2, 2]) == [2, 2, 2]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([0, -2, -4]) == [0, -2, -4]\n"
+    "    assert filter_even([-1, -3, -5]) == []\n"
+    "    assert filter_even([1, -2, 3]) == [-2]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([100, 101, 102]) == [100, 102]\n"
+    "    assert filter_even([99, 101]) == []\n"
+    "    assert filter_even([98]) == [98]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([0, 0, 1]) == [0, 0]\n"
+    "    assert filter_even([1, 1, 1]) == []\n"
+    "    assert filter_even([2, 1, 2]) == [2, 2]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even(range(0)) == []\n"
+    "    assert filter_even(range(5)) == [0, 2, 4]\n"
+    "    assert filter_even(range(-3, 3)) == [-2, 0, 2]\n",
+
+    "def test_filter_even():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even(123)\n",
+
+    "def test_filter_even():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even(['a', 'b'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even([1, '2'])\n",
+
+    "def test_filter_even():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even([None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even([{}])\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([2, False]) == [2, False]\n"
+    "    assert filter_even([True, 3]) == []\n"
+    "    assert filter_even([False]) == [False]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([8, 6, 4, 2]) == [8, 6, 4, 2]\n"
+    "    assert filter_even([7, 5, 3, 1]) == []\n"
+    "    assert filter_even([7, 6, 5]) == [6]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([2**10, 2**10 + 1]) == [2**10]\n"
+    "    assert filter_even([-(2**10)]) == [-(2**10)]\n"
+    "    assert filter_even([2**10 + 3]) == []\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([0, -1, 1]) == [0]\n"
+    "    assert filter_even([-2, 2]) == [-2, 2]\n"
+    "    assert filter_even([1, -1]) == []\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([4, 4, 4]) == [4, 4, 4]\n"
+    "    assert filter_even([4, 5, 4]) == [4, 4]\n"
+    "    assert filter_even([5, 5]) == []\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([2, 0, -2]) == [2, 0, -2]\n"
+    "    assert filter_even([1, 0]) == [0]\n"
+    "    assert filter_even([0]) == [0]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([1e2, 3e2]) == [1e2, 3e2]\n"
+    "    assert filter_even([1e2 + 1]) == []\n"
+    "    assert filter_even([0.0]) == [0.0]\n",
+
+    "def test_filter_even():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even([1, 2, 3.5])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even([1+2j])\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([False, False]) == [False, False]\n"
+    "    assert filter_even([True, True]) == []\n"
+    "    assert filter_even([False, True, 2]) == [False, 2]\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([2, -4, 6, -8]) == [2, -4, 6, -8]\n"
+    "    assert filter_even([-1, -2, -3, -4]) == [-2, -4]\n"
+    "    assert filter_even([-5, -7]) == []\n",
+
+    "def test_filter_even():\n"
+    "    assert filter_even([0, 2, '4']) == [0, 2]\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_even(['2'])\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([]) == []\n"
+    "    assert filter_odd([1, 3, 5]) == [1, 3, 5]\n"
+    "    assert filter_odd([2, 4, 6]) == []\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([0, 1, 2, 3]) == [1, 3]\n"
+    "    assert filter_odd([-1, -2, -3]) == [-1, -3]\n"
+    "    assert filter_odd([0]) == []\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([True, False, 3]) == [True, 3]\n"
+    "    assert filter_odd([False]) == []\n"
+    "    assert filter_odd([True]) == [True]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1.0, 2.0, 3.0]) == [1.0, 3.0]\n"
+    "    assert filter_odd([-1.0, -2.0]) == [-1.0]\n"
+    "    assert filter_odd([0.0]) == []\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1, 1, 2, 3, 3]) == [1, 1, 3, 3]\n"
+    "    assert filter_odd([2, 2, 2]) == []\n"
+    "    assert filter_odd([9]) == [9]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd(range(5)) == [1, 3]\n"
+    "    assert filter_odd(range(1)) == []\n"
+    "    assert filter_odd(range(1, 6)) == [1, 3, 5]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([-5, -4, -3, -2, -1]) == [-5, -3, -1]\n"
+    "    assert filter_odd([-2, -4]) == []\n"
+    "    assert filter_odd([-1]) == [-1]\n",
+
+    "def test_filter_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd(['1', 2, 3])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd(['a'])\n",
+
+    "def test_filter_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([1, None])\n",
+
+    "def test_filter_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([1, '3'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd(['odd'])\n",
+
+    "def test_filter_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([{}, 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([[]])\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([10**9 + 1, 10**9]) == [10**9 + 1]\n"
+    "    assert filter_odd([-(10**6 + 1), -10**6]) == [-(10**6 + 1)]\n"
+    "    assert filter_odd([0, -1]) == [-1]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([3, 3, 3]) == [3, 3, 3]\n"
+    "    assert filter_odd([4, 4, 4]) == []\n"
+    "    assert filter_odd([5, 4, 3, 2, 1]) == [5, 3, 1]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1, -1, 2, -2]) == [1, -1]\n"
+    "    assert filter_odd([7, 0, -7]) == [7, -7]\n"
+    "    assert filter_odd([0, 0, 1]) == [1]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([2**1, 2**2, 2**3 - 1]) == [2**3 - 1]\n"
+    "    assert filter_odd([2**4]) == []\n"
+    "    assert filter_odd([2**5 + 1]) == [2**5 + 1]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1, True, 2, False]) == [1, True]\n"
+    "    assert filter_odd([False, False]) == []\n"
+    "    assert filter_odd([True, True]) == [True, True]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([9, 7, 5, 3, 1]) == [9, 7, 5, 3, 1]\n"
+    "    assert filter_odd([8, 6, 4, 2]) == []\n"
+    "    assert filter_odd([1, 2, 3, 4]) == [1, 3]\n",
+
+    "def test_filter_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([1, 2.5])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd([2.5])\n",
+
+    "def test_filter_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd('123')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_odd(None)\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1, 3, 5, 7, 9, 10]) == [1, 3, 5, 7, 9]\n"
+    "    assert filter_odd([2, 4, 6, 8, 10]) == []\n"
+    "    assert filter_odd([11]) == [11]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1, -3, 5, -7]) == [1, -3, 5, -7]\n"
+    "    assert filter_odd([-2, -4, -6]) == []\n"
+    "    assert filter_odd([-9]) == [-9]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([0, -1, -2, -3]) == [-1, -3]\n"
+    "    assert filter_odd([0, 0, 0]) == []\n"
+    "    assert filter_odd([1, 0, 1]) == [1, 1]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([99, 100, 101]) == [99, 101]\n"
+    "    assert filter_odd([102]) == []\n"
+    "    assert filter_odd([103]) == [103]\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([1, 2, 3, 4, 5, 6]) == [1, 3, 5]\n"
+    "    assert filter_odd([6, 5, 4, 3, 2, 1]) == [5, 3, 1]\n"
+    "    assert filter_odd([0]) == []\n",
+
+    "def test_filter_odd():\n"
+    "    assert filter_odd([2**31 - 1, 2**31, -(2**31 - 1)]) == [2**31 - 1, -(2**31 - 1)]\n"
+    "    assert filter_odd([-(2**31), 0]) == []\n"
+    "    assert filter_odd([1, -(2**63 + 1)]) == [1, -(2**63 + 1)]\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1, 0) == 0\n"
+    "    assert safe_divide(0, 0) == 0\n"
+    "    assert safe_divide(-1, 0) == 0\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(0, 5) == 0\n"
+    "    assert safe_divide(5, 1) == 5\n"
+    "    assert safe_divide(-5, 1) == -5\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(5, -1) == -5\n"
+    "    assert safe_divide(-5, -1) == 5\n"
+    "    assert safe_divide(1, -2) == -0.5\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1, 3) == 1 / 3\n"
+    "    assert safe_divide(2, 3) == 2 / 3\n"
+    "    assert safe_divide(-1, 3) == -1 / 3\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1.0, 2.0) == 0.5\n"
+    "    assert safe_divide(-1.0, 2.0) == -0.5\n"
+    "    assert safe_divide(1.0, -2.0) == -0.5\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1e-12, 1e12) == 1e-24\n"
+    "    assert safe_divide(-1e-12, 1e12) == -1e-24\n"
+    "    assert safe_divide(1e-12, -1e12) == -1e-24\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1e308, 1e308) == 1.0\n"
+    "    assert safe_divide(1e308, -1e308) == -1.0\n"
+    "    assert safe_divide(-1e308, 1e308) == -1.0\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1e308, 1) == 1e308\n"
+    "    assert safe_divide(-1e308, 1) == -1e308\n"
+    "    assert safe_divide(1e308, -1) == -1e308\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(float('inf'), 2) == float('inf')\n"
+    "    assert safe_divide(float('-inf'), 2) == float('-inf')\n"
+    "    assert safe_divide(float('inf'), -2) == float('-inf')\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1, float('inf')) == 0.0\n"
+    "    assert safe_divide(-1, float('inf')) == -0.0\n"
+    "    assert safe_divide(1, float('-inf')) == -0.0\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(float('inf'), float('inf')) != safe_divide(float('inf'), float('inf'))\n"
+    "    assert safe_divide(float('-inf'), float('inf')) != safe_divide(float('-inf'), float('inf'))\n"
+    "    assert safe_divide(float('inf'), float('-inf')) != safe_divide(float('inf'), float('-inf'))\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(float('nan'), 1) != safe_divide(float('nan'), 1)\n"
+    "    assert safe_divide(1, float('nan')) != safe_divide(1, float('nan'))\n"
+    "    assert safe_divide(float('nan'), 0) != safe_divide(float('nan'), 0)\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(0.0, -0.0) == 0\n"
+    "    assert safe_divide(3.0, 0.0) == 0\n"
+    "    assert safe_divide(-3.0, -0.0) == 0\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(True, 2) == 0.5\n"
+    "    assert safe_divide(False, 5) == 0\n"
+    "    assert safe_divide(True, True) == 1.0\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(10, 3) == 10 / 3\n"
+    "    assert safe_divide(10, -3) == 10 / -3\n"
+    "    assert safe_divide(-10, 3) == -10 / 3\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1, 2**31) == 1 / (2**31)\n"
+    "    assert safe_divide(-(2**31), 2) == -(2**31) / 2\n"
+    "    assert safe_divide(2**63, 2**31) == (2**63) / (2**31)\n",
+
+    "def test_safe_divide():\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        safe_divide(1, 0.0)\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        safe_divide(1.0, 0)\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        safe_divide(1.0, -0.0)\n",
+
+    "def test_safe_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide('10', 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(10, '2')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide('10', '2')\n",
+
+    "def test_safe_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(1, None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(None, None)\n",
+
+    "def test_safe_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide([10], 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(10, [2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide([10], [2])\n",
+
+    "def test_safe_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide({'a': 1}, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(1, {'b': 2})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide({'a': 1}, {'b': 2})\n",
+
+    "def test_safe_divide():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(object(), 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(1, object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        safe_divide(object(), object())\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(0, -5) == -0.0\n"
+    "    assert safe_divide(-0.0, 5) == -0.0\n"
+    "    assert safe_divide(0.0, -5.0) == -0.0\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(1, 2) == 0.5\n"
+    "    assert safe_divide(2, 4) == 0.5\n"
+    "    assert safe_divide(-1, -2) == 0.5\n",
+
+    "def test_safe_divide():\n"
+    "    assert safe_divide(0, -1) == -0.0\n"
+    "    assert safe_divide(-0.0, -1) == 0.0\n"
+    "    assert safe_divide(0.0, 1) == 0.0\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([]) == []\n"
+    "    assert filter_positive([0, -1, -2]) == []\n"
+    "    assert filter_positive([1, 2, 3]) == [1, 2, 3]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([0, 1, -1]) == [1]\n"
+    "    assert filter_positive([-5, 5]) == [5]\n"
+    "    assert filter_positive([0]) == []\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([True, False]) == [True]\n"
+    "    assert filter_positive([False, 0]) == []\n"
+    "    assert filter_positive([True, 1]) == [True, 1]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1.5, -1.5, 0.0]) == [1.5]\n"
+    "    assert filter_positive([-0.1, 0.1]) == [0.1]\n"
+    "    assert filter_positive([0.0]) == []\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([10**9, -(10**9)]) == [10**9]\n"
+    "    assert filter_positive([-10**9, -1]) == []\n"
+    "    assert filter_positive([1, -1, 1]) == [1, 1]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([float('inf'), -1]) == [float('inf')]\n"
+    "    assert filter_positive([float('-inf'), 1]) == [1]\n"
+    "    assert filter_positive([float('inf')]) == [float('inf')]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([complex(1, 1)]) == []\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive(['1', 2])\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([[], {}]) == []\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive([None])\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1, 0, -0]) == [1]\n"
+    "    assert filter_positive([-0.0, 0.0]) == []\n"
+    "    assert filter_positive([0.00001]) == [0.00001]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([2, -2, 4, -4]) == [2, 4]\n"
+    "    assert filter_positive([-2, -4]) == []\n"
+    "    assert filter_positive([2]) == [2]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1, True, False]) == [1, True]\n"
+    "    assert filter_positive([False]) == []\n"
+    "    assert filter_positive([True]) == [True]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([100, 0, -100]) == [100]\n"
+    "    assert filter_positive([-1, 1, -1, 1]) == [1, 1]\n"
+    "    assert filter_positive([0, 0, 0]) == []\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1e-12, -1e-12]) == [1e-12]\n"
+    "    assert filter_positive([-1e-12]) == []\n"
+    "    assert filter_positive([1e12]) == [1e12]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([7, -7, 0, 7]) == [7, 7]\n"
+    "    assert filter_positive([-7, -7]) == []\n"
+    "    assert filter_positive([7]) == [7]\n",
+
+    "def test_filter_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive([1, 'a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive('123')\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1, 2, 3, -1, -2]) == [1, 2, 3]\n"
+    "    assert filter_positive([-1, 2, -3, 4]) == [2, 4]\n"
+    "    assert filter_positive([0, -0, 5]) == [5]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([float('nan'), 1]) == [1]\n"
+    "    assert filter_positive([float('nan')]) == []\n"
+    "    assert filter_positive([float('nan'), -1]) == []\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([2**31 - 1, -(2**31)]) == [2**31 - 1]\n"
+    "    assert filter_positive([-(2**31)]) == []\n"
+    "    assert filter_positive([2**63]) == [2**63]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1, 1, 1]) == [1, 1, 1]\n"
+    "    assert filter_positive([-1, -1, -1]) == []\n"
+    "    assert filter_positive([1, -1, 1]) == [1, 1]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([0, 1.0, -1.0]) == [1.0]\n"
+    "    assert filter_positive([-0.0]) == []\n"
+    "    assert filter_positive([0.5]) == [0.5]\n",
+
+    "def test_filter_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive([{}, 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive([[]])\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1, 2, 3, 0]) == [1, 2, 3]\n"
+    "    assert filter_positive([-1, -2, 0]) == []\n"
+    "    assert filter_positive([0, 3]) == [3]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1e308, -1e308]) == [1e308]\n"
+    "    assert filter_positive([-1e308]) == []\n"
+    "    assert filter_positive([1e-308]) == [1e-308]\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([1, None]) == [1]\n"
+    "    with pytest.raises(TypeError):\n"
+    "        filter_positive([None])\n",
+
+    "def test_filter_positive():\n"
+    "    assert filter_positive([9, -9, 9, -9]) == [9, 9]\n"
+    "    assert filter_positive([-9, 9]) == [9]\n"
+    "    assert filter_positive([9]) == [9]\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(0) == True\n"
+    "    assert even_or_odd(1) == False\n"
+    "    assert even_or_odd(-1) == False\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(2) == True\n"
+    "    assert even_or_odd(3) == False\n"
+    "    assert even_or_odd(-2) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(10**6) == True\n"
+    "    assert even_or_odd(10**6 + 1) == False\n"
+    "    assert even_or_odd(-(10**6)) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(True) == False\n"
+    "    assert even_or_odd(False) == True\n"
+    "    assert even_or_odd(1) == False\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(2**31) == True\n"
+    "    assert even_or_odd(2**31 - 1) == False\n"
+    "    assert even_or_odd(-(2**31)) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(4.0) == True\n"
+    "    assert even_or_odd(3.0) == False\n"
+    "    assert even_or_odd(-2.0) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(2.5)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd('2')\n",
+
+    "def test_even_or_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd([])\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(100) == True\n"
+    "    assert even_or_odd(101) == False\n"
+    "    assert even_or_odd(-101) == False\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(0) == True\n"
+    "    assert even_or_odd(-0) == True\n"
+    "    assert even_or_odd(8) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(7) == False\n"
+    "    assert even_or_odd(-7) == False\n"
+    "    assert even_or_odd(14) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(2**63) == True\n"
+    "    assert even_or_odd(2**63 - 1) == False\n"
+    "    assert even_or_odd(-(2**63)) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd({})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(())\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(12) == True\n"
+    "    assert even_or_odd(13) == False\n"
+    "    assert even_or_odd(14) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(-12) == True\n"
+    "    assert even_or_odd(-13) == False\n"
+    "    assert even_or_odd(-14) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(1_000_000_000) == True\n"
+    "    assert even_or_odd(1_000_000_001) == False\n"
+    "    assert even_or_odd(-1_000_000_001) == False\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(6) == True\n"
+    "    assert even_or_odd(9) == False\n"
+    "    assert even_or_odd(18) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd([2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(b'2')\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(42) == True\n"
+    "    assert even_or_odd(43) == False\n"
+    "    assert even_or_odd(44) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(-42) == True\n"
+    "    assert even_or_odd(-43) == False\n"
+    "    assert even_or_odd(-44) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(2**10) == True\n"
+    "    assert even_or_odd((2**10) + 1) == False\n"
+    "    assert even_or_odd(-(2**10)) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(float('nan'))\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(16) == True\n"
+    "    assert even_or_odd(17) == False\n"
+    "    assert even_or_odd(18) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    assert even_or_odd(2**5) == True\n"
+    "    assert even_or_odd((2**5) - 1) == False\n"
+    "    assert even_or_odd(-(2**5)) == True\n",
+
+    "def test_even_or_odd():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(complex(2, 0))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        even_or_odd(complex(3, 1))\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([]) == []\n"
+    "    assert remove_negative([0]) == [0]\n"
+    "    assert remove_negative([-1]) == []\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([-1, -2, -3]) == []\n"
+    "    assert remove_negative([1, 2, 3]) == [1, 2, 3]\n"
+    "    assert remove_negative([-1, 0, 1]) == [0, 1]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([0, -0, -1]) == [0, 0]\n"
+    "    assert remove_negative([-0.0, 0.0]) == [0.0, 0.0]\n"
+    "    assert remove_negative([-0.1, 0.1]) == [0.1]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([1.5, -2.5, 0.0]) == [1.5, 0.0]\n"
+    "    assert remove_negative([-1e-9, 1e-9]) == [1e-9]\n"
+    "    assert remove_negative([1e9, -1e9]) == [1e9]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([True, False, -1]) == [True, False]\n"
+    "    assert remove_negative([False]) == [False]\n"
+    "    assert remove_negative([True]) == [True]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([0, 0, -0]) == [0, 0, 0]\n"
+    "    assert remove_negative([-5, 5, -5, 5]) == [5, 5]\n"
+    "    assert remove_negative([0, -1, -2, 3]) == [0, 3]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([1, 2, -3, 4]) == [1, 2, 4]\n"
+    "    assert remove_negative([-10, -20, 0, 10]) == [0, 10]\n"
+    "    assert remove_negative([99, -99]) == [99]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([0.0001, -0.0001]) == [0.0001]\n"
+    "    assert remove_negative([-float('inf'), 0, float('inf')]) == [0, float('inf')]\n"
+    "    assert remove_negative([float('nan')]) == []\n",
+
+    "def test_remove_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative(123)\n",
+
+    "def test_remove_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative(['a', -1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative([None, 1])\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([2**31, -(2**31)]) == [2**31]\n"
+    "    assert remove_negative([-(2**63), 2**63]) == [2**63]\n"
+    "    assert remove_negative([0, -(2**63)]) == [0]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([1, -1, 1, -1, 1]) == [1, 1, 1]\n"
+    "    assert remove_negative([-1, 1, -1, 1]) == [1, 1]\n"
+    "    assert remove_negative([0, -0, -0.0]) == [0, 0, 0.0]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([5, 4, 3, 2, 1]) == [5, 4, 3, 2, 1]\n"
+    "    assert remove_negative([-5, -4, -3, -2, -1]) == []\n"
+    "    assert remove_negative([1, -2, 3, -4, 5]) == [1, 3, 5]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([0, 1, 2, 3]) == [0, 1, 2, 3]\n"
+    "    assert remove_negative([-1, 0, 0, -1]) == [0, 0]\n"
+    "    assert remove_negative([0]) == [0]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([1.0, -1.0, 2.0]) == [1.0, 2.0]\n"
+    "    assert remove_negative([-2.5, -3.5]) == []\n"
+    "    assert remove_negative([0.0]) == [0.0]\n",
+
+    "def test_remove_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative([1, '2', 3])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative([{}, 1])\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([10, -10, 0, -0]) == [10, 0, 0]\n"
+    "    assert remove_negative([-999, 999]) == [999]\n"
+    "    assert remove_negative([0, -999]) == [0]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([False, True, -1]) == [False, True]\n"
+    "    assert remove_negative([False, -1]) == [False]\n"
+    "    assert remove_negative([True, -2]) == [True]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([1e-12, -1e-12]) == [1e-12]\n"
+    "    assert remove_negative([1e12, -1e12]) == [1e12]\n"
+    "    assert remove_negative([0.0, -0.0]) == [0.0, 0.0]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([3, 2, 1, 0]) == [3, 2, 1, 0]\n"
+    "    assert remove_negative([-3, -2, -1, 0]) == [0]\n"
+    "    assert remove_negative([0, -1, 1]) == [0, 1]\n",
+
+    "def test_remove_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative([[1], -1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_negative([set(), 1])\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([2, -2, 2, -2]) == [2, 2]\n"
+    "    assert remove_negative([-2, 2, -2, 2]) == [2, 2]\n"
+    "    assert remove_negative([0, -2, 2]) == [0, 2]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([1, 1, 1]) == [1, 1, 1]\n"
+    "    assert remove_negative([-1, -1, -1]) == []\n"
+    "    assert remove_negative([1, -1, 1, -1]) == [1, 1]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([float('inf'), -float('inf')]) == [float('inf')]\n"
+    "    assert remove_negative([-float('inf')]) == []\n"
+    "    assert remove_negative([float('inf')]) == [float('inf')]\n",
+
+    "def test_remove_negative():\n"
+    "    assert remove_negative([0, -1, -0.0, 1]) == [0, 0.0, 1]\n"
+    "    assert remove_negative([-0.0, -0, 0]) == [0.0, 0, 0]\n"
+    "    assert remove_negative([-(2**31), 0, 2**31]) == [0, 2**31]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([]) == []\n"
+    "    assert flatten_full([[]]) == []\n"
+    "    assert flatten_full([[], []]) == []\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([1]) == [1]\n"
+    "    assert flatten_full([1, 2, 3]) == [1, 2, 3]\n"
+    "    assert flatten_full([[], 1, []]) == [1]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[1, 2], [3]]) == [1, 2, 3]\n"
+    "    assert flatten_full([[1], [2], [3]]) == [1, 2, 3]\n"
+    "    assert flatten_full([[1, 2, 3]]) == [1, 2, 3]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[[1]]]) == [1]\n"
+    "    assert flatten_full([[[[1]]]]) == [1]\n"
+    "    assert flatten_full([[[1], [2]], [[3]]]) == [1, 2, 3]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[1, [2, 3]], 4]) == [1, 2, 3, 4]\n"
+    "    assert flatten_full([1, [2, [3, [4]]]]) == [1, 2, 3, 4]\n"
+    "    assert flatten_full([[1], 2, [3, [4, 5]]]) == [1, 2, 3, 4, 5]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([0, [1, [2, [3]]]]) == [0, 1, 2, 3]\n"
+    "    assert flatten_full([[0], [[1]], [[[2]]]]) == [0, 1, 2]\n"
+    "    assert flatten_full([[0, [1]], 2, [[3, [4]]]]) == [0, 1, 2, 3, 4]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([None, [None, [None]]]) == [None, None, None]\n"
+    "    assert flatten_full([[None], None, [[None]]]) == [None, None, None]\n"
+    "    assert flatten_full([[], [None], [[]]]) == [None]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full(['a', ['b', ['c']]]) == ['a', 'b', 'c']\n"
+    "    assert flatten_full([['', ['x']], 'y']) == ['', 'x', 'y']\n"
+    "    assert flatten_full([['hello'], [['world']]]) == ['hello', 'world']\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full(['😊', ['a', ['😊']]]) == ['😊', 'a', '😊']\n"
+    "    assert flatten_full([['😀'], [['😃', ['😁']]]]) == ['😀', '😃', '😁']\n"
+    "    assert flatten_full([['á'], [['b́']], 'c']) == ['á', 'b́', 'c']\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([True, [False, [True]]]) == [True, False, True]\n"
+    "    assert flatten_full([[True], [[False]], True]) == [True, False, True]\n"
+    "    assert flatten_full([[], [True, [False]], []]) == [True, False]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([1.5, [2.5, [3.5]]]) == [1.5, 2.5, 3.5]\n"
+    "    assert flatten_full([[0.0], [-0.0, [0.0]]]) == [0.0, -0.0, 0.0]\n"
+    "    assert flatten_full([[-1.1], [[2.2]], 3.3]) == [-1.1, 2.2, 3.3]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[], [[], [[]]]]) == []\n"
+    "    assert flatten_full([[[], [[], []]], []]) == []\n"
+    "    assert flatten_full([[[[]]], [[[[]]]]]) == []\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[1, [], [2, []]], 3]) == [1, 2, 3]\n"
+    "    assert flatten_full([[], [1, [[], 2]], []]) == [1, 2]\n"
+    "    assert flatten_full([[[], 1], [2, []], [[3]]]) == [1, 2, 3]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([['x'], [['y', []]], 'z']) == ['x', 'y', 'z']\n"
+    "    assert flatten_full([['x', ['y']], [['z']]]) == ['x', 'y', 'z']\n"
+    "    assert flatten_full([[['x']], 'y', [['z', ['w']]]]) == ['x', 'y', 'z', 'w']\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[10**9], [[-10**9]], [0]]) == [10**9, -10**9, 0]\n"
+    "    assert flatten_full([[2**31], [[-(2**31)]], [[0]]]) == [2**31, -(2**31), 0]\n"
+    "    assert flatten_full([[[10**6, 1]], [[-1]]]) == [10**6, 1, -1]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([['a', ['b']], [['c', ['d']]]]) == ['a', 'b', 'c', 'd']\n"
+    "    assert flatten_full([['ab'], [['cd']], [[['ef']]]]) == ['ab', 'cd', 'ef']\n"
+    "    assert flatten_full([['a'], 'b', [['c']]]) == ['a', 'b', 'c']\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([['\\n'], [['\\t']], ' ']) == ['\\n', '\\t', ' ']\n"
+    "    assert flatten_full([[['\\n\\n']], ['x'], [['y']]]) == ['\\n\\n', 'x', 'y']\n"
+    "    assert flatten_full(['a\\n', ['b\\t', ['c']]]) == ['a\\n', 'b\\t', 'c']\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([['a'], ['b'], ['c']]) == ['a', 'b', 'c']\n"
+    "    assert flatten_full([['a', 'b'], ['c']]) == ['a', 'b', 'c']\n"
+    "    assert flatten_full([['a'], ['b', 'c']]) == ['a', 'b', 'c']\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([1, [2], [[3]], [[[4]]]]) == [1, 2, 3, 4]\n"
+    "    assert flatten_full([[1, [2, [3]]], 4, [5]]) == [1, 2, 3, 4, 5]\n"
+    "    assert flatten_full([[[[1]]], 2, [[3, [4]]]]) == [1, 2, 3, 4]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[], [1, [2, [3, [4, [5]]]]]]) == [1, 2, 3, 4, 5]\n"
+    "    assert flatten_full([[1], [[2], [[3], [[4]]]]]) == [1, 2, 3, 4]\n"
+    "    assert flatten_full([[[[[[]]]]]]) == []\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([(), [()], [[(1, 2)]]]) == [(), (), (1, 2)]\n"
+    "    assert flatten_full([{'a': 1}, [[{'b': 2}]], []]) == [{'a': 1}, {'b': 2}]\n"
+    "    assert flatten_full([{1, 2}, [[{3}]], 4]) == [{1, 2}, {3}, 4]\n",
+
+    "def test_flatten_full():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_full(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_full(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_full(object())\n",
+
+    "def test_flatten_full():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_full('abc')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_full(('a', 'b'))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_full({'a': 1})\n",
+
+    "def test_flatten_full():\n"
+    "    deep = [0]\n"
+    "    for _ in range(50):\n"
+    "        deep = [deep]\n"
+    "    assert flatten_full(deep) == [0]\n"
+    "    assert flatten_full([deep, [1]]) == [0, 1]\n"
+    "    assert flatten_full([[2], deep, []]) == [2, 0]\n",
+
+    "def test_flatten_full():\n"
+    "    assert flatten_full([[[], [[], [1]]], [], [[2, [3, []]]]]) == [1, 2, 3]\n"
+    "    assert flatten_full([[], [[[[]]]], [[], [4]]]) == [4]\n"
+    "    assert flatten_full([[[], []], [[[5]]], []]) == [5]\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(0) == 0\n"
+    "    assert absolute(-0) == 0\n"
+    "    assert absolute(1) == 1\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-1) == 1\n"
+    "    assert absolute(-999999999) == 999999999\n"
+    "    assert absolute(999999999) == 999999999\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(10**12) == 10**12\n"
+    "    assert absolute(-(10**12)) == 10**12\n"
+    "    assert absolute(10**18) == 10**18\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(0.0) == 0.0\n"
+    "    assert absolute(-0.0) == 0.0\n"
+    "    assert absolute(3.14) == 3.14\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-3.14) == 3.14\n"
+    "    assert absolute(1e-12) == 1e-12\n"
+    "    assert absolute(-1e-12) == 1e-12\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(float('inf')) == float('inf')\n"
+    "    assert absolute(float('-inf')) == float('inf')\n"
+    "    assert absolute(float('inf') * -1) == float('inf')\n",
+
+    "def test_absolute():\n"
+    "    r = absolute(float('nan'))\n"
+    "    assert r != r\n"
+    "    r2 = absolute(float('nan'))\n"
+    "    assert r2 != r2\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(True) == 1\n"
+    "    assert absolute(False) == 0\n"
+    "    assert absolute(-True) == 1\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(2**63) == 2**63\n"
+    "    assert absolute(-(2**63)) == 2**63\n"
+    "    assert absolute(2**63 - 1) == 2**63 - 1\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-5.5) == 5.5\n"
+    "    assert absolute(5.5) == 5.5\n"
+    "    assert absolute(-0.25) == 0.25\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(complex(3, 4)) == 5.0\n"
+    "    assert absolute(complex(-3, 4)) == 5.0\n"
+    "    assert absolute(complex(0, 0)) == 0.0\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-0.0) == 0.0\n"
+    "    assert str(absolute(-0.0)) in ('0.0', '0')\n"
+    "    assert absolute(+0.0) == 0.0\n",
+
+    "def test_absolute():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute('10')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute('')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute(' -1 ')\n",
+
+    "def test_absolute():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute([])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute({})\n",
+
+    "def test_absolute():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute([1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute((1,))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute({'n': 1})\n",
+
+    "def test_absolute():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute(abs)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute(b'10')\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(0.0000001) == 0.0000001\n"
+    "    assert absolute(-0.0000001) == 0.0000001\n"
+    "    assert absolute(1e-308) == 1e-308\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-1e308) == 1e308\n"
+    "    assert absolute(1e308) == 1e308\n"
+    "    assert absolute(-1e-308) == 1e-308\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-2**31) == 2**31\n"
+    "    assert absolute(2**31) == 2**31\n"
+    "    assert absolute(-2**31 + 1) == 2**31 - 1\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-999) == 999\n"
+    "    assert absolute(999) == 999\n"
+    "    assert absolute(-1000) == 1000\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(0j) == 0.0\n"
+    "    assert absolute(3j) == 3.0\n"
+    "    assert absolute(-3j) == 3.0\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(complex(1e154, 1e154)) == abs(complex(1e154, 1e154))\n"
+    "    assert absolute(complex(-1e154, 1e154)) == abs(complex(-1e154, 1e154))\n"
+    "    assert absolute(complex(1e154, -1e154)) == abs(complex(1e154, -1e154))\n",
+
+    "def test_absolute():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute('😊')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute('0x10')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        absolute('1e3')\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-0.0) == 0.0\n"
+    "    assert absolute(-0) == 0\n"
+    "    assert absolute(+0) == 0\n",
+
+    "def test_absolute():\n"
+    "    assert absolute(-2.0) == 2.0\n"
+    "    assert absolute(2.0) == 2.0\n"
+    "    assert absolute(-2.5) == 2.5\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('') == ''\n"
+    "    assert capitalize_words('   ') == ''\n"
+    "    assert capitalize_words('a') == 'A'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('hello world') == 'Hello World'\n"
+    "    assert capitalize_words('HELLO WORLD') == 'Hello World'\n"
+    "    assert capitalize_words('hELLo wORld') == 'Hello World'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words(' multiple   spaces ') == 'Multiple Spaces'\n"
+    "    assert capitalize_words('a   b    c') == 'A B C'\n"
+    "    assert capitalize_words('   leading trailing   ') == 'Leading Trailing'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('one') == 'One'\n"
+    "    assert capitalize_words('ONE') == 'One'\n"
+    "    assert capitalize_words('oNe') == 'One'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('hello\tworld') == 'Hello World'\n"
+    "    assert capitalize_words('hello world') == 'Hello World'\n"
+    "    assert capitalize_words('hello \t world') == 'Hello World'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('123 abc') == '123 Abc'\n"
+    "    assert capitalize_words('abc 123') == 'Abc 123'\n"
+    "    assert capitalize_words('123') == '123'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('a1 b2') == 'A1 B2'\n"
+    "    assert capitalize_words('1a 2b') == '1a 2b'\n"
+    "    assert capitalize_words('x9 y8') == 'X9 Y8'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('hello-world') == 'Hello-world'\n"
+    "    assert capitalize_words('snake_case test') == 'Snake_case Test'\n"
+    "    assert capitalize_words('kebab-case example') == 'Kebab-case Example'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('😊 smile') == '😊 Smile'\n"
+    "    assert capitalize_words('smile 😊') == 'Smile 😊'\n"
+    "    assert capitalize_words('😊 😊') == '😊 😊'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('mixed CAPS words') == 'Mixed Caps Words'\n"
+    "    assert capitalize_words('MiXeD cAsE') == 'Mixed Case'\n"
+    "    assert capitalize_words('case MIX') == 'Case Mix'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('ümlaut test') == 'Ümlaut Test'\n"
+    "    assert capitalize_words('ñandú bird') == 'Ñandú Bird'\n"
+    "    assert capitalize_words('élève étudiant') == 'Élève Étudiant'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('a.b c.d') == 'A.b C.d'\n"
+    "    assert capitalize_words('hello, world!') == 'Hello, World!'\n"
+    "    assert capitalize_words('what? yes!') == 'What? Yes!'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('foo_bar baz') == 'Foo_bar Baz'\n"
+    "    assert capitalize_words('foo-bar baz') == 'Foo-bar Baz'\n"
+    "    assert capitalize_words('foo.bar baz') == 'Foo.bar Baz'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('x y z') == 'X Y Z'\n"
+    "    assert capitalize_words('x   y   z') == 'X Y Z'\n"
+    "    assert capitalize_words('   x y z   ') == 'X Y Z'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('0 test') == '0 Test'\n"
+    "    assert capitalize_words('test 0') == 'Test 0'\n"
+    "    assert capitalize_words('0 0 test') == '0 0 Test'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('newline split') == 'Newline Split'\n"
+    "    assert capitalize_words('tab\tsplit') == 'Tab Split'\n"
+    "    assert capitalize_words('mix \tspace') == 'Mix Space'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('already Capitalized') == 'Already Capitalized'\n"
+    "    assert capitalize_words('Already capitalized') == 'Already Capitalized'\n"
+    "    assert capitalize_words('ALREADY CAPITALIZED') == 'Already Capitalized'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('word-with-dash') == 'Word-with-dash'\n"
+    "    assert capitalize_words('word_with_underscore') == 'Word_with_underscore'\n"
+    "    assert capitalize_words('word.with.dot') == 'Word.with.dot'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('single') == 'Single'\n"
+    "    assert capitalize_words('SINGLE') == 'Single'\n"
+    "    assert capitalize_words('s') == 'S'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('two  words') == 'Two Words'\n"
+    "    assert capitalize_words('three   words here') == 'Three Words Here'\n"
+    "    assert capitalize_words('four words are here') == 'Four Words Are Here'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words(' punctuation , here') == 'Punctuation , Here'\n"
+    "    assert capitalize_words('symbols # test') == 'Symbols # Test'\n"
+    "    assert capitalize_words('@home sweet home') == '@home Sweet Home'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('a-b c-d') == 'A-b C-d'\n"
+    "    assert capitalize_words('e_f g_h') == 'E_f G_h'\n"
+    "    assert capitalize_words('i.j k.l') == 'I.j K.l'\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words(' spaced   out   words ') == 'Spaced Out Words'\n"
+    "    assert capitalize_words(' lots   of    space ') == 'Lots Of Space'\n"
+    "    assert capitalize_words('clean') == 'Clean'\n",
+
+    "def test_capitalize_words():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        capitalize_words(None)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        capitalize_words(123)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        capitalize_words(['a', 'b'])\n",
+
+    "def test_capitalize_words():\n"
+    "    assert capitalize_words('ßeta test') == 'Sseta Test'\n"
+    "    assert capitalize_words('ıstanbul turkey') == 'Istanbul Turkey'\n"
+    "    assert capitalize_words('ǆuro test') == 'ǅuro Test'\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([]) == True\n"
+    "    assert all_positive([1, 2, 3]) == True\n"
+    "    assert all_positive([0, 1]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([-1, 2, 3]) == False\n"
+    "    assert all_positive([1, -2, 3]) == False\n"
+    "    assert all_positive([-1, -2]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1]) == True\n"
+    "    assert all_positive([-1]) == False\n"
+    "    assert all_positive([0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1.5, 2.5]) == True\n"
+    "    assert all_positive([-0.1, 1.0]) == False\n"
+    "    assert all_positive([0.1, 0.2]) == True\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([True, 1]) == True\n"
+    "    assert all_positive([True, False]) == False\n"
+    "    assert all_positive([False]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([10**6, 1]) == True\n"
+    "    assert all_positive([-10**6, 1]) == False\n"
+    "    assert all_positive([10**6, -1]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1, 2, 3, 4, 5]) == True\n"
+    "    assert all_positive([1, 2, 3, 0, 5]) == False\n"
+    "    assert all_positive([1, 2, -3, 4]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([0.0001]) == True\n"
+    "    assert all_positive([-0.0001]) == False\n"
+    "    assert all_positive([0.0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([float('inf'), 1]) == True\n"
+    "    assert all_positive([float('-inf'), 1]) == False\n"
+    "    assert all_positive([float('inf')]) == True\n",
+
+    "def test_all_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive([1, '2'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive(['a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive([None])\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1, 1, 1]) == True\n"
+    "    assert all_positive([1, 1, -1]) == False\n"
+    "    assert all_positive([1, 1, 0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([2, 4, 6]) == True\n"
+    "    assert all_positive([2, 4, -6]) == False\n"
+    "    assert all_positive([2, 4, 0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([0.5, 1.5, 2.5]) == True\n"
+    "    assert all_positive([-0.5, 1.5]) == False\n"
+    "    assert all_positive([0.5, 0.0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([True, True]) == True\n"
+    "    assert all_positive([True, 0]) == False\n"
+    "    assert all_positive([False, 1]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([100, 200]) == True\n"
+    "    assert all_positive([-100, 200]) == False\n"
+    "    assert all_positive([100, -200]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1e-9, 2e-9]) == True\n"
+    "    assert all_positive([-1e-9, 2e-9]) == False\n"
+    "    assert all_positive([1e-9, 0.0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive(list(range(1, 5))) == True\n"
+    "    assert all_positive(list(range(-3, 3))) == False\n"
+    "    assert all_positive(list(range(0, 3))) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([3, 3, 3]) == True\n"
+    "    assert all_positive([3, -3, 3]) == False\n"
+    "    assert all_positive([3, 0, 3]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1, 2, 3, 4]) == True\n"
+    "    assert all_positive([1, 2, 3, -4]) == False\n"
+    "    assert all_positive([1, 2, 3, 78]) == True\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([float('inf'), float('inf')]) == True\n"
+    "    assert all_positive([float('inf'), -1]) == False\n"
+    "    assert all_positive([float('inf'), 0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive('abc')\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1, 2, 3, float('inf')]) == True\n"
+    "    assert all_positive([1, 2, -float('inf')]) == False\n"
+    "    assert all_positive([float('inf')]) == True\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([1, 2, 3, 4]) == True\n"
+    "    assert all_positive([1, 2, 3, -4]) == False\n"
+    "    assert all_positive([1, 2, 3, 0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    assert all_positive([0.0000001]) == True\n"
+    "    assert all_positive([-0.0000001]) == False\n"
+    "    assert all_positive([0.0]) == False\n",
+
+    "def test_all_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive([1, None, 2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive([True, '1'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        all_positive(object())\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('') == ''\n"
+    "    assert swap_case('a') == 'A'\n"
+    "    assert swap_case('A') == 'a'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('abc') == 'ABC'\n"
+    "    assert swap_case('ABC') == 'abc'\n"
+    "    assert swap_case('AbC') == 'aBc'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('aBc123') == 'AbC123'\n"
+    "    assert swap_case('123') == '123'\n"
+    "    assert swap_case('a1B2') == 'A1b2'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case(' ') == ' '\n"
+    "    assert swap_case('   ') == '   '\n"
+    "    assert swap_case(' a ') == ' A '\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('\\n') == '\\n'\n"
+    "    assert swap_case('\\t') == '\\t'\n"
+    "    assert swap_case('a\\nB') == 'A\\nb'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('hello world') == 'HELLO WORLD'\n"
+    "    assert swap_case('Hello World') == 'hELLO wORLD'\n"
+    "    assert swap_case('hELLO wORLD') == 'Hello World'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('ß') == 'SS'\n"
+    "    assert swap_case('ẞ') == 'ß'\n"
+    "    assert swap_case('ßa') == 'SS A'.replace(' ', '')\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('İ') == 'i̇'\n"
+    "    assert swap_case('ı') == 'I'\n"
+    "    assert swap_case('Iı') == 'iI'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('Μικρό') == 'μΙΚΡΌ'\n"
+    "    assert swap_case('μΙΚΡΌ') == 'Μικρό'\n"
+    "    assert swap_case('Δοκιμή') == 'δΟΚΙΜΉ'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('😊') == '😊'\n"
+    "    assert swap_case('😊A😊') == '😊a😊'\n"
+    "    assert swap_case('😃😄') == '😃😄'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('!@#') == '!@#'\n"
+    "    assert swap_case('a!B@') == 'A!b@'\n"
+    "    assert swap_case('!?a?') == '!?A?'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('camelCase') == 'CAMELcASE'\n"
+    "    assert swap_case('PascalCase') == 'pASCALcASE'\n"
+    "    assert swap_case('snake_case') == 'SNAKE_CASE'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('MiXeD') == 'mIxEd'\n"
+    "    assert swap_case('mIxEd') == 'MiXeD'\n"
+    "    assert swap_case('X') == 'x'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('LONGSTRING' * 5) == ('longstring' * 5)\n"
+    "    assert swap_case('longstring' * 3) == ('LONGSTRING' * 3)\n"
+    "    assert swap_case('Aa' * 4) == 'aA' * 4\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case(' ') == ' '\n"
+    "    assert swap_case(' A ') == ' a '\n"
+    "    assert swap_case('a a') == 'A A'\n",
+
+    "def test_swap_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        swap_case(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        swap_case(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        swap_case(['a', 'B'])\n",
+
+    "def test_swap_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        swap_case(b'abc')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        swap_case(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        swap_case(True)\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('a\\tb') == 'A\\tB'\n"
+    "    assert swap_case('A\\tB') == 'a\\tb'\n"
+    "    assert swap_case('\\ta') == '\\tA'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('a\\nb') == 'A\\nB'\n"
+    "    assert swap_case('A\\nB') == 'a\\nb'\n"
+    "    assert swap_case('\\nA') == '\\na'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('中文') == '中文'\n"
+    "    assert swap_case('中文A') == '中文a'\n"
+    "    assert swap_case('A中文') == 'a中文'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('Ångström') == 'åNGSTRÖM'\n"
+    "    assert swap_case('åNGSTRÖM') == 'Ångström'\n"
+    "    assert swap_case('Ö') == 'ö'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('ZzZz') == 'zZzZ'\n"
+    "    assert swap_case('zZzZ') == 'ZzZz'\n"
+    "    assert swap_case('ZZzz') == 'zzZZ'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('EdgeCASE') == 'eDGEcase'\n"
+    "    assert swap_case('edgecase') == 'EDGECASE'\n"
+    "    assert swap_case('EDGEcase') == 'edgeCASE'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case(' ') == ' '\n"
+    "    assert swap_case('') == ''\n"
+    "    assert swap_case('A a') == 'a A'\n",
+
+    "def test_swap_case():\n"
+    "    assert swap_case('ßİı') == 'SSiI'\n"
+    "    assert swap_case('SSiI') == 'ssIi'\n"
+    "    assert swap_case('ß') == 'SS'\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([]) is False\n"
+    "    assert any_negative([0]) is False\n"
+    "    assert any_negative([-1]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0, 0, 0]) is False\n"
+    "    assert any_negative([0, -0, 0]) is False\n"
+    "    assert any_negative([0, -1, 0]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([1, 2, 3]) is False\n"
+    "    assert any_negative([1, 2, -3]) is True\n"
+    "    assert any_negative([-1, 2, 3]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([True, False]) is False\n"
+    "    assert any_negative([False, 1]) is False\n"
+    "    assert any_negative([True, -1]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0.0, 1.0]) is False\n"
+    "    assert any_negative([-0.0, 2.5]) is False\n"
+    "    assert any_negative([-0.0000001, 0.0]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([float('inf'), 1]) is False\n"
+    "    assert any_negative([float('inf'), -1]) is True\n"
+    "    assert any_negative([float('-inf')]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([float('nan')]) is False\n"
+    "    assert any_negative([float('nan'), -1]) is True\n"
+    "    assert any_negative([float('nan'), 0]) is False\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([1e-12, 2e-12]) is False\n"
+    "    assert any_negative([-1e-12, 2e-12]) is True\n"
+    "    assert any_negative([0.0, -1e-300]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([10**100]) is False\n"
+    "    assert any_negative([-(10**100)]) is True\n"
+    "    assert any_negative([10**100, -(10**99)]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0, -1, -2, -3]) is True\n"
+    "    assert any_negative([-1, 0, 1]) is True\n"
+    "    assert any_negative([1, 0, 2]) is False\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0, 1, 2, -1]) is True\n"
+    "    assert any_negative([0, 1, 2, 3]) is False\n"
+    "    assert any_negative([-1, -2, -3, 0]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative((1, 2, 3)) is False\n"
+    "    assert any_negative((0, -1)) is True\n"
+    "    assert any_negative(()) is False\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative(range(0)) is False\n"
+    "    assert any_negative(range(1)) is False\n"
+    "    assert any_negative([-1] + list(range(5))) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0, 0, -1, 0]) is True\n"
+    "    assert any_negative([0, 0, 0, 0]) is False\n"
+    "    assert any_negative([0, -0.0, 0.0]) is False\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([-5, -4, -3]) is True\n"
+    "    assert any_negative([5, 4, 3]) is False\n"
+    "    assert any_negative([5, 4, 0, -0.0]) is False\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([1, -1, 1, -1]) is True\n"
+    "    assert any_negative([1, 1, 1, 1]) is False\n"
+    "    assert any_negative([-1, -1, -1, -1]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0.1, 0.2, 0.3]) is False\n"
+    "    assert any_negative([0.1, -0.2, 0.3]) is True\n"
+    "    assert any_negative([-0.1, -0.2, -0.3]) is True\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([2**31 - 1, 0]) is False\n"
+    "    assert any_negative([-(2**31), 0]) is True\n"
+    "    assert any_negative([2**63, -(2**63)]) is True\n",
+
+    "def test_any_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative(object())\n",
+
+    "def test_any_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative(['-1'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative(['a', -1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([None])\n",
+
+    "def test_any_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([{}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([{'x': -1}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([set([1])])\n",
+
+    "def test_any_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([1, '2', 3])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([1, (2,), 3])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([1, [2], 3])\n",
+
+    "def test_any_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([[ -1 ]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([[]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([1, []])\n",
+
+    "def test_any_negative():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([1j])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([1+0j, -1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        any_negative([complex(-1, 0)])\n",
+
+    "def test_any_negative():\n"
+    "    assert any_negative([0, -0.0, -1e-324]) is True\n"
+    "    assert any_negative([0, -0.0, 0.0]) is False\n"
+    "    assert any_negative([float('nan'), float('-inf')]) is True\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([], 1) == -1\n"
+    "    assert index_of([1], 1) == 0\n"
+    "    assert index_of([1], 2) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([1, 2, 3], 1) == 0\n"
+    "    assert index_of([1, 2, 3], 3) == 2\n"
+    "    assert index_of([1, 2, 3], 4) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([0, 0, 0], 0) == 0\n"
+    "    assert index_of([0, 1, 0], 0) == 0\n"
+    "    assert index_of([0, 1, 0], 2) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([-1, -2, -3], -2) == 1\n"
+    "    assert index_of([-1, -2, -3], -4) == -1\n"
+    "    assert index_of([-1], -1) == 0\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([1, 1, 1], 1) == 0\n"
+    "    assert index_of([1, 2, 1, 2], 2) == 1\n"
+    "    assert index_of([1, 2, 1, 2], 3) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of(['a', 'b', 'c'], 'a') == 0\n"
+    "    assert index_of(['a', 'b', 'c'], 'c') == 2\n"
+    "    assert index_of(['a', 'b', 'c'], 'd') == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of(['', 'a', ''], '') == 0\n"
+    "    assert index_of(['a', '', 'b'], '') == 1\n"
+    "    assert index_of(['a', 'b'], '') == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of(['A', 'a'], 'a') == 1\n"
+    "    assert index_of(['A', 'a'], 'A') == 0\n"
+    "    assert index_of(['A', 'a'], 'b') == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([True, False], True) == 0\n"
+    "    assert index_of([True, False], False) == 1\n"
+    "    assert index_of([True], False) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([0, False, 1], False) == 1\n"
+    "    assert index_of([0, False, 1], 0) == 0\n"
+    "    assert index_of([False], 0) == 0\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([1.1, 2.2, 3.3], 2.2) == 1\n"
+    "    assert index_of([1.1, 2.2, 3.3], 4.4) == -1\n"
+    "    assert index_of([0.0], 0.0) == 0\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([float('inf'), 1], float('inf')) == 0\n"
+    "    assert index_of([float('-inf'), 1], float('-inf')) == 0\n"
+    "    assert index_of([float('inf')], 1) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of(['😊', '😃', '😊'], '😊') == 0\n"
+    "    assert index_of(['😃', '😊'], '😊') == 1\n"
+    "    assert index_of(['😃'], '😊') == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([(1, 2), (3, 4)], (3, 4)) == 1\n"
+    "    assert index_of([(1, 2)], (1, 2)) == 0\n"
+    "    assert index_of([(1, 2)], (2, 1)) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([[1], [2]], [1]) == 0\n"
+    "    assert index_of([[1], [2]], [2]) == 1\n"
+    "    assert index_of([[1], [2]], [3]) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([None, 1], None) == 0\n"
+    "    assert index_of([1, None], None) == 1\n"
+    "    assert index_of([1, 2], None) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([{'a': 1}, {'b': 2}], {'b': 2}) == 1\n"
+    "    assert index_of([{'a': 1}], {'a': 1}) == 0\n"
+    "    assert index_of([{'a': 1}], {'a': 2}) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of(['x', 'y', 'z'], 'x') == 0\n"
+    "    assert index_of(['x', 'y', 'z'], 'z') == 2\n"
+    "    assert index_of(['x', 'y', 'z'], 'a') == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([10**10, 1], 10**10) == 0\n"
+    "    assert index_of([10**10, 1], 1) == 1\n"
+    "    assert index_of([10**10], 2) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([' ', '\\t', '\\n'], '\\t') == 1\n"
+    "    assert index_of([' ', '\\t', '\\n'], '\\n') == 2\n"
+    "    assert index_of([' '], '\\n') == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([1, '1'], '1') == 1\n"
+    "    assert index_of([1, '1'], 1) == 0\n"
+    "    assert index_of(['1'], 1) == -1\n",
+
+    "def test_index_of():\n"
+    "    assert index_of(range(5), 3) == 3\n"
+    "    assert index_of(range(5), 4) == 4\n"
+    "    assert index_of(range(5), 5) == -1\n",
+
+    "def test_index_of():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        index_of(None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        index_of(123, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        index_of('abc', 1)\n",
+
+    "def test_index_of():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        index_of([1, 2, 3], [1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        index_of([1, 2, 3], {'a': 1})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        index_of([1, 2, 3], set([1]))\n",
+
+    "def test_index_of():\n"
+    "    assert index_of([float('nan'), 1, 2], float('nan')) == -1\n"
+    "    assert index_of([float('nan')], float('nan')) == -1\n"
+    "    assert index_of([1, 2, 3], float('nan')) == -1\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('') == ''\n"
+    "    assert trim_string('   ') == ''\n"
+    "    assert trim_string('  a  ') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('\\n') == ''\n"
+    "    assert trim_string('\\t') == ''\n"
+    "    assert trim_string('\\r\\n') == ''\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('\\n  a\\n') == 'a'\n"
+    "    assert trim_string('\\t a\\t') == 'a'\n"
+    "    assert trim_string('\\r\\n a \\r\\n') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' a\\nb ') == 'a\\nb'\n"
+    "    assert trim_string('a\\n b') == 'a\\n b'\n"
+    "    assert trim_string('a\\nb') == 'a\\nb'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  a\\t') == 'a'\n"
+    "    assert trim_string('\\t\\ta') == 'a'\n"
+    "    assert trim_string('a\\t\\t') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  😊  ') == '😊'\n"
+    "    assert trim_string('\\n😊\\n') == '😊'\n"
+    "    assert trim_string('\\t😊\\t') == '😊'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' a\u200b ') == 'a\u200b'\n"
+    "    assert trim_string('\\u200b') == '\\u200b'\n"
+    "    assert trim_string(' \\u200b ') == '\\u200b'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' a\u00A0') == 'a'\n"
+    "    assert trim_string('\u00A0a ') == 'a'\n"
+    "    assert trim_string('\u00A0a\u00A0') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  a b  ') == 'a b'\n"
+    "    assert trim_string('   a  b   ') == 'a  b'\n"
+    "    assert trim_string('\\n a  b \\n') == 'a  b'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  a!  ') == 'a!'\n"
+    "    assert trim_string('  !a  ') == '!a'\n"
+    "    assert trim_string('  !  ') == '!'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  a-b  ') == 'a-b'\n"
+    "    assert trim_string('\\t-\\t') == '-'\n"
+    "    assert trim_string('  _  ') == '_'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  123  ') == '123'\n"
+    "    assert trim_string('\\n0\\n') == '0'\n"
+    "    assert trim_string('  001  ') == '001'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  mixedCASE  ') == 'mixedCASE'\n"
+    "    assert trim_string('  UPPER lower  ') == 'UPPER lower'\n"
+    "    assert trim_string('  aAa  ') == 'aAa'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('a') == 'a'\n"
+    "    assert trim_string(' a') == 'a'\n"
+    "    assert trim_string('a ') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' \\t\\n a \\r\\n ') == 'a'\n"
+    "    assert trim_string('\\n\\t\\r a') == 'a'\n"
+    "    assert trim_string('a\\n\\t\\r') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' \\\\n ') == '\\\\n'\n"
+    "    assert trim_string(' \\\\t ') == '\\\\t'\n"
+    "    assert trim_string('  \\\\r\\\\n  ') == '\\\\r\\\\n'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  a\\u2009') == 'a'\n"
+    "    assert trim_string('\\u2009a  ') == 'a'\n"
+    "    assert trim_string('\\u2009a\\u2009') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string('  a\\u3000') == 'a'\n"
+    "    assert trim_string('\\u3000a ') == 'a'\n"
+    "    assert trim_string('\\u3000a\\u3000') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        trim_string(None)\n",
+
+    "def test_trim_string():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        trim_string(123)\n",
+
+    "def test_trim_string():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        trim_string([' a '])\n",
+
+    "def test_trim_string():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        trim_string(b'  a  ')\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' a\\x00 ') == 'a\\x00'\n"
+    "    assert trim_string('\\x00a\\x00') == '\\x00a\\x00'\n"
+    "    assert trim_string(' \\x00 ') == '\\x00'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' \\n\t ') == ''\n"
+    "    assert trim_string(' \\n\t a \\n\t ') == 'a'\n"
+    "    assert trim_string(' \t  a  \\n') == 'a'\n",
+
+    "def test_trim_string():\n"
+    "    assert trim_string(' \\f a \\f ') == 'a'\n"
+    "    assert trim_string('\\f\\fa\\f') == 'a'\n"
+    "    assert trim_string(' \\f ') == ''\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([]) == 0\n"
+    "    assert average_list([0]) == 0\n"
+    "    assert average_list([0, 0, 0]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([1]) == 1\n"
+    "    assert average_list([1, 1, 1]) == 1\n"
+    "    assert average_list([1, 2, 3]) == 2\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([-1]) == -1\n"
+    "    assert average_list([-1, -3]) == -2\n"
+    "    assert average_list([-1, 1]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([10, -10]) == 0\n"
+    "    assert average_list([5, -5, 5, -5]) == 0\n"
+    "    assert average_list([-2, -4, -6]) == -4\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([0.5, 0.5]) == 0.5\n"
+    "    assert average_list([0.1, 0.2, 0.3]) == 0.2\n"
+    "    assert average_list([-0.5, 0.5]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([1.5, 2.5]) == 2.0\n"
+    "    assert average_list([1.0, 2.0, 3.0]) == 2.0\n"
+    "    assert average_list([0.0, -0.0]) == 0.0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([10**6, 10**6]) == 10**6\n"
+    "    assert average_list([10**6, -10**6]) == 0\n"
+    "    assert average_list([10**6, 0]) == 500000\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([True, True]) == 1\n"
+    "    assert average_list([True, False]) == 0.5\n"
+    "    assert average_list([False, False]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([1, 2]) == 1.5\n"
+    "    assert average_list([2, 4, 6, 8]) == 5\n"
+    "    assert average_list([3, 3, 3]) == 3\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([-1, -2, -3, -4]) == -2.5\n"
+    "    assert average_list([-10, 0, 10]) == 0\n"
+    "    assert average_list([-5, 5]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([100, 200, 300]) == 200\n"
+    "    assert average_list([1, 1000]) == 500.5\n"
+    "    assert average_list([7, 7, 7, 7]) == 7\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([0, 1]) == 0.5\n"
+    "    assert average_list([0, 0, 1]) == 1/3\n"
+    "    assert average_list([1, 0, 0]) == 1/3\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([2, -2, 2, -2]) == 0\n"
+    "    assert average_list([5, 5, -10]) == 0\n"
+    "    assert average_list([-3, 6]) == 1.5\n",
+
+    "def test_average_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list(['a', 'b'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([1, '2'])\n",
+
+    "def test_average_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([None, 1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([None])\n",
+
+    "def test_average_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([[1, 2], [3, 4]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([{}, {}])\n",
+
+    "def test_average_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([1, object()])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list([object()])\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([1e-9, 1e-9]) == 1e-9\n"
+    "    assert average_list([1e9, 1e9]) == 1e9\n"
+    "    assert average_list([1e9, -1e9]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([0, -1]) == -0.5\n"
+    "    assert average_list([-1, -1, 2]) == 0\n"
+    "    assert average_list([2, -1, -1]) == 0\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([3, 6]) == 4.5\n"
+    "    assert average_list([9, 3]) == 6\n"
+    "    assert average_list([1, 2, 2, 1]) == 1.5\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([0.25, 0.75]) == 0.5\n"
+    "    assert average_list([0.2, 0.2, 0.2]) == 0.2\n"
+    "    assert average_list([-0.2, -0.4]) == -0.3\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([1, 2, 3, 4, 5]) == 3\n"
+    "    assert average_list([5, 4, 3, 2, 1]) == 3\n"
+    "    assert average_list([1, 1, 2, 2]) == 1.5\n",
+
+    "def test_average_list():\n"
+    "    assert average_list([1000000]) == 1000000\n"
+    "    assert average_list([-1000000]) == -1000000\n"
+    "    assert average_list([1000000, -1000000, 0]) == 0\n",
+
+    "def test_average_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list('123')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list(123)\n",
+
+    "def test_average_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        average_list({1, 2, 3})\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({}, []) == {}\n"
+    "    assert remove_keys({}, ['a']) == {}\n"
+    "    assert remove_keys({'a': 1}, []) == {'a': 1}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1}, ['a']) == {}\n"
+    "    assert remove_keys({'a': 1}, ['b']) == {'a': 1}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['a']) == {'b': 2}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['a', 'b']) == {}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['b', 'a']) == {}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['c']) == {'a': 1, 'b': 2}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2, 'c': 3}, ['a', 'c']) == {'b': 2}\n"
+    "    assert remove_keys({'a': 1, 'b': 2, 'c': 3}, ['b']) == {'a': 1, 'c': 3}\n"
+    "    assert remove_keys({'a': 1, 'b': 2, 'c': 3}, []) == {'a': 1, 'b': 2, 'c': 3}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({1: 'x', 2: 'y'}, [1]) == {2: 'y'}\n"
+    "    assert remove_keys({1: 'x', 2: 'y'}, [2]) == {1: 'x'}\n"
+    "    assert remove_keys({1: 'x', 2: 'y'}, [3]) == {1: 'x', 2: 'y'}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'a': 2}, ['a']) == {}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['a', 'a']) == {'b': 2}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, []) == {'a': 1, 'b': 2}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': None, 'b': 2}, ['a']) == {'b': 2}\n"
+    "    assert remove_keys({'a': None, 'b': None}, ['b']) == {'a': None}\n"
+    "    assert remove_keys({'a': None}, ['a']) == {}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'': 1, 'a': 2}, ['']) == {'a': 2}\n"
+    "    assert remove_keys({'': 1}, ['']) == {}\n"
+    "    assert remove_keys({'': 1}, ['a']) == {'': 1}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({True: 1, False: 0}, [True]) == {False: 0}\n"
+    "    assert remove_keys({True: 1, False: 0}, [False]) == {True: 1}\n"
+    "    assert remove_keys({True: 1}, [False]) == {True: 1}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({1.1: 'a', 2.2: 'b'}, [1.1]) == {2.2: 'b'}\n"
+    "    assert remove_keys({1.1: 'a', 2.2: 'b'}, []) == {1.1: 'a', 2.2: 'b'}\n"
+    "    assert remove_keys({1.1: 'a'}, [2.2]) == {1.1: 'a'}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({(1, 2): 'x', (3, 4): 'y'}, [(1, 2)]) == {(3, 4): 'y'}\n"
+    "    assert remove_keys({(1, 2): 'x'}, [(1, 2)]) == {}\n"
+    "    assert remove_keys({(1, 2): 'x'}, []) == {(1, 2): 'x'}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['a', 'c', 'd']) == {'b': 2}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['c', 'd']) == {'a': 1, 'b': 2}\n"
+    "    assert remove_keys({'a': 1}, ['a', 'a', 'a']) == {}\n",
+
+    "def test_remove_keys():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys(None, [])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, None)\n",
+
+    "def test_remove_keys():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys([], ['a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, 'a')\n",
+
+    "def test_remove_keys():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys(123, ['a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, 123)\n",
+
+    "def test_remove_keys():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, [ ['a'] ])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, [ {'a': 1} ])\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2, 'c': 3}, set(['a', 'b'])) == {'c': 3}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, set()) == {'a': 1, 'b': 2}\n"
+    "    assert remove_keys({'a': 1}, set(['a'])) == {}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'x': 1, 'y': 2}, tuple(['x'])) == {'y': 2}\n"
+    "    assert remove_keys({'x': 1}, tuple()) == {'x': 1}\n"
+    "    assert remove_keys({'x': 1}, ('y',)) == {'x': 1}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['a', 1]) == {'b': 2}\n"
+    "    assert remove_keys({1: 'a', '1': 'b'}, [1]) == {'1': 'b'}\n"
+    "    assert remove_keys({1: 'a', '1': 'b'}, ['1']) == {1: 'a'}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, []) == {'a': 1, 'b': 2}\n"
+    "    assert remove_keys({'a': 1}, []) == {'a': 1}\n"
+    "    assert remove_keys({}, []) == {}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2, 'c': 3}, ['b', 'b']) == {'a': 1, 'c': 3}\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['b', 'c']) == {'a': 1}\n"
+    "    assert remove_keys({'a': 1}, ['c']) == {'a': 1}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, [None]) == {'a': 1, 'b': 2}\n"
+    "    assert remove_keys({None: 1, 'a': 2}, [None]) == {'a': 2}\n"
+    "    assert remove_keys({None: 1}, [None]) == {}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['A']) == {'a': 1, 'b': 2}\n"
+    "    assert remove_keys({'A': 1, 'a': 2}, ['a']) == {'A': 1}\n"
+    "    assert remove_keys({'A': 1, 'a': 2}, ['A']) == {'a': 2}\n",
+
+    "def test_remove_keys():\n"
+    "    assert remove_keys({'a': 1, 'b': 2}, ['a', 'a', 'a']) == {'b': 2}\n"
+    "    assert remove_keys({'a': 1}, ['a', 'b', 'c']) == {}\n"
+    "    assert remove_keys({'x': 9}, ['y']) == {'x': 9}\n",
+
+    "def test_remove_keys():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, [{'a'}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_keys({'a': 1}, [1, 2, 3])\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('') == ''\n"
+    "    assert longest_word('   ') == ''\n"
+    "    assert longest_word(' \t  ') == ''\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a') == 'a'\n"
+    "    assert longest_word('a ') == 'a'\n"
+    "    assert longest_word(' a') == 'a'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a b') == 'a'\n"
+    "    assert longest_word('ab c') == 'ab'\n"
+    "    assert longest_word('a bc') == 'bc'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('hi  there') == 'there'\n"
+    "    assert longest_word('hi   there') == 'there'\n"
+    "    assert longest_word('hi    ') == 'hi'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a  bb   ccc') == 'ccc'\n"
+    "    assert longest_word('one   two three') == 'three'\n"
+    "    assert longest_word('x   yy  zzz ') == 'zzz'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('same size') == 'same'\n"
+    "    assert longest_word('aa bb') == 'aa'\n"
+    "    assert longest_word('cat dog') == 'cat'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('  same  size  ') == 'same'\n"
+    "    assert longest_word('  aa  bb  ') == 'aa'\n"
+    "    assert longest_word('  left   right ') == 'right'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a b c d') == 'a'\n"
+    "    assert longest_word('ab cd ef') == 'ab'\n"
+    "    assert longest_word('abc def ghi') == 'abc'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('hello\\nworld') == 'hello\\nworld'\n"
+    "    assert longest_word('hi\\tthere') == 'hi\\tthere'\n"
+    "    assert longest_word('a\\nb c') == 'a\\nb'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('end. mid! start?') == 'start?'\n"
+    "    assert longest_word('a, bb; ccc:') == 'ccc:'\n"
+    "    assert longest_word('word- word--') == 'word--'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('😊 😊😊 😊😊😊') == '😊😊😊'\n"
+    "    assert longest_word('🔥fire 🔥🔥') == '🔥fire'\n"
+    "    assert longest_word('a😊 bb😊😊') == 'bb😊😊'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('é ê ë') == 'é'\n"
+    "    assert longest_word('á áa') == 'áa'\n"
+    "    assert longest_word('Ångström Å') == 'Ångström'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('0 00 000') == '000'\n"
+    "    assert longest_word('123 45 6') == '123'\n"
+    "    assert longest_word('9 88 7777') == '7777'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word(' x  ') == 'x'\n"
+    "    assert longest_word('  xx ') == 'xx'\n"
+    "    assert longest_word('   xxx') == 'xxx'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a  bb  cc') == 'bb'\n"
+    "    assert longest_word('ab  cd  ef') == 'ab'\n"
+    "    assert longest_word('ab   cdef   gh') == 'cdef'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a ' * 10) == 'a'\n"
+    "    assert longest_word(('x' * 50) + ' y') == ('x' * 50)\n"
+    "    assert longest_word('tiny ' + ('big' * 20)) == ('big' * 20)\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a\\u200b b') == 'a\\u200b'\n"
+    "    assert longest_word('ab\\u200bcd ef') == 'ab\\u200bcd'\n"
+    "    assert longest_word('x\\u200b\\u200by z') == 'x\\u200b\\u200by'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a  b  ') == 'a'\n"
+    "    assert longest_word('  a  b') == 'a'\n"
+    "    assert longest_word('   a   ') == 'a'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a b\\n c') == 'b\\n'\n"
+    "    assert longest_word('a\\n b c') == 'a\\n'\n"
+    "    assert longest_word('x\\t y zzz') == 'zzz'\n",
+
+    "def test_longest_word():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        longest_word(None)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        longest_word(123)\n",
+
+    "def test_longest_word():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        longest_word(['a b'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        longest_word({'s': 'a b'})\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a   b c') == 'a'\n"
+    "    assert longest_word('aa   b  c') == 'aa'\n"
+    "    assert longest_word('aa  bbb  cc') == 'bbb'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('trail  ') == 'trail'\n"
+    "    assert longest_word('  lead') == 'lead'\n"
+    "    assert longest_word('  both  ') == 'both'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('a  bb  ccc  dddd') == 'dddd'\n"
+    "    assert longest_word('one two three four') == 'three'\n"
+    "    assert longest_word('xx y z') == 'xx'\n",
+
+    "def test_longest_word():\n"
+    "    assert longest_word('same-length words here') == 'same-length'\n"
+    "    assert longest_word('tie tie') == 'tie'\n"
+    "    assert longest_word('aa bb cc') == 'aa'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('') == ''\n"
+    "    assert shortest_word('   ') == ''\n"
+    "    assert shortest_word('\\n\\t') == ''\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a') == 'a'\n"
+    "    assert shortest_word('a ') == 'a'\n"
+    "    assert shortest_word(' a') == 'a'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('  a  b   ') == 'a'\n"
+    "    assert shortest_word('a   b') == 'a'\n"
+    "    assert shortest_word('   ab    c   ') == 'c'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('aa bb ccc') == 'aa'\n"
+    "    assert shortest_word('ccc bb aa') == 'bb'\n"
+    "    assert shortest_word('xx yy') == 'xx'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('one two six') == 'one'\n"
+    "    assert shortest_word('two one six') == 'two'\n"
+    "    assert shortest_word('six two one') == 'six'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a a a') == 'a'\n"
+    "    assert shortest_word('x x y') == 'x'\n"
+    "    assert shortest_word('same same') == 'same'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a\\tb') == 'a'\n"
+    "    assert shortest_word('ab\\tcd\\te') == 'e'\n"
+    "    assert shortest_word('x\\nxx\\nxxx') == 'x'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a\\nb c') == 'a'\n"
+    "    assert shortest_word('ab\\ncd ef') == 'ef'\n"
+    "    assert shortest_word('ab\\n\\ncd') == 'ab'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a-b c') == 'c'\n"
+    "    assert shortest_word('a--b  c') == 'c'\n"
+    "    assert shortest_word('-- -- ---') == '--'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('😊 😊😊 😊😊😊') == '😊'\n"
+    "    assert shortest_word('🙂🙃 🙂') == '🙂'\n"
+    "    assert shortest_word('x 😊 yyy') == 'x'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('á é íóú') == 'á'\n"
+    "    assert shortest_word('Ångström a') == 'a'\n"
+    "    assert shortest_word('ß ss s') == 's'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('A a AA') == 'A'\n"
+    "    assert shortest_word('aa A bb') == 'A'\n"
+    "    assert shortest_word('MiX m mixed') == 'm'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('123 4 56') == '4'\n"
+    "    assert shortest_word('0 00 000') == '0'\n"
+    "    assert shortest_word('-1 -22 -333') == '-1'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('! !! !!!') == '!'\n"
+    "    assert shortest_word('?? ? ???') == '?'\n"
+    "    assert shortest_word('... .. .') == '.'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a,b cc') == 'cc'\n"
+    "    assert shortest_word('x, yyy') == 'x,'\n"
+    "    assert shortest_word('hi, hi') == 'hi,'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a.. b') == 'b'\n"
+    "    assert shortest_word('x... yy') == 'yy'\n"
+    "    assert shortest_word('end.') == 'end.'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('word\\u200bbreak x') == 'x'\n"
+    "    assert shortest_word('a\\u200bb c') == 'c'\n"
+    "    assert shortest_word('\\u200b') == '\\u200b'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a\\r\\nb bb') == 'a'\n"
+    "    assert shortest_word('ab\\r\\ncd e') == 'e'\n"
+    "    assert shortest_word('\\r\\n') == ''\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a\\x0bb bb') == 'a'\n"
+    "    assert shortest_word('ab\\x0bcd e') == 'e'\n"
+    "    assert shortest_word('\\x0b') == '\\x0b'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a\\u00a0b c') == 'c'\n"
+    "    assert shortest_word('x\\u00a0\\u00a0y z') == 'z'\n"
+    "    assert shortest_word('\\u00a0') == ''\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('alpha  beta   gamma') == 'beta'\n"
+    "    assert shortest_word('alpha beta gamma') == 'beta'\n"
+    "    assert shortest_word('alpha   beta gamma') == 'beta'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a'*100 + ' bb') == 'bb'\n"
+    "    assert shortest_word('x ' + 'y'*200) == 'x'\n"
+    "    assert shortest_word('p'*50 + ' q'*1) == 'q'\n",
+
+    "def test_shortest_word():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        shortest_word(None)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        shortest_word(123)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        shortest_word(object())\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word('a\\t\\tbb\\nccc') == 'a'\n"
+    "    assert shortest_word('   a\\n   bb   ') == 'a'\n"
+    "    assert shortest_word('bb\\n\\n c') == 'c'\n",
+
+    "def test_shortest_word():\n"
+    "    assert shortest_word(' \\t  a   bb\\tccc ') == 'a'\n"
+    "    assert shortest_word('word\\n x\\nlonger') == 'x'\n"
+    "    assert shortest_word('\\n\\t   ') == ''\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('') == ''\n"
+    "    assert capitalize_str('a') == 'A'\n"
+    "    assert capitalize_str('A') == 'A'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('abc') == 'Abc'\n"
+    "    assert capitalize_str('ABC') == 'Abc'\n"
+    "    assert capitalize_str('aBC') == 'Abc'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str(' hello') == ' hello'\n"
+    "    assert capitalize_str(' hello world') == ' hello world'\n"
+    "    assert capitalize_str(' hello')[:1] == ' '\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('1abc') == '1abc'\n"
+    "    assert capitalize_str('123') == '123'\n"
+    "    assert capitalize_str('1ABC') == '1abc'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('!abc') == '!abc'\n"
+    "    assert capitalize_str('@TEST') == '@test'\n"
+    "    assert capitalize_str('#x') == '#x'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('ß') == 'Ss'\n"
+    "    assert capitalize_str('ßtest') == 'Sstest'\n"
+    "    assert capitalize_str('ßTEST') == 'Sstest'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('éclair') == 'Éclair'\n"
+    "    assert capitalize_str('ÉCLAIR') == 'Éclair'\n"
+    "    assert capitalize_str('éCLAIR') == 'Éclair'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('😊') == '😊'\n"
+    "    assert capitalize_str('😊abc') == '😊abc'\n"
+    "    assert capitalize_str('😊ABC') == '😊abc'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('a😊b') == 'A😊b'\n"
+    "    assert capitalize_str('A😊B') == 'A😊b'\n"
+    "    assert capitalize_str('😊a') == '😊a'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str(' multiple words') == ' multiple words'\n"
+    "    assert capitalize_str('multiple Words') == 'Multiple words'\n"
+    "    assert capitalize_str('MULTIPLE words') == 'Multiple words'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('\\nabc') == '\\nabc'\n"
+    "    assert capitalize_str('\\tabc') == '\\tabc'\n"
+    "    assert capitalize_str('a\\nb') == 'A\\nb'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str(' ') == ' '\n"
+    "    assert capitalize_str('   ') == '   '\n"
+    "    assert capitalize_str(' a') == ' a'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('ç') == 'Ç'\n"
+    "    assert capitalize_str('çalış') == 'Çalış'\n"
+    "    assert capitalize_str('ÇALIŞ') == 'Çalış'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('ø') == 'Ø'\n"
+    "    assert capitalize_str('øtest') == 'Øtest'\n"
+    "    assert capitalize_str('ØTEST') == 'Øtest'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('ñandú') == 'Ñandú'\n"
+    "    assert capitalize_str('ÑANDÚ') == 'Ñandú'\n"
+    "    assert capitalize_str('ñANDÚ') == 'Ñandú'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('0xabc') == '0xabc'\n"
+    "    assert capitalize_str('0XABC') == '0xabc'\n"
+    "    assert capitalize_str('0xABC') == '0xabc'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('true') == 'True'\n"
+    "    assert capitalize_str('TRUE') == 'True'\n"
+    "    assert capitalize_str('tRUE') == 'True'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('false') == 'False'\n"
+    "    assert capitalize_str('FALSE') == 'False'\n"
+    "    assert capitalize_str('fALSE') == 'False'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('none') == 'None'\n"
+    "    assert capitalize_str('NONE') == 'None'\n"
+    "    assert capitalize_str('nONE') == 'None'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('ümlaut') == 'Ümlaut'\n"
+    "    assert capitalize_str('ÜMLAUT') == 'Ümlaut'\n"
+    "    assert capitalize_str('üMLAUT') == 'Ümlaut'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str(' mixedCASE') == ' mixedcase'\n"
+    "    assert capitalize_str('MiXeD') == 'Mixed'\n"
+    "    assert capitalize_str('mIXed') == 'Mixed'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('a'*100) == 'A' + 'a'*99\n"
+    "    assert capitalize_str('A'*100) == 'A' + 'a'*99\n"
+    "    assert capitalize_str('a'*1) == 'A'\n",
+
+    "def test_capitalize_str():\n"
+    "    assert capitalize_str('ßß') == 'Ssss'\n"
+    "    assert capitalize_str('ßßa') == 'Sssa'\n"
+    "    assert capitalize_str('ßA') == 'Ssa'\n",
+
+    "def test_capitalize_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        capitalize_str(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        capitalize_str(123)\n",
+
+    "def test_capitalize_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        capitalize_str(['a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        capitalize_str({'a': 1})\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([], 1) == -1\n"
+    "    assert binary_search([], 0) == -1\n"
+    "    assert binary_search([], -1) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1], 1) == 0\n"
+    "    assert binary_search([1], 0) == -1\n"
+    "    assert binary_search([1], 2) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1, 2], 1) == 0\n"
+    "    assert binary_search([1, 2], 2) == 1\n"
+    "    assert binary_search([1, 2], 3) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1, 3, 5], 3) == 1\n"
+    "    assert binary_search([1, 3, 5], 1) == 0\n"
+    "    assert binary_search([1, 3, 5], 5) == 2\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1, 3, 5], 0) == -1\n"
+    "    assert binary_search([1, 3, 5], 4) == -1\n"
+    "    assert binary_search([1, 3, 5], 6) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([-5, -3, -1], -3) == 1\n"
+    "    assert binary_search([-5, -3, -1], -5) == 0\n"
+    "    assert binary_search([-5, -3, -1], -1) == 2\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([-5, -3, -1], 0) == -1\n"
+    "    assert binary_search([-5, -3, -1], -4) == -1\n"
+    "    assert binary_search([-5, -3, -1], -6) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([0, 0, 0], 0) in (0, 1, 2)\n"
+    "    assert binary_search([0, 0, 0], 1) == -1\n"
+    "    assert binary_search([0, 0, 0], -1) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1, 2, 2, 2, 3], 2) in (1, 2, 3)\n"
+    "    assert binary_search([1, 2, 2, 2, 3], 1) == 0\n"
+    "    assert binary_search([1, 2, 2, 2, 3], 3) == 4\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([10, 20, 30, 40], 10) == 0\n"
+    "    assert binary_search([10, 20, 30, 40], 40) == 3\n"
+    "    assert binary_search([10, 20, 30, 40], 25) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1.0, 2.0, 3.0], 2.0) == 1\n"
+    "    assert binary_search([1.0, 2.0, 3.0], 2.5) == -1\n"
+    "    assert binary_search([1.0, 2.0, 3.0], 1.0) == 0\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search(['a', 'b', 'c'], 'b') == 1\n"
+    "    assert binary_search(['a', 'b', 'c'], 'a') == 0\n"
+    "    assert binary_search(['a', 'b', 'c'], 'd') == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search(['apple', 'banana', 'cherry'], 'banana') == 1\n"
+    "    assert binary_search(['apple', 'banana', 'cherry'], 'apple') == 0\n"
+    "    assert binary_search(['apple', 'banana', 'cherry'], 'date') == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([True, True, True], True) in (0, 1, 2)\n"
+    "    assert binary_search([False, False], False) in (0, 1)\n"
+    "    assert binary_search([False, False], True) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search(list(range(100)), 0) == 0\n"
+    "    assert binary_search(list(range(100)), 99) == 99\n"
+    "    assert binary_search(list(range(100)), 100) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search(list(range(-50, 50)), -50) == 0\n"
+    "    assert binary_search(list(range(-50, 50)), 0) == 50\n"
+    "    assert binary_search(list(range(-50, 50)), 49) == 99\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([2, 4, 6, 8], 6) == 2\n"
+    "    assert binary_search([2, 4, 6, 8], 5) == -1\n"
+    "    assert binary_search([2, 4, 6, 8], 2) == 0\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1, 3, 5, 7, 9], 7) == 3\n"
+    "    assert binary_search([1, 3, 5, 7, 9], 8) == -1\n"
+    "    assert binary_search([1, 3, 5, 7, 9], 1) == 0\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1000000], 1000000) == 0\n"
+    "    assert binary_search([1000000], -1000000) == -1\n"
+    "    assert binary_search([1000000], 0) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([-1, 0, 1], 0) == 1\n"
+    "    assert binary_search([-1, 0, 1], -1) == 0\n"
+    "    assert binary_search([-1, 0, 1], 2) == -1\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([1, 2, 3, 4, 5], 3) == 2\n"
+    "    assert binary_search([1, 2, 3, 4, 5], -10) == -1\n"
+    "    assert binary_search([1, 2, 3, 4, 5], 10) == -1\n",
+
+    "def test_binary_search():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        binary_search(None, 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        binary_search(123, 1)\n",
+
+    "def test_binary_search():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        binary_search([1, 2, 3], None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        binary_search([1, 2, 3], '2')\n",
+
+    "def test_binary_search():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        binary_search([1, '2', 3], 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        binary_search([1, 2, 3], [2])\n",
+
+    "def test_binary_search():\n"
+    "    assert binary_search([0, 1, 2, 3], -1) == -1\n"
+    "    assert binary_search([0, 1, 2, 3], 4) == -1\n"
+    "    assert binary_search([0, 1, 2, 3], 0) == 0\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([]) == []\n"
+    "    assert remove_empty([0, '', None, False, [], {}, (), set()]) == []\n"
+    "    assert remove_empty([0, '', 'x', None, 1, [], [0], {}, {'a': 1}, False, True]) == ['x', 1, [0], {'a': 1}, True]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty(['', ' ', '  ']) == [' ', '  ']\n"
+    "    assert remove_empty(['\\t', '\\n', '']) == ['\\t', '\\n']\n"
+    "    assert remove_empty(['   ', 'x', '']) == ['   ', 'x']\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([[], [0], [False], [None], ['']]) == [[0], [False], [None], ['']]\n"
+    "    assert remove_empty([{}, {'k': 0}, {'k': None}]) == [{'k': 0}, {'k': None}]\n"
+    "    assert remove_empty([(), (0,), ('',)]) == [(0,), ('',)]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([0.0, -0.0, 0.0001, -0.0001]) == [0.0001, -0.0001]\n"
+    "    assert remove_empty([float('nan'), 0.0]) == [float('nan')]\n"
+    "    assert remove_empty([float('inf'), float('-inf'), 0]) == [float('inf'), float('-inf')]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([b'', b'0', b'a']) == [b'0', b'a']\n"
+    "    assert remove_empty([bytearray(b''), bytearray(b'x')]) == [bytearray(b'x')]\n"
+    "    assert remove_empty([memoryview(b''), memoryview(b'1')]) == [memoryview(b'1')]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([range(0), range(1), range(2)]) == [range(1), range(2)]\n"
+    "    assert remove_empty([set(), {0}, {None}]) == [{0}, {None}]\n"
+    "    assert remove_empty([frozenset(), frozenset({0})]) == [frozenset({0})]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty(['0', 0, '']) == ['0']\n"
+    "    assert remove_empty([False, 0, 0.0, True, 1]) == [True, 1]\n"
+    "    assert remove_empty([None, 'None', []]) == ['None']\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([[[]], [[]], []]) == [[[]], [[]]]\n"
+    "    assert remove_empty([{'a': []}, {'a': 1}, {}]) == [{'a': []}, {'a': 1}]\n"
+    "    assert remove_empty([[0, 0], [0], []]) == [[0, 0], [0]]\n",
+
+    "def test_remove_empty():\n"
+    "    class AlwaysFalse:\n"
+    "        def __bool__(self):\n"
+    "            return False\n"
+    "    class AlwaysTrue:\n"
+    "        def __bool__(self):\n"
+    "            return True\n"
+    "    assert remove_empty([AlwaysFalse(), AlwaysTrue()]) and len(remove_empty([AlwaysFalse(), AlwaysTrue()])) == 1\n"
+    "    assert isinstance(remove_empty([AlwaysFalse(), AlwaysTrue()])[0], AlwaysTrue)\n"
+    "    assert remove_empty([AlwaysFalse(), 0, '']) == []\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty(['🙂', '', '😊']) == ['🙂', '😊']\n"
+    "    assert remove_empty(['\\u200b', '']) == ['\\u200b']\n"
+    "    assert remove_empty(['', 'a\\u200b', ' ']) == ['a\\u200b', ' ']\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([0, 1, 2, 3]) == [1, 2, 3]\n"
+    "    assert remove_empty(['', 'x', 'y']) == ['x', 'y']\n"
+    "    assert remove_empty([None, {'k': 'v'}, []]) == [{'k': 'v'}]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([True, False, True, False]) == [True, True]\n"
+    "    assert remove_empty([False, [], {}, (), set(), 1]) == [1]\n"
+    "    assert remove_empty([0, '0', 0.0, '']) == ['0']\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([{'': 0}, {'': ''}, {'': None}]) == [{'': 0}, {'': ''}, {'': None}]\n"
+    "    assert remove_empty([{0: 0}, {}, {1: 0}]) == [{0: 0}, {1: 0}]\n"
+    "    assert remove_empty([{'a': False}, {'b': []}, {}]) == [{'a': False}, {'b': []}]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([[False], [0], [None], []]) == [[False], [0], [None]]\n"
+    "    assert remove_empty([[''], ['x'], []]) == [[''], ['x']]\n"
+    "    assert remove_empty([[0], 0, [1], 1]) == [[0], [1], 1]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([float('nan'), float('nan')]) == [float('nan'), float('nan')]\n"
+    "    assert remove_empty([0, float('nan'), '', None]) == [float('nan')]\n"
+    "    assert remove_empty([float('inf'), 0, float('-inf')]) == [float('inf'), float('-inf')]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty(['  a  ', '']) == ['  a  ']\n"
+    "    assert remove_empty(['\\n', '', '\\t']) == ['\\n', '\\t']\n"
+    "    assert remove_empty(['\\r\\n', '']) == ['\\r\\n']\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([0, -0, 0.0, -0.0, 2, -2]) == [2, -2]\n"
+    "    assert remove_empty([0, 0.0000, -0.0000, 0.0001]) == [0.0001]\n"
+    "    assert remove_empty([0, -1, 1]) == [-1, 1]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([{'nested': {}}, {'nested': []}, {'nested': 0}]) == [{'nested': {}}, {'nested': []}, {'nested': 0}]\n"
+    "    assert remove_empty([{'nested': ''}, {}]) == [{'nested': ''}]\n"
+    "    assert remove_empty([{'n': None}, {'n': 1}, {}]) == [{'n': None}, {'n': 1}]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([['a'], [''], []]) == [['a'], ['']]\n"
+    "    assert remove_empty([[' '], [], ['\\t']]) == [[' '], ['\\t']]\n"
+    "    assert remove_empty([[''], ['x'], ['y']]) == [[''], ['x'], ['y']]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([[], (), {}, set(), frozenset(), range(0)]) == []\n"
+    "    assert remove_empty([range(1), (), []]) == [range(1)]\n"
+    "    assert remove_empty([frozenset({0}), frozenset()]) == [frozenset({0})]\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([0, 'a', 0, 'b', 0]) == ['a', 'b']\n"
+    "    assert remove_empty(['', 1, '', 2, '']) == [1, 2]\n"
+    "    assert remove_empty([None, True, None, False]) == [True]\n",
+
+    "def test_remove_empty():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty('abc')\n",
+
+    "def test_remove_empty():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty(True)\n",
+
+    "def test_remove_empty():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty({'a': 1})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty({1, 2, 3})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        remove_empty((0, 1))\n",
+
+    "def test_remove_empty():\n"
+    "    assert remove_empty([{'a': []}, [], '', 0, None, {'b': 1}]) == [{'a': []}, {'b': 1}]\n"
+    "    assert remove_empty([[''], [], ['x'], '']) == [[''], ['x']]\n"
+    "    assert remove_empty([False, [], {}, (), set(), 'ok']) == ['ok']\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([]) == 0\n"
+    "    assert sum_list([0, 0, 0]) == 0\n"
+    "    assert sum_list([1, -1, 0]) == 0\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([10**18, -(10**18)]) == 0\n"
+    "    assert sum_list([10**18, 1, -1]) == 10**18\n"
+    "    assert sum_list([-10**18, 10**18 - 1]) == -1\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([1e-12, -1e-12]) == 0.0\n"
+    "    assert sum_list([0.1, 0.2]) == 0.30000000000000004\n"
+    "    assert sum_list([0.1, -0.1, 0.2]) == 0.2\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([float('inf')]) == float('inf')\n"
+    "    assert sum_list([float('-inf')]) == float('-inf')\n"
+    "    assert sum_list([float('inf'), float('-inf')]) != sum_list([float('inf'), float('-inf')])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([float('nan')]) != sum_list([float('nan')])\n"
+    "    assert sum_list([1.0, float('nan')]) != sum_list([1.0, float('nan')])\n"
+    "    assert sum_list([float('nan'), float('nan')]) != sum_list([float('nan'), float('nan')])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([True, False, True]) == 2\n"
+    "    assert sum_list([False, False]) == 0\n"
+    "    assert sum_list([True, 2, 3]) == 6\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([1+2j, 3-4j]) == (4-2j)\n"
+    "    assert sum_list([0+0j, 5]) == (5+0j)\n"
+    "    assert sum_list([1j, -1j, 2]) == 2\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([1, 2.5, -3]) == 0.5\n"
+    "    assert sum_list([0.0, -0.0, 1.0]) == 1.0\n"
+    "    assert sum_list([-2.5, 2.5]) == 0.0\n",
+
+    "def test_sum_list():\n"
+    "    xs = [10**6] * 1000\n"
+    "    assert sum_list(xs) == 10**6 * 1000\n"
+    "    assert sum_list(xs[:1]) == 10**6\n"
+    "    assert sum_list(xs[:0]) == 0\n",
+
+    "def test_sum_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list(object())\n",
+
+    "def test_sum_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list(['1', '2'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([1, '2'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([1, None])\n",
+
+    "def test_sum_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([[1, 2], [3]])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([{'a': 1}, {'b': 2}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([(1, 2), (3,)])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([0, -0, 0]) == 0\n"
+    "    assert sum_list([-1, 1, -1, 1]) == 0\n"
+    "    assert sum_list([2, -3, 4, -5, 6]) == 4\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([1, 2, 3, -6]) == 0\n"
+    "    assert sum_list([5, -2, -3]) == 0\n"
+    "    assert sum_list([7, -7, 1]) == 1\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([float('inf'), 1.0]) == float('inf')\n"
+    "    assert sum_list([float('-inf'), -1.0]) == float('-inf')\n"
+    "    assert sum_list([float('inf'), -float('inf'), 1.0]) != sum_list([float('inf'), -float('inf'), 1.0])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([1e308, 1e308]) == float('inf')\n"
+    "    assert sum_list([-1e308, -1e308]) == -float('inf')\n"
+    "    assert sum_list([1e308, -1e308]) == 0.0\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([1e-300, 1e-300, -2e-300]) == 0.0\n"
+    "    assert sum_list([1e-320, 1e-320]) != 0.0\n"
+    "    assert sum_list([1e-320, -1e-320]) == 0.0\n",
+
+    "def test_sum_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([b'a', b'b'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([bytearray(b'a')])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list(['a', b'b'])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([0, 1, 2, 3, 4]) == 10\n"
+    "    assert sum_list([-5, -4, -3, -2, -1]) == -15\n"
+    "    assert sum_list([100, -50, -25, -25]) == 0\n",
+
+    "def test_sum_list():\n"
+    "    xs = [1, 2, 3]\n"
+    "    assert sum_list(xs) == 6\n"
+    "    assert xs == [1, 2, 3]\n"
+    "    assert sum_list(xs[:0]) == 0\n",
+
+    "def test_sum_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([set([1]), set([2])])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([{'x': 1}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([object()])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([0.0, -0.0]) == 0.0\n"
+    "    assert sum_list([0.0, -0.0, -0.0]) == 0.0\n"
+    "    assert sum_list([-0.0, 1.0]) == 1.0\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([2**63, -(2**63)]) == 0\n"
+    "    assert sum_list([2**63 - 1, 1]) == 2**63\n"
+    "    assert sum_list([-(2**63), 2**63 - 1]) == -1\n",
+
+    "def test_sum_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([1, 2, '3', 4])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([None, None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        sum_list([1, float('nan'), 'x'])\n",
+
+    "def test_sum_list():\n"
+    "    assert sum_list([0, 0.0, False]) == 0.0\n"
+    "    assert sum_list([1, 1.0, True]) == 3.0\n"
+    "    assert sum_list([0, True, False, 2]) == 3\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('', '') is True\n"
+    "    assert starts_with('a', '') is True\n"
+    "    assert starts_with('', 'a') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('hello', 'h') is True\n"
+    "    assert starts_with('hello', 'he') is True\n"
+    "    assert starts_with('hello', 'hello') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('hello', 'helloo') is False\n"
+    "    assert starts_with('hi', 'hello') is False\n"
+    "    assert starts_with('a', 'aa') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('Hello', 'h') is False\n"
+    "    assert starts_with('Hello', 'H') is True\n"
+    "    assert starts_with('HELLO', 'HE') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with(' hello', ' ') is True\n"
+    "    assert starts_with(' hello', 'h') is False\n"
+    "    assert starts_with('hello ', 'hello ') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('\\nhello', '\\n') is True\n"
+    "    assert starts_with('\\thello', '\\t') is True\n"
+    "    assert starts_with('hello\\n', 'hello') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('😊abc', '😊') is True\n"
+    "    assert starts_with('😊abc', '😊a') is True\n"
+    "    assert starts_with('😊abc', 'a') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('abc', '😊') is False\n"
+    "    assert starts_with('😊', '😊') is True\n"
+    "    assert starts_with('😊', '') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('12345', '123') is True\n"
+    "    assert starts_with('12345', '12a') is False\n"
+    "    assert starts_with('12345', '123456') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('0xFF', '0x') is True\n"
+    "    assert starts_with('0xFF', '0X') is False\n"
+    "    assert starts_with('0xff', '0x') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with(' ', ' ') is True\n"
+    "    assert starts_with('  ', ' ') is True\n"
+    "    assert starts_with(' ', '') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('abc', None) is False\n"
+    "    assert starts_with('abc', '') is True\n"
+    "    assert starts_with('abc', 'a') is True\n",
+
+    "def test_starts_with():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with(None, 'a')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with(None, None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with(123, '1')\n",
+
+    "def test_starts_with():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with('abc', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with('abc', ['a'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        starts_with([], 'a')\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('case-sensitive', 'case') is True\n"
+    "    assert starts_with('case-sensitive', 'Case') is False\n"
+    "    assert starts_with('Case', 'Case') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('a\\0b', 'a\\0') is True\n"
+    "    assert starts_with('a\\0b', 'a') is True\n"
+    "    assert starts_with('a\\0b', '\\0') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('汉字测试', '汉') is True\n"
+    "    assert starts_with('汉字测试', '字') is False\n"
+    "    assert starts_with('汉字测试', '汉字') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('a-b-c', 'a-') is True\n"
+    "    assert starts_with('a-b-c', 'a-b') is True\n"
+    "    assert starts_with('a-b-c', '-') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('...', '.') is True\n"
+    "    assert starts_with('...', '..') is True\n"
+    "    assert starts_with('...', '...') is True\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('false', 'f') is True\n"
+    "    assert starts_with('true', 't') is True\n"
+    "    assert starts_with('true', 'f') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('0', '0') is True\n"
+    "    assert starts_with('0', '') is True\n"
+    "    assert starts_with('0', '00') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('longstring', 'long') is True\n"
+    "    assert starts_with('longstring', 'longstring') is True\n"
+    "    assert starts_with('longstring', 'longstrings') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('end', 'e') is True\n"
+    "    assert starts_with('end', 'en') is True\n"
+    "    assert starts_with('end', 'nd') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('mixed123', 'mixed') is True\n"
+    "    assert starts_with('mixed123', 'mixed1') is True\n"
+    "    assert starts_with('mixed123', '123') is False\n",
+
+    "def test_starts_with():\n"
+    "    assert starts_with('repeat repeat', 'repeat') is True\n"
+    "    assert starts_with('repeat repeat', 'repeat ') is True\n"
+    "    assert starts_with('repeat repeat', ' repeat') is False\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([]) == []\n"
+    "    assert flatten_deep([[]]) == []\n"
+    "    assert flatten_deep([[], []]) == []\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([1]) == [1]\n"
+    "    assert flatten_deep([[1]]) == [1]\n"
+    "    assert flatten_deep([[[1]]]) == [1]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([1, [2], 3]) == [1, 2, 3]\n"
+    "    assert flatten_deep([[1, 2], 3]) == [1, 2, 3]\n"
+    "    assert flatten_deep([1, [2, 3]]) == [1, 2, 3]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[1, [2, [3]]]]) == [1, 2, 3]\n"
+    "    assert flatten_deep([[[[2]]], 1, [[3]]]) == [2, 1, 3]\n"
+    "    assert flatten_deep([[[]], [[[]]]]) == []\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([0, [0, [0]]]) == [0, 0, 0]\n"
+    "    assert flatten_deep([-1, [-2, [-3]]]) == [-1, -2, -3]\n"
+    "    assert flatten_deep([[10**9], [[-(10**9)]]]) == [10**9, -(10**9)]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep(['a', ['b', ['c']]]) == ['a', 'b', 'c']\n"
+    "    assert flatten_deep([['', ['x']], 'y']) == ['', 'x', 'y']\n"
+    "    assert flatten_deep([['hello'], [['world']]]) == ['hello', 'world']\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep(['😊', ['🙂', ['🙃']]]) == ['😊', '🙂', '🙃']\n"
+    "    assert flatten_deep([[['🔥']]]) == ['🔥']\n"
+    "    assert flatten_deep(['a', ['😊'], [['b']]]) == ['a', '😊', 'b']\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([True, [False, [True]]]) == [True, False, True]\n"
+    "    assert flatten_deep([[True, False], [[False]]]) == [True, False, False]\n"
+    "    assert flatten_deep([[[False]]]) == [False]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([None, [None, [1]]]) == [None, None, 1]\n"
+    "    assert flatten_deep([[None], [[None]]]) == [None, None]\n"
+    "    assert flatten_deep([0, [None], [1]]) == [0, None, 1]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([1.5, [2.5, [3.0]]]) == [1.5, 2.5, 3.0]\n"
+    "    assert flatten_deep([[0.1, [0.2]], 0.3]) == [0.1, 0.2, 0.3]\n"
+    "    assert flatten_deep([[-0.0], [[0.0]]]) == [-0.0, 0.0]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([['a', [1, [True]]]]) == ['a', 1, True]\n"
+    "    assert flatten_deep([[None, ['x']], [[0]]]) == [None, 'x', 0]\n"
+    "    assert flatten_deep([['', [0]], [[False]]]) == ['', 0, False]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[[], [1], []], 2]) == [1, 2]\n"
+    "    assert flatten_deep([[[[]]], [[1, []]]]) == [1]\n"
+    "    assert flatten_deep([[], [[[], []]], [[[[]]]]]) == []\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[1, [2, []], 3], []]) == [1, 2, 3]\n"
+    "    assert flatten_deep([[[1], []], [[2, [3]]]]) == [1, 2, 3]\n"
+    "    assert flatten_deep([[[1, [2]]], 3, [4, [5]]]) == [1, 2, 3, 4, 5]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[['a'], ['b']], [['c']]]) == ['a', 'b', 'c']\n"
+    "    assert flatten_deep([[['x', ['y']]], 'z']) == ['x', 'y', 'z']\n"
+    "    assert flatten_deep([['x'], [['y']], [[['z']]]]) == ['x', 'y', 'z']\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([['\\n', ['\\t']], [[' ']]]) == ['\\n', '\\t', ' ']\n"
+    "    assert flatten_deep([['a\\n'], [['b\\t']], 'c']) == ['a\\n', 'b\\t', 'c']\n"
+    "    assert flatten_deep([[['\\r']], ['\\n']]) == ['\\r', '\\n']\n",
+
+    "def test_flatten_deep():\n"
+    "    big = [[i] for i in range(10)]\n"
+    "    assert flatten_deep(big) == list(range(10))\n"
+    "    assert flatten_deep([big, [10]]) == list(range(10)) + [10]\n"
+    "    assert flatten_deep([[[[0]]], [[[[1]]]]]) == [0, 1]\n",
+
+    "def test_flatten_deep():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep(123)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep('abc')\n",
+
+    "def test_flatten_deep():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep({1: [2]})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep((1, [2]))\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep({1, 2, 3})\n",
+
+    "def test_flatten_deep():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep([1, {'a': 2}])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep([1, (2, 3)])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        flatten_deep([object()])\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([['a'], [['b'], [['c']]]]) == ['a', 'b', 'c']\n"
+    "    assert flatten_deep([[1, [2, [3, [4]]]]]) == [1, 2, 3, 4]\n"
+    "    assert flatten_deep([[], [1, [2]], [], [[3]]]) == [1, 2, 3]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[[[[]]]], [[[]]]]) == []\n"
+    "    assert flatten_deep([[[[]], []], [[]]]) == []\n"
+    "    assert flatten_deep([[[], [[], []]], []]) == []\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[0], [[-0]], [[[0]]]]) == [0, 0, 0]\n"
+    "    assert flatten_deep([[float('inf')], [[float('-inf')]]]) == [float('inf'), float('-inf')]\n"
+    "    assert flatten_deep([[float('nan')], [[1]]])[0] != flatten_deep([[float('nan')], [[1]]])[0]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([['a'], [[], ['b']], [['c', []]]]) == ['a', 'b', 'c']\n"
+    "    assert flatten_deep([[1, []], [[2, []]], [[[3]]]]) == [1, 2, 3]\n"
+    "    assert flatten_deep([['x'], [[['y']]], [], 'z']) == ['x', 'y', 'z']\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[[[1, 2]]], [[[3]]], [4]]) == [1, 2, 3, 4]\n"
+    "    assert flatten_deep([[['a', 'b']], [['c']], [['d']]]) == ['a', 'b', 'c', 'd']\n"
+    "    assert flatten_deep([1, [[2]], [[[3]]], [[[[4]]]]]) == [1, 2, 3, 4]\n",
+
+    "def test_flatten_deep():\n"
+    "    assert flatten_deep([[], [[], [[], [1]]]]) == [1]\n"
+    "    assert flatten_deep([[[[[]]]], 1, [[[]]]]) == [1]\n"
+    "    assert flatten_deep([[[]], [0, [[], [2]]], []]) == [0, 2]\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('', '') == ''\n"
+    "    assert concat_str('', 'a') == 'a'\n"
+    "    assert concat_str('a', '') == 'a'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('a', 'b') == 'ab'\n"
+    "    assert concat_str('hello', 'world') == 'helloworld'\n"
+    "    assert concat_str(' ', ' ') == '  '\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('a', ' ') == 'a '\n"
+    "    assert concat_str(' ', 'b') == ' b'\n"
+    "    assert concat_str(' a ', ' b ') == ' a  b '\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('\\n', '\\n') == '\\n\\n'\n"
+    "    assert concat_str('\\t', 'a') == '\\ta'\n"
+    "    assert concat_str('a', '\\t') == 'a\\t'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('😊', '😊') == '😊😊'\n"
+    "    assert concat_str('😊', 'a') == '😊a'\n"
+    "    assert concat_str('a', '😊') == 'a😊'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('🔥', '💧') == '🔥💧'\n"
+    "    assert concat_str('💡', '') == '💡'\n"
+    "    assert concat_str('', '💡') == '💡'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('A', 'a') == 'Aa'\n"
+    "    assert concat_str('a', 'A') == 'aA'\n"
+    "    assert concat_str('ABC', 'def') == 'ABCdef'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('123', '456') == '123456'\n"
+    "    assert concat_str('0', '0') == '00'\n"
+    "    assert concat_str('-1', '1') == '-11'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('line', '\\nbreak') == 'line\\nbreak'\n"
+    "    assert concat_str('end\\n', 'start') == 'end\\nstart'\n"
+    "    assert concat_str('\\n', ' ') == '\\n '\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str(' ', '') == ' '\n"
+    "    assert concat_str('', ' ') == ' '\n"
+    "    assert concat_str('   ', ' ') == '    '\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('x'*1000, 'y') == 'x'*1000 + 'y'\n"
+    "    assert concat_str('x', 'y'*1000) == 'x' + 'y'*1000\n"
+    "    assert concat_str('a'*500, 'b'*500) == 'a'*500 + 'b'*500\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('mixed', 'CASE') == 'mixedCASE'\n"
+    "    assert concat_str('MiXeD', 'cAsE') == 'MiXeDcAsE'\n"
+    "    assert concat_str('lower', 'UPPER') == 'lowerUPPER'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str(' ', '\\t') == ' \\t'\n"
+    "    assert concat_str('\\t', ' ') == '\\t '\n"
+    "    assert concat_str('\\t', '\\t') == '\\t\\t'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('a\\tb', 'c') == 'a\\tbc'\n"
+    "    assert concat_str('a', 'b\\tc') == 'ab\\tc'\n"
+    "    assert concat_str('a\\n', 'b') == 'a\\nb'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('!', '?') == '!?' \n"
+    "    assert concat_str('@', '#') == '@#'\n"
+    "    assert concat_str('$$', '$') == '$$$'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('[]', '{}') == '[]{}'\n"
+    "    assert concat_str('()', '[]') == '()[]'\n"
+    "    assert concat_str('{}', '') == '{}'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('true', 'false') == 'truefalse'\n"
+    "    assert concat_str('False', 'True') == 'FalseTrue'\n"
+    "    assert concat_str('None', 'Type') == 'NoneType'\n",
+
+    "def test_concat_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str('a', 1)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(1, 'a')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(1, 2)\n",
+
+    "def test_concat_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(None, 'a')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str('a', None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(None, None)\n",
+
+    "def test_concat_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(['a'], 'b')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str('a', ['b'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str([], [])\n",
+
+    "def test_concat_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str({'a': 1}, 'b')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str('a', {'b': 2})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str({}, {})\n",
+
+    "def test_concat_str():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(True, 'a')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str('a', False)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        concat_str(True, False)\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('0', '') == '0'\n"
+    "    assert concat_str('', '0') == '0'\n"
+    "    assert concat_str('00', '1') == '001'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('α', 'β') == 'αβ'\n"
+    "    assert concat_str('Ω', '') == 'Ω'\n"
+    "    assert concat_str('', 'Ω') == 'Ω'\n",
+
+    "def test_concat_str():\n"
+    "    assert concat_str('end', '\\r') == 'end\\r'\n"
+    "    assert concat_str('\\r', 'start') == '\\rstart'\n"
+    "    assert concat_str('\\r', '\\r') == '\\r\\r'\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(0, 1) == True\n"
+    "    assert is_divisible(0, -1) == True\n"
+    "    assert is_divisible(0, 5) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(5, 0) == False\n"
+    "    assert is_divisible(-5, 0) == False\n"
+    "    assert is_divisible(0, 0) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(10, 2) == True\n"
+    "    assert is_divisible(10, 3) == False\n"
+    "    assert is_divisible(10, 5) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(-10, 2) == True\n"
+    "    assert is_divisible(-10, 3) == False\n"
+    "    assert is_divisible(-10, -5) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(9, 3) == True\n"
+    "    assert is_divisible(9, -3) == True\n"
+    "    assert is_divisible(9, 2) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(1, 1) == True\n"
+    "    assert is_divisible(1, 2) == False\n"
+    "    assert is_divisible(-1, 1) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(1000000, 1) == True\n"
+    "    assert is_divisible(1000000, 10) == True\n"
+    "    assert is_divisible(1000000, 3) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(7, 7) == True\n"
+    "    assert is_divisible(7, -7) == True\n"
+    "    assert is_divisible(7, 14) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(2**10, 2) == True\n"
+    "    assert is_divisible(2**10, 4) == True\n"
+    "    assert is_divisible(2**10, 3) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(-2**10, 2) == True\n"
+    "    assert is_divisible(-2**10, -4) == True\n"
+    "    assert is_divisible(-2**10, 3) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(1, -1) == True\n"
+    "    assert is_divisible(2, -1) == True\n"
+    "    assert is_divisible(3, -2) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(99, 9) == True\n"
+    "    assert is_divisible(99, 11) == True\n"
+    "    assert is_divisible(99, 10) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(-99, 9) == True\n"
+    "    assert is_divisible(-99, 11) == True\n"
+    "    assert is_divisible(-99, 10) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(8, 4) == True\n"
+    "    assert is_divisible(8, 8) == True\n"
+    "    assert is_divisible(8, 16) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(5, 2) == False\n"
+    "    assert is_divisible(5, 5) == True\n"
+    "    assert is_divisible(5, -5) == True\n",
+
+    "def test_is_divisible():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(10.5, 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(10, 2.5)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(10.0, 2.0)\n",
+
+    "def test_is_divisible():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible('10', 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(10, '2')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible('10', '2')\n",
+
+    "def test_is_divisible():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(None, 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(2, None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(None, None)\n",
+
+    "def test_is_divisible():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible([10], 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(10, [2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible([], [])\n",
+
+    "def test_is_divisible():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible({'a': 10}, 2)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible(10, {'b': 2})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_divisible({}, {})\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(True, 1) == True\n"
+    "    assert is_divisible(False, 1) == True\n"
+    "    assert is_divisible(True, 2) == False\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(1, True) == True\n"
+    "    assert is_divisible(2, True) == True\n"
+    "    assert is_divisible(3, True) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(1, -1) == True\n"
+    "    assert is_divisible(2, -2) == True\n"
+    "    assert is_divisible(3, -3) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(2147483648, 2) == True\n"
+    "    assert is_divisible(2147483648, 3) == False\n"
+    "    assert is_divisible(-2147483648, 2) == True\n",
+
+    "def test_is_divisible():\n"
+    "    assert is_divisible(7, 1) == True\n"
+    "    assert is_divisible(7, -1) == True\n"
+    "    assert is_divisible(7, 0) == False\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('0') == 0\n"
+    "    assert string_to_int('00') == 0\n"
+    "    assert string_to_int('-0') == 0\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('1') == 1\n"
+    "    assert string_to_int('-1') == -1\n"
+    "    assert string_to_int('+1') == 1\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('2147483647') == 2147483647\n"
+    "    assert string_to_int('-2147483648') == -2147483648\n"
+    "    assert string_to_int('000123') == 123\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int(' 42'.strip()) == 42\n"
+    "    assert string_to_int('42 ') == 42\n"
+    "    assert string_to_int('   7') == 7\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('\\n5') == 5\n"
+    "    assert string_to_int('\\t6') == 6\n"
+    "    assert string_to_int('7\\n') == 7\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int(' ')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('\\n')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('abc')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('12a')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('a12')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('1.0')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('-1.5')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('3.14')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('1e3')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('2E4')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('-1e2')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('--1')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('+-1')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('++1')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('01x')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('x01')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('0x10')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int(True)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int(False)\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int(10)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int(3.14)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int([])\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int({})\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int([1])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        string_to_int(('1',))\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('∞')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('−1')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('１２')\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('+000') == 0\n"
+    "    assert string_to_int('-000') == 0\n"
+    "    assert string_to_int('0000') == 0\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('9') == 9\n"
+    "    assert string_to_int('-9') == -9\n"
+    "    assert string_to_int('+9') == 9\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int(' ') \n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int(' 1 2 ')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('1 2')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('\\t')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('\\n')\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('5') == 5\n"
+    "    assert string_to_int('10') == 10\n"
+    "    assert string_to_int('-10') == -10\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('5-')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('-5-')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('+-5')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('1_000')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('10,000')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('1 000')\n",
+
+    "def test_string_to_int():\n"
+    "    assert string_to_int('42') == 42\n"
+    "    assert string_to_int('0042') == 42\n"
+    "    assert string_to_int('-0042') == -42\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('NaN')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('inf')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('-inf')\n",
+
+    "def test_string_to_int():\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('+')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('-')\n"
+    "    with pytest.raises(ValueError):\n"
+    "        string_to_int('+-')\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([]) == 0\n"
+    "    assert product_list([0]) == 0\n"
+    "    assert product_list([1]) == 1\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([2, 3]) == 6\n"
+    "    assert product_list([5, 1, 9]) == 45\n"
+    "    assert product_list([10, 0, 7]) == 0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([-1]) == -1\n"
+    "    assert product_list([-1, 2]) == -2\n"
+    "    assert product_list([-1, -2, -3]) == -6\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([0, -1, 2]) == 0\n"
+    "    assert product_list([-2, 0, -3]) == 0\n"
+    "    assert product_list([0, 0, 0]) == 0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([1, 1, 1]) == 1\n"
+    "    assert product_list([1, 2, 1, 2]) == 4\n"
+    "    assert product_list([2, 2, 2, 2]) == 16\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([10**9, 2]) == 2 * (10**9)\n"
+    "    assert product_list([10**6, 10**6]) == 10**12\n"
+    "    assert product_list([-10**9, 3]) == -3 * (10**9)\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([0.5, 2]) == 1.0\n"
+    "    assert product_list([0.1, 0.2]) == 0.020000000000000004\n"
+    "    assert product_list([-0.5, 2, -4]) == 4.0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([1e-12, 1e12]) == 1.0\n"
+    "    assert product_list([1e-308, 1e308]) == 1.0\n"
+    "    assert product_list([-1e-12, 1e12]) == -1.0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([float('inf'), 0]) != product_list([float('inf'), 1])\n"
+    "    assert product_list([float('inf'), 2]) == float('inf')\n"
+    "    assert product_list([float('-inf'), 2]) == float('-inf')\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([float('inf'), -1]) == float('-inf')\n"
+    "    assert product_list([float('-inf'), -1]) == float('inf')\n"
+    "    assert product_list([float('inf'), float('-inf')]) == float('-inf')\n",
+
+    "def test_product_list():\n"
+    "    r = product_list([float('nan')])\n"
+    "    assert r != r\n"
+    "    r2 = product_list([1, float('nan')])\n"
+    "    assert r2 != r2\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([True, True, True]) == 1\n"
+    "    assert product_list([True, False, True]) == 0\n"
+    "    assert product_list([True, 2, False]) == 0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([True, 2, 3]) == 6\n"
+    "    assert product_list([False, 5]) == 0\n"
+    "    assert product_list([True, -2]) == -2\n",
+
+    "def test_product_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list(123)\n",
+
+    "def test_product_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list([1, '2'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list(['3'])\n",
+
+    "def test_product_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list([1, None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list([None])\n",
+
+    "def test_product_list():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list([object()])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        product_list([1, object()])\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([1, -1, 1, -1]) == 1\n"
+    "    assert product_list([-1, -1, -1, -1]) == 1\n"
+    "    assert product_list([-1, -1, -1]) == -1\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([2, -3, 4]) == -24\n"
+    "    assert product_list([-2, -3, 4]) == 24\n"
+    "    assert product_list([-2, 3, -4]) == 24\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([0, 1, 2, 3]) == 0\n"
+    "    assert product_list([1, 2, 3, 0]) == 0\n"
+    "    assert product_list([0, -1, -2]) == 0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([1, 2, 3, 4, 5]) == 120\n"
+    "    assert product_list([1, 2, 3, 4, 5, 6]) == 720\n"
+    "    assert product_list([2, 3, 5, 7, 11]) == 2310\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([10**3, 10**3, 10**3]) == 10**9\n"
+    "    assert product_list([10**4, 10**4]) == 10**8\n"
+    "    assert product_list([-(10**4), 10**4]) == -(10**8)\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([0.0, -0.0, 2.0]) == 0.0\n"
+    "    assert product_list([-0.0, 3.0]) == -0.0\n"
+    "    assert product_list([0.0, 3.0]) == 0.0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([1.25, 0.0]) == 0.0\n"
+    "    assert product_list([1.25, 4]) == 5.0\n"
+    "    assert product_list([-1.25, 4]) == -5.0\n",
+
+    "def test_product_list():\n"
+    "    assert product_list([float('inf'), 0.0]) != float('inf')\n"
+    "    assert product_list([float('inf'), 0.0]) != float('-inf')\n"
+    "    assert product_list([float('-inf'), 0.0]) != float('inf')\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('', '') is True\n"
+    "    assert ends_with('a', '') is True\n"
+    "    assert ends_with('', 'a') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('hello', 'o') is True\n"
+    "    assert ends_with('hello', 'lo') is True\n"
+    "    assert ends_with('hello', 'll') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('test', 'test') is True\n"
+    "    assert ends_with('test', 'testing') is False\n"
+    "    assert ends_with('testing', 'test') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('abc', 'c') is True\n"
+    "    assert ends_with('abc', 'bc') is True\n"
+    "    assert ends_with('abc', 'abc') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('abc', 'a') is False\n"
+    "    assert ends_with('abc', 'ab') is False\n"
+    "    assert ends_with('abc', 'b') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('hello ', ' ') is True\n"
+    "    assert ends_with(' hello', 'hello') is True\n"
+    "    assert ends_with('hello', ' hello') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('line\\n', '\\n') is True\n"
+    "    assert ends_with('line\\n', 'line') is False\n"
+    "    assert ends_with('line', '\\n') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('tab\\t', '\\t') is True\n"
+    "    assert ends_with('tab\\t', 'b\\t') is True\n"
+    "    assert ends_with('tab', '\\t') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('😀😃😄', '😄') is True\n"
+    "    assert ends_with('😀😃😄', '😃😄') is True\n"
+    "    assert ends_with('😀😃😄', '😀') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('😊', '😊') is True\n"
+    "    assert ends_with('😊', '') is True\n"
+    "    assert ends_with('😊', 'a') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('CaseTest', 'Test') is True\n"
+    "    assert ends_with('CaseTest', 'test') is False\n"
+    "    assert ends_with('casetest', 'test') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('12345', '5') is True\n"
+    "    assert ends_with('12345', '45') is True\n"
+    "    assert ends_with('12345', '6') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('0.0', '0') is True\n"
+    "    assert ends_with('0.0', '.0') is True\n"
+    "    assert ends_with('0.0', '0.0') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('a b c', 'c') is True\n"
+    "    assert ends_with('a b c', ' c') is True\n"
+    "    assert ends_with('a b c', 'b c ') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('endswith', 'with') is True\n"
+    "    assert ends_with('endswith', 'ends') is False\n"
+    "    assert ends_with('endswith', 'h') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('repeatrepeat', 'repeat') is True\n"
+    "    assert ends_with('repeatrepeat', 'peat') is True\n"
+    "    assert ends_with('repeatrepeat', 'repeat ') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('ümlaut', 'laut') is True\n"
+    "    assert ends_with('ümlaut', 'ü') is False\n"
+    "    assert ends_with('ümlaut', 'aut') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('mañana', 'na') is True\n"
+    "    assert ends_with('mañana', 'ña') is False\n"
+    "    assert ends_with('mañana', 'ana') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('Ωmega', 'ega') is True\n"
+    "    assert ends_with('Ωmega', 'Ω') is False\n"
+    "    assert ends_with('Ωmega', 'mega') is True\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('x'*1000, 'x') is True\n"
+    "    assert ends_with('x'*1000, 'xx') is True\n"
+    "    assert ends_with('x'*1000, 'y') is False\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('abc\\0', '\\0') is True\n"
+    "    assert ends_with('abc\\0', 'c') is False\n"
+    "    assert ends_with('abc\\0', 'bc\\0') is True\n",
+
+    "def test_ends_with():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        ends_with(None, 'a')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        ends_with(123, '3')\n",
+
+    "def test_ends_with():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        ends_with('abc', None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        ends_with('abc', 1)\n",
+
+    "def test_ends_with():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        ends_with(['a','b','c'], 'c')\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        ends_with({'a':1}, '1')\n",
+
+    "def test_ends_with():\n"
+    "    assert ends_with('final.', '.') is True\n"
+    "    assert ends_with('final.', 'l.') is True\n"
+    "    assert ends_with('final.', 'final..') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('') is False\n"
+    "    assert is_lower('a') is True\n"
+    "    assert is_lower('A') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('abc') is True\n"
+    "    assert is_lower('abC') is False\n"
+    "    assert is_lower('ABC') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('abc123') is True\n"
+    "    assert is_lower('abc123!') is True\n"
+    "    assert is_lower('ABC123') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('with space') is True\n"
+    "    assert is_lower('with Space') is False\n"
+    "    assert is_lower(' ') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('ümlaut') is True\n"
+    "    assert is_lower('Ümlaut') is False\n"
+    "    assert is_lower('ß') is True\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('mañana') is True\n"
+    "    assert is_lower('Mañana') is False\n"
+    "    assert is_lower('ñ') is True\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('ωmega') is True\n"
+    "    assert is_lower('Ωmega') is False\n"
+    "    assert is_lower('ω') is True\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('lower_case') is True\n"
+    "    assert is_lower('Lower_case') is False\n"
+    "    assert is_lower('_') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('lower-case') is True\n"
+    "    assert is_lower('Lower-case') is False\n"
+    "    assert is_lower('-') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('abc\\n') is True\n"
+    "    assert is_lower('abc\\t') is True\n"
+    "    assert is_lower('Abc\\n') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('abc😊') is True\n"
+    "    assert is_lower('Abc😊') is False\n"
+    "    assert is_lower('😊') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('mixed123symbols!') is True\n"
+    "    assert is_lower('Mixed123symbols!') is False\n"
+    "    assert is_lower('123!') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('lowerlower') is True\n"
+    "    assert is_lower('LOWER') is False\n"
+    "    assert is_lower('LoWeR') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('a'*1000) is True\n"
+    "    assert is_lower(('a'*999)+'B') is False\n"
+    "    assert is_lower('') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('true') is True\n"
+    "    assert is_lower('false') is True\n"
+    "    assert is_lower('True') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('none') is True\n"
+    "    assert is_lower('None') is False\n"
+    "    assert is_lower('null') is True\n",
+
+    "def test_is_lower():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        is_lower(None)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        is_lower(123)\n",
+
+    "def test_is_lower():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        is_lower(['a','b'])\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        is_lower({'a':1})\n",
+
+    "def test_is_lower():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        is_lower(True)\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        is_lower(False)\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('áéíóú') is True\n"
+    "    assert is_lower('ÁÉÍÓÚ') is False\n"
+    "    assert is_lower('áÉí') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('русский') is True\n"
+    "    assert is_lower('Русский') is False\n"
+    "    assert is_lower('РУССКИЙ') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('παράδειγμα') is True\n"
+    "    assert is_lower('Παράδειγμα') is False\n"
+    "    assert is_lower('ΠΑΡΑ') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('lower😊case') is True\n"
+    "    assert is_lower('Lower😊case') is False\n"
+    "    assert is_lower('😊lower') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('endswithspace ') is True\n"
+    "    assert is_lower('Endswithspace ') is False\n"
+    "    assert is_lower(' ') is False\n",
+
+    "def test_is_lower():\n"
+    "    assert is_lower('tab\\tcase') is True\n"
+    "    assert is_lower('Tab\\tcase') is False\n"
+    "    assert is_lower('\\t') is False\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('') == ''\n"
+    "    assert normalize_whitespace('   ') == ''\n"
+    "    assert normalize_whitespace('\\n\\t') == ''\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('a') == 'a'\n"
+    "    assert normalize_whitespace(' a ') == 'a'\n"
+    "    assert normalize_whitespace('   a') == 'a'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('a   b') == 'a b'\n"
+    "    assert normalize_whitespace('a\\tb') == 'a b'\n"
+    "    assert normalize_whitespace('a\\n b') == 'a b'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('a\\n\\n\\nb') == 'a b'\n"
+    "    assert normalize_whitespace('a\\t\\t b') == 'a b'\n"
+    "    assert normalize_whitespace('a   \\n\\t  b') == 'a b'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('  a   b   c  ') == 'a b c'\n"
+    "    assert normalize_whitespace('a\\tb\\tc') == 'a b c'\n"
+    "    assert normalize_whitespace('a\\n b\\n c') == 'a b c'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('word') == 'word'\n"
+    "    assert normalize_whitespace(' word') == 'word'\n"
+    "    assert normalize_whitespace('word ') == 'word'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('multiple     spaces') == 'multiple spaces'\n"
+    "    assert normalize_whitespace('multiple\\nspaces') == 'multiple spaces'\n"
+    "    assert normalize_whitespace('multiple\\tspaces') == 'multiple spaces'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('a\\r\\nb') == 'a b'\n"
+    "    assert normalize_whitespace('a\\r b') == 'a b'\n"
+    "    assert normalize_whitespace('\\r\\n') == ''\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace(' a  b\\n c\\t d ') == 'a b c d'\n"
+    "    assert normalize_whitespace('x\\ny\\tz') == 'x y z'\n"
+    "    assert normalize_whitespace(' x\\t y ') == 'x y'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('😊   😊') == '😊 😊'\n"
+    "    assert normalize_whitespace('😊\\n😊') == '😊 😊'\n"
+    "    assert normalize_whitespace(' 😊 ') == '😊'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('mix\\t of\\n whitespace') == 'mix of whitespace'\n"
+    "    assert normalize_whitespace('mix\\r\\nwhitespace') == 'mix whitespace'\n"
+    "    assert normalize_whitespace('mix   whitespace') == 'mix whitespace'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('A   B   C') == 'A B C'\n"
+    "    assert normalize_whitespace('A\\nB\\nC') == 'A B C'\n"
+    "    assert normalize_whitespace('A\\tB\\tC') == 'A B C'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('123   456') == '123 456'\n"
+    "    assert normalize_whitespace('123\\n456') == '123 456'\n"
+    "    assert normalize_whitespace('  123  ') == '123'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('!   @   #') == '! @ #'\n"
+    "    assert normalize_whitespace('!\\n@\\n#') == '! @ #'\n"
+    "    assert normalize_whitespace(' ! ') == '!'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('a\\u2003b') == 'a b'\n"
+    "    assert normalize_whitespace('a\\u2009b') == 'a b'\n"
+    "    assert normalize_whitespace('\\u2003') == ''\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('line1\\n\\nline2') == 'line1 line2'\n"
+    "    assert normalize_whitespace('line1\\t\\tline2') == 'line1 line2'\n"
+    "    assert normalize_whitespace('line1   line2') == 'line1 line2'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace(' spaced\\tout ') == 'spaced out'\n"
+    "    assert normalize_whitespace('\\tspaced\\t') == 'spaced'\n"
+    "    assert normalize_whitespace('\\nspaced\\n') == 'spaced'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('a\\fb') == 'a b'\n"
+    "    assert normalize_whitespace('a\\vb') == 'a b'\n"
+    "    assert normalize_whitespace('\\f') == ''\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('many\\n\\t\\r spaces') == 'many spaces'\n"
+    "    assert normalize_whitespace('many\\r\\nspaces') == 'many spaces'\n"
+    "    assert normalize_whitespace('many   spaces') == 'many spaces'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('中文   空格') == '中文 空格'\n"
+    "    assert normalize_whitespace('中文\\n空格') == '中文 空格'\n"
+    "    assert normalize_whitespace(' 中文 ') == '中文'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('русский   текст') == 'русский текст'\n"
+    "    assert normalize_whitespace('русский\\nтекст') == 'русский текст'\n"
+    "    assert normalize_whitespace(' русский ') == 'русский'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    assert normalize_whitespace('end   ') == 'end'\n"
+    "    assert normalize_whitespace('   start') == 'start'\n"
+    "    assert normalize_whitespace('   both   ') == 'both'\n",
+
+    "def test_normalize_whitespace():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_whitespace(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_whitespace(123)\n",
+
+    "def test_normalize_whitespace():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_whitespace(['a', 'b'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_whitespace({'a': 1})\n",
+
+    "def test_normalize_whitespace():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_whitespace(object())\n"
+    "    with pytest.raises(TypeError):\n"
+    "        normalize_whitespace(True)\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('') == ''\n"
+    "    assert strip_numbers('123') == ''\n"
+    "    assert strip_numbers('abc') == 'abc'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('a1b2c3') == 'abc'\n"
+    "    assert strip_numbers('1a2b3c') == 'abc'\n"
+    "    assert strip_numbers('abc123') == 'abc'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('123abc456') == 'abc'\n"
+    "    assert strip_numbers('0a0b0') == 'ab'\n"
+    "    assert strip_numbers('9x9') == 'x'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('no numbers here') == 'no numbers here'\n"
+    "    assert strip_numbers(' 1 2 3 ') == '   '\n"
+    "    assert strip_numbers('a 1 b 2') == 'a  b '\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('v2.0') == 'v.'\n"
+    "    assert strip_numbers('version10beta') == 'versionbeta'\n"
+    "    assert strip_numbers('file2024name') == 'filename'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('😊1😊2') == '😊😊'\n"
+    "    assert strip_numbers('1😊2') == '😊'\n"
+    "    assert strip_numbers('😊') == '😊'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('\\n1\\n2') == '\\n\\n'\n"
+    "    assert strip_numbers('\\t3\\t') == '\\t\\t'\n"
+    "    assert strip_numbers('4\\n5') == '\\n'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('mix123mix') == 'mixmix'\n"
+    "    assert strip_numbers('123mix123') == 'mix'\n"
+    "    assert strip_numbers('m1i2x3') == 'mix'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('000abc') == 'abc'\n"
+    "    assert strip_numbers('abc000') == 'abc'\n"
+    "    assert strip_numbers('0a0b0c0') == 'abc'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('1_2_3') == '__'\n"
+    "    assert strip_numbers('a1_b2') == 'a_b'\n"
+    "    assert strip_numbers('x9_y') == 'x_y'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('1-2-3') == '--'\n"
+    "    assert strip_numbers('2024-01-01') == '--'\n"
+    "    assert strip_numbers('v1-beta2') == 'v-beta'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('1.2.3') == '..'\n"
+    "    assert strip_numbers('pi3.14') == 'pi.'\n"
+    "    assert strip_numbers('0.001') == '.'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('abc\\t123') == 'abc\\t'\n"
+    "    assert strip_numbers('123\\tabc') == '\\tabc'\n"
+    "    assert strip_numbers('a\\t1\\tb') == 'a\\t\\tb'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('١٢٣abc') == 'abc'\n"
+    "    assert strip_numbers('abc٤٥٦') == 'abc'\n"
+    "    assert strip_numbers('٧a٨') == 'a'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('1e10') == 'e'\n"
+    "    assert strip_numbers('x2y3z') == 'xyz'\n"
+    "    assert strip_numbers('2fast4you') == 'fastyou'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers(' 123 ') == '  '\n"
+    "    assert strip_numbers(' a1 ') == ' a '\n"
+    "    assert strip_numbers('1 a 2') == ' a '\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('123\\n456') == '\\n'\n"
+    "    assert strip_numbers('\\n1\\n') == '\\n\\n'\n"
+    "    assert strip_numbers('a\\n1b') == 'a\\nb'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('room101') == 'room'\n"
+    "    assert strip_numbers('error404notfound') == 'errornotfound'\n"
+    "    assert strip_numbers('catch22') == 'catch'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('99bottles') == 'bottles'\n"
+    "    assert strip_numbers('bottles99') == 'bottles'\n"
+    "    assert strip_numbers('9lives') == 'lives'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('1😊2a3') == '😊a'\n"
+    "    assert strip_numbers('😊123') == '😊'\n"
+    "    assert strip_numbers('123😊') == '😊'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('1*2+3') == '*+'\n"
+    "    assert strip_numbers('a1+b2') == 'a+b'\n"
+    "    assert strip_numbers('9*9') == '*'\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('000') == ''\n"
+    "    assert strip_numbers('007bond') == 'bond'\n"
+    "    assert strip_numbers('bond007') == 'bond'\n",
+
+    "def test_strip_numbers():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        strip_numbers(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        strip_numbers(123)\n",
+
+    "def test_strip_numbers():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        strip_numbers(True)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        strip_numbers(['1','2'])\n",
+
+    "def test_strip_numbers():\n"
+    "    assert strip_numbers('१२३abc') == 'abc'\n"
+    "    assert strip_numbers('abc१२३') == 'abc'\n"
+    "    assert strip_numbers('१a२b३') == 'ab'\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('') == 0\n"
+    "    assert count_vowels('bcdfg') == 0\n"
+    "    assert count_vowels('aeiou') == 5\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('AEIOU') == 5\n"
+    "    assert count_vowels('AeIoU') == 5\n"
+    "    assert count_vowels('aEi') == 3\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('hello') == 2\n"
+    "    assert count_vowels('HELLO') == 2\n"
+    "    assert count_vowels('hEllO') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels(' ') == 0\n"
+    "    assert count_vowels('   ') == 0\n"
+    "    assert count_vowels(' a ') == 1\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('123') == 0\n"
+    "    assert count_vowels('a1e2i3') == 3\n"
+    "    assert count_vowels('1a2b3c') == 1\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('!@#$') == 0\n"
+    "    assert count_vowels('a!e@i#') == 3\n"
+    "    assert count_vowels('u?o!') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('😊') == 0\n"
+    "    assert count_vowels('😊a😊') == 1\n"
+    "    assert count_vowels('😊AE😊') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('\\n') == 0\n"
+    "    assert count_vowels('\\ta') == 1\n"
+    "    assert count_vowels('a\\n e') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('y') == 0\n"
+    "    assert count_vowels('Yay') == 1\n"
+    "    assert count_vowels('yay') == 1\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('queue') == 4\n"
+    "    assert count_vowels('beautiful') == 5\n"
+    "    assert count_vowels('education') == 5\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('AaAa') == 4\n"
+    "    assert count_vowels('EeEe') == 4\n"
+    "    assert count_vowels('IiIi') == 4\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('mixED CaSe') == 4\n"
+    "    assert count_vowels('LOWERcase') == 4\n"
+    "    assert count_vowels('UPPER') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('longstringwithoutvowels') == 7\n"
+    "    assert count_vowels('rhythm') == 0\n"
+    "    assert count_vowels('crypt') == 0\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('a'*100) == 100\n"
+    "    assert count_vowels('b'*100) == 0\n"
+    "    assert count_vowels(('ab'*50)) == 50\n",
+
+    "def test_count_vowels():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_vowels(None)\n",
+
+    "def test_count_vowels():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_vowels(123)\n",
+
+    "def test_count_vowels():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_vowels(['a','e','i'])\n",
+
+    "def test_count_vowels():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_vowels({'a':1})\n",
+
+    "def test_count_vowels():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_vowels(3.14)\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('a e i o u') == 5\n"
+    "    assert count_vowels('a-e-i-o-u') == 5\n"
+    "    assert count_vowels('a_e_i_o_u') == 5\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('áéíóú') == 0\n"
+    "    assert count_vowels('àèìòù') == 0\n"
+    "    assert count_vowels('âêîôû') == 0\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('a\\tb\\nc') == 1\n"
+    "    assert count_vowels('\\n\\t') == 0\n"
+    "    assert count_vowels('e\\n\\ta') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('0a0e0i0o0u0') == 5\n"
+    "    assert count_vowels('v0w1x2') == 0\n"
+    "    assert count_vowels('i9o8') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('end') == 1\n"
+    "    assert count_vowels('EDGE') == 2\n"
+    "    assert count_vowels('CASE') == 2\n",
+
+    "def test_count_vowels():\n"
+    "    assert count_vowels('a'*1) == 1\n"
+    "    assert count_vowels('e'*2) == 2\n"
+    "    assert count_vowels('o'*3) == 3\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('') == 0\n"
+    "    assert count_consonants('aeiou') == 0\n"
+    "    assert count_consonants('bcdfg') == 5\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('AEIOU') == 0\n"
+    "    assert count_consonants('BCDF') == 4\n"
+    "    assert count_consonants('AbCdE') == 2\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('hello') == 3\n"
+    "    assert count_consonants('HELLO') == 3\n"
+    "    assert count_consonants('hEllO') == 3\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants(' ') == 0\n"
+    "    assert count_consonants('   ') == 0\n"
+    "    assert count_consonants(' a ') == 0\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('123') == 0\n"
+    "    assert count_consonants('a1b2c3') == 2\n"
+    "    assert count_consonants('1a2e3') == 0\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('!@#$') == 0\n"
+    "    assert count_consonants('b!c@d#') == 3\n"
+    "    assert count_consonants('!a!') == 0\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('😊') == 0\n"
+    "    assert count_consonants('😊b😊') == 1\n"
+    "    assert count_consonants('😊AE😊') == 0\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('\\n') == 0\n"
+    "    assert count_consonants('\\tb') == 1\n"
+    "    assert count_consonants('b\\n c') == 2\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('y') == 1\n"
+    "    assert count_consonants('Yay') == 2\n"
+    "    assert count_consonants('rhythm') == 6\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('queue') == 0\n"
+    "    assert count_consonants('beautiful') == 4\n"
+    "    assert count_consonants('education') == 4\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('AaAa') == 0\n"
+    "    assert count_consonants('BbBb') == 4\n"
+    "    assert count_consonants('CcCc') == 4\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('mixED CaSe') == 5\n"
+    "    assert count_consonants('LOWERcase') == 5\n"
+    "    assert count_consonants('UPPER') == 3\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('longstringwithoutvowels') == 17\n"
+    "    assert count_consonants('crypt') == 5\n"
+    "    assert count_consonants('myths') == 5\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('b'*100) == 100\n"
+    "    assert count_consonants('a'*100) == 0\n"
+    "    assert count_consonants(('ab'*50)) == 50\n",
+
+    "def test_count_consonants():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_consonants(None)\n",
+
+    "def test_count_consonants():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_consonants(123)\n",
+
+    "def test_count_consonants():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_consonants(['b','c'])\n",
+
+    "def test_count_consonants():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_consonants({'a':1})\n",
+
+    "def test_count_consonants():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        count_consonants(3.14)\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('b c d') == 3\n"
+    "    assert count_consonants('b-c-d') == 3\n"
+    "    assert count_consonants('b_c_d') == 3\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('áéíóú') == 0\n"
+    "    assert count_consonants('çñß') == 3\n"
+    "    assert count_consonants('üöä') == 3\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('b\\tb\\nc') == 3\n"
+    "    assert count_consonants('\\n\\t') == 0\n"
+    "    assert count_consonants('d\\n\\tf') == 2\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('0b0c0d0') == 3\n"
+    "    assert count_consonants('v0w1x2') == 3\n"
+    "    assert count_consonants('i9o8') == 0\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('end') == 2\n"
+    "    assert count_consonants('EDGE') == 2\n"
+    "    assert count_consonants('CASE') == 2\n",
+
+    "def test_count_consonants():\n"
+    "    assert count_consonants('b'*1) == 1\n"
+    "    assert count_consonants('c'*2) == 2\n"
+    "    assert count_consonants('d'*3) == 3\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('CamelCase') == 'camel_case'\n"
+    "    assert to_snake_case('camelCase') == 'camel_case'\n"
+    "    assert to_snake_case('Camel') == 'camel'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('') == ''\n"
+    "    assert to_snake_case('A') == 'a'\n"
+    "    assert to_snake_case('a') == 'a'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('Already_Snake') == 'already__snake'\n"
+    "    assert to_snake_case('already_snake') == 'already_snake'\n"
+    "    assert to_snake_case('_Leading') == '_leading'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('HTTPServer') == 'h_t_t_p_server'\n"
+    "    assert to_snake_case('JSONDataAPI') == 'j_s_o_n_data_a_p_i'\n"
+    "    assert to_snake_case('XML') == 'x_m_l'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('lowercase') == 'lowercase'\n"
+    "    assert to_snake_case('UPPERCASE') == 'u_p_p_e_r_c_a_s_e'\n"
+    "    assert to_snake_case('MiXeD') == 'mi_xe_d'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('withNumber1') == 'with_number1'\n"
+    "    assert to_snake_case('Version2Test') == 'version2_test'\n"
+    "    assert to_snake_case('Test123Case') == 'test123_case'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('Space Here') == 'space _here'\n"
+    "    assert to_snake_case('Two Words') == 'two _words'\n"
+    "    assert to_snake_case('Word With Space') == 'word _with _space'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('dash-Case') == 'dash-_case'\n"
+    "    assert to_snake_case('dot.Case') == 'dot._case'\n"
+    "    assert to_snake_case('slash/Case') == 'slash/_case'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('ÜnicodeTest') == 'ünicode_test'\n"
+    "    assert to_snake_case('ÄÖÜ') == 'ä_ö_ü'\n"
+    "    assert to_snake_case('ßTest') == 'ß_test'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('Emoji😊Test') == 'emoji😊_test'\n"
+    "    assert to_snake_case('😊Smile') == '😊_smile'\n"
+    "    assert to_snake_case('Smile😊') == 'smile😊'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('123Test') == '123_test'\n"
+    "    assert to_snake_case('Test123') == 'test123'\n"
+    "    assert to_snake_case('1A2B') == '1_a2_b'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('___') == '___'\n"
+    "    assert to_snake_case('__Test') == '__test'\n"
+    "    assert to_snake_case('Test__Case') == 'test__case'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('aB') == 'a_b'\n"
+    "    assert to_snake_case('Ab') == 'ab'\n"
+    "    assert to_snake_case('AB') == 'a_b'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('Trailing_') == 'trailing_'\n"
+    "    assert to_snake_case('_Leading_') == '_leading_'\n"
+    "    assert to_snake_case('_Both_Ends_') == '_both__ends_'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('line\\nBreak') == 'line\\n_break'\n"
+    "    assert to_snake_case('tab\\tCase') == 'tab\\t_case'\n"
+    "    assert to_snake_case('new\\rLine') == 'new\\r_line'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('a'*50) == 'a'*50\n"
+    "    assert to_snake_case('A'*5) == 'a_a_a_a_a'\n"
+    "    assert to_snake_case('aA'*3) == 'a_a_a_a_a_a'\n",
+
+    "def test_to_snake_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        to_snake_case(None)\n",
+
+    "def test_to_snake_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        to_snake_case(123)\n",
+
+    "def test_to_snake_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        to_snake_case(['Test'])\n",
+
+    "def test_to_snake_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        to_snake_case({'a': 1})\n",
+
+    "def test_to_snake_case():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        to_snake_case(3.14)\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('EndsWithUpperX') == 'ends_with_upper_x'\n"
+    "    assert to_snake_case('xEndsWithUpper') == 'x_ends_with_upper'\n"
+    "    assert to_snake_case('XYz') == 'x_yz'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('Already__Snake') == 'already__snake'\n"
+    "    assert to_snake_case('snake__Case') == 'snake__case'\n"
+    "    assert to_snake_case('__snake') == '__snake'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('Z') == 'z'\n"
+    "    assert to_snake_case('zZ') == 'z_z'\n"
+    "    assert to_snake_case('Zz') == 'zz'\n",
+
+    "def test_to_snake_case():\n"
+    "    assert to_snake_case('FinalEdgeCase') == 'final_edge_case'\n"
+    "    assert to_snake_case('EdgeCASETest') == 'edge_c_a_s_e_test'\n"
+    "    assert to_snake_case('TestCASE') == 'test_c_a_s_e'\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('') == 0\n"
+    "    assert count_words(' ') == 0\n"
+    "    assert count_words('   ') == 0\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('one') == 1\n"
+    "    assert count_words('one two') == 2\n"
+    "    assert count_words('one two three') == 3\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('  leading') == 1\n"
+    "    assert count_words('trailing  ') == 1\n"
+    "    assert count_words('  both  ') == 1\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('multiple   spaces here') == 3\n"
+    "    assert count_words('a   b   c') == 3\n"
+    "    assert count_words('word    ') == 1\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('line\\nbreak') == 2\n"
+    "    assert count_words('line\\nline\\nline') == 3\n"
+    "    assert count_words('\\n') == 0\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('tab\\tseparated') == 2\n"
+    "    assert count_words('a\\tb\\tc') == 3\n"
+    "    assert count_words('\\t') == 0\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('mix \\t of \\n whitespace') == 4\n"
+    "    assert count_words(' \\n \\t ') == 0\n"
+    "    assert count_words('a \\n b') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('punctuation! here.') == 2\n"
+    "    assert count_words('hello, world!') == 2\n"
+    "    assert count_words('end.') == 1\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('😊') == 1\n"
+    "    assert count_words('😊 😊') == 2\n"
+    "    assert count_words('😊  😊  😊') == 3\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('数字 テスト') == 2\n"
+    "    assert count_words('こんにちは') == 1\n"
+    "    assert count_words('こんにちは 世界') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('123 456 789') == 3\n"
+    "    assert count_words('1  2   3') == 3\n"
+    "    assert count_words('42') == 1\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('UPPER lower MiXeD') == 3\n"
+    "    assert count_words('CASE') == 1\n"
+    "    assert count_words('case test') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('word-word test') == 2\n"
+    "    assert count_words('dash-separated-words') == 1\n"
+    "    assert count_words('dash - separated') == 3\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('a'*100) == 1\n"
+    "    assert count_words(('a '*50).strip()) == 50\n"
+    "    assert count_words(' '.join(['x']*10)) == 10\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('a\\rb\\rc') == 3\n"
+    "    assert count_words('\\r') == 0\n"
+    "    assert count_words('a\\r b') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words(' spaced   out   text ') == 3\n"
+    "    assert count_words('tight') == 1\n"
+    "    assert count_words(' very   spaced ') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('underscore_word') == 1\n"
+    "    assert count_words('two_words_here') == 1\n"
+    "    assert count_words('two words_here') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('! @ #') == 3\n"
+    "    assert count_words('@!') == 1\n"
+    "    assert count_words('!   !') == 2\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('a b\\n c') == 3\n"
+    "    assert count_words('a\\n\\n b') == 2\n"
+    "    assert count_words('\\n a \\n') == 1\n",
+
+    "def test_count_words():\n"
+    "    assert count_words('word\\tword') == 2\n"
+    "    assert count_words('word\\t\\tword') == 2\n"
+    "    assert count_words('\\tword') == 1\n",
+
+    "def test_count_words():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        count_words(None)\n",
+
+    "def test_count_words():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        count_words(123)\n",
+
+    "def test_count_words():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        count_words(['a', 'b'])\n",
+
+    "def test_count_words():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        count_words({'a': 1})\n",
+
+    "def test_count_words():\n"
+    "    with pytest.raises(AttributeError):\n"
+    "        count_words(3.14)\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(1) == True\n"
+    "    assert is_positive(0) == False\n"
+    "    assert is_positive(-1) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(10**6) == True\n"
+    "    assert is_positive(-(10**6)) == False\n"
+    "    assert is_positive(1) == True\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(0.0001) == True\n"
+    "    assert is_positive(-0.0001) == False\n"
+    "    assert is_positive(0.0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(True) == True\n"
+    "    assert is_positive(False) == False\n"
+    "    assert is_positive(1) == True\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(-999999999) == False\n"
+    "    assert is_positive(999999999) == True\n"
+    "    assert is_positive(0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(1e9) == True\n"
+    "    assert is_positive(-1e9) == False\n"
+    "    assert is_positive(1e-9) == True\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(-1e-9) == False\n"
+    "    assert is_positive(2.5) == True\n"
+    "    assert is_positive(-2.5) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(1) == True\n"
+    "    assert is_positive(-0) == False\n"
+    "    assert is_positive(+0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(2147483647) == True\n"
+    "    assert is_positive(-2147483648) == False\n"
+    "    assert is_positive(0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(3.14159) == True\n"
+    "    assert is_positive(-3.14159) == False\n"
+    "    assert is_positive(0.0000) == False\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive(None)\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive('1')\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive('0')\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive([1])\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive([])\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive({})\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive({'a': 1})\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive((1,))\n",
+
+    "def test_is_positive():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        is_positive(object())\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(2**63) == True\n"
+    "    assert is_positive(-(2**63)) == False\n"
+    "    assert is_positive(1) == True\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(0.0000000001) == True\n"
+    "    assert is_positive(-0.0000000001) == False\n"
+    "    assert is_positive(0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(5) == True\n"
+    "    assert is_positive(-5) == False\n"
+    "    assert is_positive(0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(42) == True\n"
+    "    assert is_positive(-42) == False\n"
+    "    assert is_positive(0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(1.0) == True\n"
+    "    assert is_positive(-1.0) == False\n"
+    "    assert is_positive(0.0) == False\n",
+
+    "def test_is_positive():\n"
+    "    assert is_positive(7) == True\n"
+    "    assert is_positive(-7) == False\n"
+    "    assert is_positive(0) == False\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([]) == 0\n"
+    "    assert harmonic_mean([1]) == 1\n"
+    "    assert harmonic_mean([2]) == 2\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([1, 1]) == 1\n"
+    "    assert harmonic_mean([2, 2]) == 2\n"
+    "    assert harmonic_mean([1, 2]) == 4/3\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([1, 2, 4]) == 3 / (1 + 0.5 + 0.25)\n"
+    "    assert harmonic_mean([2, 4, 8]) == 3 / (0.5 + 0.25 + 0.125)\n"
+    "    assert harmonic_mean([1, 3, 5]) > 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([0.5, 0.5]) == 0.5\n"
+    "    assert harmonic_mean([0.25, 0.5]) == 2 / (4 + 2)\n"
+    "    assert harmonic_mean([1.0, 2.0]) == 4/3\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([-1, -1]) == -1\n"
+    "    assert harmonic_mean([-1, -2]) == 2 / (-1 - 0.5)\n"
+    "    assert harmonic_mean([-2, -4]) == -8/3\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        harmonic_mean([0])\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        harmonic_mean([1, 0])\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean(None)\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean(5)\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean(['1', '2'])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([1, '2'])\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([10**6, 10**6]) == 10**6\n"
+    "    assert harmonic_mean([1e-6, 1e-6]) == 1e-6\n"
+    "    assert harmonic_mean([1e-3, 1e-6]) > 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([True, True]) == 1\n"
+    "    assert harmonic_mean([True, False]) == 0\n"
+    "    assert harmonic_mean([False]) == 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        harmonic_mean([0, 0, 1])\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([3, 6]) == 2 * 3 * 6 / (3 + 6)\n"
+    "    assert harmonic_mean([5, 10]) == 2 * 5 * 10 / (5 + 10)\n"
+    "    assert harmonic_mean([7, 14]) == 2 * 7 * 14 / (7 + 14)\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([1, None])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([object()])\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([1, 1, 1, 1]) == 1\n"
+    "    assert harmonic_mean([2, 2, 2, 2]) == 2\n"
+    "    assert harmonic_mean([1, 2, 3, 6]) > 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([0.1, 0.1]) == 0.1\n"
+    "    assert harmonic_mean([0.2, 0.4]) == 2 / (5 + 2.5)\n"
+    "    assert harmonic_mean([0.5, 1.0]) == 2 / (2 + 1)\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([1, 2, 3]) == 3 / (1 + 0.5 + 1/3)\n"
+    "    assert harmonic_mean([3, 3, 3]) == 3\n"
+    "    assert harmonic_mean([2, 3, 6]) > 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        harmonic_mean([0, 1, 2])\n"
+    "    with pytest.raises(ZeroDivisionError):\n"
+    "        harmonic_mean([2, 0, 2])\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([1e-9, 1e-9]) == 1e-9\n"
+    "    assert harmonic_mean([1e-12, 1e-6]) > 0\n"
+    "    assert harmonic_mean([1e-3, 1e-3, 1e-3]) == 1e-3\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([-0.5, -0.5]) == -0.5\n"
+    "    assert harmonic_mean([-1, -3]) == 2 / (-1 - 1/3)\n"
+    "    assert harmonic_mean([-2, -2, -2]) == -2\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([True, 2])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([False, 1])\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([100, 200]) == 2 / (0.01 + 0.005)\n"
+    "    assert harmonic_mean([50, 100, 200]) > 0\n"
+    "    assert harmonic_mean([10, 20, 40]) > 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([[], []])\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean([[1], [2]])\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([1, 1, 2, 2]) == 4 / (1 + 1 + 0.5 + 0.5)\n"
+    "    assert harmonic_mean([4, 4, 4, 4]) == 4\n"
+    "    assert harmonic_mean([1, 4, 4]) > 0\n",
+
+    "def test_harmonic_mean():\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean('123')\n"
+    "    with pytest.raises(TypeError):\n"
+    "        harmonic_mean({'a': 1})\n",
+
+    "def test_harmonic_mean():\n"
+    "    assert harmonic_mean([2, 2.0]) == 2\n"
+    "    assert harmonic_mean([1.0, 2.0, 4.0]) == 3 / (1 + 0.5 + 0.25)\n"
+    "    assert harmonic_mean([0.25, 0.25]) == 0.25\n",
 ]
 
 # ----------------------------
