@@ -262,7 +262,9 @@ class CreateTestItemView(APIView):
             raw_code = pasted_code
         else:
             try:
+                uploaded_file.seek(0)
                 raw_code = uploaded_file.read().decode("utf-8")
+                uploaded_file.seek(0)
             except Exception:
                 return Response(
                     {"error": "Failed to read uploaded file as UTF-8."},
@@ -298,7 +300,20 @@ class CreateTestItemView(APIView):
 
         # Generate tests (first-pass: beam; regenerate uses sampling)
         try:
-            test_output = generate_test_from_code(raw_code, mode="base",)
+            mode = (
+                request.data.get("mode")
+                or request.query_params.get("mode")
+                or "base"
+            ).strip().lower()
+
+            if mode not in {"base", "edge"}:
+                mode = "base"
+
+            print(
+                f"[api] mode received = {mode!r}, content_type={request.content_type}")
+            print(f"[api] data keys = {list(request.data.keys())}")
+
+            test_output = generate_test_from_code(raw_code, mode=mode,)
             # Validate generated Python to avoid returning broken code
             ast.parse(test_output)
         except SyntaxError as e:
@@ -318,7 +333,7 @@ class CreateTestItemView(APIView):
             pasted_code=pasted_code if pasted_code else None,
             uploaded_code=uploaded_file if uploaded_file else None,
             generated_tests=test_output,
-            meta={"origin": "generate", "strategy": "beam"},
+            meta={"origin": "generate", "strategy": "beam", "mode": mode},
         )
 
         session.updated_at = timezone.now()
@@ -399,7 +414,9 @@ class RegenerateTestView(APIView):
             raw_code = item.pasted_code
         elif item.uploaded_code:
             try:
+                item.uploaded_code.open("rb")
                 raw_code = item.uploaded_code.read().decode("utf-8")
+                item.uploaded_code.close()
             except Exception:
                 return Response(
                     {"error": "Failed to read uploaded file as UTF-8."},
@@ -414,10 +431,23 @@ class RegenerateTestView(APIView):
         previous_tests = item.generated_tests or ""
 
         try:
+            mode = (
+                request.data.get("mode")
+                or request.query_params.get("mode")
+                or "base"
+            ).strip().lower()
+
+            if mode not in {"base", "edge"}:
+                mode = "base"
+
+            print(
+                f"[api] mode received = {mode!r}, content_type={request.content_type}")
+            print(f"[api] data keys = {list(request.data.keys())}")
+
             new_tests = regenerate_tests_from_code(
                 raw_code,
                 previous_tests=previous_tests,
-                mode="base",
+                mode=mode,
             )
 
             # extra safety: make sure we got a string back
@@ -448,7 +478,8 @@ class RegenerateTestView(APIView):
 
         # keep meta as dict, but mark that this came from regeneration
         meta = item.meta or {}
-        meta.update({"origin": "regenerate", "strategy": "sample"})
+        meta.update({"origin": "regenerate",
+                    "strategy": "sample", "mode": mode})
         item.meta = meta
 
         item.save(update_fields=["generated_tests", "meta"])

@@ -36,6 +36,13 @@ export default function Dashboard() {
   const [renameValue, setRenameValue] = useState("");
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [modelMode, setModelMode] = useState(() => {
+  return localStorage.getItem("unittestlab:modelMode") || "base";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("unittestlab:modelMode", modelMode);
+  }, [modelMode]);
 
   // ---------------- Data fetch ----------------
   const sessionsQ = useQuery({
@@ -170,7 +177,7 @@ export default function Dashboard() {
   });
 
 const regenMut = useMutation({
-  mutationFn: ({ sessionId, itemId }) => regenerate(sessionId, itemId),
+  mutationFn: ({ sessionId, itemId, modelMode }) => regenerate(sessionId, itemId, modelMode),
 
   onMutate: () => {
     setToast("Regeneration started…");
@@ -610,6 +617,30 @@ const regenMut = useMutation({
             >
               Upload .py
             </button>
+            {/* ✅ Model dropdown pill */}
+            <div style={{ marginLeft: 8, display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ opacity: 0.75, fontSize: 13 }}>Model</span>
+              <select
+                value={modelMode}
+                onChange={(e) => setModelMode(e.target.value)}
+                style={{
+                  padding: "7px 10px",
+                  borderRadius: 10,
+                  background: "rgba(255,255,255,0.06)",
+                  color: "#fff",
+                  border: "1px solid rgba(255,255,255,.18)",
+                  cursor: "pointer",
+                  outline: "none",
+                }}
+              >
+                <option value="base" style={{ color: "#111" }}>
+                  Base (Standard)
+                </option>
+                <option value="edge" style={{ color: "#111" }}>
+                  Edge (Edge-case)
+                </option>
+              </select>
+            </div>
           </div>
 
           {/* Paste mode */}
@@ -619,7 +650,7 @@ const regenMut = useMutation({
                 e.preventDefault();
                 const trimmed = code.trim();
                 if (!trimmed || !activeId) return;
-                addItemMut.mutate({ pasted_code: trimmed });
+                addItemMut.mutate({ pasted_code: trimmed, modelMode });
                 setCode("");
               }}
               style={{ display: "flex", gap: 12, alignItems: "stretch" }}
@@ -653,7 +684,7 @@ const regenMut = useMutation({
                   return;
                 }
                 if (!activeId) return;
-                addItemMut.mutate({ file });
+                addItemMut.mutate({ file, modelMode });
               }}
               style={{
                 display: "flex",
@@ -827,7 +858,7 @@ const regenMut = useMutation({
                         type="button"
                         disabled={isBusy}
                         onClick={() =>
-                          regenMut.mutate({ sessionId: activeId, itemId: it.id })
+                          regenMut.mutate({ sessionId: activeId, itemId: it.id, modelMode })
                         }
                         style={{
                           border: "none",
