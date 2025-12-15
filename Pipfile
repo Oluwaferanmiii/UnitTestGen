@@ -21,6 +21,7 @@ python-dotenv = "*"
 pylint-django = "*"
 
 [dev-packages]
+pytest = "*"
 
 [requires]
 python_version = "3.12"

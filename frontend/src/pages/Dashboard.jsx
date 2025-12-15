@@ -1,7 +1,7 @@
 // src/pages/Dashboard.jsx
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import { logout } from "../api/auth";
 import {
   listSessions,
@@ -16,6 +16,7 @@ import CodeEditor from "../components/CodeEditor";
 
 export default function Dashboard() {
   const nav = useNavigate();
+  const { sessionId } = useParams();
   const qc = useQueryClient();
 
   // ---------------- UI state ----------------
@@ -39,6 +40,7 @@ export default function Dashboard() {
   const [modelMode, setModelMode] = useState(() => {
   return localStorage.getItem("unittestlab:modelMode") || "base";
   });
+  const [displayTitle, setDisplayTitle] = useState("New Session");
 
   useEffect(() => {
     localStorage.setItem("unittestlab:modelMode", modelMode);
@@ -48,15 +50,31 @@ export default function Dashboard() {
   const sessionsQ = useQuery({
     queryKey: ["sessions"],
     queryFn: listSessions,
+    placeholderData: (prev) => prev,     
+    refetchOnWindowFocus: false,         
+    staleTime: 30_000, 
   });
 
-  // 1️⃣ Auto-select most recent session
+  //Auto-select current or most recent session (URl-aware version)
   useEffect(() => {
-    if (!sessionsQ.data || sessionsQ.data.length === 0) return;
-    if (activeId == null) {
-      setActiveId(sessionsQ.data[0].id);
+    const sessions = sessionsQ.data ?? [];
+    if (sessions.length === 0) return;
+
+    const urlId = sessionId ? Number(sessionId) : null;
+
+    // 1) If URL has an id and it exists, select it
+    if (urlId != null && sessions.some((s) => s.id === urlId)) {
+      if (activeId !== urlId) setActiveId(urlId);
+      return;
     }
-  }, [sessionsQ.data, activeId]);
+
+    // 2) Otherwise fall back to first session
+    if (activeId == null) {
+      const first = sessions[0].id;
+      setActiveId(first);
+      nav(`/dashboard/${first}`, { replace: true }); // ✅ keep URL in sync
+    }
+  }, [sessionsQ.data, sessionId, activeId, nav]);
 
   // 2️⃣ Handle outside-click to close menu
   useEffect(() => {
@@ -87,6 +105,12 @@ export default function Dashboard() {
     queryKey: ["session", activeId],
     queryFn: () => getSession(activeId),
     enabled: !!activeId,
+    placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+    retry: 1,
+    staleTime: 30_000,
+    gcTime: 10 * 60 * 1000,
   });
 
 
@@ -96,6 +120,7 @@ export default function Dashboard() {
     onSuccess: (created) => {
       qc.invalidateQueries({ queryKey: ["sessions"] });
       setActiveId(created.id);
+      nav(`/dashboard/${created.id}`);
       setToast("New session created.");
       setTimeout(() => setToast(""), 1200);
     },
@@ -150,6 +175,9 @@ export default function Dashboard() {
       if (deletedId === activeId) {
         const next = remaining.length ? remaining[0].id : null;
         setActiveId(next);
+
+        if (next) nav(`/dashboard/${next}`, { replace: true });
+        else nav(`/dashboard`, { replace: true }); 
       }
 
       setToast("Session deleted.");
@@ -313,9 +341,23 @@ const regenMut = useMutation({
       )
     : [];
 
-  const activeTitle =
-  activeSessionQ.data?.title ||
-  (activeId ? `Session #${activeId}` : "Session Title");
+  // keep header title stable during refetch
+  useEffect(() => {
+    const t1 = activeSessionQ.data?.title;
+    const t2 = (sessionsQ.data ?? []).find((s) => s.id === activeId)?.title;
+
+    const next = (t1 || t2 || "").trim();
+
+    if (next) setDisplayTitle(next);
+    else if (activeId == null) setDisplayTitle("New Session");
+  }, [activeId, activeSessionQ.data?.title, sessionsQ.data]);
+
+  useEffect(() => {
+    if (activeSessionQ.isError) {
+      setToast("Failed to load session. Please refresh.");
+      setTimeout(() => setToast(""), 2000);
+    }
+  }, [activeSessionQ.isError]);
 
   // ---------------- Render ----------------
   return (
@@ -373,7 +415,7 @@ const regenMut = useMutation({
           }
         >
           <img
-            src="New_session.svg" 
+            src="/New_session.svg" 
             alt=""
             style={{ width: 18, height: 18, opacity: 0.9 }}
           />
@@ -432,6 +474,7 @@ const regenMut = useMutation({
                   e.stopPropagation();     // <--- prevent closing menu when selecting session
                   setActiveId(s.id);
                   setMenuOpenId(null);     // close menu when switching sessions
+                  nav(`/dashboard/${s.id}`);
                 }}
                 style={rowStyle(s.id)}
                 onMouseEnter={(e) => {
@@ -548,7 +591,7 @@ const regenMut = useMutation({
               alignItems: "center",
             }}
           >
-            <h2 style={{ margin: 0 }}>{activeTitle}</h2>
+            <h2 style={{ margin: 0 }}>{displayTitle}</h2>
             <button
               onClick={() => {
                 logout();
@@ -863,8 +906,9 @@ const regenMut = useMutation({
                         style={{
                           border: "none",
                           background: "transparent",
-                          cursor: "pointer",
+                          cursor: isBusy ? "wait" : "pointer",
                           padding: 4,
+                          opacity: isBusy ? 0.6 : 1,
                         }}
                         title="Regenerate tests for this code"
                       >
@@ -1025,7 +1069,7 @@ const regenMut = useMutation({
                 <div
                   key={s.id}
                   onClick={() => {
-                    setActiveId(s.id);
+                    nav(`/dashboard/${s.id}`);
                     setShowSearchModal(false);
                     setSearchQuery("");
                   }}

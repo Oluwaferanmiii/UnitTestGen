@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
 
         <Route
-          path="/dashboard"
+          path="/dashboard/:sessionId?"
           element={
             <Protected>
               <Dashboard />

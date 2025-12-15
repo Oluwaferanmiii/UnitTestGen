@@ -8,6 +8,7 @@ from functools import lru_cache
 import math
 import difflib
 import unicodedata
+import pytest
 from typing import Any, Tuple, List, Optional
 
 import torch
@@ -161,6 +162,10 @@ def _count_asserts(src: str) -> int:
     return sum(isinstance(n, ast.Assert) for n in ast.walk(t))
 
 
+def _has_pytest_raises(test_src: str) -> bool:
+    return "pytest.raises" in (test_src or "")
+
+
 def _extract_calls_in_test(test_src: str, func_name: str) -> List[Tuple[List[Any], dict]]:
     """
     Find calls to `func_name` in the test and try to evaluate their arguments
@@ -293,7 +298,8 @@ def _asserts_semantically_true(ns: dict, test_src: str) -> bool:
         "sum": sum,
         "len": len,
         "math": math,
-        "True": True,      # harmless convenience
+        "pytest": pytest,
+        "True": True,
         "False": False,
     }
 
@@ -613,7 +619,7 @@ def _calls_target(test_src: str, func_name: str) -> bool:
     return f.found
 
 
-def _has_foreign_calls(test_src: str, target: str) -> bool:
+def _has_foreign_calls(test_src: str, target: str, *, mode: str = "base") -> bool:
     """
     Return True if the test calls any *user-level* function name other than `target`.
     Allow a small safe-list of builtins and a few library namespaces.
@@ -623,6 +629,11 @@ def _has_foreign_calls(test_src: str, target: str) -> bool:
         "set", "sorted", "any", "all", "enumerate", "range",
         "list", "tuple", "dict", "str", "reversed"
     }
+
+    if mode == "edge":
+        allow_names |= {"isinstance", "type",
+                        "repr", "bool", "map", "filter", "zip"}
+
     try:
         t = ast.parse(test_src)
     except SyntaxError:
@@ -688,16 +699,45 @@ def _asserts_focus_on_target(test_src: str, func_name: str, *, min_ratio: float 
     return (hits / total) >= min_ratio
 
 
+def _count_checks(src: str) -> int:
+    try:
+        t = ast.parse(src)
+    except SyntaxError:
+        return 0
+
+    checks = 0
+
+    # assert statements
+    checks += sum(isinstance(n, ast.Assert) for n in ast.walk(t))
+
+    # pytest.raises blocks
+    for n in ast.walk(t):
+        if isinstance(n, ast.With):
+            for item in n.items:
+                call = item.context_expr
+                if (
+                    isinstance(call, ast.Call)
+                    and isinstance(call.func, ast.Attribute)
+                    and isinstance(call.func.value, ast.Name)
+                    and call.func.value.id == "pytest"
+                    and call.func.attr == "raises"
+                ):
+                    checks += 1
+                    break
+
+    return checks
+
+
 def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = None, mode: str = "base",) -> bool:
     """
     Execute function + test in an isolated namespace.
     Returns True only if:
-      - The test has at least 1 assert (and not an absurd number),
+      - Base: 1..12 asserts; Edge: 1..20 asserts OR raises-only (0 asserts + pytest.raises)
       - The test calls the target function somewhere,
       - The test does NOT call other user-level functions,
-      - Every assert references the target (no stray asserts),
-      - Executing the test raises no exceptions (i.e., asserts pass),
-      - Optional semantic probe passes for simple arithmetic functions.
+      - Assert focus ratio is satisfied (only when asserts exist),
+      - Executing the test raises no unexpected exceptions (asserts/raises pass),
+      - Optional semantic probe passes for simple arithmetic functions (base only).
     """
 
     # --- Minimal hardening: normalize and remove invisible/control chars ---
@@ -717,6 +757,10 @@ def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = No
     func_src = _clean_code(func_src)
     test_src = _clean_code(test_src)
 
+    mode = (mode or "base").strip().lower()
+    if mode not in {"base", "edge"}:
+        mode = "base"
+
     target_name = func_name or _extract_function_name(func_src)
 
     # strip import pytest from the test body
@@ -724,21 +768,35 @@ def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = No
     lines = [ln for ln in lines if not ln.strip().startswith("import pytest")]
     test_src = "\n".join(lines)
 
-    # --- Structural pre-checks (unchanged behavior) ---
+    # --- Structural pre-checks ---
     num_asserts = _count_asserts(test_src)
-    if num_asserts < 1 or num_asserts > 12:
-        _vd(f"reject: bad assert count = {num_asserts}")
-        return False
+    has_raises = _has_pytest_raises(test_src)
+
+    if mode == "edge":
+        # Edge allows:
+        # - asserts-based tests: 1..20 asserts
+        # - raises-only tests: 0 asserts + pytest.raises
+        if num_asserts == 0:
+            if not has_raises:
+                _vd("reject: edge requires >=1 assert OR pytest.raises")
+                return False
+    else:
+        # Base: requires asserts
+        if num_asserts < 1 or num_asserts > 12:
+            _vd(f"reject: bad assert count={num_asserts} (base)")
+            return False
 
     if not _calls_target(test_src, target_name):
         _vd("reject: test does not call target")
         return False
 
-    if not _asserts_focus_on_target(test_src, target_name, min_ratio=1.0):
-        _vd("reject: at least one assert does not reference target")
-        return False
+    if num_asserts > 0:
+        focus_ratio = 1.0 if mode == "base" else 0.66
+        if not _asserts_focus_on_target(test_src, target_name, min_ratio=focus_ratio):
+            _vd("reject: assert focus ratio not satisfied")
+            return False
 
-    if _has_foreign_calls(test_src, target_name):
+    if _has_foreign_calls(test_src, target_name, mode=mode):
         _vd("reject: foreign user-level calls detected")
         return False
 
@@ -751,7 +809,7 @@ def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = No
         return False
 
     # --- Execute in a fresh namespace ---
-    ns: dict = {}
+    ns: dict = {"pytest": pytest}
     try:
         exec(func_src, ns, ns)   # pylint: disable=exec-used
         exec(test_src, ns, ns)   # pylint: disable=exec-used
@@ -760,17 +818,19 @@ def _run_test_safely(func_src: str, test_src: str, *, func_name: str | None = No
         return False
 
     # --- Post-exec semantic checks ---
-    if not _asserts_semantically_true(ns, test_src):
-        _vd("reject: semantic re-check failed")
-        return False
+    if num_asserts > 0:
+        if not _asserts_semantically_true(ns, test_src):
+            _vd("reject: semantic re-check failed")
+            return False
 
     f = ns.get(target_name)
-    if callable(f) and _is_arithmetic_function(target_name, func_src):
+
+    if mode == "base" and callable(f) and _is_arithmetic_function(target_name, func_src):
         if not _arithmetic_oracle(target_name, f, func_src=func_src):
             _vd("reject: arithmetic oracle failed")
             return False
 
-    if target_name.lower() in {"add", "subtract", "multiply", "power"}:
+    if mode == "base" and target_name.lower() in {"add", "subtract", "multiply", "power"}:
         for args, _ in _extract_calls_in_test(test_src, target_name):
             try:
                 out = f(*args)
@@ -1558,7 +1618,7 @@ def _try_candidates(
             max_new_tokens=max_new_tokens,
             min_length=0,
             no_repeat_ngram_size=0 if not do_sample else 0,  # keep your behavior
-            early_stopping=True,
+            early_stopping=False,
             do_sample=do_sample,
             temperature=max(0.1, float(temperature)) if do_sample else None,
             top_k=max(0, int(top_k)) if do_sample else None,
@@ -1576,7 +1636,8 @@ def _try_candidates(
         # uncomment the next line:
         # candidate = _sanitize_test_src(candidate, func_name)
 
-        candidate = _strip_non_target_asserts(candidate, func_name)
+        if mode != "edge":
+            candidate = _strip_non_target_asserts(candidate, func_name)
 
         if _VALIDATOR_DEBUG:
             print("\n[validator] ---------- CANDIDATE BEGIN ----------")
@@ -1594,15 +1655,25 @@ def _try_candidates(
 
         # Quick pre-checks to collect reason strings
         def _first_reject_reason(test_src: str):
-            n = _count_asserts(test_src)
-            if n < 1 or n > 12:
-                return f"bad assert count={n}"
+            n_asserts = _count_asserts(test_src)
+            has_raises = _has_pytest_raises(test_src)
+
             if not _calls_target(test_src, func_name):
                 return "does not call target"
-            if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
-                return "an assert does not reference target"
-            if _has_foreign_calls(test_src, func_name):
+
+            if _has_foreign_calls(test_src, func_name, mode=mode):
                 return "foreign user-level calls"
+
+            # Edge-mode special case: allow raises-only tests
+            if mode == "edge" and n_asserts == 0 and has_raises:
+                pass
+            else:
+                if n_asserts < 1 or n_asserts > 12:
+                    return f"bad assert count={n_asserts}"
+
+                if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
+                    return "an assert does not reference target"
+
             return None
 
         reason = _first_reject_reason(candidate)
@@ -2320,7 +2391,7 @@ def regenerate_test_for_function(
                 return "does not call target"
             if not _asserts_focus_on_target(test_src, func_name, min_ratio=1.0):
                 return "an assert does not reference target"
-            if _has_foreign_calls(test_src, func_name):
+            if _has_foreign_calls(test_src, func_name, mode=mode):
                 return "foreign user-level calls"
             return None
 
