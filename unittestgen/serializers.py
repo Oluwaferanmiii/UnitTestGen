@@ -11,7 +11,9 @@ MAX_CODE_CHARS = 8000
 class TestItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestItem
-        fields = ['id', 'pasted_code', 'uploaded_code',
+        fields = ['id', 'source_code',
+                  'input_method',
+                  'source_filename', 'pasted_code', 'uploaded_code',
                   'generated_tests', 'created_at', 'meta']
         read_only_fields = ['id', 'generated_tests', 'created_at', 'meta']
 

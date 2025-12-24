@@ -28,9 +28,26 @@ from pathlib import Path
 from django.utils import timezone
 
 
+def decode_uploaded_py(file_obj) -> str:
+    """
+    Decode uploaded bytes into text safely.
+    - tries utf-8 first
+    - falls back to latin-1 (never fails)
+    """
+    file_obj.seek(0)
+    raw = file_obj.read()
+    file_obj.seek(0)
+
+    try:
+        return raw.decode("utf-8")
+    except UnicodeDecodeError:
+        # latin-1 preserves byte values 0-255 and never throws decode error
+        return raw.decode("latin-1")
+
 # -----------------------------
 # Auth
 # -----------------------------
+
 
 class ThrottledTokenObtainPairView(TokenObtainPairView):
     ATTEMPTS = 5          # max wrong attempts
@@ -263,7 +280,7 @@ class CreateTestItemView(APIView):
         else:
             try:
                 uploaded_file.seek(0)
-                raw_code = uploaded_file.read().decode("utf-8")
+                raw_code = decode_uploaded_py(uploaded_file)
                 uploaded_file.seek(0)
             except Exception:
                 return Response(
@@ -330,8 +347,14 @@ class CreateTestItemView(APIView):
         # Create a new item; do NOT overwrite legacy fields on the session
         item = TestItem.objects.create(
             session=session,
+            source_code=raw_code,
+            input_method="paste" if pasted_code else "upload",
+            source_filename=(uploaded_file.name if uploaded_file else None),
+
+            # keep legacy fields for now if you want (optional)
             pasted_code=pasted_code if pasted_code else None,
-            uploaded_code=uploaded_file if uploaded_file else None,
+            uploaded_code=None,  # IMPORTANT: do not persist the file
+
             generated_tests=test_output,
             meta={"origin": "generate", "strategy": "beam", "mode": mode},
         )
@@ -410,19 +433,8 @@ class RegenerateTestView(APIView):
                 )
 
         # Load source code for this item
-        if item.pasted_code:
-            raw_code = item.pasted_code
-        elif item.uploaded_code:
-            try:
-                item.uploaded_code.open("rb")
-                raw_code = item.uploaded_code.read().decode("utf-8")
-                item.uploaded_code.close()
-            except Exception:
-                return Response(
-                    {"error": "Failed to read uploaded file as UTF-8."},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
-        else:
+        raw_code = (item.source_code or "").strip()
+        if not raw_code:
             return Response(
                 {"error": "No code available for this item."},
                 status=status.HTTP_400_BAD_REQUEST,

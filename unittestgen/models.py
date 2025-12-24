@@ -25,13 +25,22 @@ class TestSession(models.Model):
 class TestItem(models.Model):
     session = models.ForeignKey(
         TestSession, on_delete=models.CASCADE, related_name='items')
+
+    source_code = models.TextField()
+
+    input_method = models.CharField(
+        max_length=10,
+        choices=[("paste", "paste"), ("upload", "upload")],
+        default="paste",
+    )
+    source_filename = models.CharField(max_length=255, blank=True, null=True)
+
     pasted_code = models.TextField(blank=True, null=True)
     uploaded_code = models.FileField(
         upload_to='uploaded_code/', blank=True, null=True)
+
     generated_tests = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    # optional metadata: decoding params, model version, etc.
     meta = models.JSONField(default=dict, blank=True)
 
     class Meta:

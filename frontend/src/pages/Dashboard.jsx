@@ -301,13 +301,17 @@ const regenMut = useMutation({
     validateAndSetFile(f);
   }
 
+  function stripParens(title = "") {
+    return title.replace(/\(\)\s*$/, ""); // removes only ending "()"
+  }
+
   // History row style helper
   function rowStyle(id) {
     const selected = id === activeId;
     return {
       padding: "10px 14px",
       borderRadius: 12,
-      border: "1px solid rgba(255,255,255,.14)",
+      border: "1px solid rgba(255,255,255,.10)",
       background: selected ? "rgba(255,255,255,0.06)" : "transparent",
       color: "#fff",
       cursor: "pointer",
@@ -365,7 +369,7 @@ const regenMut = useMutation({
       style={{
         height: "100vh",
         display: "grid",
-        gridTemplateColumns: "320px 1fr",
+        gridTemplateColumns: "280px 1fr",
         background: "linear-gradient(120deg,#0b0b0c 55%, #1a1040 100%)",
         color: "#fff",
         overflow: "hidden",
@@ -374,7 +378,7 @@ const regenMut = useMutation({
       {/* Sidebar */}
       <aside
         style={{
-          borderRight: "1px solid rgba(255,255,255,.15)",
+          borderRight: "1px solid rgba(255,255,255,.14)",
           padding: 16,
           background:
             "linear-gradient(rgba(10,10,11,.98) 0%, rgba(12,8,24,.98) 100%)",
@@ -487,7 +491,7 @@ const regenMut = useMutation({
                     e.currentTarget.style.background = "transparent";
                 }}
               >
-                {s.title ? s.title : `Session #${s.id}`}
+                {stripParens(s.title ? s.title : `Session #${s.id}`)}
               </div>
 
               {/* 3-dot menu button */}
@@ -581,8 +585,9 @@ const regenMut = useMutation({
         height: "100vh",
         overflowY: "auto",
         boxSizing: "border-box",
-        }}>
-        {/* Header */}
+        }}
+        >
+          {/* Header */}
         <header style={{ marginBottom: 16 }}>
           <div
             style={{
@@ -591,7 +596,7 @@ const regenMut = useMutation({
               alignItems: "center",
             }}
           >
-            <h2 style={{ margin: 0 }}>{displayTitle}</h2>
+            <h2 style={{ margin: 0 }}>{stripParens(displayTitle)}</h2>
             <button
               onClick={() => {
                 logout();
@@ -622,6 +627,15 @@ const regenMut = useMutation({
           />
         </header>
 
+        {/* centered content container */}
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            width: "100%",
+            paddingInline: 16,
+          }}
+        >
         {/* Composer */}
         <div style={{ marginTop: 12 }}>
           <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
@@ -822,13 +836,14 @@ const regenMut = useMutation({
 
         {/* Results */}
         {activeItems.length > 0 && (
-          <div style={{ marginTop: 20, display: "grid", gap: 16 }}>
+          <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
             {activeItems.map((it) => (
               <div
                 key={it.id}
                 style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  background: "rgba(255,255,255,0.045)",
+                  border: "1px solid rgba(255,255,255,0.10)",
+                  backdropFilter: "blur(6px)",
                   borderRadius: 12,
                   padding: 16,
                 }}
@@ -989,6 +1004,7 @@ const regenMut = useMutation({
             {toast}
           </div>
         )}
+        </div>
       </main>
       
       {/* Search modal */}
