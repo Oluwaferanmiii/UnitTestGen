@@ -925,7 +925,7 @@ const regenMut = useMutation({
                           padding: 4,
                           opacity: isBusy ? 0.6 : 1,
                         }}
-                        title="Regenerate tests for this code"
+                        title="Regenerate tests"
                       >
                         <img
                           src="/Reload.svg"       // make sure reload.svg is in /public
