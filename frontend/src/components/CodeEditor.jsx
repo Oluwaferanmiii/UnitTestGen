@@ -8,7 +8,7 @@ export default function CodeEditor({ value, onChange, themeMode = "dark", style 
   const isLight = themeMode === "light";
 
   const wrapperStyle = {
-    position: "relative", // needed for placeholder overlay
+    position: "relative", 
     background: isLight ? "#ffffff" : "#0b0b0c",
     border: isLight ? "1px solid rgba(15,23,42,.18)" : "1px solid rgba(255,255,255,.2)",
     borderRadius: 12,
