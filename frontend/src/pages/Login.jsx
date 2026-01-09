@@ -9,8 +9,49 @@ export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [remember, setRemember] = useState(true);
   const [err, setErr] = useState("");
-  const [info, setInfo] = useState(""); 
+  const [info, setInfo] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // ✅ Theme 
+  const [themeMode, setThemeMode] = useState(
+    () => localStorage.getItem("unittestlab:theme") || "dark"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("unittestlab:theme", themeMode);
+  }, [themeMode]);
+
+  const isLight = themeMode === "light";
+
+  // ✅ Theme tokens
+  const theme = {
+    pageBg: isLight
+      ? "linear-gradient(135deg,#f4f6fb 0%, #e7efff 55%, #dbeafe 100%)"
+      : "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
+    pageText: isLight ? "#0f172a" : "#fff",
+
+    usernameInputBg: isLight ? "#ffffff" : "#d4d4d4",
+    usernameInputText: isLight ? "#0f172a" : "#111",
+    usernameInputBorder: isLight ? "1px solid rgba(15,23,42,0.12)" : "none",
+
+    passwordInputBg: isLight ? "#ffffff" : "#0b0b0c",
+    passwordInputText: isLight ? "#0f172a" : "#fff",
+    passwordInputBorder: isLight
+      ? "1px solid rgba(15,23,42,0.18)"
+      : "1px solid rgba(255,255,255,0.6)",
+
+    infoText: isLight ? "rgba(15,23,42,0.75)" : "#e5e7eb",
+    linkGreen: isLight ? "#2563eb" : "#22c55e",
+
+    // keep purple button in dark; use blue in light
+    btnBg: isLight ? "#2563eb" : "#5B32A4",
+
+    toggleBg: isLight ? "rgba(255, 255, 255, 0)" : "rgba(0,0,0,0.35)",
+    toggleText: isLight ? "#0f172a" : "#fff",
+    toggleBorder: isLight
+      ? "1px solid rgba(15,23,42,0.12)"
+      : "1px solid rgba(255,255,255,0.16)",
+  };
 
   useEffect(() => {
     if (sessionStorage.getItem("sessionExpired") === "1") {
@@ -26,7 +67,7 @@ export default function Login() {
     try {
       await login(form.username, form.password, remember);
       nav("/dashboard", { replace: true });
-    } catch(e) {
+    } catch (e) {
       console.error("login error:", e);
       setErr(e.message);
     } finally {
@@ -38,14 +79,39 @@ export default function Login() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
-        color: "#fff",
+        background: theme.pageBg, // ✅ theme-aware
+        color: theme.pageText, // ✅ theme-aware
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         alignItems: "center",
         padding: 32,
       }}
     >
+      {/* ✅ Theme toggle */}
+      <button
+        type="button"
+        title={isLight ? "Switch to dark mode" : "Switch to light mode"}
+        onClick={() => setThemeMode((m) => (m === "light" ? "dark" : "light"))}
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          padding: "8px 12px",
+          borderRadius: 999,
+          background: theme.toggleBg,
+          color: theme.toggleText,
+          border: theme.toggleBorder,
+          cursor: "pointer",
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        <img
+          src={isLight ? "/light_mode.svg" : "/dark_mode.svg"}
+          alt={isLight ? "Light mode" : "Dark mode"}
+          style={{ width: 18, height: 18 }}
+        />
+      </button>
+
       {/* LEFT SIDE: FORM */}
       <div
         style={{
@@ -69,9 +135,9 @@ export default function Login() {
               width: 428,
               padding: "16px 20px",
               borderRadius: 12,
-              border: "none",
-              background: "#d4d4d4",
-              color: "#111",
+              border: theme.usernameInputBorder, // ✅ theme-aware
+              background: theme.usernameInputBg, // ✅ theme-aware
+              color: theme.usernameInputText, // ✅ theme-aware
               fontSize: "16px",
             }}
           />
@@ -84,9 +150,9 @@ export default function Login() {
               width: 428,
               padding: "16px 20px",
               borderRadius: 12,
-              border: "1px solid rgba(255,255,255,0.6)",
-              background: "#0b0b0c",
-              color: "#fff",
+              border: theme.passwordInputBorder, // ✅ theme-aware
+              background: theme.passwordInputBg, // ✅ theme-aware
+              color: theme.passwordInputText, // ✅ theme-aware
               fontSize: "16px",
             }}
           />
@@ -123,17 +189,17 @@ export default function Login() {
             </Link>
           </div> */}
           {info && (
-            <div style={{ color: "#e5e7eb", fontSize: 14 }}>{info}</div>
+            <div style={{ color: theme.infoText, fontSize: 14 }}>{info}</div>
           )}
 
-          {/* Purple button (matches Figma) */}
+          {/* Purple button */}
           <Btn
             type="submit"
             size="medium"
             variant="solid"
             disabled={loading}
             styleOverride={{
-              background: "#5B32A4",
+              background: theme.btnBg, // theme-aware (purple in dark, blue in light)
               color: "#fff",
               border: "none",
             }}
@@ -143,7 +209,7 @@ export default function Login() {
 
           <div style={{ marginTop: 4 }}>
             Don’t have an account?{" "}
-            <Link to="/register" style={{ color: "#22c55e" }}>
+            <Link to="/register" style={{ color: theme.linkGreen }}>
               Sign up
             </Link>
           </div>

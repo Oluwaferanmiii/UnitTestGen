@@ -1,13 +1,18 @@
 // src/pages/Dashboard.jsx
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient, keepPreviousData } from "@tanstack/react-query";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  keepPreviousData,
+} from "@tanstack/react-query";
 import { logout } from "../api/auth";
 import {
   listSessions,
   createSession,
   getSession,
-  deleteSession, 
+  deleteSession,
   updateSession,
 } from "../api/sessions";
 import { addItem, regenerate } from "../api/items";
@@ -18,6 +23,131 @@ export default function Dashboard() {
   const nav = useNavigate();
   const { sessionId } = useParams();
   const qc = useQueryClient();
+
+  // ✅ Theme (ONLY added)
+  const [themeMode, setThemeMode] = useState(
+    () => localStorage.getItem("unittestlab:theme") || "dark"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("unittestlab:theme", themeMode);
+  }, [themeMode]);
+
+  const isLight = themeMode === "light";
+
+    // ✅ Icon variants
+    const icons = {
+    newSession: isLight ? "/New_session_black.svg" : "/New_session.svg",
+    search: isLight ? "/search_black.svg" : "/search.svg",
+    copy: isLight ? "/copy_black.svg" : "/copy.svg",
+    regen: isLight ? "/Reload_black.svg" : "/Reload.svg",
+    download: isLight ? "/download_black.svg" : "/download.svg",
+    };
+
+  // ✅ Theme tokens (dark values match your current UI)
+  const theme = {
+    // Page shells
+    pageBg: isLight
+      ? "linear-gradient(135deg,#f4f6fb 0%, #eef2ff 55%, #dbeafe 100%)"
+      : "linear-gradient(120deg,#0b0b0c 55%, #1a1040 100%)",
+    pageText: isLight ? "#0f172a" : "#fff",
+
+    // Sidebar
+    sidebarBg: isLight
+      ? "linear-gradient(rgba(248,250,252,.98) 0%, rgba(238,242,255,.98) 100%)"
+      : "linear-gradient(rgba(10,10,11,.98) 0%, rgba(12,8,24,.98) 100%)",
+    sidebarBorder: isLight
+      ? "1px solid rgba(15,23,42,.10)"
+      : "1px solid rgba(255,255,255,.14)",
+
+    // Sidebar items
+    rowBorder: isLight
+      ? "1px solid rgba(15,23,42,.10)"
+      : "1px solid rgba(255,255,255,.10)",
+    rowHoverBg: isLight ? "rgba(15,23,42,0.04)" : "rgba(255,255,255,0.04)",
+    rowSelectedBg: isLight
+      ? "rgba(37,99,235,0.10)"
+      : "rgba(255,255,255,0.06)",
+    rowText: isLight ? "#0f172a" : "#fff",
+    subtleText: isLight ? "rgba(15,23,42,0.75)" : "rgba(255,255,255,0.9)",
+
+    // Dropdown menu
+    menuBg: isLight ? "rgba(255,255,255,.95)" : "rgba(20,20,25,.95)",
+    menuBorder: isLight
+      ? "1px solid rgba(15,23,42,.12)"
+      : "1px solid rgba(255,255,255,.15)",
+    menuText: isLight ? "#0f172a" : "#e5e7eb",
+    menuDivider: isLight
+      ? "1px solid rgba(15,23,42,.10)"
+      : "1px solid rgba(255,255,255,.12)",
+
+    // Main header
+    dividerBg: isLight
+      ? "linear-gradient(to right, rgba(15,23,42,.12), rgba(15,23,42,.05))"
+      : "linear-gradient(to right, rgba(255,255,255,.14), rgba(255,255,255,.06))",
+    logoutBg: isLight ? "#d3def9ff" : "#eaeaea",
+    logoutText: isLight ? "#0f172a" : "#111",
+
+    // Buttons / controls
+    pillBgActive: isLight ? "rgba(37,99,235,0.12)" : "#2b2b35",
+    pillBorder: isLight
+      ? "1px solid rgba(15,23,42,0.18)"
+      : "1px solid rgba(255,255,255,.18)",
+    pillText: isLight ? "#0f172a" : "#fff",
+
+    selectBg: isLight ? "#ffffff" : "rgba(255,255,255,0.06)",
+    selectText: isLight ? "#0f172a" : "#fff",
+    selectBorder: isLight
+      ? "1px solid rgba(15,23,42,0.18)"
+      : "1px solid rgba(255,255,255,.18)",
+
+    primaryBtn: isLight ? "#2563eb" : "#5B32A4",
+    primaryBtnBusy: isLight ? "#1d4ed8" : "#4a278a",
+
+    // Upload dropzone
+    dropBg: isLight ? "#ffffff" : "#0b0b0c",
+    dropBgDrag: isLight ? "#eff6ff" : "#111827",
+    dropBorder: isLight
+      ? "1px solid rgba(15,23,42,.18)"
+      : "1px solid rgba(255,255,255,.2)",
+    dropBorderDrag: isLight
+      ? "1px dashed rgba(37,99,235,.65)"
+      : "1px dashed rgba(255,255,255,.6)",
+    dropText: isLight ? "rgba(15,23,42,0.80)" : "#e5e5e5",
+
+    // Cards
+    cardBg: isLight ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.045)",
+    cardBorder: isLight
+      ? "1px solid rgba(15,23,42,0.10)"
+      : "1px solid rgba(255,255,255,0.10)",
+    cardDivider: isLight ? "rgba(15,23,42,0.10)" : "rgba(255,255,255,0.12)",
+
+    // Toast
+    toastBg: isLight ? "rgba(255,255,255,.92)" : "rgba(40,40,48,.92)",
+    toastBorder: isLight
+      ? "1px solid rgba(15,23,42,.12)"
+      : "1px solid rgba(255,255,255,.15)",
+    toastText: isLight ? "#0f172a" : "#fff",
+
+    // Modals
+    modalOverlay: isLight ? "rgba(15,23,42,0.30)" : "rgba(0,0,0,0.55)",
+    modalBg: isLight ? "rgba(255,255,255,1)" : "rgba(20,20,25,1)",
+    modalBorder: isLight
+      ? "1px solid rgba(15,23,42,.12)"
+      : "1px solid rgba(255,255,255,.12)",
+    inputBg: isLight ? "#ffffff" : "rgba(15,15,20,1)",
+    inputBorder: isLight
+      ? "1px solid rgba(15,23,42,.18)"
+      : "1px solid rgba(255,255,255,.25)",
+    inputText: isLight ? "#0f172a" : "#fff",
+
+    // Theme toggle
+    toggleBg: isLight ? "rgba(255, 255, 255, 0.03)" : "rgba(0,0,0,0.35)",
+    toggleText: isLight ? "#0f172a" : "#fff",
+    toggleBorder: isLight
+      ? "1px solid rgba(15,23,42,0.12)"
+      : "1px solid rgba(255,255,255,0.16)",
+  };
 
   // ---------------- UI state ----------------
   const [activeId, setActiveId] = useState(null);
@@ -38,7 +168,7 @@ export default function Dashboard() {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [modelMode, setModelMode] = useState(() => {
-  return localStorage.getItem("unittestlab:modelMode") || "base";
+    return localStorage.getItem("unittestlab:modelMode") || "base";
   });
   const [displayTitle, setDisplayTitle] = useState("New Session");
 
@@ -50,12 +180,12 @@ export default function Dashboard() {
   const sessionsQ = useQuery({
     queryKey: ["sessions"],
     queryFn: listSessions,
-    placeholderData: (prev) => prev,     
-    refetchOnWindowFocus: false,         
-    staleTime: 30_000, 
+    placeholderData: (prev) => prev,
+    refetchOnWindowFocus: false,
+    staleTime: 30_000,
   });
 
-  //Auto-select current or most recent session (URl-aware version)
+  // Auto-select current or most recent session (URL-aware version)
   useEffect(() => {
     const sessions = sessionsQ.data ?? [];
     if (sessions.length === 0) return;
@@ -79,26 +209,18 @@ export default function Dashboard() {
   // 2️⃣ Handle outside-click to close menu
   useEffect(() => {
     function handleClickOutside(e) {
-      // If no menu open, ignore
       if (menuOpenId === null) return;
 
-      // If click happened inside any dropdown/menu/button → do NOT close
       const menu = document.getElementById(`menu-${menuOpenId}`);
       const btn = document.getElementById(`btn-${menuOpenId}`);
 
-      if (menu?.contains(e.target) || btn?.contains(e.target)) {
-        return;
-      }
+      if (menu?.contains(e.target) || btn?.contains(e.target)) return;
 
-      // Otherwise → close it
       setMenuOpenId(null);
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpenId]);
 
   const activeSessionQ = useQuery({
@@ -112,7 +234,6 @@ export default function Dashboard() {
     staleTime: 30_000,
     gcTime: 10 * 60 * 1000,
   });
-
 
   // ---------------- Mutations ----------------
   const newSessionMut = useMutation({
@@ -133,7 +254,7 @@ export default function Dashboard() {
       return addItem(activeId, payload);
     },
     onMutate: () => {
-    setToast("Generation started…");
+      setToast("Generation started…");
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["session", activeId] });
@@ -142,42 +263,36 @@ export default function Dashboard() {
       setTimeout(() => setToast(""), 1200);
       setFile(null);
       setFileErr("");
-      if (fileRef.current) {
-        fileRef.current.value = ""; // ✅ clear file input visually
-      }
+      if (fileRef.current) fileRef.current.value = "";
     },
     onError: (e) => {
       const data = e?.response?.data;
-      let msg =
+      const msg =
         (data && (data.error || data.detail)) ||
         e?.message ||
         "Generation failed.";
-
       setToast(msg);
       setTimeout(() => setToast(""), 1800);
     },
   });
 
-  const isGenerating = addItemMut.isPending; 
+  const isGenerating = addItemMut.isPending;
 
   const deleteMut = useMutation({
     mutationFn: deleteSession,
     onSuccess: (_data, deletedId) => {
-      // Get current sessions from cache (before invalidation)
       const current = qc.getQueryData(["sessions"]) || [];
       const remaining = current.filter((s) => s.id !== deletedId);
 
-      // Immediately update the cache so the sidebar stays in sync
       qc.setQueryData(["sessions"], remaining);
       qc.invalidateQueries({ queryKey: ["sessions"] });
 
-      // If we just deleted the active session, move to next one (if any)
       if (deletedId === activeId) {
         const next = remaining.length ? remaining[0].id : null;
         setActiveId(next);
 
         if (next) nav(`/dashboard/${next}`, { replace: true });
-        else nav(`/dashboard`, { replace: true }); 
+        else nav(`/dashboard`, { replace: true });
       }
 
       setToast("Session deleted.");
@@ -194,7 +309,6 @@ export default function Dashboard() {
     onSuccess: (_data, vars) => {
       qc.invalidateQueries({ queryKey: ["sessions"] });
       qc.invalidateQueries({ queryKey: ["session", vars.id] });
-
       setToast("Session renamed.");
       setTimeout(() => setToast(""), 1200);
     },
@@ -204,24 +318,22 @@ export default function Dashboard() {
     },
   });
 
-const regenMut = useMutation({
-  mutationFn: ({ sessionId, itemId, modelMode }) => regenerate(sessionId, itemId, modelMode),
-
-  onMutate: () => {
-    setToast("Regeneration started…");
-  },
-
-  onSuccess: () => {
-    qc.invalidateQueries({ queryKey: ["session", activeId] });
-    setToast("Regenerated tests.");
-    setTimeout(() => setToast(""), 1200);
-  },
-
-  onError: () => {
-    setToast("Regeneration failed.");
-    setTimeout(() => setToast(""), 1500);
-  },
-});
+  const regenMut = useMutation({
+    mutationFn: ({ sessionId, itemId, modelMode }) =>
+      regenerate(sessionId, itemId, modelMode),
+    onMutate: () => {
+      setToast("Regeneration started…");
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["session", activeId] });
+      setToast("Regenerated tests.");
+      setTimeout(() => setToast(""), 1200);
+    },
+    onError: () => {
+      setToast("Regeneration failed.");
+      setTimeout(() => setToast(""), 1500);
+    },
+  });
 
   const isRegenerating = regenMut.isPending;
   const isBusy = isGenerating || isRegenerating;
@@ -233,7 +345,6 @@ const regenMut = useMutation({
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(text);
       } else {
-        // Fallback
         const ta = document.createElement("textarea");
         ta.value = text;
         document.body.appendChild(ta);
@@ -242,7 +353,7 @@ const regenMut = useMutation({
         document.body.removeChild(ta);
       }
       setCopiedId(itemId);
-      setTimeout(() => setCopiedId(null), 1000); // show "Copied" for 1s
+      setTimeout(() => setCopiedId(null), 1000);
     } catch (err) {
       console.error("Copy failed", err);
       setToast("Failed to copy tests.");
@@ -253,13 +364,9 @@ const regenMut = useMutation({
   function handleDownloadTests(text, itemId) {
     if (!text) return;
 
-    // Attempt to extract test function name
-    let filename = `tests_item_${itemId}.py`;  // fallback
-
+    let filename = `tests_item_${itemId}.py`;
     const match = text.match(/def\s+(test_[a-zA-Z0-9_]+)\s*\(/);
-    if (match && match[1]) {
-      filename = `${match[1]}.py`;
-    }
+    if (match && match[1]) filename = `${match[1]}.py`;
 
     const blob = new Blob([text], { type: "text/x-python;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -302,25 +409,23 @@ const regenMut = useMutation({
   }
 
   function stripParens(title = "") {
-    return title.replace(/\(\)\s*$/, ""); // removes only ending "()"
+    return title.replace(/\(\)\s*$/, "");
   }
 
-  // History row style helper
   function rowStyle(id) {
     const selected = id === activeId;
     return {
       padding: "10px 14px",
       borderRadius: 12,
-      border: "1px solid rgba(255,255,255,.10)",
-      background: selected ? "rgba(255,255,255,0.06)" : "transparent",
-      color: "#fff",
+      border: theme.rowBorder,
+      background: selected ? theme.rowSelectedBg : "transparent",
+      color: theme.rowText,
       cursor: "pointer",
     };
   }
 
   const sessions = useMemo(() => sessionsQ.data ?? [], [sessionsQ.data]);
 
-  // 🔍 Filtered search results (by title OR item code/tests)
   const searchResults = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return [];
@@ -345,11 +450,9 @@ const regenMut = useMutation({
       )
     : [];
 
-  // keep header title stable during refetch
   useEffect(() => {
     const t1 = activeSessionQ.data?.title;
     const t2 = (sessionsQ.data ?? []).find((s) => s.id === activeId)?.title;
-
     const next = (t1 || t2 || "").trim();
 
     if (next) setDisplayTitle(next);
@@ -370,20 +473,19 @@ const regenMut = useMutation({
         height: "100vh",
         display: "grid",
         gridTemplateColumns: "280px 1fr",
-        background: "linear-gradient(120deg,#0b0b0c 55%, #1a1040 100%)",
-        color: "#fff",
+        background: theme.pageBg,
+        color: theme.pageText,
         overflow: "hidden",
       }}
     >
       {/* Sidebar */}
       <aside
         style={{
-          borderRight: "1px solid rgba(255,255,255,.14)",
+          borderRight: theme.sidebarBorder,
           padding: 16,
-          background:
-            "linear-gradient(rgba(10,10,11,.98) 0%, rgba(12,8,24,.98) 100%)",
-          height: "100vh", 
-          overflowY: "auto", 
+          background: theme.sidebarBg,
+          height: "100vh",
+          overflowY: "auto",
         }}
       >
         <div style={{ marginBottom: 12 }}>
@@ -400,7 +502,7 @@ const regenMut = useMutation({
             borderRadius: 15,
             marginBottom: 5,
             background: "transparent",
-            color: "#fff",
+            color: theme.rowText,
             border: "none",
             cursor: "pointer",
             fontWeight: 600,
@@ -408,24 +510,24 @@ const regenMut = useMutation({
             opacity: newSessionMut.isLoading ? 0.7 : 1,
             display: "flex",
             alignItems: "center",
-            gap: 10,           
+            gap: 10,
             justifyContent: "flex-start",
           }}
           onMouseEnter={(e) =>
-            (e.currentTarget.style.background = "rgba(255,255,255,0.1)")
+            (e.currentTarget.style.background = isLight
+              ? "rgba(15,23,42,0.06)"
+              : "rgba(255,255,255,0.1)")
           }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.background = "transparent")
-          }
+          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
         >
           <img
-            src="/New_session.svg" 
+            src={icons.newSession}
             alt=""
             style={{ width: 18, height: 18, opacity: 0.9 }}
           />
           {newSessionMut.isLoading ? "Creating…" : "New session"}
         </button>
-        
+
         {/* search button */}
         <button
           onClick={() => setShowSearchModal(true)}
@@ -435,7 +537,7 @@ const regenMut = useMutation({
             borderRadius: 15,
             marginBottom: 16,
             background: "transparent",
-            color: "#fff",
+            color: theme.rowText,
             border: "none",
             cursor: "pointer",
             fontWeight: 600,
@@ -446,14 +548,14 @@ const regenMut = useMutation({
             gap: 10,
           }}
           onMouseEnter={(e) =>
-            (e.currentTarget.style.background = "rgba(255,255,255,0.1)")
+            (e.currentTarget.style.background = isLight
+              ? "rgba(15,23,42,0.06)"
+              : "rgba(255,255,255,0.1)")
           }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.background = "transparent")
-          }
+          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
         >
           <img
-            src="/search.svg"
+            src={icons.search}
             alt=""
             style={{ width: 18, height: 18, opacity: 0.9 }}
           />
@@ -465,6 +567,7 @@ const regenMut = useMutation({
             opacity: 0.9,
             marginBottom: 10,
             fontWeight: 600,
+            color: theme.rowText,
           }}
         >
           Test History
@@ -475,16 +578,15 @@ const regenMut = useMutation({
             <div key={s.id} style={{ position: "relative" }}>
               <div
                 onClick={(e) => {
-                  e.stopPropagation();     // <--- prevent closing menu when selecting session
+                  e.stopPropagation();
                   setActiveId(s.id);
-                  setMenuOpenId(null);     // close menu when switching sessions
+                  setMenuOpenId(null);
                   nav(`/dashboard/${s.id}`);
                 }}
                 style={rowStyle(s.id)}
                 onMouseEnter={(e) => {
                   if (s.id !== activeId)
-                    e.currentTarget.style.background =
-                      "rgba(255,255,255,0.04)";
+                    e.currentTarget.style.background = theme.rowHoverBg;
                 }}
                 onMouseLeave={(e) => {
                   if (s.id !== activeId)
@@ -509,7 +611,7 @@ const regenMut = useMutation({
                   transform: "translateY(-50%)",
                   background: "transparent",
                   border: "none",
-                  color: "#fff",
+                  color: theme.rowText,
                   fontSize: 18,
                   cursor: "pointer",
                   padding: 0,
@@ -522,13 +624,13 @@ const regenMut = useMutation({
               {menuOpenId === s.id && (
                 <div
                   id={`menu-${s.id}`}
-                  onClick={(e) => e.stopPropagation()} 
+                  onClick={(e) => e.stopPropagation()}
                   style={{
                     position: "absolute",
                     right: 0,
                     top: 36,
-                    background: "rgba(20,20,25,.95)",
-                    border: "1px solid rgba(255,255,255,.15)",
+                    background: theme.menuBg,
+                    border: theme.menuBorder,
                     padding: "6px 10px",
                     borderRadius: 8,
                     zIndex: 50,
@@ -545,8 +647,8 @@ const regenMut = useMutation({
                     style={{
                       padding: "6px 6px",
                       cursor: "pointer",
-                      color: "#e5e7eb",
-                      borderBottom: "1px solid rgba(255,255,255,.12)",
+                      color: theme.menuText,
+                      borderBottom: theme.menuDivider,
                       marginBottom: 4,
                     }}
                   >
@@ -572,7 +674,7 @@ const regenMut = useMutation({
           ))}
 
           {sessions.length === 0 && (
-            <div style={{ opacity: 0.7, fontSize: 14 }}>
+            <div style={{ opacity: 0.7, fontSize: 14, color: theme.subtleText }}>
               No sessions yet — create one above.
             </div>
           )}
@@ -580,14 +682,15 @@ const regenMut = useMutation({
       </aside>
 
       {/* Main */}
-      <main style={{ 
-        padding: 20,
-        height: "100vh",
-        overflowY: "auto",
-        boxSizing: "border-box",
+      <main
+        style={{
+          padding: 20,
+          height: "100vh",
+          overflowY: "auto",
+          boxSizing: "border-box",
         }}
-        >
-          {/* Header */}
+      >
+        {/* Header */}
         <header style={{ marginBottom: 16 }}>
           <div
             style={{
@@ -597,29 +700,56 @@ const regenMut = useMutation({
             }}
           >
             <h2 style={{ margin: 0 }}>{stripParens(displayTitle)}</h2>
+
+            {/* Right actions */}
+            <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+            {/* Theme toggle */}
             <button
-              onClick={() => {
+                type="button"
+                title={isLight ? "Switch to dark mode" : "Switch to light mode"}
+                onClick={() => setThemeMode((m) => (m === "light" ? "dark" : "light"))}
+                style={{
+                padding: "10px 14px",
+                borderRadius: 12,
+                background: theme.toggleBg,
+                color: theme.toggleText,
+                border: theme.toggleBorder,
+                cursor: "pointer",
+                backdropFilter: "blur(10px)",
+                }}
+            >
+                <img
+                    src={isLight ? "/light_mode.svg" : "/dark_mode.svg"}
+                    alt={isLight ? "Light mode" : "Dark mode"}
+                    style={{ width: 18, height: 18 }}
+                />
+            </button>
+
+            {/* Logout */}
+            <button
+                onClick={() => {
                 logout();
                 qc.clear();
                 nav("/login");
-              }}
-              style={{
+                }}
+                style={{
                 padding: "10px 14px",
                 borderRadius: 12,
-                background: "#eaeaea",
-                color: "#111",
+                background: theme.logoutBg,
+                color: theme.logoutText,
                 border: "none",
                 cursor: "pointer",
-              }}
+                }}
             >
-              Logout
+                Logout
             </button>
-          </div>
+            </div>
+        </div>
+
           <div
             style={{
               height: 1,
-              background:
-                "linear-gradient(to right, rgba(255,255,255,.14), rgba(255,255,255,.06))",
+              background: theme.dividerBg,
               marginTop: 12,
               marginLeft: -20,
               marginRight: -20,
@@ -636,243 +766,258 @@ const regenMut = useMutation({
             paddingInline: 16,
           }}
         >
-        {/* Composer */}
-        <div style={{ marginTop: 12 }}>
-          <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
-            <button
-              type="button"
-              onClick={() => {
-                setMode("paste");
-                setFile(null);
-                setFileErr("");
-              }}
-              style={{
-                padding: "8px 12px",
-                borderRadius: 10,
-                background: mode === "paste" ? "#2b2b35" : "transparent",
-                color: "#fff",
-                border: "1px solid rgba(255,255,255,.18)",
-                cursor: "pointer",
-              }}
-            >
-              Paste code
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setMode("upload");
-                setFileErr("");
-              }}
-              style={{
-                padding: "8px 12px",
-                borderRadius: 10,
-                background: mode === "upload" ? "#2b2b35" : "transparent",
-                color: "#fff",
-                border: "1px solid rgba(255,255,255,.18)",
-                cursor: "pointer",
-              }}
-            >
-              Upload .py
-            </button>
-            {/* ✅ Model dropdown pill */}
-            <div style={{ marginLeft: 8, display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ opacity: 0.75, fontSize: 13 }}>Model</span>
-              <select
-                value={modelMode}
-                onChange={(e) => setModelMode(e.target.value)}
-                style={{
-                  padding: "7px 10px",
-                  borderRadius: 10,
-                  background: "rgba(255,255,255,0.06)",
-                  color: "#fff",
-                  border: "1px solid rgba(255,255,255,.18)",
-                  cursor: "pointer",
-                  outline: "none",
-                }}
-              >
-                <option value="base" style={{ color: "#111" }}>
-                  Base (Standard)
-                </option>
-                <option value="edge" style={{ color: "#111" }}>
-                  Edge (Edge-case)
-                </option>
-              </select>
-            </div>
-          </div>
-
-          {/* Paste mode */}
-          {mode === "paste" && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const trimmed = code.trim();
-                if (!trimmed || !activeId) return;
-                addItemMut.mutate({ pasted_code: trimmed, modelMode });
-                setCode("");
-              }}
-              style={{ display: "flex", gap: 12, alignItems: "stretch" }}
-            >
-              <CodeEditor value={code} onChange={setCode} />
+          {/* Composer */}
+          <div style={{ marginTop: 12 }}>
+            <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
               <button
-                type="submit"
-                style={{
-                  padding: "12px 18px",
-                  borderRadius: 12,
-                  background: isGenerating ? "#4a278a" : "#5B32A4",
-                  color: "#fff",
-                  border: "none",
-                  cursor: isGenerating ? "wait" : "pointer",
-                  opacity: isGenerating ? 0.85 : 1,
-                  alignSelf: "flex-start",
-                }}
-                disabled={isBusy  || !activeId}
-              >
-                {isGenerating ? "Generating…" : "Generate"}
-              </button>
-            </form>
-          )}
-
-          {mode === "upload" && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!file) {
-                  setFileErr("Choose a .py file first.");
-                  return;
-                }
-                if (!activeId) return;
-                addItemMut.mutate({ file, modelMode });
-              }}
-              style={{
-                display: "flex",
-                gap: 12,
-                alignItems: "center",
-              }}
-            >
-              {/* Dropzone / clickable area */}
-              <div
+                type="button"
                 onClick={() => {
-                  if (fileRef.current) fileRef.current.click();
-                }}
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setIsDragging(true);
-                }}
-                onDragLeave={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setIsDragging(false);
-                }}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setIsDragging(false);
-
-                  let f =
-                    (e.dataTransfer.files && e.dataTransfer.files[0]) ||
-                    (e.dataTransfer.items &&
-                      e.dataTransfer.items[0]?.kind === "file" &&
-                      e.dataTransfer.items[0].getAsFile());
-
-                  if (f) {
-                    validateAndSetFile(f);
-                  }
+                  setMode("paste");
+                  setFile(null);
+                  setFileErr("");
                 }}
                 style={{
-                  flex: 1,
-                  padding: 12,
-                  borderRadius: 12,
-                  background: isDragging ? "#111827" : "#0b0b0c",
-                  border: isDragging
-                    ? "1px dashed rgba(255,255,255,.6)"
-                    : "1px solid rgba(255,255,255,.2)",
-                  transition: "background 120ms ease, border 120ms ease",
+                  padding: "8px 12px",
+                  borderRadius: 10,
+                  background:
+                    mode === "paste" ? theme.pillBgActive : "transparent",
+                  color: theme.pillText,
+                  border: theme.pillBorder,
                   cursor: "pointer",
-                  fontSize: 14,
-                  color: "#e5e5e5",
+                }}
+              >
+                Paste code
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setMode("upload");
+                  setFileErr("");
+                }}
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: 10,
+                  background:
+                    mode === "upload" ? theme.pillBgActive : "transparent",
+                  color: theme.pillText,
+                  border: theme.pillBorder,
+                  cursor: "pointer",
+                }}
+              >
+                Upload .py
+              </button>
+
+              {/* ✅ Model dropdown pill */}
+              <div
+                style={{
+                  marginLeft: 8,
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "space-between",
+                  gap: 8,
                 }}
               >
-                <span>
-                  {file ? `Selected file: ${file.name}` : "Drop .py file here or click to choose"}
-                </span>
+                <span style={{ opacity: 0.75, fontSize: 13 }}>Model</span>
+                <select
+                  value={modelMode}
+                  onChange={(e) => setModelMode(e.target.value)}
+                  style={{
+                    padding: "7px 10px",
+                    borderRadius: 10,
+                    background: theme.selectBg,
+                    color: theme.selectText,
+                    border: theme.selectBorder,
+                    cursor: "pointer",
+                    outline: "none",
+                  }}
+                >
+                  <option value="base" style={{ color: "#111" }}>
+                    Base (Standard)
+                  </option>
+                  <option value="edge" style={{ color: "#111" }}>
+                    Edge (Edge-case)
+                  </option>
+                </select>
               </div>
+            </div>
 
-              {/* Hidden native input, still used for click-to-select */}
-              <input
-                ref={fileRef}
-                type="file"
-                accept=".py"
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-              />
-
-              <button
-                type="submit"
-                style={{
-                  padding: "10px 16px",
-                  borderRadius: 12,
-                  background: isGenerating ? "#4a278a" : "#5B32A4",
-                  color: "#fff",
-                  border: "none",
-                  cursor: isGenerating ? "wait" : "pointer",
-                  opacity: isGenerating ? 0.85 : 1,
-                  whiteSpace: "nowrap",
+            {/* Paste mode */}
+            {mode === "paste" && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const trimmed = code.trim();
+                  if (!trimmed || !activeId) return;
+                  addItemMut.mutate({ pasted_code: trimmed, modelMode });
+                  setCode("");
                 }}
-                disabled={isBusy || !activeId}
+                style={{ display: "flex", gap: 12, alignItems: "stretch" }}
               >
-                {isGenerating ? "Generating…" : "Generate"}
-              </button>
-            </form>
-          )}
+                <CodeEditor value={code} onChange={setCode} themeMode={themeMode} />
+                <button
+                  type="submit"
+                  style={{
+                    padding: "12px 18px",
+                    borderRadius: 12,
+                    background: isGenerating
+                      ? theme.primaryBtnBusy
+                      : theme.primaryBtn,
+                    color: "#fff",
+                    border: "none",
+                    cursor: isBusy ? "wait" : "pointer",
+                    opacity: isBusy ? 0.85 : 1,
+                    alignSelf: "flex-start",
+                  }}
+                  disabled={isBusy || !activeId}
+                >
+                  {isGenerating ? "Generating…" : "Generate"}
+                </button>
+              </form>
+            )}
 
-          {fileErr && (
-            <div style={{ color: "#f87171", marginTop: 8 }}>{fileErr}</div>
-          )}
-        </div>
-
-        {/* Results */}
-        {activeItems.length > 0 && (
-          <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
-            {activeItems.map((it) => (
-              <div
-                key={it.id}
+            {/* Upload mode */}
+            {mode === "upload" && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!file) {
+                    setFileErr("Choose a .py file first.");
+                    return;
+                  }
+                  if (!activeId) return;
+                  addItemMut.mutate({ file, modelMode });
+                }}
                 style={{
-                  background: "rgba(255,255,255,0.045)",
-                  border: "1px solid rgba(255,255,255,0.10)",
-                  backdropFilter: "blur(6px)",
-                  borderRadius: 12,
-                  padding: 16,
+                  display: "flex",
+                  gap: 12,
+                  alignItems: "center",
                 }}
               >
-                {it.pasted_code && (
-                  <>
-                    <div style={{ opacity: 0.8, marginBottom: 6 }}>
-                      User code:
-                    </div>
-                    <pre
-                      style={{
-                        margin: 0,
-                        whiteSpace: "pre-wrap",
-                        fontFamily:
-                          "ui-monospace, SFMono-Regular, Menlo, monospace",
-                        fontSize: 13,
-                      }}
-                    >
-                      {it.pasted_code}
-                    </pre>
-                    <div
-                      style={{
-                        margin: "10px 0",
-                        height: 1,
-                        background: "rgba(255,255,255,0.12)",
-                      }}
-                    />
-                  </>
-                )}
+                {/* Dropzone / clickable area */}
+                <div
+                  onClick={() => {
+                    if (fileRef.current) fileRef.current.click();
+                  }}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsDragging(true);
+                  }}
+                  onDragLeave={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsDragging(false);
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsDragging(false);
+
+                    let f =
+                      (e.dataTransfer.files && e.dataTransfer.files[0]) ||
+                      (e.dataTransfer.items &&
+                        e.dataTransfer.items[0]?.kind === "file" &&
+                        e.dataTransfer.items[0].getAsFile());
+
+                    if (f) validateAndSetFile(f);
+                  }}
+                  style={{
+                    flex: 1,
+                    padding: 12,
+                    borderRadius: 12,
+                    background: isDragging ? theme.dropBgDrag : theme.dropBg,
+                    border: isDragging ? theme.dropBorderDrag : theme.dropBorder,
+                    transition: "background 120ms ease, border 120ms ease",
+                    cursor: "pointer",
+                    fontSize: 14,
+                    color: theme.dropText,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <span>
+                    {file
+                      ? `Selected file: ${file.name}`
+                      : "Drop .py file here or click to choose"}
+                  </span>
+                </div>
+
+                {/* Hidden native input */}
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept=".py"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+
+                <button
+                  type="submit"
+                  style={{
+                    padding: "10px 16px",
+                    borderRadius: 12,
+                    background: isGenerating
+                      ? theme.primaryBtnBusy
+                      : theme.primaryBtn,
+                    color: "#fff",
+                    border: "none",
+                    cursor: isBusy ? "wait" : "pointer",
+                    opacity: isBusy ? 0.85 : 1,
+                    whiteSpace: "nowrap",
+                  }}
+                  disabled={isBusy || !activeId}
+                >
+                  {isGenerating ? "Generating…" : "Generate"}
+                </button>
+              </form>
+            )}
+
+            {fileErr && (
+              <div style={{ color: "#f87171", marginTop: 8 }}>{fileErr}</div>
+            )}
+          </div>
+
+          {/* Results */}
+          {activeItems.length > 0 && (
+            <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
+              {activeItems.map((it) => (
+                <div
+                  key={it.id}
+                  style={{
+                    background: theme.cardBg,
+                    border: theme.cardBorder,
+                    backdropFilter: "blur(6px)",
+                    borderRadius: 12,
+                    padding: 16,
+                  }}
+                >
+                  {it.pasted_code && (
+                    <>
+                      <div style={{ opacity: 0.8, marginBottom: 6 }}>
+                        User code:
+                      </div>
+                      <pre
+                        style={{
+                          margin: 0,
+                          whiteSpace: "pre-wrap",
+                          fontFamily:
+                            "ui-monospace, SFMono-Regular, Menlo, monospace",
+                          fontSize: 13,
+                        }}
+                      >
+                        {it.pasted_code}
+                      </pre>
+                      <div
+                        style={{
+                          margin: "10px 0",
+                          height: 1,
+                          background: theme.cardDivider,
+                        }}
+                      />
+                    </>
+                  )}
+
                   {/* Header row for Generated tests + actions */}
                   <div
                     style={{
@@ -901,10 +1046,12 @@ const regenMut = useMutation({
                         title="Copy tests to clipboard"
                       >
                         {copiedId === it.id ? (
-                          <span style={{ fontSize: 12, color: "#a7f3d0" }}>Copied</span>
+                          <span style={{ fontSize: 12, color: "#22c55e" }}>
+                            Copied
+                          </span>
                         ) : (
                           <img
-                            src="/copy.svg"
+                            src={icons.copy}
                             alt="Copy"
                             style={{ width: 16, height: 16 }}
                           />
@@ -916,7 +1063,11 @@ const regenMut = useMutation({
                         type="button"
                         disabled={isBusy}
                         onClick={() =>
-                          regenMut.mutate({ sessionId: activeId, itemId: it.id, modelMode })
+                          regenMut.mutate({
+                            sessionId: activeId,
+                            itemId: it.id,
+                            modelMode,
+                          })
                         }
                         style={{
                           border: "none",
@@ -928,7 +1079,7 @@ const regenMut = useMutation({
                         title="Regenerate tests"
                       >
                         <img
-                          src="/Reload.svg"       // make sure reload.svg is in /public
+                          src={icons.regen}
                           alt="Regenerate"
                           style={{ width: 16, height: 16 }}
                         />
@@ -947,7 +1098,7 @@ const regenMut = useMutation({
                         title="Download tests as .py"
                       >
                         <img
-                          src="/download.svg" 
+                          src={icons.download}
                           alt="Download"
                           style={{ width: 16, height: 16 }}
                         />
@@ -967,53 +1118,54 @@ const regenMut = useMutation({
                   >
                     {it.generated_tests || "# (empty)"}
                   </pre>
-              </div>
-            ))}
-          </div>
-        )}
+                </div>
+              ))}
+            </div>
+          )}
 
-        {/* Empty state */}
-        {!activeSessionQ.isLoading && activeItems.length === 0 && (
-          <div
-            style={{
-              display: "grid",
-              placeItems: "center",
-              height: "50vh",
-              opacity: 0.8,
-            }}
-          >
-            <h1>Start New Session</h1>
-          </div>
-        )}
+          {/* Empty state */}
+          {!activeSessionQ.isLoading && activeItems.length === 0 && (
+            <div
+              style={{
+                display: "grid",
+                placeItems: "center",
+                height: "50vh",
+                opacity: 0.8,
+              }}
+            >
+              <h1>Start New Session</h1>
+            </div>
+          )}
 
-        {/* Toast */}
-        {toast && (
-          <div
-            style={{
-              position: "fixed",
-              top: 75,
-              right: 30,
-              background: "rgba(40,40,48,.92)",
-              border: "1px solid rgba(255,255,255,.15)",
-              padding: "10px 14px",
-              borderRadius: 10,
-              fontSize: 14,
-              zIndex: 999, 
-            }}
-          >
-            {toast}
-          </div>
-        )}
+          {/* Toast */}
+          {toast && (
+            <div
+              style={{
+                position: "fixed",
+                top: 85,
+                right: 85,
+                background: theme.toastBg,
+                color: theme.toastText,
+                border: theme.toastBorder,
+                padding: "10px 14px",
+                borderRadius: 10,
+                fontSize: 14,
+                zIndex: 999,
+              }}
+            >
+              {toast}
+            </div>
+          )}
         </div>
       </main>
-      
+
       {/* Search modal */}
       {showSearchModal && (
         <div
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.55)",
+            background: theme.modalOverlay,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -1024,15 +1176,16 @@ const regenMut = useMutation({
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: "rgba(20,20,25,1)",
+              background: theme.modalBg,
               padding: 24,
               borderRadius: 12,
               width: 500,
-              border: "1px solid rgba(255,255,255,.12)",
+              border: theme.modalBorder,
               maxHeight: "70vh",
               display: "flex",
               flexDirection: "column",
               gap: 12,
+              color: theme.pageText,
             }}
           >
             <h3 style={{ margin: 0 }}>Search test history</h3>
@@ -1040,7 +1193,7 @@ const regenMut = useMutation({
               Search by session title or code/tests within that session.
             </p>
 
-            <input
+             <input
               type="text"
               autoFocus
               value={searchQuery}
@@ -1051,10 +1204,11 @@ const regenMut = useMutation({
                 width: "100%",
                 padding: "8px 10px",
                 borderRadius: 8,
-                border: "1px solid rgba(255,255,255,.25)",
-                background: "rgba(15,15,20,1)",
-                color: "#fff",
+                border: theme.inputBorder,
+                background: theme.inputBg,
+                color: theme.inputText,
                 fontSize: 14,
+                outline: "none",
               }}
             />
 
@@ -1064,19 +1218,19 @@ const regenMut = useMutation({
                 overflowY: "auto",
                 flex: 1,
                 borderRadius: 8,
-                border: "1px solid rgba(255,255,255,.12)",
+                border: theme.modalBorder,
                 padding: 6,
-                background: "rgba(10,10,15,1)",
+                background: isLight ? "rgba(248,250,252,0.7)" : "rgba(10,10,15,1)",
               }}
             >
               {searchQuery.trim() === "" && (
-                <div style={{ opacity: 0.7, fontSize: 13, padding: 6 }}>
+                <div style={{ opacity: 0.7, fontSize: 13, padding: 6, color: theme.subtleText }}>
                   Start typing to search your sessions…
                 </div>
               )}
 
               {searchQuery.trim() !== "" && searchResults.length === 0 && (
-                <div style={{ opacity: 0.7, fontSize: 13, padding: 6 }}>
+                <div style={{ opacity: 0.7, fontSize: 13, padding: 6, color: theme.subtleText }}>
                   No matches found.
                 </div>
               )}
@@ -1094,14 +1248,25 @@ const regenMut = useMutation({
                     borderRadius: 8,
                     marginBottom: 4,
                     cursor: "pointer",
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: isLight ? "rgba(15,23,42,0.03)" : "rgba(255,255,255,0.03)",
+                    border: theme.rowBorder,
+                    color: theme.pageText,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = isLight
+                      ? "rgba(37,99,235,0.06)"
+                      : "rgba(255,255,255,0.06)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = isLight
+                      ? "rgba(15,23,42,0.03)"
+                      : "rgba(255,255,255,0.03)";
                   }}
                 >
-                  <div style={{ fontSize: 14, fontWeight: 500 }}>
-                    {s.title || `Session #${s.id}`}
+                  <div style={{ fontSize: 14, fontWeight: 600 }}>
+                    {stripParens(s.title || `Session #${s.id}`)}
                   </div>
-                  <div style={{ fontSize: 12, opacity: 0.7, marginTop: 2 }}>
+                  <div style={{ fontSize: 12, opacity: 0.7, marginTop: 2, color: theme.subtleText }}>
                     {s.items?.length
                       ? `${s.items.length} item${s.items.length > 1 ? "s" : ""}`
                       : "No items yet"}
@@ -1121,9 +1286,9 @@ const regenMut = useMutation({
                 style={{
                   padding: "8px 14px",
                   borderRadius: 8,
-                  border: "1px solid rgba(255,255,255,.25)",
+                  border: theme.inputBorder,
                   background: "transparent",
-                  color: "#fff",
+                  color: theme.pageText,
                   cursor: "pointer",
                 }}
                 onClick={() => {
@@ -1144,7 +1309,7 @@ const regenMut = useMutation({
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.55)",
+            background: theme.modalOverlay,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -1155,20 +1320,17 @@ const regenMut = useMutation({
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: "rgba(20,20,25,1)",
+              background: theme.modalBg,
               padding: 24,
               borderRadius: 12,
               width: 380,
-              border: "1px solid rgba(255,255,255,.12)",
+              border: theme.modalBorder,
+              color: theme.pageText,
             }}
           >
-            <h3 style={{ marginTop: 0, marginBottom: 12 }}>
-              Rename session
-            </h3>
+            <h3 style={{ marginTop: 0, marginBottom: 12 }}>Rename session</h3>
 
-            <label style={{ fontSize: 14, opacity: 0.9 }}>
-              New title
-            </label>
+            <label style={{ fontSize: 14, opacity: 0.9 }}>New title</label>
             <input
               type="text"
               value={renameValue}
@@ -1178,10 +1340,11 @@ const regenMut = useMutation({
                 width: "100%",
                 padding: "8px 10px",
                 borderRadius: 8,
-                border: "1px solid rgba(255,255,255,.25)",
-                background: "rgba(15,15,20,1)",
-                color: "#fff",
+                border: theme.inputBorder,
+                background: theme.inputBg,
+                color: theme.inputText,
                 fontSize: 14,
+                outline: "none",
               }}
               maxLength={120}
             />
@@ -1198,9 +1361,9 @@ const regenMut = useMutation({
                 style={{
                   padding: "8px 14px",
                   borderRadius: 8,
-                  border: "1px solid rgba(255,255,255,.25)",
+                  border: theme.inputBorder,
                   background: "transparent",
-                  color: "#fff",
+                  color: theme.pageText,
                   cursor: "pointer",
                 }}
                 onClick={() => setShowRenameModal(false)}
@@ -1212,7 +1375,7 @@ const regenMut = useMutation({
                 style={{
                   padding: "8px 14px",
                   borderRadius: 8,
-                  background: "#6366f1",
+                  background: theme.primaryBtn,
                   color: "#fff",
                   border: "none",
                   cursor: "pointer",
@@ -1240,7 +1403,7 @@ const regenMut = useMutation({
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.55)",
+            background: theme.modalOverlay,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -1251,30 +1414,30 @@ const regenMut = useMutation({
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: "rgba(20,20,25,1)",
+              background: theme.modalBg,
               padding: 24,
               borderRadius: 12,
               width: 360,
-              border: "1px solid rgba(255,255,255,.12)",
+              border: theme.modalBorder,
+              color: theme.pageText,
             }}
           >
-            <h3 style={{ marginTop: 0, marginBottom: 12 }}>
-              Delete this session?
-            </h3>
+            <h3 style={{ marginTop: 0, marginBottom: 12 }}>Delete this session?</h3>
             <p style={{ opacity: 0.8, fontSize: 14, marginBottom: 20 }}>
-              This will delete {sessions.find(s => s.id === deleteId)?.title || `Session #${deleteId}`}
+              This will delete{" "}
+              {stripParens(
+                sessions.find((s) => s.id === deleteId)?.title || `Session #${deleteId}`
+              )}
             </p>
 
-            <div
-              style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}
-            >
+            <div style={{ display: "flex", justifyContent: "flex-end", gap: 10 }}>
               <button
                 style={{
                   padding: "8px 14px",
                   borderRadius: 8,
-                  border: "1px solid rgba(255,255,255,.25)",
+                  border: theme.inputBorder,
                   background: "transparent",
-                  color: "#fff",
+                  color: theme.pageText,
                   cursor: "pointer",
                 }}
                 onClick={() => setShowDeleteModal(false)}
@@ -1292,9 +1455,7 @@ const regenMut = useMutation({
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  if (deleteId != null) {
-                    deleteMut.mutate(deleteId); 
-                  }
+                  if (deleteId != null) deleteMut.mutate(deleteId);
                   setShowDeleteModal(false);
                 }}
               >

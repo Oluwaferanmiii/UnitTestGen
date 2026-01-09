@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { register } from "../api/auth";
 import Logo from "../components/Logo";
@@ -15,9 +15,50 @@ export default function Register() {
   const [err, setErr] = useState("");
   const [ok, setOk] = useState("");
 
+  // ✅ Theme 
+  const [themeMode, setThemeMode] = useState(
+    () => localStorage.getItem("unittestlab:theme") || "dark"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("unittestlab:theme", themeMode);
+  }, [themeMode]);
+
+  const isLight = themeMode === "light";
+
+  // ✅ Theme tokens
+  const theme = {
+    pageBg: isLight
+      ? "linear-gradient(135deg,#f4f6fb 0%, #e7efff 55%, #dbeafe 100%)"
+      : "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
+    pageText: isLight ? "#0f172a" : "#fff",
+
+    usernameInputBg: isLight ? "#ffffff" : "#d4d4d4",
+    usernameInputText: isLight ? "#0f172a" : "#111",
+    usernameInputBorder: isLight ? "1px solid rgba(15,23,42,0.12)" : "none",
+
+    darkInputBg: isLight ? "#ffffff" : "#0b0b0c",
+    darkInputText: isLight ? "#0f172a" : "#fff",
+    darkInputBorder: isLight
+      ? "1px solid rgba(15,23,42,0.18)"
+      : "1px solid rgba(255,255,255,0.6)",
+
+    linkGreen: isLight ? "#2563eb" : "#22c55e",
+
+    // keep purple button in dark; use blue in light
+    btnBg: isLight ? "#2563eb" : "#5B32A4",
+
+    toggleBg: isLight ? "rgba(255, 255, 255, 0.03)" : "rgba(0,0,0,0.35)",
+    toggleText: isLight ? "#0f172a" : "#fff",
+    toggleBorder: isLight
+      ? "1px solid rgba(15,23,42,0.12)"
+      : "1px solid rgba(255,255,255,0.16)",
+  };
+
   async function onSubmit(e) {
     e.preventDefault();
-    setErr(""); setOk("");
+    setErr("");
+    setOk("");
 
     if (form.password !== form.confirm) {
       setErr("Passwords do not match.");
@@ -32,7 +73,7 @@ export default function Register() {
       });
       setOk("Registration successful. Please sign in.");
       setTimeout(() => nav("/login"), 800);
-    } catch(e) {
+    } catch (e) {
       setErr(e.message);
     }
   }
@@ -41,14 +82,39 @@ export default function Register() {
     <div
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(120deg,#0b0b0c 55%, #1F044F 100%)",
-        color: "#fff",
+        background: theme.pageBg, // ✅ theme-aware
+        color: theme.pageText, // ✅ theme-aware
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         alignItems: "center",
         padding: 32,
       }}
     >
+      {/* ✅ Theme toggle */}
+      <button
+        type="button"
+        title={isLight ? "Switch to dark mode" : "Switch to light mode"}
+        onClick={() => setThemeMode((m) => (m === "light" ? "dark" : "light"))}
+        style={{
+          position: "fixed",
+          top: 18,
+          right: 18,
+          padding: "8px 12px",
+          borderRadius: 999,
+          background: theme.toggleBg,
+          color: theme.toggleText,
+          border: theme.toggleBorder,
+          cursor: "pointer",
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        <img
+          src={isLight ? "/light_mode.svg" : "/dark_mode.svg"}
+          alt={isLight ? "Light mode" : "Dark mode"}
+          style={{ width: 18, height: 18 }}
+        />
+      </button>
+
       {/* LEFT: form */}
       <div
         style={{
@@ -72,9 +138,9 @@ export default function Register() {
               width: 428,
               padding: "16px 20px",
               borderRadius: 12,
-              border: "none",
-              background: "#d4d4d4",
-              color: "#111",
+              border: theme.usernameInputBorder, // ✅ theme-aware
+              background: theme.usernameInputBg, // ✅ theme-aware
+              color: theme.usernameInputText, // ✅ theme-aware
               fontSize: 16,
             }}
           />
@@ -87,9 +153,9 @@ export default function Register() {
               width: 428,
               padding: "16px 20px",
               borderRadius: 12,
-              border: "1px solid rgba(255,255,255,0.6)",
-              background: "#0b0b0c",
-              color: "#fff",
+              border: theme.darkInputBorder, // ✅ theme-aware
+              background: theme.darkInputBg, // ✅ theme-aware
+              color: theme.darkInputText, // ✅ theme-aware
               fontSize: 16,
             }}
           />
@@ -103,9 +169,9 @@ export default function Register() {
               width: 428,
               padding: "16px 20px",
               borderRadius: 12,
-              border: "1px solid rgba(255,255,255,0.6)",
-              background: "#0b0b0c",
-              color: "#fff",
+              border: theme.darkInputBorder, // ✅ theme-aware
+              background: theme.darkInputBg, // ✅ theme-aware
+              color: theme.darkInputText, // ✅ theme-aware
               fontSize: 16,
             }}
           />
@@ -119,9 +185,9 @@ export default function Register() {
               width: 428,
               padding: "16px 20px",
               borderRadius: 12,
-              border: "1px solid rgba(255,255,255,0.6)",
-              background: "#0b0b0c",
-              color: "#fff",
+              border: theme.darkInputBorder, // ✅ theme-aware
+              background: theme.darkInputBg, // ✅ theme-aware
+              color: theme.darkInputText, // ✅ theme-aware
               fontSize: 16,
             }}
           />
@@ -136,7 +202,7 @@ export default function Register() {
             variant="solid"
             disabled={false}
             styleOverride={{
-              background: "#5B32A4",
+              background: theme.btnBg, // ✅ theme-aware
               color: "#fff",
               border: "none",
             }}
@@ -146,14 +212,13 @@ export default function Register() {
 
           <div style={{ marginTop: 4 }}>
             Already have an account?{" "}
-            <Link to="/login" style={{ color: "#22c55e" }}>
+            <Link to="/login" style={{ color: theme.linkGreen }}>
               Login
             </Link>
           </div>
         </form>
       </div>
 
-      {/* RIGHT: big logo to match Figma */}
       <div style={{ justifySelf: "center" }}>
         <Logo size="medium" />
       </div>
