@@ -138,7 +138,7 @@ args = TrainingArguments(
     save_strategy="epoch",
     save_total_limit=3,
     load_best_model_at_end=True,
-    metric_for_best_model="loss",
+    metric_for_best_model="eval_loss",
     greater_is_better=False,
 
     # Misc
