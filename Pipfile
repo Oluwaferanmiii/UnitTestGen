@@ -19,6 +19,9 @@ torch = "*"
 tensorboard = "*"
 python-dotenv = "*"
 pylint-django = "*"
+pytest = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 pytest = "*"

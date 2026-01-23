@@ -1,6 +1,7 @@
 # Virtual Environment
 Pipfile.lock
 .env
+.env.docker
 
 # Media
 /media/
@@ -26,3 +27,5 @@ function_test_results.log
 
 # Linting / local tooling
 .pylintrc
+__pycache__/
+node_modules/

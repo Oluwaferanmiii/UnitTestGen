@@ -36,13 +36,15 @@ export default function Dashboard() {
   const isLight = themeMode === "light";
 
     // ✅ Icon variants
+    const ASSET_BASE = import.meta.env.BASE_URL;
     const icons = {
-    newSession: isLight ? "/New_session_black.svg" : "/New_session.svg",
-    search: isLight ? "/search_black.svg" : "/search.svg",
-    copy: isLight ? "/copy_black.svg" : "/copy.svg",
-    regen: isLight ? "/Reload_black.svg" : "/Reload.svg",
-    download: isLight ? "/download_black.svg" : "/download.svg",
-    };
+    newSession: `${ASSET_BASE}${isLight ? "New_session_black.svg" : "New_session.svg"}`,
+    search: `${ASSET_BASE}${isLight ? "search_black.svg" : "search.svg"}`,
+    copy: `${ASSET_BASE}${isLight ? "copy_black.svg" : "copy.svg"}`,
+    regen: `${ASSET_BASE}${isLight ? "Reload_black.svg" : "Reload.svg"}`,
+    download: `${ASSET_BASE}${isLight ? "download_black.svg" : "download.svg"}`,
+    theme: `${ASSET_BASE}${isLight ? "light_mode.svg" : "dark_mode.svg"}`,
+  };
 
   // ✅ Theme tokens (dark values match your current UI)
   const theme = {
@@ -721,7 +723,7 @@ export default function Dashboard() {
                 }}
             >
                 <img
-                    src={isLight ? "/light_mode.svg" : "/dark_mode.svg"}
+                    src={icons.theme}
                     alt={isLight ? "Light mode" : "Dark mode"}
                     style={{ width: 18, height: 18 }}
                 />

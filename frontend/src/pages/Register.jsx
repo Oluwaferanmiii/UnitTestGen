@@ -14,6 +14,7 @@ export default function Register() {
   });
   const [err, setErr] = useState("");
   const [ok, setOk] = useState("");
+  const ASSET_BASE = import.meta.env.BASE_URL;
 
   // ✅ Theme 
   const [themeMode, setThemeMode] = useState(
@@ -109,7 +110,7 @@ export default function Register() {
         }}
       >
         <img
-          src={isLight ? "/light_mode.svg" : "/dark_mode.svg"}
+          src={`${ASSET_BASE}${isLight ? "light_mode.svg" : "dark_mode.svg"}`}
           alt={isLight ? "Light mode" : "Dark mode"}
           style={{ width: 18, height: 18 }}
         />

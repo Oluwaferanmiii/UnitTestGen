@@ -44,24 +44,18 @@ def _vd(msg: str) -> None:
 # -----------------------------
 BASE_MODEL_DIR = os.environ.get(
     "MODEL_PATH",
-    "/Users/oluwaferanmiii/Python/Thesis/fine_tuned_codet5p"
+    "Oluwaferanmiii/codet5p-220m-pytest-generator",
 )
-
-EDGE_MODEL_DIR = os.environ.get("EDGE_MODEL_PATH", BASE_MODEL_DIR)
-
-if not os.path.exists(BASE_MODEL_DIR):
-    raise FileNotFoundError(
-        f"[codet5_engine] Directory {BASE_MODEL_DIR} does not exist!"
-    )
-
-print(f"[codet5_engine] Loading model from: {BASE_MODEL_DIR}")
-if EDGE_MODEL_DIR != BASE_MODEL_DIR:
-    print(f"[codet5_engine] Edge model from: {EDGE_MODEL_DIR}")
-
+EDGE_MODEL_DIR = os.environ.get(
+    "EDGE_MODEL_PATH",
+    "Oluwaferanmiii/codet5p-220m-pytest-edge-generator",
+)
 
 # -----------------------------
 # Lazy single-load (cached)
 # -----------------------------
+
+
 @lru_cache(maxsize=None)
 def _load_model_and_tokenizer(mode: str = "base"):
     """
