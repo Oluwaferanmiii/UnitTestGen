@@ -1,4 +1,4 @@
-# 🧪 AI-Powered Unit Test Generator
+# AI-Powered Unit Test Generator
 
 An intelligent web-based system for automatically generating Python unit tests using a fine-tuned CodeT5 model.
 
